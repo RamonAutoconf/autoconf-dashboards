@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipeline Expansão — Autoconf</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f2f5; color: #1a1a1a; }
+
+.topbar { background: #111; padding: 0 32px; height: 56px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+.logo { font-size: 15px; font-weight: 700; color: #fff; }
+.logo span { color: #f59e0b; }
+.sep { width: 1px; height: 20px; background: #333; margin: 0 16px; }
+.page-title { font-size: 13px; color: #888; }
+.topbar-right { display: flex; align-items: center; gap: 12px; }
+.period-badge { font-size: 11px; color: #888; background: #222; padding: 4px 12px; border-radius: 6px; border: 1px solid #333; }
+.badge-expansao { font-size: 11px; font-weight: 600; color: #f59e0b; background: rgba(245,158,11,0.1); padding: 4px 12px; border-radius: 20px; border: 1px solid rgba(245,158,11,0.3); }
+
+.main { padding: 24px 32px; max-width: 1400px; margin: 0 auto; }
+.section-label { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: #e5e7eb; }
+
+.kpi-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 24px; }
+.kpi { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px 18px; position: relative; overflow: hidden; }
+.kpi::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.kpi.amber::before { background: #f59e0b; }
+.kpi.green::before { background: #10b981; }
+.kpi.blue::before { background: #3b82f6; }
+.kpi.red::before { background: #ef4444; }
+.kpi.purple::before { background: #8b5cf6; }
+.kpi-label { font-size: 10px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 6px; }
+.kpi-value { font-size: 24px; font-weight: 700; color: #111; letter-spacing: -0.5px; line-height: 1; }
+.kpi-value.sm { font-size: 18px; }
+.kpi-sub { font-size: 11px; color: #6b7280; margin-top: 5px; }
+.kpi-trend { font-size: 11px; font-weight: 600; margin-top: 4px; }
+.kpi-trend.up { color: #10b981; }
+.kpi-trend.down { color: #ef4444; }
+.kpi-trend.good-down { color: #10b981; }
+.kpi-trend.neutral { color: #6b7280; }
+
+.card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.card-title { font-size: 13px; font-weight: 600; color: #374151; }
+.card-tag { font-size: 11px; color: #6b7280; background: #f3f4f6; padding: 2px 8px; border-radius: 4px; }
+
+.chart-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 16px; }
+.chart-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.chart-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+.leg-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #6b7280; }
+.leg-dot { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+
+.safra-grid { display: grid; grid-template-columns: repeat(9,1fr); gap: 8px; margin-bottom: 14px; }
+.safra-card { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px 8px; text-align: center; }
+.safra-card.highlight { background: #fef3c7; border-color: #fde68a; }
+.safra-card.highlight-green { background: #f0fdf4; border-color: #bbf7d0; }
+.safra-card.highlight-red { background: #fef2f2; border-color: #fecaca; }
+.safra-stage { font-size: 9px; font-weight: 500; color: #9ca3af; text-transform: uppercase; letter-spacing: .03em; margin-bottom: 6px; }
+.safra-count { font-size: 18px; font-weight: 700; color: #111; letter-spacing: -0.5px; line-height: 1; margin-bottom: 6px; }
+.safra-card.highlight .safra-count { color: #92400e; }
+.safra-card.highlight-green .safra-count { color: #166534; }
+.safra-card.highlight-red .safra-count { color: #991b1b; }
+.safra-bar-bg { height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden; }
+.safra-bar-fill { height: 100%; border-radius: 2px; }
+
+.insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+.insight { border-radius: 10px; padding: 16px 18px; border: 1px solid; }
+.insight.green { background: #f0fdf4; border-color: #bbf7d0; }
+.insight.blue { background: #eff6ff; border-color: #bfdbfe; }
+.insight.amber { background: #fffbeb; border-color: #fde68a; }
+.insight.red { background: #fef2f2; border-color: #fecaca; }
+.insight-title { font-size: 12px; font-weight: 700; margin-bottom: 5px; }
+.insight.green .insight-title { color: #166534; }
+.insight.blue .insight-title { color: #1e3a8a; }
+.insight.amber .insight-title { color: #92400e; }
+.insight.red .insight-title { color: #991b1b; }
+.insight-text { font-size: 12px; line-height: 1.6; }
+.insight.green .insight-text { color: #14532d; }
+.insight.blue .insight-text { color: #1e40af; }
+.insight.amber .insight-text { color: #78350f; }
+.insight.red .insight-text { color: #7f1d1d; }
+.insight-number { font-size: 20px; font-weight: 700; margin: 5px 0 3px; }
+.insight.green .insight-number { color: #166534; }
+.insight.blue .insight-number { color: #1d4ed8; }
+.insight.amber .insight-number { color: #d97706; }
+.insight.red .insight-number { color: #b91c1c; }
+
+.footer { text-align: center; padding: 24px 0; font-size: 11px; color: #9ca3af; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center">
+    <div class="logo">Auto<span>conf</span></div>
+    <div class="sep"></div>
+    <div class="page-title">Pipeline Expansão — ATF EXPANSÃO</div>
+  </div>
+  <div class="topbar-right">
+    <span class="period-badge">Set/25 — Jun/26</span>
+    <span class="badge-expansao">📈 Expansão</span>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- KPIs -->
+  <div class="section-label">Junho 2026 — resumo</div>
+  <div class="kpi-grid">
+    <div class="kpi amber">
+      <div class="kpi-label">Leads</div>
+      <div class="kpi-value">268</div>
+      <div class="kpi-trend up">▲ +81% vs mai fechado</div>
+      <div class="kpi-sub">Mai fechado: 148</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">Vendas (Ganhos)</div>
+      <div class="kpi-value">40</div>
+      <div class="kpi-trend down">▼ 15% vs mai fechado</div>
+      <div class="kpi-sub">Mai fechado: 47</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Taxa de Conversão</div>
+      <div class="kpi-value sm">15%</div>
+      <div class="kpi-trend down">▼ vs 32% mai fechado</div>
+      <div class="kpi-sub">Leads recentes ainda no funil</div>
+    </div>
+    <div class="kpi purple">
+      <div class="kpi-label">2026 Acumulado — Leads</div>
+      <div class="kpi-value">850</div>
+      <div class="kpi-sub">Jan a Jun/26</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">2026 Acumulado — Vendas</div>
+      <div class="kpi-value">247</div>
+      <div class="kpi-sub">Jan a Jun/26</div>
+    </div>
+    <div class="kpi red">
+      <div class="kpi-label">Taxa Perda (snapshot)</div>
+      <div class="kpi-value sm">52%</div>
+      <div class="kpi-sub">660 de 1.277 leads totais</div>
+    </div>
+  </div>
+
+  <!-- Histórico -->
+  <div class="section-label">Evolução histórica — Set 2025 a Jun 2026</div>
+  <div class="chart-row">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Leads e Vendas por mês</span>
+        <span class="card-tag">10 meses com volume</span>
+      </div>
+      <div class="legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#f59e0b"></span>Leads</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#10b981"></span>Vendas (Ganhos)</span>
+      </div>
+      <div style="position:relative;width:100%;height:280px">
+        <canvas id="cHistorico"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Taxa de conversão mensal</span>
+        <span class="card-tag">% Vendas/Leads</span>
+      </div>
+      <div style="position:relative;width:100%;height:300px">
+        <canvas id="cTaxaConversao"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Safra atual -->
+  <div class="section-label">Safra do pipeline — leads ativos hoje (todos os meses)</div>
+  <div class="card" style="margin-bottom:24px">
+    <div style="font-size:12px;color:#6b7280;background:#f8fafc;border:1px solid #e5e7eb;border-radius:6px;padding:8px 14px;margin-bottom:16px;line-height:1.5">
+      ℹ️ Leads <strong>ativos agora</strong> em cada etapa — independente do mês de criação. Não inclui perdidos.
+    </div>
+    <div class="safra-grid">
+      <div class="safra-card">
+        <div class="safra-stage">Oportunidade</div>
+        <div class="safra-count">97</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:24%;background:#f59e0b"></div></div>
+      </div>
+      <div class="safra-card">
+        <div class="safra-stage">Tent. Contato</div>
+        <div class="safra-count">46</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:11%;background:#fbbf24"></div></div>
+      </div>
+      <div class="safra-card">
+        <div class="safra-stage">Reunião Agend.</div>
+        <div class="safra-count">12</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:3%;background:#8b5cf6"></div></div>
+      </div>
+      <div class="safra-card">
+        <div class="safra-stage">Reagendamento</div>
+        <div class="safra-count">5</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:1%;background:#a78bfa"></div></div>
+      </div>
+      <div class="safra-card">
+        <div class="safra-stage">Viabilidade</div>
+        <div class="safra-count">19</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:5%;background:#60a5fa"></div></div>
+      </div>
+      <div class="safra-card">
+        <div class="safra-stage">Proposta</div>
+        <div class="safra-count">3</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:1%;background:#3b82f6"></div></div>
+      </div>
+      <div class="safra-card">
+        <div class="safra-stage">Decisão</div>
+        <div class="safra-count">4</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:1%;background:#2563eb"></div></div>
+      </div>
+      <div class="safra-card highlight-red">
+        <div class="safra-stage">Excluir Leads</div>
+        <div class="safra-count">18</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:4%;background:#ef4444"></div></div>
+      </div>
+      <div class="safra-card highlight">
+        <div class="safra-stage">Pagto/Contrato</div>
+        <div class="safra-count">3</div>
+        <div class="safra-bar-bg"><div class="safra-bar-fill" style="width:1%;background:#f59e0b"></div></div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:#6b7280;padding-top:12px;border-top:1px solid #f3f4f6">
+      Total ativo no pipeline: <strong>207 leads</strong> &nbsp;·&nbsp; Ganhos acumulados (snapshot): <strong>410 leads</strong> &nbsp;·&nbsp; Perdidos: <strong>660 leads</strong>
+    </div>
+  </div>
+
+  <!-- Insights -->
+  <div class="section-label">Insights — pipeline de expansão</div>
+  <div class="insight-grid">
+    <div class="insight amber">
+      <span class="insight-title">🚀 Volume de leads em alta</span>
+      <div class="insight-number">+81% vs mai</div>
+      <div class="insight-text">Junho registrou <strong>268 leads</strong>, o maior volume desde o início do pipeline (set/25). Mais que o dobro da média histórica de ~110/mês.</div>
+    </div>
+    <div class="insight red">
+      <span class="insight-title">⚠️ Taxa de conversão em queda</span>
+      <div class="insight-number">15% em junho</div>
+      <div class="insight-text">Com o salto de leads, a taxa de conversão caiu de 32% para 15% — natural já que muitos leads recentes ainda não tiveram tempo de avançar até Ganhos.</div>
+    </div>
+    <div class="insight blue">
+      <span class="insight-title">📊 Pipeline maduro desde set/25</span>
+      <div class="insight-number">850 leads em 2026</div>
+      <div class="insight-text">2026 já soma <strong>850 leads</strong> e <strong>247 vendas</strong> (29% de conversão acumulada) — taxa consistente com a média histórica do pipeline.</div>
+    </div>
+    <div class="insight green">
+      <span class="insight-title">✅ Setembro foi o mês de pico histórico</span>
+      <div class="insight-number">143 leads / 57 vendas</div>
+      <div class="insight-text">Setembro/25 teve o maior volume e melhor conversão absoluta (40%) — vale entender o que funcionou para replicar.</div>
+    </div>
+    <div class="insight amber">
+      <span class="insight-title">🔍 97 leads parados em Oportunidade</span>
+      <div class="insight-number">47% da safra ativa</div>
+      <div class="insight-text">Quase metade dos leads ativos estão na primeira etapa (Oportunidade) — gargalo inicial que merece atenção do time de expansão.</div>
+    </div>
+    <div class="insight red">
+      <span class="insight-title">🗑️ 18 leads marcados para exclusão</span>
+      <div class="insight-number">Excluir Leads</div>
+      <div class="insight-text">18 leads estão na etapa "Excluir Leads" — vale entender o motivo recorrente para ajustar critérios de entrada no pipeline.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Autoconf · Pipeline Expansão · ATF EXPANSÃO · Set 2025 – Jun 2026 · Dados extraídos do HubSpot
+</div>
+
+<script>
+const gc = 'rgba(0,0,0,0.04)';
+const lc = '#9ca3af';
+const meses = ['Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26'];
+const leads = [143,80,102,97,108,123,112,91,148,268];
+const ganhos = [57,45,38,32,48,40,45,27,47,40];
+
+new Chart(document.getElementById('cHistorico'), {
+  type: 'bar',
+  data: {
+    labels: meses,
+    datasets: [
+      { label: 'Leads', data: leads, backgroundColor: 'rgba(245,158,11,0.75)', borderRadius: 3, borderSkipped: false },
+      { label: 'Vendas', data: ganhos, backgroundColor: 'rgba(16,185,129,0.85)', borderRadius: 3, borderSkipped: false }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111', titleColor: '#fff', bodyColor: '#d1d5db', padding: 10 } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: lc, font: { size: 11 } } },
+      y: { grid: { color: gc }, ticks: { color: lc, font: { size: 11 } }, beginAtZero: true }
+    }
+  }
+});
+
+const taxaConv = leads.map((l,i) => Math.round(ganhos[i]/l*100));
+new Chart(document.getElementById('cTaxaConversao'), {
+  type: 'line',
+  data: {
+    labels: meses,
+    datasets: [{
+      label: 'Taxa de conversão',
+      data: taxaConv,
+      borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.08)',
+      fill: true, tension: 0.4, pointRadius: 5, pointBackgroundColor: '#10b981', pointBorderColor: '#fff', pointBorderWidth: 2, borderWidth: 2.5
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111', titleColor: '#fff', bodyColor: '#d1d5db', padding: 10, callbacks: { label: c => ` ${c.parsed.y}%` } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: lc, font: { size: 10 }, maxRotation: 45 } },
+      y: { grid: { color: gc }, ticks: { color: lc, font: { size: 11 }, callback: v => v+'%' }, beginAtZero: true, max: 70 }
+    }
+  }
+});
+</script>
+</body>
+</html>
