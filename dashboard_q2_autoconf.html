@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q2 2026 — Autoconf INBOUND</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#111827}
+
+/* TOPBAR */
+.topbar{background:#0f172a;height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-size:15px;font-weight:700;color:#fff}.logo span{color:#6366f1}
+.topbar-center{display:flex;align-items:center;gap:12px}
+.q2-badge{background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;letter-spacing:.05em}
+.period{font-size:12px;color:#64748b;background:#1e293b;padding:4px 12px;border-radius:6px}
+.topbar-right{font-size:11px;color:#475569}
+
+.main{max-width:1400px;margin:0 auto;padding:24px 32px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 50%,#4c1d95 100%);border-radius:14px;padding:36px 40px;margin-bottom:24px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:0;position:relative;overflow:hidden}
+.hero::before{content:'Q2';position:absolute;right:-20px;top:-40px;font-size:220px;font-weight:900;color:rgba(255,255,255,0.04);line-height:1;letter-spacing:-10px;pointer-events:none}
+.hero-kpi{padding:0 32px;border-right:1px solid rgba(255,255,255,0.1)}
+.hero-kpi:first-child{padding-left:0}
+.hero-kpi:last-child{border-right:none}
+.hero-label{font-size:10px;font-weight:600;color:#a5b4fc;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.hero-value{font-size:42px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1}
+.hero-sub{font-size:12px;color:#818cf8;margin-top:6px}
+.hero-trend{font-size:12px;font-weight:600;margin-top:4px}
+.hero-trend.up{color:#34d399}.hero-trend.down{color:#f87171}.hero-trend.good{color:#34d399}
+
+/* SECTION */
+.section-label{font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:#e5e7eb}
+
+/* MONTH GRID */
+.month-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px}
+.month-card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;position:relative;overflow:hidden}
+.month-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.month-card.abr::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.month-card.mai::before{background:linear-gradient(90deg,#6366f1,#818cf8)}
+.month-card.jun::before{background:linear-gradient(90deg,#10b981,#34d399)}
+.month-title{font-size:13px;font-weight:700;color:#374151;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.month-tag{font-size:10px;font-weight:600;padding:2px 8px;border-radius:10px}
+.abr .month-tag{background:#fef3c7;color:#92400e}
+.mai .month-tag{background:#ede9fe;color:#5b21b6}
+.jun .month-tag{background:#d1fae5;color:#065f46}
+.month-metrics{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.metric{background:#f8fafc;border-radius:8px;padding:12px}
+.metric-label{font-size:10px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.metric-value{font-size:22px;font-weight:700;color:#111;letter-spacing:-0.5px}
+.metric-sub{font-size:11px;color:#6b7280;margin-top:3px}
+.metric.green .metric-value{color:#059669}
+.metric.amber .metric-value{color:#d97706}
+.metric.blue .metric-value{color:#2563eb}
+.metric.red .metric-value{color:#dc2626}
+.month-bar{margin-top:14px}
+.month-bar-label{display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-bottom:4px}
+.bar-bg{height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px}
+
+/* CHARTS */
+.chart-grid{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
+.chart-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-title{font-size:13px;font-weight:600;color:#374151}
+.card-tag{font-size:11px;color:#6b7280;background:#f3f4f6;padding:2px 8px;border-radius:4px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:#6b7280}
+.leg-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0}
+
+/* MOTIVOS */
+.motivo-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6}
+.motivo-row:last-child{border-bottom:none}
+.motivo-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.motivo-name{font-size:12px;color:#374151;flex:1}
+.motivo-bar-bg{flex:1;max-width:120px;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden}
+.motivo-bar-fill{height:100%;border-radius:3px}
+.motivo-count{font-size:12px;font-weight:700;color:#111;min-width:40px;text-align:right}
+.motivo-pct{font-size:11px;color:#9ca3af;min-width:36px;text-align:right}
+
+/* INSIGHTS */
+.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px}
+.insight{border-radius:10px;padding:16px 18px;border:1px solid}
+.insight.green{background:#f0fdf4;border-color:#bbf7d0}
+.insight.blue{background:#eff6ff;border-color:#bfdbfe}
+.insight.amber{background:#fffbeb;border-color:#fde68a}
+.insight.red{background:#fef2f2;border-color:#fecaca}
+.insight.purple{background:#f5f3ff;border-color:#ddd6fe}
+.insight.teal{background:#f0fdfa;border-color:#99f6e4}
+.insight-title{font-size:12px;font-weight:700;margin-bottom:5px}
+.insight.green .insight-title{color:#166534}
+.insight.blue .insight-title{color:#1e3a8a}
+.insight.amber .insight-title{color:#92400e}
+.insight.red .insight-title{color:#991b1b}
+.insight.purple .insight-title{color:#5b21b6}
+.insight.teal .insight-title{color:#0f766e}
+.insight-number{font-size:20px;font-weight:700;margin:4px 0}
+.insight.green .insight-number{color:#166534}
+.insight.blue .insight-number{color:#1d4ed8}
+.insight.amber .insight-number{color:#d97706}
+.insight.red .insight-number{color:#b91c1c}
+.insight.purple .insight-number{color:#6d28d9}
+.insight.teal .insight-number{color:#0d9488}
+.insight-text{font-size:12px;line-height:1.6}
+.insight.green .insight-text{color:#14532d}
+.insight.blue .insight-text{color:#1e40af}
+.insight.amber .insight-text{color:#78350f}
+.insight.red .insight-text{color:#7f1d1d}
+.insight.purple .insight-text{color:#4c1d95}
+.insight.teal .insight-text{color:#134e4a}
+
+/* TABELA */
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead tr{background:#f8fafc}
+th{text-align:left;padding:10px 12px;color:#6b7280;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;border-bottom:2px solid #e5e7eb;white-space:nowrap}
+th.right{text-align:right}
+td{padding:10px 12px;border-bottom:1px solid #f3f4f6;white-space:nowrap}
+td.right{text-align:right;font-variant-numeric:tabular-nums}
+tr:hover td{background:#fafafa}
+tr.total-row td{background:#f8fafc;font-weight:700;border-top:2px solid #e5e7eb}
+.pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.pill.green{background:#d1fae5;color:#065f46}
+.pill.amber{background:#fef3c7;color:#92400e}
+.pill.red{background:#fee2e2;color:#991b1b}
+.pill.blue{background:#dbeafe;color:#1e40af}
+.pill.purple{background:#ede9fe;color:#5b21b6}
+
+.footer{text-align:center;padding:24px 0;font-size:11px;color:#9ca3af}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Auto<span>conf</span></div>
+  <div class="topbar-center">
+    <span class="q2-badge">Q2 2026</span>
+    <span class="period">Abr · Mai · Jun 2026</span>
+  </div>
+  <div class="topbar-right">Pipeline ATF — INBOUND</div>
+</div>
+
+<div class="main">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-kpi">
+      <div class="hero-label">Leads Q2</div>
+      <div class="hero-value">3.346</div>
+      <div class="hero-sub">880 + 1.167 + 1.299</div>
+      <div class="hero-trend up">▲ +76% vs Q1 (1.899)</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-label">MQLs Q2</div>
+      <div class="hero-value">1.865</div>
+      <div class="hero-sub">Taxa média 56%</div>
+      <div class="hero-trend up">▲ evolução crescente mês a mês</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-label">Reuniões Q2</div>
+      <div class="hero-value">548</div>
+      <div class="hero-sub">134 + 212 + 202</div>
+      <div class="hero-trend up">▲ pico em maio</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-label">Taxa MQL média</div>
+      <div class="hero-value">56%</div>
+      <div class="hero-sub">Melhor: Jun com 60%</div>
+      <div class="hero-trend good">▲ 48% → 57% → 60%</div>
+    </div>
+  </div>
+
+  <!-- MÊS A MÊS -->
+  <div class="section-label">Desempenho mês a mês</div>
+  <div class="month-grid">
+
+    <div class="month-card abr">
+      <div class="month-title">
+        Abril 2026
+        <span class="month-tag">Menor do Q2</span>
+      </div>
+      <div class="month-metrics">
+        <div class="metric amber">
+          <div class="metric-label">Leads</div>
+          <div class="metric-value">880</div>
+          <div class="metric-sub">Base do trimestre</div>
+        </div>
+        <div class="metric blue">
+          <div class="metric-label">MQLs</div>
+          <div class="metric-value">418</div>
+          <div class="metric-sub">48% de taxa</div>
+        </div>
+        <div class="metric green">
+          <div class="metric-label">Reuniões</div>
+          <div class="metric-value">134</div>
+          <div class="metric-sub">32% dos MQLs</div>
+        </div>
+        <div class="metric red">
+          <div class="metric-label">Perdidos reais</div>
+          <div class="metric-value">462</div>
+          <div class="metric-sub">52% de perda</div>
+        </div>
+      </div>
+      <div class="month-bar">
+        <div class="month-bar-label"><span>Meta MQL (800)</span><span>52%</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width:52%;background:#f59e0b"></div></div>
+      </div>
+    </div>
+
+    <div class="month-card mai">
+      <div class="month-title">
+        Maio 2026
+        <span class="month-tag">Maior reuniões</span>
+      </div>
+      <div class="month-metrics">
+        <div class="metric amber">
+          <div class="metric-label">Leads</div>
+          <div class="metric-value">1.167</div>
+          <div class="metric-sub">+33% vs abr</div>
+        </div>
+        <div class="metric blue">
+          <div class="metric-label">MQLs</div>
+          <div class="metric-value">671</div>
+          <div class="metric-sub">57% de taxa</div>
+        </div>
+        <div class="metric green">
+          <div class="metric-label">Reuniões</div>
+          <div class="metric-value">212</div>
+          <div class="metric-sub">Pico do Q2</div>
+        </div>
+        <div class="metric red">
+          <div class="metric-label">Perdidos reais</div>
+          <div class="metric-value">496</div>
+          <div class="metric-sub">43% de perda</div>
+        </div>
+      </div>
+      <div class="month-bar">
+        <div class="month-bar-label"><span>Meta MQL (800)</span><span>84%</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width:84%;background:#6366f1"></div></div>
+      </div>
+    </div>
+
+    <div class="month-card jun">
+      <div class="month-title">
+        Junho 2026
+        <span class="month-tag">Melhor taxa MQL</span>
+      </div>
+      <div class="month-metrics">
+        <div class="metric amber">
+          <div class="metric-label">Leads</div>
+          <div class="metric-value">1.299</div>
+          <div class="metric-sub">+11% vs mai</div>
+        </div>
+        <div class="metric blue">
+          <div class="metric-label">MQLs</div>
+          <div class="metric-value">776</div>
+          <div class="metric-sub">60% de taxa</div>
+        </div>
+        <div class="metric green">
+          <div class="metric-label">Reuniões</div>
+          <div class="metric-value">202</div>
+          <div class="metric-sub">−5% vs mai</div>
+        </div>
+        <div class="metric red">
+          <div class="metric-label">Perdidos reais</div>
+          <div class="metric-value">523</div>
+          <div class="metric-sub">40% de perda</div>
+        </div>
+      </div>
+      <div class="month-bar">
+        <div class="month-bar-label"><span>Meta MQL (800)</span><span>97%</span></div>
+        <div class="bar-bg"><div class="bar-fill" style="width:97%;background:#10b981"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GRÁFICOS -->
+  <div class="section-label">Evolução das métricas no Q2</div>
+  <div class="chart-grid">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Leads, MQLs e Reuniões por mês</span>
+        <span class="card-tag">Abr–Jun 2026</span>
+      </div>
+      <div class="legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#6366f1"></span>Leads</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#10b981"></span>MQLs</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#f59e0b"></span>Reuniões</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#ef4444"></span>Perdidos reais</span>
+      </div>
+      <div style="position:relative;width:100%;height:260px">
+        <canvas id="cEvolucao"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Taxa MQL e Taxa Perda</span>
+        <span class="card-tag">% por mês</span>
+      </div>
+      <div style="position:relative;width:100%;height:280px">
+        <canvas id="cTaxas"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABELA CONSOLIDADA -->
+  <div class="section-label">Tabela consolidada do quarter</div>
+  <div class="card" style="margin-bottom:24px">
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Mês</th>
+            <th class="right">Leads</th>
+            <th class="right">Perdidos reais</th>
+            <th class="right">MQLs</th>
+            <th class="right">Taxa MQL</th>
+            <th class="right">Taxa Perda</th>
+            <th class="right">Reuniões</th>
+            <th class="right">Conv. MQL→Reun</th>
+            <th class="right">Meta MQL</th>
+            <th class="right">MoM Leads</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Abr/26</strong></td>
+            <td class="right">880</td>
+            <td class="right">462</td>
+            <td class="right"><strong>418</strong></td>
+            <td class="right"><span class="pill amber">48%</span></td>
+            <td class="right"><span class="pill red">52%</span></td>
+            <td class="right">134</td>
+            <td class="right">32%</td>
+            <td class="right"><span class="pill amber">52%</span></td>
+            <td class="right">—</td>
+          </tr>
+          <tr>
+            <td><strong>Mai/26</strong></td>
+            <td class="right">1.167</td>
+            <td class="right">496</td>
+            <td class="right"><strong>671</strong></td>
+            <td class="right"><span class="pill blue">57%</span></td>
+            <td class="right"><span class="pill amber">43%</span></td>
+            <td class="right">212</td>
+            <td class="right">32%</td>
+            <td class="right"><span class="pill amber">84%</span></td>
+            <td class="right"><span class="pill green">+33%</span></td>
+          </tr>
+          <tr>
+            <td><strong>Jun/26</strong></td>
+            <td class="right">1.299</td>
+            <td class="right">523</td>
+            <td class="right"><strong>776</strong></td>
+            <td class="right"><span class="pill green">60%</span></td>
+            <td class="right"><span class="pill amber">40%</span></td>
+            <td class="right">202</td>
+            <td class="right">26%</td>
+            <td class="right"><span class="pill blue">97%</span></td>
+            <td class="right"><span class="pill green">+11%</span></td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>Q2 Total</strong></td>
+            <td class="right">3.346</td>
+            <td class="right">1.481</td>
+            <td class="right"><strong>1.865</strong></td>
+            <td class="right"><span class="pill blue">56%</span></td>
+            <td class="right"><span class="pill amber">44%</span></td>
+            <td class="right">548</td>
+            <td class="right">29%</td>
+            <td class="right"><span class="pill amber">78%</span></td>
+            <td class="right">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:#6b7280;padding-top:12px;border-top:1px solid #f3f4f6">
+      <span><span class="pill green" style="font-size:10px">Verde</span> ≥ 60% MQL / ≤ 35% Perda</span>
+      <span><span class="pill blue" style="font-size:10px">Azul</span> 50–59% MQL</span>
+      <span><span class="pill amber" style="font-size:10px">Amarelo</span> 40–49% MQL</span>
+      <span><span class="pill red" style="font-size:10px">Vermelho</span> &lt; 40% MQL / &gt; 55% Perda</span>
+    </div>
+  </div>
+
+  <!-- MOTIVOS DE PERDA Q2 -->
+  <div class="section-label">Motivos de perda — acumulado Q2</div>
+  <div class="chart-grid-3">
+    <div class="card" style="grid-column:span 2">
+      <div class="card-header">
+        <span class="card-title">Top motivos de perda real — Q2 2026</span>
+        <span class="card-tag">1.481 perdidos reais</span>
+      </div>
+      <div class="motivo-row">
+        <span class="motivo-dot" style="background:#ef4444"></span>
+        <span class="motivo-name">MKT - Não é do ramo</span>
+        <div class="motivo-bar-bg"><div class="motivo-bar-fill" style="width:100%;background:#ef4444"></div></div>
+        <span class="motivo-count">710</span>
+        <span class="motivo-pct">48%</span>
+      </div>
+      <div class="motivo-row">
+        <span class="motivo-dot" style="background:#8b5cf6"></span>
+        <span class="motivo-name">Pré-vendas - Funcionalidade</span>
+        <div class="motivo-bar-bg"><div class="motivo-bar-fill" style="width:53%;background:#8b5cf6"></div></div>
+        <span class="motivo-count">376</span>
+        <span class="motivo-pct">25%</span>
+      </div>
+      <div class="motivo-row">
+        <span class="motivo-dot" style="background:#10b981"></span>
+        <span class="motivo-name">MKT - Fora do ICP</span>
+        <div class="motivo-bar-bg"><div class="motivo-bar-fill" style="width:20%;background:#10b981"></div></div>
+        <span class="motivo-count">144</span>
+        <span class="motivo-pct">10%</span>
+      </div>
+      <div class="motivo-row">
+        <span class="motivo-dot" style="background:#f59e0b"></span>
+        <span class="motivo-name">MKT - Contato inexistente</span>
+        <div class="motivo-bar-bg"><div class="motivo-bar-fill" style="width:17%;background:#f59e0b"></div></div>
+        <span class="motivo-count">124</span>
+        <span class="motivo-pct">8%</span>
+      </div>
+      <div class="motivo-row">
+        <span class="motivo-dot" style="background:#a78bfa"></span>
+        <span class="motivo-name">MKT - Lead duplicado</span>
+        <div class="motivo-bar-bg"><div class="motivo-bar-fill" style="width:9%;background:#a78bfa"></div></div>
+        <span class="motivo-count">65</span>
+        <span class="motivo-pct">4%</span>
+      </div>
+      <div class="motivo-row">
+        <span class="motivo-dot" style="background:#06b6d4"></span>
+        <span class="motivo-name">MKT - Já é cliente</span>
+        <div class="motivo-bar-bg"><div class="motivo-bar-fill" style="width:6%;background:#06b6d4"></div></div>
+        <span class="motivo-count">47</span>
+        <span class="motivo-pct">3%</span>
+      </div>
+      <div class="motivo-row">
+        <span class="motivo-dot" style="background:#9ca3af"></span>
+        <span class="motivo-name">Outros motivos MKT</span>
+        <div class="motivo-bar-bg"><div class="motivo-bar-fill" style="width:2%;background:#9ca3af"></div></div>
+        <span class="motivo-count">15</span>
+        <span class="motivo-pct">1%</span>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Distribuição Q2</span>
+        <span class="card-tag">Pizza</span>
+      </div>
+      <div style="position:relative;width:100%;height:200px">
+        <canvas id="cPizzaMotivos"></canvas>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:#6b7280;line-height:1.8">
+        <div>🔴 Não é do ramo: <strong>48%</strong> — maior causa</div>
+        <div>🟣 Funcionalidade: <strong>25%</strong> — 2ª causa</div>
+        <div>🟢 Fora do ICP: <strong>10%</strong></div>
+        <div>🟡 Outros: <strong>17%</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="section-label">Análise e insights do Q2</div>
+  <div class="insight-grid">
+    <div class="insight green">
+      <span class="insight-title">📈 Taxa MQL evoluiu todo mês</span>
+      <div class="insight-number">48% → 57% → 60%</div>
+      <div class="insight-text">A qualidade dos leads melhorou progressivamente ao longo do Q2 — junho registrou a maior taxa MQL do histórico, indicando que os ajustes de segmentação estão funcionando.</div>
+    </div>
+    <div class="insight amber">
+      <span class="insight-title">⚠️ Não é do ramo representa 48%</span>
+      <div class="insight-number">710 leads no Q2</div>
+      <div class="insight-text">Quase metade dos perdidos reais são leads completamente fora do nicho. Revisão dos criativos e segmentação de público no Meta Ads pode reduzir esse volume significativamente.</div>
+    </div>
+    <div class="insight purple">
+      <span class="insight-title">🔧 Funcionalidade cresceu no Q2</span>
+      <div class="insight-number">98 → 160 → 118</div>
+      <div class="insight-text">Perdidos por limitação de produto somaram 376 no Q2. Sinal de que leads qualificados chegam mas o produto não atende a expectativa — ponto de atenção para produto e marketing.</div>
+    </div>
+    <div class="insight blue">
+      <span class="insight-title">🎯 Volume cresceu 76% vs Q1</span>
+      <div class="insight-number">1.899 → 3.346 leads</div>
+      <div class="insight-text">O Q2 quase dobrou o volume de leads em relação ao Q1 (jan–mar). Crescimento consistente mês a mês, com maior salto em maio (+33% vs abril).</div>
+    </div>
+    <div class="insight teal">
+      <span class="insight-title">📅 Reuniões tiveram pico em maio</span>
+      <div class="insight-number">212 em maio</div>
+      <div class="insight-text">Maio foi o melhor mês de reuniões do Q2 (212), com leve queda em junho (202, −5%). A taxa de conversão MQL→Reunião caiu de 32% para 26% — gargalo a monitorar no Q3.</div>
+    </div>
+    <div class="insight red">
+      <span class="insight-title">🎯 Meta MQL Q2: 78% atingida</span>
+      <div class="insight-number">1.865 de 2.400</div>
+      <div class="insight-text">Faltaram 535 MQLs para bater as 3 metas mensais de 800. Junho foi o mais próximo (97%). Com a evolução de taxa MQL, julho tem potencial de ser o primeiro mês a bater a meta com folga.</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Autoconf · Dashboard Q2 2026 · ATF INBOUND · Abr–Jun 2026 · Dados HubSpot
+</div>
+
+<script>
+const gc = 'rgba(0,0,0,0.04)';
+const lc = '#9ca3af';
+const meses = ['Abr/26','Mai/26','Jun/26'];
+
+// Evolução
+new Chart(document.getElementById('cEvolucao'), {
+  type: 'bar',
+  data: {
+    labels: meses,
+    datasets: [
+      {label:'Leads',     data:[880,1167,1299], backgroundColor:'rgba(99,102,241,0.7)',  borderRadius:3, borderSkipped:false},
+      {label:'MQLs',      data:[418,671,776],   backgroundColor:'rgba(16,185,129,0.85)', borderRadius:3, borderSkipped:false},
+      {label:'Reuniões',  data:[134,212,202],   backgroundColor:'rgba(245,158,11,0.85)', borderRadius:3, borderSkipped:false},
+      {label:'Perdidos',  data:[462,496,523],   backgroundColor:'rgba(239,68,68,0.7)',   borderRadius:3, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:lc,font:{size:12}}},
+      y:{grid:{color:gc}, ticks:{color:lc,font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
+// Taxas
+new Chart(document.getElementById('cTaxas'), {
+  type:'line',
+  data:{
+    labels:meses,
+    datasets:[
+      {label:'Taxa MQL',   data:[48,57,60], borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,0.08)', fill:true, tension:0.4, pointRadius:6, pointBackgroundColor:'#6366f1', pointBorderColor:'#fff', pointBorderWidth:2, borderWidth:2.5},
+      {label:'Taxa Perda', data:[52,43,40], borderColor:'#ef4444', backgroundColor:'rgba(239,68,68,0.06)',  fill:true, tension:0.4, pointRadius:6, pointBackgroundColor:'#ef4444', pointBorderColor:'#fff', pointBorderWidth:2, borderWidth:2.5},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{font:{size:11},color:lc,boxWidth:10}}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10, callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y}%`}}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:lc,font:{size:12}}},
+      y:{grid:{color:gc}, ticks:{color:lc,font:{size:11},callback:v=>v+'%'}, beginAtZero:true, max:70}
+    }
+  }
+});
+
+// Pizza motivos
+new Chart(document.getElementById('cPizzaMotivos'), {
+  type:'doughnut',
+  data:{
+    labels:['Não é do ramo','Funcionalidade','Fora do ICP','Contato inex.','Lead dup.','Outros'],
+    datasets:[{data:[710,376,144,124,65,62], backgroundColor:['#ef4444','#8b5cf6','#10b981','#f59e0b','#a78bfa','#9ca3af'], borderWidth:3, borderColor:'#fff', hoverOffset:6}]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false, cutout:'58%',
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10, callbacks:{label:c=>` ${c.label}: ${c.parsed} (${Math.round(c.parsed/1481*100)}%)`}}}
+  }
+});
+</script>
+</body>
+</html>
