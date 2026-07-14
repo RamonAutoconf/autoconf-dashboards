@@ -4,7 +4,51 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Performance de Mídia — Autoconf 2026</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js">
+// Referência mensal — IAs vs Concessionárias
+new Chart(document.getElementById('cRefMensal'), {
+  type: 'bar',
+  data: {
+    labels: ['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
+    datasets: [
+      {label:'Ferramentas de IA',   data:[2,0,1,5,5,1], backgroundColor:'rgba(99,102,241,0.8)',  borderRadius:3, borderSkipped:false},
+      {label:'Concessionárias', data:[3,6,3,3,3,1], backgroundColor:'rgba(245,158,11,0.8)', borderRadius:3, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    scales:{
+      x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
+      y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true, max:10}
+    }
+  }
+});
+
+// Social por rede mensal
+new Chart(document.getElementById('cSocialRede'), {
+  type: 'bar',
+  data: {
+    labels: ['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
+    datasets: [
+      {label:'Instagram', data:[10,6,5,24,31,7],   backgroundColor:'#e1306c', borderRadius:3, borderSkipped:false},
+      {label:'Facebook',  data:[3,2,1,1,2,0],      backgroundColor:'#1877f2', borderRadius:3, borderSkipped:false},
+      {label:'Linktree',  data:[0,0,0,1,5,2],      backgroundColor:'#39e09b', borderRadius:3, borderSkipped:false},
+      {label:'WhatsApp',  data:[0,0,2,1,0,1],      backgroundColor:'#25d366', borderRadius:3, borderSkipped:false},
+      {label:'Youtube',   data:[0,0,0,0,0,1],      backgroundColor:'#ff0000', borderRadius:3, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#9ca3af',boxWidth:9}}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    scales:{
+      x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
+      y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
+</script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -555,6 +599,95 @@ tr.highlight-row td { background: #eff6ff; font-weight: 600; }
 
 </div>
 
+
+  <!-- Referência e Social -->
+  <div class="section-label">Referências e Social — detalhamento Fev–Jul 2026</div>
+  <div class="chart-row-2" style="margin-bottom:16px">
+
+    <!-- Referência -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Leads por referência — site de origem</span>
+        <span class="card-tag">IAs vs Concessionárias</span>
+      </div>
+      <div class="legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#6366f1"></span>Ferramentas de IA</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#f59e0b"></span>Sites de concessionárias</span>
+      </div>
+      <div style="position:relative;width:100%;height:240px">
+        <canvas id="cRefMensal"></canvas>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid #f3f4f6">
+        <div style="font-size:11px;font-weight:600;color:#374151;margin-bottom:8px">Top sites por canal (acumulado Fev–Jul)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:11px">
+          <div>
+            <div style="font-weight:600;color:#6366f1;margin-bottom:4px">🤖 Ferramentas de IA</div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>chatgpt.com</span><span style="font-weight:700">9</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>gemini.google.com</span><span style="font-weight:700">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>perplexity.ai</span><span style="font-weight:700">1</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>claude.ai</span><span style="font-weight:700">1</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0"><span>notebooklm.google.com</span><span style="font-weight:700">1</span></div>
+          </div>
+          <div>
+            <div style="font-weight:600;color:#f59e0b;margin-bottom:4px">🏢 Sites de concessionárias</div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>uaiveiculos.com</span><span style="font-weight:700">3</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>automixmultimarcas.com.br</span><span style="font-weight:700">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>belloscar.com.br</span><span style="font-weight:700">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f3f4f6"><span>gsamultimarcas.com.br</span><span style="font-weight:700">2</span></div>
+            <div style="display:flex;justify-content:space-between;padding:3px 0"><span>Demais (14 sites)</span><span style="font-weight:700">9</span></div>
+          </div>
+        </div>
+        <div style="margin-top:10px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:8px 12px;font-size:11px;color:#1e40af">
+          💡 <strong>ChatGPT</strong> é a maior fonte de referência IA (9 leads acumulados), com crescimento de 3→5 leads em maio→junho. Sinal de que o conteúdo AEO está funcionando.
+        </div>
+      </div>
+    </div>
+
+    <!-- Social por rede -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Social — leads por rede social</span>
+        <span class="card-tag">Fev–Jul 2026</span>
+      </div>
+      <div style="position:relative;width:100%;height:240px">
+        <canvas id="cSocialRede"></canvas>
+      </div>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid #f3f4f6">
+        <div style="font-size:11px;font-weight:600;color:#374151;margin-bottom:8px">Acumulado por rede (Fev–Jul)</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;min-width:100px">Instagram</span>
+            <div style="flex:1;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:100%;height:100%;background:#e1306c;border-radius:3px"></div></div>
+            <span style="font-size:12px;font-weight:700;min-width:24px;text-align:right">83</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;min-width:100px">Facebook</span>
+            <div style="flex:1;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:11%;height:100%;background:#1877f2;border-radius:3px"></div></div>
+            <span style="font-size:12px;font-weight:700;min-width:24px;text-align:right">9</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;min-width:100px">Linktree</span>
+            <div style="flex:1;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:10%;height:100%;background:#39e09b;border-radius:3px"></div></div>
+            <span style="font-size:12px;font-weight:700;min-width:24px;text-align:right">8</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;min-width:100px">WhatsApp</span>
+            <div style="flex:1;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:5%;height:100%;background:#25d366;border-radius:3px"></div></div>
+            <span style="font-size:12px;font-weight:700;min-width:24px;text-align:right">4</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:11px;min-width:100px">Youtube</span>
+            <div style="flex:1;height:6px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:1%;height:100%;background:#ff0000;border-radius:3px"></div></div>
+            <span style="font-size:12px;font-weight:700;min-width:24px;text-align:right">1</span>
+          </div>
+        </div>
+        <div style="margin-top:10px;background:#fff7ed;border:1px solid #fed7aa;border-radius:6px;padding:8px 12px;font-size:11px;color:#9a3412">
+          📸 <strong>Instagram domina 79%</strong> do Social orgânico (83 de 105 leads). Crescimento de 10→24→31 leads em fev→mai→jun antes de cair em julho (mês parcial).
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="footer">
   Autoconf · Dashboard de Mídia Paga · Planilha de Performance · Fev–Jun 2026
 </div>
@@ -718,6 +851,50 @@ new Chart(document.getElementById('cCPLDia'), {
     }
   }
 });
+
+// Referência mensal — IAs vs Concessionárias
+new Chart(document.getElementById('cRefMensal'), {
+  type: 'bar',
+  data: {
+    labels: ['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
+    datasets: [
+      {label:'Ferramentas de IA',   data:[2,0,1,5,5,1], backgroundColor:'rgba(99,102,241,0.8)',  borderRadius:3, borderSkipped:false},
+      {label:'Concessionárias', data:[3,6,3,3,3,1], backgroundColor:'rgba(245,158,11,0.8)', borderRadius:3, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    scales:{
+      x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
+      y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true, max:10}
+    }
+  }
+});
+
+// Social por rede mensal
+new Chart(document.getElementById('cSocialRede'), {
+  type: 'bar',
+  data: {
+    labels: ['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
+    datasets: [
+      {label:'Instagram', data:[10,6,5,24,31,7],   backgroundColor:'#e1306c', borderRadius:3, borderSkipped:false},
+      {label:'Facebook',  data:[3,2,1,1,2,0],      backgroundColor:'#1877f2', borderRadius:3, borderSkipped:false},
+      {label:'Linktree',  data:[0,0,0,1,5,2],      backgroundColor:'#39e09b', borderRadius:3, borderSkipped:false},
+      {label:'WhatsApp',  data:[0,0,2,1,0,1],      backgroundColor:'#25d366', borderRadius:3, borderSkipped:false},
+      {label:'Youtube',   data:[0,0,0,0,0,1],      backgroundColor:'#ff0000', borderRadius:3, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#9ca3af',boxWidth:9}}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    scales:{
+      x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
+      y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
 </script>
 </body>
 </html>
