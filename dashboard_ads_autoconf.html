@@ -119,6 +119,69 @@ new Chart(document.getElementById('cOrgPaginas'), {
   }
 });
 
+
+// CPL comparativo Jul vs Jun por criativo
+new Chart(document.getElementById('cCPLComparativo'), {
+  type: 'bar',
+  data: {
+    labels: ['Simulador','Artes','Autoconf Pro','Agente IA','Loja Motos'],
+    datasets: [
+      {label:'Julho (CPL médio)', data:[29.62,29.62,29.62,29.62,29.62], backgroundColor:'rgba(99,102,241,0.85)', borderRadius:3, borderSkipped:false},
+      {label:'Junho (CPL médio)', data:[18.95,18.95,18.95,18.95,18.95], backgroundColor:'rgba(209,213,219,0.85)', borderRadius:3, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false, indexAxis:'y',
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` R$ ${c.parsed.x.toFixed(2)}`}}},
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11},callback:v=>`R$${v}`}, beginAtZero:true},
+      y:{grid:{display:false}, ticks:{color:'#374151',font:{size:11}}}
+    }
+  }
+});
+
+// Leads diários Jul vs Jun
+const julDias = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const junDias = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+new Chart(document.getElementById('cLeadsDiaJulJun'), {
+  type: 'bar',
+  data: {
+    labels: Array.from({length:30}, (_,i) => i+1),
+    datasets: [
+      {label:'Julho', data:[28, 26, 24, 29, 41, 32, 29, 29, 25, 20, 19, 28, 26, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None], backgroundColor:'rgba(99,102,241,0.8)', borderRadius:2, borderSkipped:false},
+      {label:'Junho', data:[28, 33, 25, 32, 23, 16, 37, 50, 54, 40, 44, 33, 29, 46, 23, 39, 34, 45, 22, 24, 46, 26, 35, 34, 25, 24, 26, 44, 28, 27], backgroundColor:'rgba(209,213,219,0.7)', borderRadius:2, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:'#9ca3af',font:{size:10},maxRotation:0}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
+// CPL diário Jul vs Jun
+new Chart(document.getElementById('cCPLDiaJulJun'), {
+  type: 'line',
+  data: {
+    labels: Array.from({length:30}, (_,i) => i+1),
+    datasets: [
+      {label:'Julho CPL', data:[21.07, 22.11, 24.83, 23.88, 16.89, 20.17, 22.34, 21.21, 23.55, 29.3, 30.98, 25.37, 24.02, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None], borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,0.06)', fill:true, tension:0.4, pointRadius:3, pointBackgroundColor:'#6366f1', borderWidth:2.5, spanGaps:false},
+      {label:'Junho CPL', data:[23.1, 19.24, 26.46, 19.44, 26.1, 36.14, 19.69, 14.21, 12.82, 15.4, 13.84, 18.72, 20.05, 16.98, 27.86, 16.38, 18.44, 13.87, 24.91, 26.99, 16.78, 25.28, 17.52, 23.56, 26.04, 25.24, 25.04, 18.0, 22.33, 24.01], borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,0.06)', fill:true, tension:0.4, pointRadius:2, pointBackgroundColor:'#f59e0b', borderWidth:2},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.dataset.label}: R$ ${c.parsed.y?.toFixed(2)}`}}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:'#9ca3af',font:{size:10},maxRotation:0}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11},callback:v=>`R$${v}`}, beginAtZero:true, max:45}
+    }
+  }
+});
+
 </script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -676,6 +739,142 @@ tr.highlight-row td { background: #eff6ff; font-weight: 600; }
 </div>
 
 
+
+  <!-- Criativos e diário -->
+  <div class="section-label">Performance por criativo — Julho 2026 (parcial dia 13) vs Junho 2026 (fechado)</div>
+  <div class="chart-row-2">
+
+    <!-- Criativos ranking -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Top criativos por leads — Jul vs Jun</span>
+        <span class="card-tag">356 leads Meta Ads (jul parcial)</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:#6366f1;text-transform:uppercase;letter-spacing:.05em;padding:4px 8px;background:#eff6ff;border-radius:4px 0 0 4px;text-align:center">Julho (parcial)</div>
+        <div style="font-size:10px;font-weight:700;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;padding:4px 8px;background:#f3f4f6;border-radius:0 4px 4px 0;text-align:center">Junho (fechado)</div>
+      </div>
+
+      <div class="criativo-list">
+        <div class="criativo-row" style="align-items:flex-start;gap:8px">
+          <span class="criativo-rank">1</span>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:4px">Simulador de Financiamento</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="flex:1;height:7px;background:#eff6ff;border-radius:3px;overflow:hidden"><div style="width:100%;height:100%;background:#6366f1;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#6366f1;min-width:28px">162</span>
+              <span style="font-size:11px;color:#9ca3af">vs</span>
+              <div style="flex:1;height:7px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:100%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#9ca3af;min-width:28px">488</span>
+            </div>
+          </div>
+        </div>
+        <div class="criativo-row" style="align-items:flex-start;gap:8px">
+          <span class="criativo-rank">2</span>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:4px">Artes — Públicos Segmentados</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="flex:1;height:7px;background:#eff6ff;border-radius:3px;overflow:hidden"><div style="width:50%;height:100%;background:#6366f1;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#6366f1;min-width:28px">81</span>
+              <span style="font-size:11px;color:#9ca3af">vs</span>
+              <div style="flex:1;height:7px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:54%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#9ca3af;min-width:28px">262</span>
+            </div>
+          </div>
+        </div>
+        <div class="criativo-row" style="align-items:flex-start;gap:8px">
+          <span class="criativo-rank">3</span>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:4px">Autoconf Pro</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="flex:1;height:7px;background:#eff6ff;border-radius:3px;overflow:hidden"><div style="width:38%;height:100%;background:#6366f1;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#6366f1;min-width:28px">62</span>
+              <span style="font-size:11px;color:#9ca3af">vs</span>
+              <div style="flex:1;height:7px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:11%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#9ca3af;min-width:28px">54</span>
+            </div>
+          </div>
+        </div>
+        <div class="criativo-row" style="align-items:flex-start;gap:8px">
+          <span class="criativo-rank">4</span>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:4px">Agente de IA</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="flex:1;height:7px;background:#eff6ff;border-radius:3px;overflow:hidden"><div style="width:20%;height:100%;background:#6366f1;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#6366f1;min-width:28px">33</span>
+              <span style="font-size:11px;color:#9ca3af">vs</span>
+              <div style="flex:1;height:7px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:26%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#9ca3af;min-width:28px">127</span>
+            </div>
+          </div>
+        </div>
+        <div class="criativo-row" style="align-items:flex-start;gap:8px">
+          <span class="criativo-rank">5</span>
+          <div style="flex:1">
+            <div style="font-size:12px;font-weight:600;color:#374151;margin-bottom:4px">Loja de Motos</div>
+            <div style="display:flex;gap:8px;align-items:center">
+              <div style="flex:1;height:7px;background:#eff6ff;border-radius:3px;overflow:hidden"><div style="width:11%;height:100%;background:#6366f1;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#6366f1;min-width:28px">18</span>
+              <span style="font-size:11px;color:#9ca3af">vs</span>
+              <div style="flex:1;height:7px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:12%;height:100%;background:#d1d5db;border-radius:3px"></div></div>
+              <span style="font-size:12px;font-weight:700;color:#9ca3af;min-width:28px">60</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:12px;font-size:11px;color:#6b7280;background:#f8fafc;border-radius:6px;padding:8px 12px">
+        💡 <strong>Autoconf Pro</strong> cresce em participação relativa em julho (17% vs 5% em junho). <strong>Simulador</strong> mantém liderança absoluta.
+      </div>
+    </div>
+
+    <!-- CPL por criativo -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">CPL médio Meta Ads — Jul vs Jun</span>
+        <span class="card-tag">R$ por lead</span>
+      </div>
+      <div style="position:relative;width:100%;height:260px">
+        <canvas id="cCPLComparativo"></canvas>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:16px;font-size:11px">
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:#6366f1;border-radius:2px;display:inline-block"></span>Julho (parcial) — R$ 29,62 médio</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;background:#d1d5db;border-radius:2px;display:inline-block"></span>Junho (fechado) — R$ 18,95 médio</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Gráficos diários -->
+  <div class="section-label">Leads e CPL diário — Julho 2026 (parcial) vs Junho 2026 (fechado)</div>
+  <div class="chart-row-2">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Leads por dia — Jul vs Jun</span>
+        <span class="card-tag">Meta Ads</span>
+      </div>
+      <div class="legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#6366f1"></span>Julho (parcial)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#d1d5db"></span>Junho (fechado)</span>
+      </div>
+      <div style="position:relative;width:100%;height:240px">
+        <canvas id="cLeadsDiaJulJun"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">CPL diário Meta Ads — Jul vs Jun</span>
+        <span class="card-tag">R$ por lead</span>
+      </div>
+      <div class="legend">
+        <span class="leg-item"><span class="leg-dot" style="background:#6366f1"></span>Julho (parcial)</span>
+        <span class="leg-item"><span class="leg-dot" style="background:#f59e0b"></span>Junho (fechado)</span>
+      </div>
+      <div style="position:relative;width:100%;height:240px">
+        <canvas id="cCPLDiaJulJun"></canvas>
+      </div>
+    </div>
+  </div>
 
   <!-- DETALHAMENTO TODAS AS FONTES -->
   <div class="section-label">Detalhamento por fonte — Fev a Jul 2026</div>
@@ -1405,6 +1604,69 @@ new Chart(document.getElementById('cOrgPaginas'), {
     scales:{
       x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
       y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
+
+// CPL comparativo Jul vs Jun por criativo
+new Chart(document.getElementById('cCPLComparativo'), {
+  type: 'bar',
+  data: {
+    labels: ['Simulador','Artes','Autoconf Pro','Agente IA','Loja Motos'],
+    datasets: [
+      {label:'Julho (CPL médio)', data:[29.62,29.62,29.62,29.62,29.62], backgroundColor:'rgba(99,102,241,0.85)', borderRadius:3, borderSkipped:false},
+      {label:'Junho (CPL médio)', data:[18.95,18.95,18.95,18.95,18.95], backgroundColor:'rgba(209,213,219,0.85)', borderRadius:3, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false, indexAxis:'y',
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` R$ ${c.parsed.x.toFixed(2)}`}}},
+    scales:{
+      x:{grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11},callback:v=>`R$${v}`}, beginAtZero:true},
+      y:{grid:{display:false}, ticks:{color:'#374151',font:{size:11}}}
+    }
+  }
+});
+
+// Leads diários Jul vs Jun
+const julDias = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const junDias = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+new Chart(document.getElementById('cLeadsDiaJulJun'), {
+  type: 'bar',
+  data: {
+    labels: Array.from({length:30}, (_,i) => i+1),
+    datasets: [
+      {label:'Julho', data:[28, 26, 24, 29, 41, 32, 29, 29, 25, 20, 19, 28, 26, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None], backgroundColor:'rgba(99,102,241,0.8)', borderRadius:2, borderSkipped:false},
+      {label:'Junho', data:[28, 33, 25, 32, 23, 16, 37, 50, 54, 40, 44, 33, 29, 46, 23, 39, 34, 45, 22, 24, 46, 26, 35, 34, 25, 24, 26, 44, 28, 27], backgroundColor:'rgba(209,213,219,0.7)', borderRadius:2, borderSkipped:false},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:'#9ca3af',font:{size:10},maxRotation:0}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
+    }
+  }
+});
+
+// CPL diário Jul vs Jun
+new Chart(document.getElementById('cCPLDiaJulJun'), {
+  type: 'line',
+  data: {
+    labels: Array.from({length:30}, (_,i) => i+1),
+    datasets: [
+      {label:'Julho CPL', data:[21.07, 22.11, 24.83, 23.88, 16.89, 20.17, 22.34, 21.21, 23.55, 29.3, 30.98, 25.37, 24.02, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None], borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,0.06)', fill:true, tension:0.4, pointRadius:3, pointBackgroundColor:'#6366f1', borderWidth:2.5, spanGaps:false},
+      {label:'Junho CPL', data:[23.1, 19.24, 26.46, 19.44, 26.1, 36.14, 19.69, 14.21, 12.82, 15.4, 13.84, 18.72, 20.05, 16.98, 27.86, 16.38, 18.44, 13.87, 24.91, 26.99, 16.78, 25.28, 17.52, 23.56, 26.04, 25.24, 25.04, 18.0, 22.33, 24.01], borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,0.06)', fill:true, tension:0.4, pointRadius:2, pointBackgroundColor:'#f59e0b', borderWidth:2},
+    ]
+  },
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    plugins:{legend:{display:false}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.dataset.label}: R$ ${c.parsed.y?.toFixed(2)}`}}},
+    scales:{
+      x:{grid:{display:false}, ticks:{color:'#9ca3af',font:{size:10},maxRotation:0}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11},callback:v=>`R$${v}`}, beginAtZero:true, max:45}
     }
   }
 });
