@@ -32,33 +32,33 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
 .grid-52{display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:16px}
-
-/* Funil */
-.funil{display:flex;flex-direction:column;gap:6px}
-.funil-row{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;border:1px solid #e5e7eb;background:#f8fafc}
-.funil-row.active{background:#fff;border-color:#ddd6fe}
-.funil-row.perdido{background:#fef2f2;border-color:#fecaca}
-.funil-label{font-size:12px;font-weight:600;color:#374151;min-width:200px}
+.funil{display:flex;flex-direction:column;gap:5px}
+.funil-row{display:flex;align-items:center;gap:12px;padding:9px 14px;border-radius:8px;border:1px solid #e5e7eb;background:#f8fafc}
+.funil-row.green{background:#f0fdf4;border-color:#bbf7d0}
+.funil-row.red{background:#fef2f2;border-color:#fecaca}
+.funil-label{font-size:12px;font-weight:600;color:#374151;min-width:180px}
 .funil-bar-bg{flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
 .funil-bar-fill{height:100%;border-radius:4px}
 .funil-count{font-size:13px;font-weight:700;color:#111;min-width:50px;text-align:right}
 .funil-pct{font-size:11px;color:#9ca3af;min-width:36px;text-align:right}
-
-/* Responsáveis */
 .resp-table{width:100%;border-collapse:collapse;font-size:12px}
-.resp-table th{text-align:left;padding:8px 10px;color:#6b7280;font-size:11px;font-weight:600;text-transform:uppercase;border-bottom:2px solid #e5e7eb;white-space:nowrap}
+.resp-table th{text-align:left;padding:8px 10px;color:#6b7280;font-size:11px;font-weight:600;text-transform:uppercase;border-bottom:2px solid #e5e7eb}
 .resp-table th.right{text-align:right}
 .resp-table td{padding:8px 10px;border-bottom:1px solid #f3f4f6}
-.resp-table td.right{text-align:right;font-variant-numeric:tabular-nums}
+.resp-table td.right{text-align:right}
 .resp-table tr:hover td{background:#fafafa}
 .badge-ativo{display:inline-block;padding:1px 6px;border-radius:10px;font-size:10px;font-weight:600;background:#d1fae5;color:#065f46}
 .badge-inativo{display:inline-block;padding:1px 6px;border-radius:10px;font-size:10px;font-weight:600;background:#f3f4f6;color:#6b7280}
-.pill-purple{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;background:#ede9fe;color:#5b21b6}
-.pill-blue{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;background:#dbeafe;color:#1e40af}
-.pill-green{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;background:#d1fae5;color:#065f46}
-.pill-red{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;background:#fee2e2;color:#991b1b}
-.pill-amber{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700;background:#fef3c7;color:#92400e}
-
+.pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+.pill-purple{background:#ede9fe;color:#5b21b6}
+.pill-blue{background:#dbeafe;color:#1e40af}
+.pill-green{background:#d1fae5;color:#065f46}
+.pill-red{background:#fee2e2;color:#991b1b}
+.pill-amber{background:#fef3c7;color:#92400e}
+.alerta{background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:6px;padding:12px 16px;font-size:12px;color:#991b1b;line-height:1.6}
+.alerta-amber{background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #f59e0b;border-radius:6px;padding:12px 16px;font-size:12px;color:#92400e;line-height:1.6}
+.alerta-green{background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #10b981;border-radius:6px;padding:12px 16px;font-size:12px;color:#166534;line-height:1.6}
+.insight-card{border-radius:10px;padding:16px 18px;border:1px solid}
 .footer{text-align:center;padding:24px 0;font-size:11px;color:#9ca3af}
 </style>
 </head>
@@ -67,7 +67,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:12px">
     <div class="logo">Auto<span>conf</span></div>
-    <span style="color:#334155;font-size:13px">Pipeline ATF Webinar</span>
+    <span style="color:#334155;font-size:13px">Pipeline ATF Webinar — Apenas Novos Leads</span>
   </div>
   <div style="display:flex;align-items:center;gap:10px">
     <span class="period">Histórico completo</span>
@@ -77,510 +77,360 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 
 <div class="main">
 
-  <!-- KPIs -->
-  <div class="section-label">Visão geral do pipeline</div>
+  <!-- ALERTA PRINCIPAL -->
+  <div class="alerta" style="margin-bottom:24px;font-size:13px">
+    🚨 <strong>96,8% dos leads de julho ainda não foram abordados.</strong> De 1.990 novos leads (excluindo clientes ATF), apenas 63 chegaram ao 1° Contato. 1.927 estão esfriando em Cadastro ou Participante.
+  </div>
+
+  <!-- KPIs gerais (excluindo Clientes ATF) -->
+  <div class="section-label">Visão geral — somente novos leads (excluindo Clientes ATF)</div>
   <div class="kpi-grid">
     <div class="kpi purple">
-      <div class="kpi-label">Total no Pipeline</div>
-      <div class="kpi-value">5.007</div>
-      <div class="kpi-sub">Todos os deals criados</div>
+      <div class="kpi-label">Cadastros (novos)</div>
+      <div class="kpi-value">1.835</div>
+      <div class="kpi-sub">Nunca foram clientes</div>
     </div>
     <div class="kpi blue">
-      <div class="kpi-label">Cadastros</div>
-      <div class="kpi-value">2.220</div>
-      <div class="kpi-sub">1.835 novos + 385 clientes ATF</div>
-    </div>
-    <div class="kpi green">
-      <div class="kpi-label">Participantes</div>
-      <div class="kpi-value">1.192</div>
-      <div class="kpi-sub">848 novos + 344 clientes ATF</div>
+      <div class="kpi-label">Participantes (novos)</div>
+      <div class="kpi-value">848</div>
+      <div class="kpi-sub">Assistiram ao webinar</div>
     </div>
     <div class="kpi amber">
+      <div class="kpi-label">Em abordagem ativa</div>
+      <div class="kpi-value">41</div>
+      <div class="kpi-sub">1°/2° Contato + Agend.</div>
+    </div>
+    <div class="kpi green">
       <div class="kpi-label">Reuniões Realizadas</div>
-      <div class="kpi-value">58</div>
-      <div class="kpi-sub">Taxa: 1,2% do total</div>
+      <div class="kpi-value">25</div>
+      <div class="kpi-sub">De novos leads apenas</div>
     </div>
     <div class="kpi red">
-      <div class="kpi-label">Perdidos</div>
-      <div class="kpi-value">1.496</div>
-      <div class="kpi-sub">29,9% do total</div>
+      <div class="kpi-label">Perdidos (novos)</div>
+      <div class="kpi-value">18</div>
+      <div class="kpi-sub">0,7% — muito baixo</div>
     </div>
   </div>
 
   <!-- Funil + Histórico -->
   <div class="grid-52">
-
-    <!-- Funil de etapas -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Funil por etapa — snapshot atual</span>
-        <span class="card-tag">5.007 deals total</span>
+        <span class="card-title">Funil por etapa — apenas novos leads</span>
+        <span class="card-tag">sem Clientes ATF</span>
       </div>
       <div class="funil">
-        <div class="funil-row active">
-          <span class="funil-label">📝 Cadastro (novos)</span>
+        <div class="funil-row">
+          <span class="funil-label">📝 Cadastro</span>
           <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:100%;background:#8b5cf6"></div></div>
-          <span class="funil-count">1.835</span>
-          <span class="funil-pct">36,6%</span>
+          <span class="funil-count">1.835</span><span class="funil-pct">68%</span>
         </div>
-        <div class="funil-row active">
-          <span class="funil-label">⭐ Cadastro — Cliente ATF</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:21%;background:#6366f1"></div></div>
-          <span class="funil-count">385</span>
-          <span class="funil-pct">7,7%</span>
-        </div>
-        <div class="funil-row active">
-          <span class="funil-label">✅ Participante (novos)</span>
+        <div class="funil-row">
+          <span class="funil-label">✅ Participante</span>
           <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:46%;background:#3b82f6"></div></div>
-          <span class="funil-count">848</span>
-          <span class="funil-pct">16,9%</span>
+          <span class="funil-count">848</span><span class="funil-pct">31%</span>
         </div>
-        <div class="funil-row active">
-          <span class="funil-label">⭐ Participante — Cliente ATF</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:19%;background:#60a5fa"></div></div>
-          <span class="funil-count">344</span>
-          <span class="funil-pct">6,9%</span>
+        <div class="funil-row" style="background:#fff7ed;border-color:#fde68a">
+          <span class="funil-label" style="color:#92400e">📞 1° Contato</span>
+          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:1.1%;background:#f59e0b"></div></div>
+          <span class="funil-count" style="color:#92400e">31</span><span class="funil-pct">1,1%</span>
         </div>
-        <div class="funil-row active">
-          <span class="funil-label">📞 1° Contato</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:2%;background:#10b981"></div></div>
-          <span class="funil-count">31</span>
-          <span class="funil-pct">0,6%</span>
+        <div class="funil-row" style="background:#fff7ed;border-color:#fde68a">
+          <span class="funil-label" style="color:#92400e">📞 2° Contato</span>
+          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.07%;background:#f97316"></div></div>
+          <span class="funil-count" style="color:#92400e">2</span><span class="funil-pct">0,07%</span>
         </div>
-        <div class="funil-row active">
-          <span class="funil-label">📞 2° Contato</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.1%;background:#34d399"></div></div>
-          <span class="funil-count">2</span>
-          <span class="funil-pct">0,04%</span>
+        <div class="funil-row" style="background:#fff7ed;border-color:#fde68a">
+          <span class="funil-label" style="color:#92400e">📅 Pré Agend. + Agend.</span>
+          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.3%;background:#f97316"></div></div>
+          <span class="funil-count" style="color:#92400e">8</span><span class="funil-pct">0,3%</span>
         </div>
-        <div class="funil-row active">
-          <span class="funil-label">📅 Pré Agendamento</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.05%;background:#f59e0b"></div></div>
-          <span class="funil-count">1</span>
-          <span class="funil-pct">0,02%</span>
-        </div>
-        <div class="funil-row active">
-          <span class="funil-label">📅 Agendamento</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.4%;background:#f97316"></div></div>
-          <span class="funil-count">7</span>
-          <span class="funil-pct">0,1%</span>
-        </div>
-        <div class="funil-row active" style="background:#f0fdf4;border-color:#bbf7d0">
+        <div class="funil-row green">
           <span class="funil-label" style="color:#166534">🤝 Reunião Realizada</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:3%;background:#10b981"></div></div>
-          <span class="funil-count" style="color:#166534">58</span>
-          <span class="funil-pct">1,2%</span>
+          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.9%;background:#10b981"></div></div>
+          <span class="funil-count" style="color:#166534">25</span><span class="funil-pct">0,9%</span>
         </div>
-        <div class="funil-row perdido">
+        <div class="funil-row red">
           <span class="funil-label" style="color:#991b1b">❌ Perdido</span>
-          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:81%;background:#ef4444"></div></div>
-          <span class="funil-count" style="color:#991b1b">1.496</span>
-          <span class="funil-pct">29,9%</span>
+          <div class="funil-bar-bg"><div class="funil-bar-fill" style="width:0.7%;background:#ef4444"></div></div>
+          <span class="funil-count" style="color:#991b1b">18</span><span class="funil-pct">0,7%</span>
         </div>
+      </div>
+      <div class="alerta-amber" style="margin-top:14px">
+        ⚠️ <strong>98,9% dos leads estão estagnados em Cadastro ou Participante</strong> — nenhuma abordagem registrada.
       </div>
     </div>
 
-    <!-- Histórico mensal -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Leads e Reuniões por mês</span>
+        <span class="card-title">Leads por mês — novos leads</span>
         <span class="card-tag">Jan–Jul 2026</span>
       </div>
-      <div style="position:relative;height:300px">
-        <canvas id="cWebinarHist"></canvas>
-      </div>
-      <div style="margin-top:12px;background:#f5f3ff;border:1px solid #ddd6fe;border-radius:6px;padding:10px 12px;font-size:11px;color:#5b21b6">
-        🚀 <strong>Julho 2026: 2.717 leads</strong> — pico histórico absoluto. Evento RENAVE gerou volume 5× maior que junho (508).
+      <div style="position:relative;height:280px">
+        <canvas id="cHist"></canvas>
       </div>
     </div>
   </div>
 
-  <!-- Responsáveis por etapa -->
-  <div class="section-label">Deals por etapa e responsável</div>
-
-  <div class="grid-3" style="margin-bottom:16px">
-
-    <!-- Reunião Realizada por resp -->
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">🤝 Reunião Realizada</span>
-        <span class="card-tag">58 total</span>
-      </div>
-      <table class="resp-table">
-        <thead>
-          <tr>
-            <th>Responsável</th>
-            <th class="right">Deals</th>
-            <th class="right">%</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><span class="badge-inativo">inativo</span> Não atribuído</td><td class="right"><span class="pill-purple">20</span></td><td class="right">34%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Matheus Wisconsin</td><td class="right"><span class="pill-purple">8</span></td><td class="right">14%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Jheniffer Mecca</td><td class="right"><span class="pill-purple">8</span></td><td class="right">14%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Bruno Ianai</td><td class="right"><span class="pill-purple">7</span></td><td class="right">12%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Otavio Amaral</td><td class="right"><span class="pill-purple">4</span></td><td class="right">7%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Felipe Silva</td><td class="right"><span class="pill-purple">3</span></td><td class="right">5%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Leonardo Maldaner</td><td class="right"><span class="pill-purple">2</span></td><td class="right">3%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Peterson Botelho</td><td class="right"><span class="pill-purple">2</span></td><td class="right">3%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Marcelo Duda</td><td class="right">1</td><td class="right">2%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Sergio Michelin</td><td class="right">1</td><td class="right">2%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Jessye Fernandes</td><td class="right">1</td><td class="right">2%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Victor Mazza</td><td class="right">1</td><td class="right">2%</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 1° e 2° Contato por resp -->
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">📞 1° e 2° Contato + Agendamento</span>
-        <span class="card-tag">41 total</span>
-      </div>
-      <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">1° Contato (31)</div>
-      <table class="resp-table" style="margin-bottom:16px">
-        <thead><tr><th>Responsável</th><th class="right">Deals</th></tr></thead>
-        <tbody>
-          <tr><td><span class="badge-ativo">ativo</span> Leonardo Maldaner</td><td class="right"><span class="pill-blue">25</span></td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> João Mattos</td><td class="right"><span class="pill-blue">3</span></td></tr>
-          <tr><td>Não atribuído</td><td class="right">2</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Bruno Ianai</td><td class="right">1</td></tr>
-        </tbody>
-      </table>
-      <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">2° Contato (2)</div>
-      <table class="resp-table" style="margin-bottom:16px">
-        <tbody>
-          <tr><td><span class="badge-ativo">ativo</span> Leonardo Maldaner</td><td class="right"><span class="pill-blue">2</span></td></tr>
-        </tbody>
-      </table>
-      <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Agendamento (7) + Pré Agend. (1)</div>
-      <table class="resp-table">
-        <tbody>
-          <tr><td><span class="badge-inativo">inativo</span> Jheniffer Mecca</td><td class="right"><span class="pill-amber">2</span></td></tr>
-          <tr><td>Não atribuído</td><td class="right">2</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Maria Julia</td><td class="right">1</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Jessye Fernandes</td><td class="right">1</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Leonardo Maldaner</td><td class="right">2</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:10px;background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:8px 12px;font-size:11px;color:#1e40af">
-        💡 <strong>Leonardo Maldaner</strong> concentra 80% do 1° Contato (25/31) e domina o funil de abordagem ativo.
-      </div>
-    </div>
-
-    <!-- Top responsáveis Perdido -->
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">❌ Perdidos — top responsáveis</span>
-        <span class="card-tag">1.496 total</span>
-      </div>
-      <table class="resp-table">
-        <thead><tr><th>Responsável</th><th class="right">Perdidos</th><th class="right">%</th></tr></thead>
-        <tbody>
-          <tr><td><span class="badge-inativo">inativo</span> Matheus Wisconsin</td><td class="right"><span class="pill-red">317</span></td><td class="right">21%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Bruno Ianai</td><td class="right"><span class="pill-red">245</span></td><td class="right">16%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Jheniffer Mecca</td><td class="right"><span class="pill-red">194</span></td><td class="right">13%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Jessye Fernandes</td><td class="right"><span class="pill-red">178</span></td><td class="right">12%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Bruno Daniel</td><td class="right">91</td><td class="right">6%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Peterson Botelho</td><td class="right">112</td><td class="right">7%</td></tr>
-          <tr><td><span class="badge-inativo">inativo</span> Sergio Michelin</td><td class="right">100</td><td class="right">7%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Talita Schlindwein</td><td class="right">53</td><td class="right">4%</td></tr>
-          <tr><td>Não atribuído</td><td class="right">29</td><td class="right">2%</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Rachelle Mariot</td><td class="right">23</td><td class="right">2%</td></tr>
-          <tr><td style="color:#9ca3af">Demais (15+)</td><td class="right" style="color:#9ca3af">154</td><td class="right" style="color:#9ca3af">10%</td></tr>
-        </tbody>
-      </table>
-      <div style="margin-top:10px;background:#fef2f2;border:1px solid #fecaca;border-radius:6px;padding:8px 12px;font-size:11px;color:#991b1b">
-        ⚠️ 62% dos perdidos estão com responsáveis <strong>inativos</strong> — leads sem acompanhamento ativo.
-      </div>
-    </div>
-  </div>
-
-  <!-- Cadastro responsáveis top -->
-  <div class="card" style="margin-bottom:24px">
-    <div class="card-header">
-      <span class="card-title">📝 Cadastro — top responsáveis com leads atribuídos</span>
-      <span class="card-tag">291 atribuídos · 1.544 sem dono</span>
-    </div>
-    <div style="overflow-x:auto">
-      <table class="resp-table">
-        <thead>
-          <tr>
-            <th>Responsável</th>
-            <th>Status</th>
-            <th class="right">Cadastros</th>
-            <th class="right">Reuniões</th>
-            <th class="right">Perdidos</th>
-            <th class="right">Taxa Conv.</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Ramon Lemes</td><td><span class="badge-ativo">ativo</span></td><td class="right">55</td><td class="right">—</td><td class="right">—</td><td class="right">—</td></tr>
-          <tr><td>Kaoan Santos</td><td><span class="badge-ativo">ativo</span></td><td class="right">20</td><td class="right">—</td><td class="right">34</td><td class="right">—</td></tr>
-          <tr><td>Otavio Amaral</td><td><span class="badge-ativo">ativo</span></td><td class="right">19</td><td class="right">4</td><td class="right">7</td><td class="right">21%</td></tr>
-          <tr><td>Bruno Ianai</td><td><span class="badge-ativo">ativo</span></td><td class="right">16</td><td class="right">7</td><td class="right">245</td><td class="right">44%</td></tr>
-          <tr><td>Kaoan Santos</td><td><span class="badge-ativo">ativo</span></td><td class="right">16</td><td class="right">—</td><td class="right">—</td><td class="right">—</td></tr>
-          <tr><td>Jessye Fernandes</td><td><span class="badge-inativo">inativo</span></td><td class="right">16</td><td class="right">1</td><td class="right">178</td><td class="right">6%</td></tr>
-          <tr><td>Matheus Wisconsin</td><td><span class="badge-inativo">inativo</span></td><td class="right">13</td><td class="right">8</td><td class="right">317</td><td class="right">62%</td></tr>
-          <tr><td>Maria Julia</td><td><span class="badge-inativo">inativo</span></td><td class="right">12</td><td class="right">—</td><td class="right">5</td><td class="right">—</td></tr>
-          <tr><td>Bruno Daniel</td><td><span class="badge-inativo">inativo</span></td><td class="right">12</td><td class="right">—</td><td class="right">91</td><td class="right">—</td></tr>
-          <tr><td>Erick Ezequiel</td><td><span class="badge-ativo">ativo</span></td><td class="right">13</td><td class="right">—</td><td class="right">9</td><td class="right">—</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div style="margin-top:10px;font-size:11px;color:#9ca3af">* Taxa Conv. = Reuniões / (Cadastros + Perdidos) para responsáveis com dados suficientes.</div>
-  </div>
-
-
-  <!-- Comparativo por Evento -->
-  <div class="section-label">Comparativo por evento — RENAVE vs Atendimento que Converte</div>
+  <!-- ANÁLISE DE ESFRIAMENTO -->
+  <div class="section-label">Análise de esfriamento — estão sendo tratados?</div>
 
   <div class="grid-2" style="margin-bottom:16px">
 
-    <!-- RENAVE -->
+    <!-- Julho -->
     <div class="card" style="border-top:4px solid #8b5cf6">
       <div class="card-header">
-        <span class="card-title">🏛️ Webinar RENAVE</span>
-        <span style="font-size:11px;font-weight:600;background:#f5f3ff;color:#5b21b6;padding:3px 10px;border-radius:10px">1.587 deals</span>
+        <span class="card-title">📅 Julho 2026 — 1.990 leads novos (parcial dia 15)</span>
+        <span class="card-tag">RENAVE + Atend. que Converte</span>
       </div>
-
-      <!-- KPIs -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px">
-        <div style="text-align:center;background:#f5f3ff;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#8b5cf6;font-weight:600;text-transform:uppercase;margin-bottom:4px">Cadastros</div>
-          <div style="font-size:20px;font-weight:800;color:#5b21b6">1.556</div>
-          <div style="font-size:10px;color:#9ca3af">1.174 + 382 ATF</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:#fef2f2;border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#ef4444;font-weight:600;text-transform:uppercase;margin-bottom:4px">Esfriando</div>
+          <div style="font-size:32px;font-weight:800;color:#991b1b;letter-spacing:-1px">1.927</div>
+          <div style="font-size:11px;color:#7f1d1d">96,8% sem contato</div>
         </div>
-        <div style="text-align:center;background:#f5f3ff;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#8b5cf6;font-weight:600;text-transform:uppercase;margin-bottom:4px">Participantes</div>
-          <div style="font-size:20px;font-weight:800;color:#5b21b6">11</div>
-          <div style="font-size:10px;color:#9ca3af">Clientes ATF</div>
-        </div>
-        <div style="text-align:center;background:#d1fae5;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#10b981;font-weight:600;text-transform:uppercase;margin-bottom:4px">Reuniões</div>
-          <div style="font-size:20px;font-weight:800;color:#166534">14</div>
-          <div style="font-size:10px;color:#9ca3af">0,9% conversão</div>
-        </div>
-        <div style="text-align:center;background:#fef2f2;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#ef4444;font-weight:600;text-transform:uppercase;margin-bottom:4px">Perdidos</div>
-          <div style="font-size:20px;font-weight:800;color:#991b1b">3</div>
-          <div style="font-size:10px;color:#9ca3af">0,2% do total</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#10b981;font-weight:600;text-transform:uppercase;margin-bottom:4px">Abordados</div>
+          <div style="font-size:32px;font-weight:800;color:#166534;letter-spacing:-1px">63</div>
+          <div style="font-size:11px;color:#14532d">3,2% do total</div>
         </div>
       </div>
-
-      <!-- Funil -->
-      <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f5f3ff;border-radius:6px;font-size:12px">
-          <span>📝 Cadastro (novos)</span><span style="font-weight:700;color:#5b21b6">1.174</span>
+      <div class="funil" style="gap:4px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fef2f2;border-radius:6px;font-size:12px">
+          <span>📝 Cadastro — sem contato</span>
+          <span style="font-weight:700;color:#991b1b">1.154 <span style="font-weight:400;color:#9ca3af;font-size:11px">(58%)</span></span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#ede9fe;border-radius:6px;font-size:12px">
-          <span>⭐ Cadastro — Cliente ATF</span><span style="font-weight:700;color:#5b21b6">382</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fef2f2;border-radius:6px;font-size:12px">
+          <span>✅ Participante — sem contato</span>
+          <span style="font-weight:700;color:#991b1b">773 <span style="font-weight:400;color:#9ca3af;font-size:11px">(38,8%)</span></span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f5f3ff;border-radius:6px;font-size:12px">
-          <span>⭐ Participante — Cliente ATF</span><span style="font-weight:700;color:#5b21b6">11</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fff7ed;border-radius:6px;font-size:12px">
+          <span>📞 1° Contato (abordados)</span>
+          <span style="font-weight:700;color:#92400e">26</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f3f4f6;border-radius:6px;font-size:12px">
-          <span>📞 1° Contato</span><span style="font-weight:700">1</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fff7ed;border-radius:6px;font-size:12px">
+          <span>📅 Pré Agend. + Agend.</span>
+          <span style="font-weight:700;color:#92400e">3</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f3f4f6;border-radius:6px;font-size:12px">
-          <span>📅 Agendamento</span><span style="font-weight:700">2</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f0fdf4;border-radius:6px;font-size:12px">
+          <span>🤝 Reunião Realizada</span>
+          <span style="font-weight:700;color:#166534">19 <span style="font-size:10px;font-weight:400;color:#9ca3af">(30% dos abordados)</span></span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#d1fae5;border-radius:6px;font-size:12px">
-          <span>🤝 Reunião Realizada</span><span style="font-weight:700;color:#166534">14</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#fef2f2;border-radius:6px;font-size:12px">
-          <span>❌ Perdido</span><span style="font-weight:700;color:#991b1b">3</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f3f4f6;border-radius:6px;font-size:12px">
+          <span>❌ Perdido</span>
+          <span style="font-weight:700">15</span>
         </div>
       </div>
-
-      <!-- Responsáveis Reunião -->
-      <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Reuniões por responsável</div>
-      <div style="background:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:10px 12px;font-size:12px;color:#92400e">
-        ⚠️ <strong>14 reuniões — todas sem responsável atribuído.</strong> Evento recente (julho/26), leads ainda não distribuídos ao time.
-      </div>
-
-      <!-- Histórico -->
-      <div style="margin-top:14px;font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Histórico de criação</div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;text-align:center;background:#f3f4f6;border-radius:6px;padding:8px">
-          <div style="font-size:10px;color:#9ca3af">Mai/26</div>
-          <div style="font-size:16px;font-weight:700">1</div>
-        </div>
-        <div style="flex:1;text-align:center;background:#f3f4f6;border-radius:6px;padding:8px">
-          <div style="font-size:10px;color:#9ca3af">Jun/26</div>
-          <div style="font-size:16px;font-weight:700">0</div>
-        </div>
-        <div style="flex:4;text-align:center;background:#5b21b6;border-radius:6px;padding:8px">
-          <div style="font-size:10px;color:#ddd6fe">Jul/26</div>
-          <div style="font-size:22px;font-weight:800;color:#fff">1.586</div>
+      <div style="margin-top:12px">
+        <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Quem está abordando em julho</div>
+        <table class="resp-table">
+          <thead><tr><th>SDR</th><th class="right">1° Cont.</th><th class="right">Agend.</th><th class="right">Reunião</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge-ativo">ativo</span> Leonardo Maldaner</td><td class="right"><span class="pill pill-amber">25</span></td><td class="right">1</td><td class="right">1</td></tr>
+            <tr><td><span class="badge-ativo">ativo</span> Otavio Amaral</td><td class="right">—</td><td class="right">—</td><td class="right">1</td></tr>
+            <tr><td style="color:#9ca3af">Não atribuído</td><td class="right">1</td><td class="right">2</td><td class="right"><span class="pill pill-red">17</span></td></tr>
+          </tbody>
+        </table>
+        <div class="alerta-amber" style="margin-top:10px;font-size:11px">
+          ⚠️ <strong>17 das 19 reuniões de julho estão sem responsável</strong> — leads auto-convertidos do evento RENAVE, sem SDR envolvido.
         </div>
       </div>
     </div>
 
-    <!-- ATENDIMENTO QUE CONVERTE -->
+    <!-- Junho -->
     <div class="card" style="border-top:4px solid #3b82f6">
       <div class="card-header">
-        <span class="card-title">📞 Webinar Atendimento que Converte</span>
-        <span style="font-size:11px;font-weight:600;background:#dbeafe;color:#1e40af;padding:3px 10px;border-radius:10px">1.628 deals</span>
+        <span class="card-title">📅 Junho 2026 — 508 leads novos (fechado)</span>
+        <span class="card-tag">Atend. que Converte</span>
       </div>
-
-      <!-- KPIs -->
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px">
-        <div style="text-align:center;background:#dbeafe;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#3b82f6;font-weight:600;text-transform:uppercase;margin-bottom:4px">Cadastros</div>
-          <div style="font-size:20px;font-weight:800;color:#1e40af">389</div>
-          <div style="font-size:10px;color:#9ca3af">388 + 1 ATF</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:#fef2f2;border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#ef4444;font-weight:600;text-transform:uppercase;margin-bottom:4px">Esfriaram</div>
+          <div style="font-size:32px;font-weight:800;color:#991b1b;letter-spacing:-1px">494</div>
+          <div style="font-size:11px;color:#7f1d1d">97,2% sem contato</div>
         </div>
-        <div style="text-align:center;background:#dbeafe;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#3b82f6;font-weight:600;text-transform:uppercase;margin-bottom:4px">Participantes</div>
-          <div style="font-size:20px;font-weight:800;color:#1e40af">1.182</div>
-          <div style="font-size:10px;color:#9ca3af">848 + 334 ATF</div>
-        </div>
-        <div style="text-align:center;background:#d1fae5;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#10b981;font-weight:600;text-transform:uppercase;margin-bottom:4px">Reuniões</div>
-          <div style="font-size:20px;font-weight:800;color:#166534">11</div>
-          <div style="font-size:10px;color:#9ca3af">0,7% conversão</div>
-        </div>
-        <div style="text-align:center;background:#fef2f2;border-radius:8px;padding:10px 8px">
-          <div style="font-size:10px;color:#ef4444;font-weight:600;text-transform:uppercase;margin-bottom:4px">Perdidos</div>
-          <div style="font-size:20px;font-weight:800;color:#991b1b">15</div>
-          <div style="font-size:10px;color:#9ca3af">0,9% do total</div>
+        <div style="background:#f0fdf4;border-radius:8px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#10b981;font-weight:600;text-transform:uppercase;margin-bottom:4px">Abordados</div>
+          <div style="font-size:32px;font-weight:800;color:#166534;letter-spacing:-1px">14</div>
+          <div style="font-size:11px;color:#14532d">2,8% do total</div>
         </div>
       </div>
-
-      <!-- Funil -->
-      <div style="display:flex;flex-direction:column;gap:5px;margin-bottom:14px">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#dbeafe;border-radius:6px;font-size:12px">
-          <span>📝 Cadastro (novos)</span><span style="font-weight:700;color:#1e40af">388</span>
+      <div class="funil" style="gap:4px">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fef2f2;border-radius:6px;font-size:12px">
+          <span>📝 Cadastro — esfriou</span>
+          <span style="font-weight:700;color:#991b1b">400 <span style="font-weight:400;color:#9ca3af;font-size:11px">(78,7%)</span></span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#dbeafe;border-radius:6px;font-size:12px">
-          <span>✅ Participante (novos)</span><span style="font-weight:700;color:#1e40af">848</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fef2f2;border-radius:6px;font-size:12px">
+          <span>✅ Participante — esfriou</span>
+          <span style="font-weight:700;color:#991b1b">94 <span style="font-weight:400;color:#9ca3af;font-size:11px">(18,5%)</span></span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#eff6ff;border-radius:6px;font-size:12px">
-          <span>⭐ Participante — Cliente ATF</span><span style="font-weight:700;color:#1e40af">334</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fff7ed;border-radius:6px;font-size:12px">
+          <span>📞 1°/2° Contato</span>
+          <span style="font-weight:700;color:#92400e">4</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f0fdf4;border-radius:6px;font-size:12px">
-          <span>📞 1° Contato</span><span style="font-weight:700;color:#166534">27</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#fff7ed;border-radius:6px;font-size:12px">
+          <span>📅 Agendamento</span>
+          <span style="font-weight:700;color:#92400e">1</span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f3f4f6;border-radius:6px;font-size:12px">
-          <span>📞 2° Contato / Pré Agend.</span><span style="font-weight:700">3</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f0fdf4;border-radius:6px;font-size:12px">
+          <span>🤝 Reunião Realizada</span>
+          <span style="font-weight:700;color:#166534">6 <span style="font-size:10px;font-weight:400;color:#9ca3af">(43% dos abordados)</span></span>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f3f4f6;border-radius:6px;font-size:12px">
-          <span>📅 Agendamento</span><span style="font-weight:700">1</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#d1fae5;border-radius:6px;font-size:12px">
-          <span>🤝 Reunião Realizada</span><span style="font-weight:700;color:#166534">11</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#fef2f2;border-radius:6px;font-size:12px">
-          <span>❌ Perdido</span><span style="font-weight:700;color:#991b1b">15</span>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#f3f4f6;border-radius:6px;font-size:12px">
+          <span>❌ Perdido</span>
+          <span style="font-weight:700">3</span>
         </div>
       </div>
+      <div class="alerta" style="margin-top:12px;font-size:11px">
+        🔴 <strong>Mês fechado há mais de 15 dias.</strong> 494 leads de junho não foram abordados e já estão frios. A janela de conversão para estes leads está se fechando.
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:#9ca3af;background:#f8fafc;border-radius:6px;padding:8px 12px">
+        💡 <strong>Taxa de conversão quando há contato: 43%</strong> (6 reuniões de 14 abordados). O problema não é a qualidade do lead — é a falta de abordagem.
+      </div>
+    </div>
+  </div>
 
-      <!-- Responsáveis Reunião -->
-      <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Reuniões e abordagem por responsável</div>
-      <table class="resp-table" style="margin-bottom:12px">
-        <thead><tr><th>Responsável</th><th class="right">Reun.</th><th class="right">1° Cont.</th><th class="right">2° Cont.</th></tr></thead>
+  <!-- Comparativo por Evento -->
+  <div class="section-label">Por evento — RENAVE vs Atendimento que Converte</div>
+  <div class="grid-2" style="margin-bottom:16px">
+
+    <div class="card" style="border-left:4px solid #8b5cf6">
+      <div class="card-header">
+        <span class="card-title">🏛️ Webinar RENAVE</span>
+        <span style="font-size:11px;font-weight:600;background:#f5f3ff;color:#5b21b6;padding:3px 10px;border-radius:10px">1.587 leads</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+        <div style="text-align:center;background:#f5f3ff;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#8b5cf6;font-weight:600;text-transform:uppercase;margin-bottom:4px">Cadastro</div>
+          <div style="font-size:18px;font-weight:800;color:#5b21b6">1.174</div>
+        </div>
+        <div style="text-align:center;background:#f5f3ff;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#8b5cf6;font-weight:600;text-transform:uppercase;margin-bottom:4px">1° Contato</div>
+          <div style="font-size:18px;font-weight:800;color:#5b21b6">1</div>
+        </div>
+        <div style="text-align:center;background:#d1fae5;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#10b981;font-weight:600;text-transform:uppercase;margin-bottom:4px">Reunião</div>
+          <div style="font-size:18px;font-weight:800;color:#166534">14</div>
+        </div>
+        <div style="text-align:center;background:#fef2f2;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#ef4444;font-weight:600;text-transform:uppercase;margin-bottom:4px">Perdido</div>
+          <div style="font-size:18px;font-weight:800;color:#991b1b">3</div>
+        </div>
+      </div>
+      <div style="font-size:12px;line-height:1.6;color:#374151;margin-bottom:10px">
+        📅 <strong>Evento recente (julho):</strong> 1.586 de 1.587 leads criados em julho. Evento de alto volume ainda sem SDR alocado — 14 reuniões todas sem responsável atribuído.
+      </div>
+      <div class="alerta-amber" style="font-size:11px">
+        ⚠️ <strong>1.174 cadastros do RENAVE aguardando 1° contato.</strong> Evento aconteceu há menos de 15 dias — janela quente ainda aberta.
+      </div>
+    </div>
+
+    <div class="card" style="border-left:4px solid #3b82f6">
+      <div class="card-header">
+        <span class="card-title">📞 Atendimento que Converte</span>
+        <span style="font-size:11px;font-weight:600;background:#dbeafe;color:#1e40af;padding:3px 10px;border-radius:10px">1.628 leads</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px">
+        <div style="text-align:center;background:#dbeafe;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#3b82f6;font-weight:600;text-transform:uppercase;margin-bottom:4px">Cadastro</div>
+          <div style="font-size:18px;font-weight:800;color:#1e40af">388</div>
+        </div>
+        <div style="text-align:center;background:#dbeafe;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#3b82f6;font-weight:600;text-transform:uppercase;margin-bottom:4px">Participante</div>
+          <div style="font-size:18px;font-weight:800;color:#1e40af">848</div>
+        </div>
+        <div style="text-align:center;background:#d1fae5;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#10b981;font-weight:600;text-transform:uppercase;margin-bottom:4px">Reunião</div>
+          <div style="font-size:18px;font-weight:800;color:#166534">11</div>
+        </div>
+        <div style="text-align:center;background:#fef2f2;border-radius:8px;padding:10px 6px">
+          <div style="font-size:9px;color:#ef4444;font-weight:600;text-transform:uppercase;margin-bottom:4px">Perdido</div>
+          <div style="font-size:18px;font-weight:800;color:#991b1b">15</div>
+        </div>
+      </div>
+      <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">Abordagem ativa — SDR por etapa</div>
+      <table class="resp-table">
+        <thead><tr><th>SDR</th><th class="right">1° Cont.</th><th class="right">2° Cont.</th><th class="right">Agend.</th><th class="right">Reunião</th></tr></thead>
         <tbody>
-          <tr><td><span class="badge-ativo">ativo</span> Otavio Amaral</td><td class="right"><span class="pill-green">4</span></td><td class="right">—</td><td class="right">—</td></tr>
-          <tr><td>Não atribuído</td><td class="right"><span class="pill-green">6</span></td><td class="right">1</td><td class="right">—</td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Leonardo Maldaner</td><td class="right">1</td><td class="right"><span class="pill-blue">25</span></td><td class="right"><span class="pill-blue">2</span></td></tr>
-          <tr><td><span class="badge-ativo">ativo</span> Bruno Ianai</td><td class="right">—</td><td class="right">1</td><td class="right">—</td></tr>
+          <tr><td><span class="badge-ativo">ativo</span> Leonardo Maldaner</td><td class="right"><span class="pill pill-blue">25</span></td><td class="right">2</td><td class="right">1</td><td class="right">1</td></tr>
+          <tr><td><span class="badge-ativo">ativo</span> Otavio Amaral</td><td class="right">—</td><td class="right">—</td><td class="right">—</td><td class="right">4</td></tr>
+          <tr><td>Não atribuído</td><td class="right">1</td><td class="right">—</td><td class="right">—</td><td class="right">6</td></tr>
+          <tr><td><span class="badge-ativo">ativo</span> Bruno Ianai</td><td class="right">1</td><td class="right">—</td><td class="right">—</td><td class="right">—</td></tr>
         </tbody>
       </table>
-
-      <!-- Histórico -->
-      <div style="font-size:11px;font-weight:600;color:#374151;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Histórico de criação</div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;text-align:center;background:#3b82f6;border-radius:6px;padding:8px">
-          <div style="font-size:10px;color:#bfdbfe">Jun/26</div>
-          <div style="font-size:18px;font-weight:800;color:#fff">496</div>
-        </div>
-        <div style="flex:2;text-align:center;background:#1e40af;border-radius:6px;padding:8px">
-          <div style="font-size:10px;color:#bfdbfe">Jul/26</div>
-          <div style="font-size:22px;font-weight:800;color:#fff">1.132</div>
-        </div>
+      <div class="alerta-green" style="margin-top:10px;font-size:11px">
+        ✅ <strong>Taxa de conversão quando abordado: 43%.</strong> Otávio Amaral tem 4 reuniões sem 1° contato registrado — qualidade alta do perfil participante.
       </div>
     </div>
-
   </div>
 
-  <!-- Outros (histórico antigo) -->
-  <div class="card" style="margin-bottom:24px;border-left:4px solid #9ca3af">
-    <div class="card-header">
-      <span class="card-title">📦 Deals sem evento identificado (histórico antigo)</span>
-      <span class="card-tag">1.793 deals · pré-tagging</span>
-    </div>
-    <div style="display:flex;gap:24px;align-items:center;font-size:12px;flex-wrap:wrap">
-      <div><span style="color:#9ca3af">Cadastros:</span> <strong>273</strong></div>
-      <div><span style="color:#9ca3af">Reuniões:</span> <strong>33</strong> (maioria de eventos anteriores sem tag)</div>
-      <div><span style="color:#9ca3af">Perdidos:</span> <strong>1.478</strong> (82% deste grupo)</div>
-      <div><span style="color:#9ca3af">1° Contato:</span> <strong>3</strong></div>
-      <div><span style="color:#9ca3af">Agendamento:</span> <strong>4</strong></div>
-    </div>
-    <div style="margin-top:10px;font-size:11px;color:#6b7280;background:#f9fafb;border-radius:6px;padding:8px 12px">
-      Esses deals não têm o padrão "nome | webinar - evento" no nome — correspondem a eventos anteriores (ago/25, dez/25) cadastrados antes do padrão de nomenclatura ser definido.
-    </div>
-  </div>
-
-  <!-- Insights -->
-  <div class="section-label">Insights do pipeline</div>
+  <!-- Insights SDR -->
+  <div class="section-label">Insights — diagnóstico do time de SDR</div>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px">
-    <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:10px;padding:16px 18px">
-      <div style="font-size:12px;font-weight:700;color:#5b21b6;margin-bottom:6px">🚀 Julho/26 — Pico histórico</div>
-      <div style="font-size:28px;font-weight:800;color:#5b21b6;letter-spacing:-1px;margin-bottom:4px">2.717</div>
-      <div style="font-size:12px;color:#6d28d9;line-height:1.5">leads em julho (até dia 14). Evento RENAVE gerou 5× o volume de junho (508). Com 22 reuniões já realizadas, julho pode ser o melhor mês do pipeline.</div>
+
+    <div class="insight-card" style="background:#fef2f2;border-color:#fecaca">
+      <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px">🔴 2.421 leads sem contato</div>
+      <div style="font-size:28px;font-weight:800;color:#991b1b;letter-spacing:-1px;margin-bottom:6px">97%</div>
+      <div style="font-size:12px;color:#7f1d1d;line-height:1.6">De todos os novos leads de junho e julho juntos, 97% nunca receberam um 1° contato do time de SDR. A maioria esfriou ou está esfriando agora.</div>
     </div>
-    <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:10px;padding:16px 18px">
-      <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px">⚠️ 1.544 leads sem responsável</div>
-      <div style="font-size:28px;font-weight:800;color:#991b1b;letter-spacing:-1px;margin-bottom:4px">84%</div>
-      <div style="font-size:12px;color:#7f1d1d;line-height:1.5">dos cadastros estão como "Não atribuído". Distribuição ativa de leads para o time de pré-vendas pode aumentar drasticamente a taxa de conversão.</div>
+
+    <div class="insight-card" style="background:#fffbeb;border-color:#fde68a">
+      <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:6px">⚠️ Um SDR carregando o pipeline</div>
+      <div style="font-size:28px;font-weight:800;color:#92400e;letter-spacing:-1px;margin-bottom:6px">Leonardo</div>
+      <div style="font-size:12px;color:#78350f;line-height:1.6"><strong>Leonardo Maldaner</strong> é responsável por 25 dos 31 leads em 1° Contato (80%). Sem ele, o pipeline de abordagem para. Risco de concentração alto.</div>
     </div>
-    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:10px;padding:16px 18px">
-      <div style="font-size:12px;font-weight:700;color:#166534;margin-bottom:6px">✅ Leonardo lidera o funil ativo</div>
-      <div style="font-size:28px;font-weight:800;color:#166534;letter-spacing:-1px;margin-bottom:4px">25</div>
-      <div style="font-size:12px;color:#14532d;line-height:1.5">leads em 1° Contato sob Leonardo Maldaner (80% do total). Bruno Ianai lidera reuniões entre ativos (7). Pipeline tem potencial maior com mais redistribuição.</div>
+
+    <div class="insight-card" style="background:#f0fdf4;border-color:#bbf7d0">
+      <div style="font-size:12px;font-weight:700;color:#166534;margin-bottom:6px">✅ Conversão alta quando há contato</div>
+      <div style="font-size:28px;font-weight:800;color:#166534;letter-spacing:-1px;margin-bottom:6px">30–43%</div>
+      <div style="font-size:12px;color:#14532d;line-height:1.6">Quando o SDR aborda, a conversão para reunião é de <strong>30–43%</strong>. O problema não é o lead, não é o produto — é que os leads não estão sendo abordados.</div>
     </div>
+
+    <div class="insight-card" style="background:#fef2f2;border-color:#fecaca">
+      <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px">🔴 RENAVE: 1.174 cadastros sem dono</div>
+      <div style="font-size:28px;font-weight:800;color:#991b1b;letter-spacing:-1px;margin-bottom:6px">0 SDRs</div>
+      <div style="font-size:12px;color:#7f1d1d;line-height:1.6">Todos os 14 reuniões do RENAVE foram sem responsável atribuído. O evento gerou 1.174 cadastros em julho — nenhum SDR foi designado para trabalhar esse evento.</div>
+    </div>
+
+    <div class="insight-card" style="background:#fffbeb;border-color:#fde68a">
+      <div style="font-size:12px;font-weight:700;color:#92400e;margin-bottom:6px">⚠️ Junho já está perdido</div>
+      <div style="font-size:28px;font-weight:800;color:#92400e;letter-spacing:-1px;margin-bottom:6px">494 leads</div>
+      <div style="font-size:12px;color:#78350f;line-height:1.6">494 leads de junho (evento Atendimento que Converte) nunca foram abordados. O evento foi há mais de 30 dias — esses leads estão frios e a janela de conversão fechou.</div>
+    </div>
+
+    <div class="insight-card" style="background:#eff6ff;border-color:#bfdbfe">
+      <div style="font-size:12px;font-weight:700;color:#1e3a8a;margin-bottom:6px">💡 Oportunidade imediata</div>
+      <div style="font-size:28px;font-weight:800;color:#1e40af;letter-spacing:-1px;margin-bottom:6px">1.927</div>
+      <div style="font-size:12px;color:#1e40af;line-height:1.6">Leads de julho ainda estão quentes (evento há menos de 15 dias). Distribuir agora para o time e iniciar 1° contato pode capturar <strong>~578 reuniões</strong> estimadas (30% de conversão).</div>
+    </div>
+
   </div>
 
 </div>
 
-<div class="footer">Autoconf · Pipeline ATF Webinar · Dados HubSpot · Jul 2026</div>
+<div class="footer">Autoconf · Pipeline ATF Webinar · Apenas Novos Leads (sem Clientes ATF) · HubSpot · Jul 2026</div>
 
 <script>
-new Chart(document.getElementById('cWebinarHist'), {
+new Chart(document.getElementById('cHist'), {
   type: 'bar',
   data: {
     labels: ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
     datasets: [
-      {
-        label: 'Leads',
-        data: [17, 10, 6, 73, 23, 508, 2717],
-        backgroundColor: 'rgba(139,92,246,0.75)',
-        borderRadius: 3,
-        borderSkipped: false,
-        yAxisID: 'y'
-      },
-      {
-        label: 'Reuniões',
-        data: [2, 0, 1, 0, 0, 6, 22],
-        backgroundColor: 'rgba(16,185,129,0.9)',
-        borderRadius: 3,
-        borderSkipped: false,
-        yAxisID: 'y2'
-      }
+      {label:'Cadastros',data:[16,8,6,69,19,400,1154],backgroundColor:'rgba(139,92,246,0.75)',borderRadius:3,borderSkipped:false,yAxisID:'y'},
+      {label:'Participantes',data:[0,0,0,0,0,94,773],backgroundColor:'rgba(59,130,246,0.75)',borderRadius:3,borderSkipped:false,yAxisID:'y'},
+      {label:'Reuniões',data:[0,0,0,0,1,6,19],backgroundColor:'rgba(16,185,129,0.9)',borderRadius:3,borderSkipped:false,yAxisID:'y2'}
     ]
   },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: { position: 'bottom', labels: { font: { size: 11 }, color: '#9ca3af', boxWidth: 10 } },
-      tooltip: { backgroundColor: '#111', titleColor: '#fff', bodyColor: '#d1d5db', padding: 10 }
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{
+      legend:{position:'bottom',labels:{font:{size:11},color:'#9ca3af',boxWidth:10}},
+      tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}
     },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 11 } } },
-      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#9ca3af', font: { size: 11 } }, beginAtZero: true, position: 'left', title: { display: true, text: 'Leads', color: '#8b5cf6', font: { size: 10 } } },
-      y2: { grid: { display: false }, ticks: { color: '#10b981', font: { size: 11 } }, beginAtZero: true, position: 'right', title: { display: true, text: 'Reuniões', color: '#10b981', font: { size: 10 } } }
+    scales:{
+      x:{stacked:true,grid:{display:false},ticks:{color:'#9ca3af',font:{size:11}}},
+      y:{stacked:true,grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9ca3af',font:{size:11}},beginAtZero:true,position:'left'},
+      y2:{grid:{display:false},ticks:{color:'#10b981',font:{size:11}},beginAtZero:true,position:'right',max:30}
     }
   }
 });
