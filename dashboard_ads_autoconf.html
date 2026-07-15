@@ -1179,74 +1179,10 @@ new Chart(document.getElementById('cSocialRede'), {
 
 
 // Meta Ads — famílias de campanha
-new Chart(document.getElementById('cMetaCamp'), {
-  type: 'bar',
-  data: {
-    labels: ['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
-    datasets: [
-      {label:'Montre rmkt',     data:[100,56,19,0,0,0],    backgroundColor:'#f97316', borderRadius:3, borderSkipped:false},
-      {label:'Montre Brasil',   data:[9,5,1,0,0,0],         backgroundColor:'#fb923c', borderRadius:3, borderSkipped:false},
-      {label:'Horizzont v3',    data:[0,0,55,404,488,162],   backgroundColor:'#2563eb', borderRadius:3, borderSkipped:false},
-      {label:'Horizzont v1',   data:[0,0,254,318,250,81],  backgroundColor:'#60a5fa', borderRadius:3, borderSkipped:false},
-      {label:'Horizzont outros',data:[0,0,41,156,204,113],  backgroundColor:'#93c5fd', borderRadius:3, borderSkipped:false},
-      {label:'El-ad / outros',  data:[11,11,8,11,0,0],       backgroundColor:'#9ca3af', borderRadius:3, borderSkipped:false},
-    ]
-  },
-  options:{
-    responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#9ca3af',boxWidth:9}}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
-    scales:{
-      x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
-      y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
-    }
-  }
-});
 
 // Google Ads — campanhas
-new Chart(document.getElementById('cGoogleCamp'), {
-  type: 'bar',
-  data: {
-    labels: ['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
-    datasets: [
-      {label:'Unknown (SSL)',          data:[17,9,9,17,1,0],  backgroundColor:'#facc15', borderRadius:3, borderSkipped:false},
-      {label:'pesquisa-institucional', data:[0,0,8,26,29,25], backgroundColor:'#10b981', borderRadius:3, borderSkipped:false},
-      {label:'Whats',                  data:[0,0,0,0,0,50],   backgroundColor:'#3b82f6', borderRadius:3, borderSkipped:false},
-      {label:'Horizzont pesquisa',     data:[0,0,0,11,0,0],   backgroundColor:'#8b5cf6', borderRadius:3, borderSkipped:false},
-      {label:'autoconf retargeting',   data:[3,8,1,0,0,0],    backgroundColor:'#9ca3af', borderRadius:3, borderSkipped:false},
-    ]
-  },
-  options:{
-    responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#9ca3af',boxWidth:9}}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
-    scales:{
-      x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
-      y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
-    }
-  }
-});
 
 // Orgânico — páginas
-new Chart(document.getElementById('cOrgPaginas'), {
-  type: 'bar',
-  data: {
-    labels: ['Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
-    datasets: [
-      {label:'Google (Unknown KW)', data:[33,24,36,17,33,18], backgroundColor:'#4285f4', borderRadius:3, borderSkipped:false},
-      {label:'Home (autoconf.com.br)', data:[12,7,7,10,13,5],  backgroundColor:'#6366f1', borderRadius:3, borderSkipped:false},
-      {label:'/nossos-planos',      data:[3,7,2,4,9,6],         backgroundColor:'#10b981', borderRadius:3, borderSkipped:false},
-      {label:'Blog',                data:[5,4,1,6,3,0],          backgroundColor:'#f59e0b', borderRadius:3, borderSkipped:false},
-      {label:'Outros',              data:[9,6,6,5,15,2],         backgroundColor:'#9ca3af', borderRadius:3, borderSkipped:false},
-    ]
-  },
-  options:{
-    responsive:true, maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#9ca3af',boxWidth:9}}, tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
-    scales:{
-      x:{stacked:true, grid:{display:false}, ticks:{color:'#9ca3af',font:{size:11}}},
-      y:{stacked:true, grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11}}, beginAtZero:true}
-    }
-  }
-});
 
 
 // CPL comparativo Jul vs Jun por criativo
