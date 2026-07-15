@@ -675,277 +675,351 @@ tr.highlight-row td { background: #eff6ff; font-weight: 600; }
   <!-- DETALHAMENTO TODAS AS FONTES -->
   <div class="section-label">Detalhamento por fonte — Fev a Jul 2026</div>
 
-  <!-- META ADS - Campanhas -->
-  <div class="chart-row-2" style="margin-bottom:16px">
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px">
+
+    <!-- META ADS -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Meta Ads — famílias de campanha</span>
-        <span class="card-tag">Fev–Jul 2026</span>
+        <span class="card-title">📘 Meta Ads — campanhas</span>
+        <span class="card-tag">por mês</span>
       </div>
-      <div style="position:relative;width:100%;height:260px">
-        <canvas id="cMetaCamp"></canvas>
-      </div>
-      <div style="margin-top:12px;font-size:11px;color:#6b7280;background:#f8fafc;border-radius:6px;padding:10px 12px;line-height:1.7">
-        <strong style="color:#374151">Evolução das famílias:</strong><br>
-        🟠 <strong>Montre (rmkt)</strong> — dominava em fev/mar (100, 56 leads). Encerrada em abr.<br>
-        🔵 <strong>Horizzont (principal)</strong> — ativa desde abr/26. Lidera desde mai com 400+ leads/mês.<br>
-        ⚫ <strong>Montre (Brasil)</strong> — complementar, encerrada em abr.<br>
-        🟣 <strong>El-ad / El-ce</strong> — campanhas pontuais, baixo volume.
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#6366f1;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 356 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Horizzont (formulários)</span><span style="font-weight:700">356</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#6366f1;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 992 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Horizzont (formulários)</span><span style="font-weight:700">992</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#6366f1;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Maio/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 989 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Horizzont (formulários)</span><span style="font-weight:700">906</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>WhatsApp (integración)</span><span style="font-weight:700">83</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#6366f1;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Abril/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 787 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>WhatsApp (integración)</span><span style="font-weight:700">386</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Horizzont (formulários)</span><span style="font-weight:700">380</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Montre — rmkt vídeo</span><span style="font-weight:700">19</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>El-ad + Montre Brasil</span><span>2</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#6366f1;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Março/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 416 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>WhatsApp (integración)</span><span style="font-weight:700">349</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Montre — rmkt vídeo</span><span style="font-weight:700">56</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>Montre Brasil + El-ad + outros</span><span>11</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#6366f1;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Fevereiro/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 489 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>WhatsApp (integración)</span><span style="font-weight:700">362</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Montre — rmkt vídeo</span><span style="font-weight:700">100</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>El-ad / El-ce</span><span style="font-weight:700">11</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>Montre Brasil + SP + outros</span><span>16</span></div>
+        </div>
+
       </div>
     </div>
+
+    <!-- GOOGLE ADS -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Meta Ads — top campanha por mês</span>
-        <span class="card-tag">Maior volume</span>
+        <span class="card-title">🔍 Google Ads — campanhas</span>
+        <span class="card-tag">por mês</span>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
-        <div style="background:#fef3c7;border-radius:8px;padding:10px 14px">
-          <div style="font-size:10px;font-weight:600;color:#92400e;text-transform:uppercase;letter-spacing:.05em">Fev–Mar/26</div>
-          <div style="font-size:13px;font-weight:700;color:#111;margin-top:3px">montre_rmktvideoview_brasil</div>
-          <div style="font-size:11px;color:#6b7280">100 leads (fev) · 56 leads (mar) · CPL estimado ~R$25</div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#10b981;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 75 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Whats (WhatsApp)</span><span style="font-weight:700">50</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>pesquisa-institucional</span><span style="font-weight:700">25</span></div>
         </div>
-        <div style="background:#dbeafe;border-radius:8px;padding:10px 14px">
-          <div style="font-size:10px;font-weight:600;color:#1e40af;text-transform:uppercase;letter-spacing:.05em">Abr/26</div>
-          <div style="font-size:13px;font-weight:700;color:#111;margin-top:3px">horizzont — formulários v1</div>
-          <div style="font-size:11px;color:#6b7280">254 leads · entrada da nova família de criativos</div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#10b981;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 31 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>pesquisa-institucional</span><span style="font-weight:700">28</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>paga + soluções + SSL</span><span>3</span></div>
         </div>
-        <div style="background:#d1fae5;border-radius:8px;padding:10px 14px">
-          <div style="font-size:10px;font-weight:600;color:#065f46;text-transform:uppercase;letter-spacing:.05em">Mai–Jun/26 (melhor período)</div>
-          <div style="font-size:13px;font-weight:700;color:#111;margin-top:3px">horizzont — formulários v3</div>
-          <div style="font-size:11px;color:#6b7280">404 leads (mai) · 488 leads (jun) · CPL mais baixo do histórico</div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#10b981;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Maio/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 50 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Unknown keywords (SSL)</span><span style="font-weight:700">17</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>pesquisa-institucional</span><span style="font-weight:700">15</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Horizzont pesquisa</span><span style="font-weight:700">11</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>paga + soluções</span><span>7</span></div>
         </div>
-        <div style="background:#ede9fe;border-radius:8px;padding:10px 14px">
-          <div style="font-size:10px;font-weight:600;color:#5b21b6;text-transform:uppercase;letter-spacing:.05em">Jul/26 (parcial)</div>
-          <div style="font-size:13px;font-weight:700;color:#111;margin-top:3px">horizzont — formulários v3</div>
-          <div style="font-size:11px;color:#6b7280">162 leads em 14 dias · mantém liderança</div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#10b981;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Abril/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 18 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Unknown keywords (SSL)</span><span style="font-weight:700">9</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Horizzont pesquisa</span><span style="font-weight:700">8</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>autoconf retargeting</span><span>1</span></div>
         </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#10b981;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Março/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 18 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Unknown keywords (SSL)</span><span style="font-weight:700">8</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>autoconf retargeting</span><span style="font-weight:700">8</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>Campanha genérica</span><span>2</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#10b981;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Fevereiro/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 20 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Unknown keywords (SSL)</span><span style="font-weight:700">17</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>autoconf retargeting</span><span style="font-weight:700">3</span></div>
+        </div>
+
       </div>
     </div>
+
+    <!-- ORGÂNICO -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🌱 Orgânico — páginas</span>
+        <span class="card-tag">por mês</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 31 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Google (Unknown Keyword)</span><span style="font-weight:700">18</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>/nossos-planos</span><span style="font-weight:700">6</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Home (autoconf.com.br)</span><span style="font-weight:700">5</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>crm-e-conversas + Bing</span><span>2</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 73 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Google (Unknown Keyword)</span><span style="font-weight:700">33</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Home (autoconf.com.br)</span><span style="font-weight:700">13</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>/nossos-planos</span><span style="font-weight:700">9</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Bing (Unknown Keyword)</span><span style="font-weight:700">7</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>negociações + blog + outros</span><span>11</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Maio/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 42 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Google (Unknown Keyword)</span><span style="font-weight:700">17</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Home (autoconf.com.br)</span><span style="font-weight:700">10</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>blog/financeiras</span><span style="font-weight:700">5</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>/nossos-planos</span><span style="font-weight:700">4</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>contact + outros blogs</span><span>6</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Abril/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 52 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Google (Unknown Keyword)</span><span style="font-weight:700">36</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Home (autoconf.com.br)</span><span style="font-weight:700">7</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>agente-ia + nossos-planos + outros</span><span>9</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Março/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 48 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Google (Unknown Keyword)</span><span style="font-weight:700">24</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Home (autoconf.com.br)</span><span style="font-weight:700">7</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>/nossos-planos</span><span style="font-weight:700">7</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>blog + tráfego direto + outros</span><span>10</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Fevereiro/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 62 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Google (Unknown Keyword)</span><span style="font-weight:700">33</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Home (autoconf.com.br)</span><span style="font-weight:700">12</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Tráfego direto</span><span style="font-weight:700">5</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>blog + nossos-planos + outros</span><span>12</span></div>
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
-  <!-- GOOGLE ADS - Campanhas -->
-  <div class="chart-row-2" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">Google Ads — campanhas por mês</span>
-        <span class="card-tag">Fev–Jul 2026</span>
-      </div>
-      <div style="position:relative;width:100%;height:240px">
-        <canvas id="cGoogleCamp"></canvas>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">Google Ads — análise de campanhas</span>
-        <span class="card-tag">Detalhamento</span>
-      </div>
-      <div class="criativo-list">
-        <div class="criativo-row">
-          <span class="criativo-dot" style="width:10px;height:10px;border-radius:2px;background:#facc15;flex-shrink:0"></span>
-          <span class="criativo-name"><strong>Unknown keywords (SSL)</strong> — pesquisa sem palavra-chave identificada</span>
-          <span class="criativo-count">52</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-dot" style="width:10px;height:10px;border-radius:2px;background:#10b981;flex-shrink:0"></span>
-          <span class="criativo-name"><strong>pesquisa-institucional</strong> — keywords sobre a marca/solução</span>
-          <span class="criativo-count">68</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-dot" style="width:10px;height:10px;border-radius:2px;background:#3b82f6;flex-shrink:0"></span>
-          <span class="criativo-name"><strong>Whats</strong> — campanha de WhatsApp (só julho)</span>
-          <span class="criativo-count">50</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-dot" style="width:10px;height:10px;border-radius:2px;background:#8b5cf6;flex-shrink:0"></span>
-          <span class="criativo-name"><strong>horizzont institucional</strong> — abr/mai</span>
-          <span class="criativo-count">19</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-dot" style="width:10px;height:10px;border-radius:2px;background:#9ca3af;flex-shrink:0"></span>
-          <span class="criativo-name"><strong>autoconf (retargeting)</strong> — fev/mar</span>
-          <span class="criativo-count">12</span>
-        </div>
-      </div>
-      <div style="margin-top:12px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:10px 12px;font-size:11px;color:#166534">
-        🎉 <strong>Julho: CPL Google caiu 91%</strong> (R$ 153 → R$ 13,32). A campanha "Whats" com 50 leads e a pesquisa-institucional com 25 leads — com só R$ 999 de investimento — foi o melhor mês do Google em custo-benefício.
-      </div>
-    </div>
-  </div>
+  <!-- LINHA 2: Social, Referência, Webinar -->
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px">
 
-  <!-- ORGÂNICO - Páginas -->
-  <div class="chart-row-2" style="margin-bottom:16px">
+    <!-- SOCIAL -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Orgânico — leads por página / origem</span>
-        <span class="card-tag">Fev–Jul 2026</span>
+        <span class="card-title">📱 Social — por rede</span>
+        <span class="card-tag">por mês</span>
       </div>
-      <div style="position:relative;width:100%;height:240px">
-        <canvas id="cOrgPaginas"></canvas>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">Top páginas orgânicas (acumulado)</span>
-        <span class="card-tag">Fev–Jul · 308 leads</span>
-      </div>
-      <div class="criativo-list">
-        <div class="criativo-row">
-          <span class="criativo-rank">1</span>
-          <span class="criativo-name">Google (Unknown Keyword)</span>
-          <div class="criativo-bar-bg"><div class="criativo-bar-fill" style="width:100%;background:#4285f4"></div></div>
-          <span class="criativo-count">161</span>
-          <span class="criativo-cpl" style="color:#6b7280">52%</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-rank">2</span>
-          <span class="criativo-name">autoconf.com.br (home)</span>
-          <div class="criativo-bar-bg"><div class="criativo-bar-fill" style="width:34%;background:#6366f1"></div></div>
-          <span class="criativo-count">54</span>
-          <span class="criativo-cpl" style="color:#6b7280">18%</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-rank">3</span>
-          <span class="criativo-name">/nossos-planos</span>
-          <div class="criativo-bar-bg"><div class="criativo-bar-fill" style="width:19%;background:#10b981"></div></div>
-          <span class="criativo-count">31</span>
-          <span class="criativo-cpl" style="color:#6b7280">10%</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-rank">4</span>
-          <span class="criativo-name">blog/financeiras-para-lojas</span>
-          <div class="criativo-bar-bg"><div class="criativo-bar-fill" style="width:10%;background:#f59e0b"></div></div>
-          <span class="criativo-count">16</span>
-          <span class="criativo-cpl" style="color:#6b7280">5%</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-rank">5</span>
-          <span class="criativo-name">/negociacoes-contratos</span>
-          <div class="criativo-bar-bg"><div class="criativo-bar-fill" style="width:3%;background:#8b5cf6"></div></div>
-          <span class="criativo-count">4</span>
-          <span class="criativo-cpl" style="color:#6b7280">1%</span>
-        </div>
-        <div class="criativo-row">
-          <span class="criativo-rank">6</span>
-          <span class="criativo-name">Bing + Yahoo + Outros</span>
-          <div class="criativo-bar-bg"><div class="criativo-bar-fill" style="width:4%;background:#9ca3af"></div></div>
-          <span class="criativo-count">14</span>
-          <span class="criativo-cpl" style="color:#6b7280">5%</span>
-        </div>
-      </div>
-    </div>
-  </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
 
-  <!-- WEBINAR + INDICAÇÃO + WHATSAPP + INSTA RODRIGO -->
-  <div class="chart-row-3" style="margin-bottom:16px">
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 11 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Instagram</span><span style="font-weight:700">7</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Linktree</span><span style="font-weight:700">2</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>WhatsApp + YouTube</span><span>2</span></div>
+        </div>
 
-    <div class="card">
-      <div class="card-header">
-        <span class="card-title">Webinar</span>
-        <span class="card-tag">1 evento em jul/26</span>
-      </div>
-      <div style="text-align:center;padding:20px 0">
-        <div style="font-size:48px;font-weight:800;color:#6366f1;letter-spacing:-2px">92</div>
-        <div style="font-size:12px;color:#6b7280;margin-top:4px">leads · WEBINAR RENAVE</div>
-        <div style="font-size:11px;color:#9ca3af;margin-top:2px">01–14 de julho de 2026</div>
-      </div>
-      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 12px;font-size:11px;color:#1e40af">
-        🎯 O Webinar RENAVE gerou <strong>92 leads</strong> e respondeu por <strong>16% do total de julho</strong>. Único evento ativo no período analisado.
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 38 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Instagram</span><span style="font-weight:700">31</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Linktree</span><span style="font-weight:700">5</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Facebook</span><span style="font-weight:700">2</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Maio/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 27 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Instagram</span><span style="font-weight:700">24</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>Facebook + Linktree + Whats</span><span>3</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Abril/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 8 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Instagram</span><span style="font-weight:700">5</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>WhatsApp</span><span style="font-weight:700">2</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Facebook</span><span style="font-weight:700">1</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Março/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 8 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Instagram</span><span style="font-weight:700">6</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Facebook</span><span style="font-weight:700">2</span></div>
+        </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Fevereiro/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 13 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Instagram</span><span style="font-weight:700">10</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Facebook</span><span style="font-weight:700">3</span></div>
+        </div>
+
       </div>
     </div>
 
+    <!-- REFERÊNCIA -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Indicação — Cadastro</span>
-        <span class="card-tag">por indicador</span>
+        <span class="card-title">🔗 Referência — site de origem</span>
+        <span class="card-tag">por mês</span>
       </div>
-      <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f8fafc;border-radius:6px">
-          <span style="font-size:12px;font-weight:600">RACHELLE</span>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="height:6px;width:60px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:100%;height:100%;background:#10b981;border-radius:3px"></div></div>
-            <span style="font-size:12px;font-weight:700">5</span>
-          </div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8b5cf6;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 2 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>megaveiculosonline.com.br</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>notebooklm.google.com 🤖</span><span style="font-weight:700">1</span></div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f8fafc;border-radius:6px">
-          <span style="font-size:12px;font-weight:600">OTÁVIO</span>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="height:6px;width:60px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:80%;height:100%;background:#6366f1;border-radius:3px"></div></div>
-            <span style="font-size:12px;font-weight:700">4</span>
-          </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8b5cf6;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 8 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>chatgpt.com 🤖</span><span style="font-weight:700">5</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>belloscar.com.br</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>flavioautomoveis.com</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>interlagosveiculosumu.com.br</span><span style="font-weight:700">1</span></div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f8fafc;border-radius:6px">
-          <span style="font-size:12px;font-weight:600">JOÃO GONÇALVES</span>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="height:6px;width:60px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:80%;height:100%;background:#f59e0b;border-radius:3px"></div></div>
-            <span style="font-size:12px;font-weight:700">6</span>
-          </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8b5cf6;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Maio/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 8 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>chatgpt.com 🤖</span><span style="font-weight:700">3</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>claude.ai 🤖</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>gemini.google.com 🤖</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>premiummultimarcas + automix + bendito</span><span>3</span></div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f8fafc;border-radius:6px">
-          <span style="font-size:12px;font-weight:600">JOÃO MATOS</span>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="height:6px;width:60px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:60%;height:100%;background:#8b5cf6;border-radius:3px"></div></div>
-            <span style="font-size:12px;font-weight:700">4</span>
-          </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8b5cf6;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Abril/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 4 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>gemini.google.com 🤖</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>belloscar + garra + belacara</span><span>3</span></div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f8fafc;border-radius:6px">
-          <span style="font-size:12px;font-weight:600">BRUNO</span>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="height:6px;width:60px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:60%;height:100%;background:#ef4444;border-radius:3px"></div></div>
-            <span style="font-size:12px;font-weight:700">6</span>
-          </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8b5cf6;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Março/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 6 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>uaiveiculos.com</span><span style="font-weight:700">2</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>toller + qimotors + l.wl.co + automix</span><span>4</span></div>
         </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#f8fafc;border-radius:6px">
-          <span style="font-size:12px;font-weight:600">PETERSON</span>
-          <div style="display:flex;align-items:center;gap:8px">
-            <div style="height:6px;width:60px;background:#f3f4f6;border-radius:3px;overflow:hidden"><div style="width:30%;height:100%;background:#9ca3af;border-radius:3px"></div></div>
-            <span style="font-size:12px;font-weight:700">2</span>
-          </div>
+
+        <div>
+          <div style="font-size:12px;font-weight:700;color:#8b5cf6;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Fevereiro/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 5 leads</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>gsamultimarcas.com.br</span><span style="font-weight:700">2</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>chatgpt.com 🤖</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>perplexity.ai 🤖</span><span style="font-weight:700">1</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>uaiveiculos.com</span><span style="font-weight:700">1</span></div>
         </div>
-      </div>
-      <div style="margin-top:10px;text-align:center;font-size:11px;color:#6b7280;border-top:1px solid #f3f4f6;padding-top:8px">
-        Total acumulado: <strong>27 leads</strong> · Abr–Jul 2026
+
       </div>
     </div>
 
+    <!-- OUTROS CANAIS -->
     <div class="card">
       <div class="card-header">
-        <span class="card-title">WhatsApp + Insta Rodrigo</span>
-        <span class="card-tag">Canais parceiros</span>
+        <span class="card-title">🎯 Outros canais</span>
+        <span class="card-tag">Webinar · WhatsApp · Indicação · Insta</span>
       </div>
-      <div style="margin-bottom:14px">
-        <div style="font-size:11px;font-weight:600;color:#374151;margin-bottom:8px">📱 WhatsApp</div>
-        <div style="display:flex;gap:8px">
-          <div style="flex:1;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px;text-align:center">
-            <div style="font-size:22px;font-weight:800;color:#166534">46</div>
-            <div style="font-size:10px;color:#6b7280">Mai/26</div>
+
+      <div style="display:flex;flex-direction:column;gap:16px">
+
+        <!-- Webinar -->
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">🎙️ Webinar</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#6366f1;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 92 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>WEBINAR RENAVE</span><span style="font-weight:700">92</span></div>
           </div>
-          <div style="flex:1;background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px;text-align:center">
-            <div style="font-size:22px;font-weight:800;color:#1e40af">112</div>
-            <div style="font-size:10px;color:#6b7280">Jun/26</div>
+          <div style="color:#9ca3af;font-size:11px;padding:6px 0">Fev–Jun/26: sem eventos registrados</div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">💬 WhatsApp</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#25d366;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 112 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Integración de WhatsApp</span><span style="font-weight:700">112</span></div>
           </div>
-          <div style="flex:1;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;padding:10px;text-align:center">
-            <div style="font-size:22px;font-weight:800;color:#9ca3af">0</div>
-            <div style="font-size:10px;color:#6b7280">Jul/26</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#25d366;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px;margin-top:8px">Maio/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 46 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>Integración de WhatsApp</span><span style="font-weight:700">46</span></div>
+          </div>
+          <div style="color:#ef4444;font-size:11px;padding:6px 0">⚠️ Julho/26: zerou — verificar ManyChat</div>
+        </div>
+
+        <!-- Indicação Cadastro -->
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">🤝 Indicação Cadastro</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 3 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>OTÁVIO · BRUNO · JOÃO G.</span><span style="font-weight:700">1 cada</span></div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px;margin-top:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 5 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>BRUNO</span><span style="font-weight:700">3</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>JOÃO MATOS + JOÃO G.</span><span>2</span></div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px;margin-top:8px">Maio/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 15 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>RACHELLE</span><span style="font-weight:700">5</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>OTÁVIO</span><span style="font-weight:700">3</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>João G. + João M. + Bruno + Peterson</span><span>7</span></div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#f59e0b;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px;margin-top:8px">Abril/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 5 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0;color:#9ca3af"><span>João G.(2) + João M.(2) + Peterson(1)</span><span>5</span></div>
           </div>
         </div>
-        <div style="margin-top:8px;font-size:11px;color:#ef4444">⚠️ Canal zerou em julho — verificar integração ManyChat.</div>
-      </div>
-      <div style="border-top:1px solid #f3f4f6;padding-top:14px">
-        <div style="font-size:11px;font-weight:600;color:#374151;margin-bottom:8px">📸 Insta Rodrigo</div>
-        <div style="display:flex;gap:8px">
-          <div style="flex:1;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;padding:10px;text-align:center">
-            <div style="font-size:22px;font-weight:800;color:#9a3412">33</div>
-            <div style="font-size:10px;color:#6b7280">Jun/26</div>
-            <div style="font-size:9px;color:#9ca3af">Falabello (28) + Bello (5)</div>
+
+        <!-- Insta Rodrigo -->
+        <div>
+          <div style="font-size:11px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px">📸 Insta Rodrigo</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px">Junho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 33 leads</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>FALABELLO FIPE</span><span style="font-weight:700">28</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>LEAD INSTAGRAM BELLO</span><span style="font-weight:700">5</span></div>
           </div>
-          <div style="flex:1;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;padding:10px;text-align:center">
-            <div style="font-size:22px;font-weight:800;color:#9ca3af">1</div>
-            <div style="font-size:10px;color:#6b7280">Jul/26</div>
-            <div style="font-size:9px;color:#9ca3af">Falabello (1)</div>
+          <div>
+            <div style="font-size:12px;font-weight:700;color:#e1306c;border-bottom:2px solid #e5e7eb;padding-bottom:4px;margin-bottom:8px;margin-top:8px">Julho/26 <span style="font-weight:400;color:#9ca3af;font-size:11px">· 1 lead</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;padding:3px 0"><span>FALABELLO FIPE</span><span style="font-weight:700">1</span></div>
           </div>
         </div>
+
       </div>
     </div>
+
   </div>
 
 
