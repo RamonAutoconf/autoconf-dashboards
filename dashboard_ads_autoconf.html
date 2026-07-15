@@ -1309,27 +1309,8 @@ new Chart(document.getElementById('cROAS'), {
 });
 
 
-// Leads por dia junho
-const diasJun = Array.from({length: 28}, (_,i) => String(i+1));
-const leadsJun = [34,40,34,44,33,18,51,85,75,53,60,40,30,56,30,51,48,60,34,29,51,35,44,45,35,29,30,50];
-new Chart(document.getElementById('cLeadsDia'), {
-  type: 'bar',
-  data: {
-    labels: diasJun,
-    datasets: [{ label: 'Leads', data: leadsJun, backgroundColor: leadsJun.map(v => v >= 60 ? '#2563eb' : v >= 40 ? '#3b82f6' : '#93c5fd'), borderRadius: 2, borderSkipped: false }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111', titleColor: '#fff', bodyColor: '#d1d5db', padding: 10 } },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: lc, font: { size: 10 }, maxRotation: 0 } },
-      y: { grid: { color: gc }, ticks: { color: lc, font: { size: 11 } }, beginAtZero: true }
-    }
-  }
-});
 
-// CPL por dia junho
-const cplJun = [23.10,19.24,26.46,19.44,26.10,36.14,19.69,14.21,12.82,15.40,13.84,18.72,20.05,16.98,27.86,16.38,18.44,13.87,24.91,26.99,16.78,25.28,17.52,23.56,26.04,25.24,25.04,18.00];
+
 
 // Referência mensal — IAs vs Concessionárias
 new Chart(document.getElementById('cRefMensal'), {
