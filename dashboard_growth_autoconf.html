@@ -842,6 +842,82 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
 
 </div>
 
+
+  <!-- Leads por etapa — risco de esfriamento -->
+  <div class="section-label">Leads de julho por etapa — risco de esfriamento</div>
+  <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:24px">
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Onde estão os leads de julho agora</span>
+        <span class="card-tag">703 leads · dia 16</span>
+      </div>
+      <div style="position:relative;height:260px">
+        <canvas id="cEtapas"></canvas>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;font-size:11px">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#ef4444;border-radius:2px;display:inline-block"></span>Risco alto — 5º Dia / Reagend.</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#f59e0b;border-radius:2px;display:inline-block"></span>Atenção — 2º ao 4º Dia</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#6366f1;border-radius:2px;display:inline-block"></span>Recentes — 1º Dia</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;background:#10b981;border-radius:2px;display:inline-block"></span>Avançados</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Resumo de risco</span>
+        <span class="card-tag">Cadência ativa</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:8px">
+
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:6px;padding:10px 14px">
+          <div style="font-size:10px;font-weight:700;color:#991b1b;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">🔴 Risco alto — próximos do limite</div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>5º DIA</span><span style="color:#991b1b">20 leads</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>Reagendamento</span><span style="color:#991b1b">6 leads</span>
+          </div>
+          <div style="font-size:11px;color:#7f1d1d;margin-top:4px">Sem contato → vão para Perdido</div>
+        </div>
+
+        <div style="background:#fffbeb;border:1px solid #fde68a;border-left:4px solid #f59e0b;border-radius:6px;padding:10px 14px">
+          <div style="font-size:10px;font-weight:700;color:#92400e;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">🟡 Atenção — em cadência</div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>3º DIA</span><span style="color:#92400e">64 leads</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>2º DIA</span><span style="color:#92400e">45 leads</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>4º DIA</span><span style="color:#92400e">8 leads</span>
+          </div>
+          <div style="font-size:11px;color:#78350f;margin-top:4px">117 leads precisam de follow-up ativo</div>
+        </div>
+
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-left:4px solid #6366f1;border-radius:6px;padding:10px 14px">
+          <div style="font-size:10px;font-weight:700;color:#1e40af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">🔵 Recentes — 1º Dia</div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>1º DIA</span><span style="color:#1e40af">26 leads</span>
+          </div>
+          <div style="font-size:11px;color:#1e40af;margin-top:4px">Acabaram de entrar — prioridade de 1° contato</div>
+        </div>
+
+        <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-left:4px solid #10b981;border-radius:6px;padding:10px 14px">
+          <div style="font-size:10px;font-weight:700;color:#166534;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">✅ Avançados</div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>Agendado</span><span style="color:#166534">18</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:700;color:#111">
+            <span>Reunião Realizada</span><span style="color:#166534">125</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 <div class="footer">
   Autoconf · Growth Dashboard · Pipeline ATF INBOUND · Jan 2025 – Jun 2026 · Comparativos vs mês anterior baseados no mesmo dia (fechado · 30 dias) · Dados extraídos do HubSpot
 </div>
@@ -1147,6 +1223,47 @@ new Chart(document.getElementById('cSafraStatus'), {
     scales: {
       x: { stacked: true, grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 11 } } },
       y: { stacked: true, max: 100, grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#9ca3af', font: { size: 11 }, callback: v => v + '%' }, beginAtZero: true }
+    }
+  }
+});
+
+
+// Leads por etapa — esfriamento
+new Chart(document.getElementById('cEtapas'), {
+  type: 'bar',
+  data: {
+    labels: ['1º DIA', '2º DIA', '3º DIA', '4º DIA', '5º DIA', 'Reagend.', 'Agendado', 'Reunião Real.', 'Perdido'],
+    datasets: [{
+      data: [26, 45, 64, 8, 20, 6, 18, 125, 391],
+      backgroundColor: [
+        '#6366f1',
+        '#f59e0b', '#f59e0b', '#f59e0b',
+        '#ef4444', '#ef4444',
+        '#10b981', '#10b981',
+        '#9ca3af'
+      ],
+      borderRadius: 4,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#111', titleColor: '#fff', bodyColor: '#d1d5db', padding: 10,
+        callbacks: {
+          label: function(c) {
+            const pct = Math.round(c.parsed.y / 703 * 100);
+            return ` ${c.parsed.y} leads (${pct}%)`;
+          }
+        }
+      }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 11 } } },
+      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#9ca3af', font: { size: 11 } }, beginAtZero: true }
     }
   }
 });
