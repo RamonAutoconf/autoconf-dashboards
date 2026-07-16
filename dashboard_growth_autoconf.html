@@ -852,7 +852,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; b
         <span class="card-title">Onde estão os leads de julho agora</span>
         <span class="card-tag">703 leads · dia 16</span>
       </div>
-      <div style="position:relative;height:260px">
+      <div style="position:relative;height:280px">
         <canvas id="cEtapas"></canvas>
       </div>
       <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;font-size:11px">
@@ -1232,16 +1232,10 @@ new Chart(document.getElementById('cSafraStatus'), {
 new Chart(document.getElementById('cEtapas'), {
   type: 'bar',
   data: {
-    labels: ['1º DIA', '2º DIA', '3º DIA', '4º DIA', '5º DIA', 'Reagend.', 'Agendado', 'Reunião Real.', 'Perdido'],
+    labels: ['1º DIA', '2º DIA', '3º DIA', '4º DIA', '5º DIA', 'Reagend.', 'Agendado', 'Reunião Real.'],
     datasets: [{
-      data: [26, 45, 64, 8, 20, 6, 18, 125, 391],
-      backgroundColor: [
-        '#6366f1',
-        '#f59e0b', '#f59e0b', '#f59e0b',
-        '#ef4444', '#ef4444',
-        '#10b981', '#10b981',
-        '#9ca3af'
-      ],
+      data: [26, 45, 64, 8, 20, 6, 18, 125],
+      backgroundColor: ['#6366f1','#f59e0b','#f59e0b','#f59e0b','#ef4444','#ef4444','#10b981','#10b981'],
       borderRadius: 4,
       borderSkipped: false,
     }]
@@ -1249,21 +1243,22 @@ new Chart(document.getElementById('cEtapas'), {
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    indexAxis: 'y',
     plugins: {
       legend: { display: false },
       tooltip: {
         backgroundColor: '#111', titleColor: '#fff', bodyColor: '#d1d5db', padding: 10,
         callbacks: {
           label: function(c) {
-            const pct = Math.round(c.parsed.y / 703 * 100);
-            return ` ${c.parsed.y} leads (${pct}%)`;
+            const pct = Math.round(c.parsed.x / 703 * 100);
+            return ` ${c.parsed.x} leads (${pct}%)`;
           }
         }
       }
     },
     scales: {
-      x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 11 } } },
-      y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#9ca3af', font: { size: 11 } }, beginAtZero: true }
+      x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#9ca3af', font: { size: 11 } }, beginAtZero: true },
+      y: { grid: { display: false }, ticks: { color: '#374151', font: { size: 11, weight: '600' } } }
     }
   }
 });
