@@ -711,31 +711,43 @@ const fOpts = (title) => ({
 });
 
 new Chart(document.getElementById('cForecastReun'),{
-  type:'line',
+  type:'bar',
   data:{
-    labels:dias31,
+    labels:['Real\nDia 20','Pessimista\nFim Jul','Realista\nFim Jul','Otimista\nFim Jul','Meta'],
     datasets:[
-      {label:'Real',data:reun_real_acum,borderColor:'#374151',backgroundColor:'rgba(55,65,81,0.08)',fill:true,tension:0.3,pointRadius:3,pointHoverRadius:6,borderWidth:3,spanGaps:false},
-      {label:'Pessimista',data:reun_pess,borderColor:'#9ca3af',borderDash:[6,3],pointRadius:0,pointHoverRadius:5,borderWidth:2.5,spanGaps:false},
-      {label:'Realista',data:reun_real_proj,borderColor:'#f59e0b',borderDash:[6,3],pointRadius:0,pointHoverRadius:5,borderWidth:3,spanGaps:false},
-      {label:'Otimista',data:reun_otim,borderColor:'#10b981',borderDash:[6,3],pointRadius:0,pointHoverRadius:5,borderWidth:3,spanGaps:false},
-      {label:'Meta 300',data:reun_meta,borderColor:'rgba(239,68,68,0.5)',borderDash:[2,2],pointRadius:0,pointHoverRadius:0,borderWidth:2},
+      {
+        label:'Reuniões',
+        data:[161, 258, 250, 306, 300],
+        backgroundColor:['#374151','#9ca3af','#f59e0b','#10b981','rgba(239,68,68,0.3)'],
+        borderColor:['#374151','#9ca3af','#f59e0b','#10b981','#ef4444'],
+        borderWidth:2,
+        borderRadius:6,
+        borderSkipped:false,
+      }
     ]
   },
   options:{
     responsive:true, maintainAspectRatio:false,
-    interaction:{mode:'index',intersect:false},
     plugins:{
-      legend:{position:'bottom',labels:{font:{size:10},color:'#9ca3af',boxWidth:9}},
+      legend:{display:false},
       tooltip:{
         backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:12,
-        mode:'index',intersect:false,
-        callbacks:{title:c=>`Dia ${c[0].label} de julho`}
+        callbacks:{
+          label: function(c) {
+            const pct = Math.round(c.parsed.y / 300 * 100);
+            return ` ${c.parsed.y} reuniões (${pct}% da meta)`;
+          }
+        }
       }
     },
     scales:{
-      x:{grid:{display:false},ticks:{color:'#9ca3af',font:{size:9},maxTicksLimit:10}},
-      y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9ca3af',font:{size:10}},beginAtZero:false}
+      x:{grid:{display:false},ticks:{color:'#374151',font:{size:11,weight:'600'}}},
+      y:{
+        grid:{color:'rgba(0,0,0,0.04)'},
+        ticks:{color:'#9ca3af',font:{size:10}},
+        beginAtZero:false, min:140,
+        title:{display:true,text:'Reuniões acumuladas',color:'#9ca3af',font:{size:10}}
+      }
     }
   }
 });
