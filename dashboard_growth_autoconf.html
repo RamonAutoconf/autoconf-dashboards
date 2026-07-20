@@ -715,14 +715,29 @@ new Chart(document.getElementById('cForecastReun'),{
   data:{
     labels:dias31,
     datasets:[
-      {label:'Real',data:reun_real_acum,borderColor:'#374151',backgroundColor:'rgba(55,65,81,0.08)',fill:true,tension:0.3,pointRadius:1.5,borderWidth:2.5,spanGaps:false},
-      {label:'Pessimista',data:reun_pess,borderColor:'#9ca3af',borderDash:[4,3],pointRadius:0,borderWidth:1.5,spanGaps:false},
-      {label:'Realista',data:reun_real_proj,borderColor:'#f59e0b',borderDash:[4,3],pointRadius:0,borderWidth:2,spanGaps:false},
-      {label:'Otimista',data:reun_otim,borderColor:'#10b981',borderDash:[4,3],pointRadius:0,borderWidth:2,spanGaps:false},
-      {label:'Meta 300',data:reun_meta,borderColor:'rgba(239,68,68,0.4)',borderDash:[2,2],pointRadius:0,borderWidth:1.5},
+      {label:'Real',data:reun_real_acum,borderColor:'#374151',backgroundColor:'rgba(55,65,81,0.08)',fill:true,tension:0.3,pointRadius:3,pointHoverRadius:6,borderWidth:3,spanGaps:false},
+      {label:'Pessimista',data:reun_pess,borderColor:'#9ca3af',borderDash:[6,3],pointRadius:0,pointHoverRadius:5,borderWidth:2.5,spanGaps:false},
+      {label:'Realista',data:reun_real_proj,borderColor:'#f59e0b',borderDash:[6,3],pointRadius:0,pointHoverRadius:5,borderWidth:3,spanGaps:false},
+      {label:'Otimista',data:reun_otim,borderColor:'#10b981',borderDash:[6,3],pointRadius:0,pointHoverRadius:5,borderWidth:3,spanGaps:false},
+      {label:'Meta 300',data:reun_meta,borderColor:'rgba(239,68,68,0.5)',borderDash:[2,2],pointRadius:0,pointHoverRadius:0,borderWidth:2},
     ]
   },
-  options:fOpts('Reuniões')
+  options:{
+    responsive:true, maintainAspectRatio:false,
+    interaction:{mode:'index',intersect:false},
+    plugins:{
+      legend:{position:'bottom',labels:{font:{size:10},color:'#9ca3af',boxWidth:9}},
+      tooltip:{
+        backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:12,
+        mode:'index',intersect:false,
+        callbacks:{title:c=>`Dia ${c[0].label} de julho`}
+      }
+    },
+    scales:{
+      x:{grid:{display:false},ticks:{color:'#9ca3af',font:{size:9},maxTicksLimit:10}},
+      y:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9ca3af',font:{size:10}},beginAtZero:false}
+    }
+  }
 });
 
 new Chart(document.getElementById('cForecastVend'),{
