@@ -208,66 +208,72 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="card">
       <div class="card-header">
         <span class="card-title">Reuniões e conversão por SDR</span>
-        <span class="card-tag">133 reuniões atribuídas</span>
+        <span class="card-tag">152 reuniões atribuídas</span>
       </div>
       <table class="sdr-table">
         <thead>
           <tr>
             <th>SDR</th>
-            <th class="right">1º Dia</th>
-            <th class="right">Agendado</th>
+            <th class="right">Ativos</th>
             <th class="right">Reunião</th>
+            <th class="right">Total</th>
             <th class="right">Conv.</th>
             <th class="right">Status</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>João Gonçalves</strong></td>
-            <td class="right">19</td><td class="right">9</td>
-            <td class="right"><span class="pill pill-green">37</span></td>
-            <td class="right">57%</td>
-            <td class="right"><span class="pill pill-green">🏆 Top</span></td>
-          </tr>
-          <tr>
             <td><strong>Otavio Amaral</strong></td>
-            <td class="right">11</td><td class="right">—</td>
-            <td class="right"><span class="pill pill-green">28</span></td>
-            <td class="right">72%</td>
+            <td class="right">19</td>
+            <td class="right"><span class="pill pill-green">31</span></td>
+            <td class="right">50</td>
+            <td class="right">62%</td>
             <td class="right"><span class="pill pill-green">🏆 Top</span></td>
           </tr>
           <tr>
-            <td><strong>João Mattos</strong></td>
-            <td class="right">11</td><td class="right">3</td>
-            <td class="right"><span class="pill pill-blue">25</span></td>
-            <td class="right">64%</td>
+            <td><strong>João Gonçalves</strong></td>
+            <td class="right">70</td>
+            <td class="right"><span class="pill pill-blue">43</span></td>
+            <td class="right">113</td>
+            <td class="right">38,1%</td>
             <td class="right"><span class="pill pill-blue">✓ Bom</span></td>
           </tr>
           <tr>
             <td><strong>Bruno Ianai</strong></td>
-            <td class="right">24</td><td class="right">4</td>
-            <td class="right"><span class="pill pill-blue">21</span></td>
-            <td class="right">43%</td>
+            <td class="right">48</td>
+            <td class="right"><span class="pill pill-blue">24</span></td>
+            <td class="right">72</td>
+            <td class="right">33,3%</td>
             <td class="right"><span class="pill pill-blue">✓ Bom</span></td>
           </tr>
           <tr>
             <td><strong>Leonardo Maldaner</strong></td>
-            <td class="right">15</td><td class="right">—</td>
-            <td class="right"><span class="pill pill-amber">19</span></td>
-            <td class="right">56%</td>
+            <td class="right">47</td>
+            <td class="right"><span class="pill pill-amber">23</span></td>
+            <td class="right">70</td>
+            <td class="right">32,9%</td>
+            <td class="right"><span class="pill pill-amber">↑ Crescendo</span></td>
+          </tr>
+          <tr>
+            <td><strong>João Mattos</strong></td>
+            <td class="right">79</td>
+            <td class="right"><span class="pill pill-amber">28</span></td>
+            <td class="right">107</td>
+            <td class="right">26,2%</td>
             <td class="right"><span class="pill pill-amber">↑ Crescendo</span></td>
           </tr>
           <tr>
             <td><strong>Victor Mazza</strong></td>
-            <td class="right">—</td><td class="right">1</td>
+            <td class="right">1</td>
             <td class="right">3</td>
+            <td class="right">4</td>
             <td class="right">75%</td>
             <td class="right"><span class="pill pill-amber">↑ Novo</span></td>
           </tr>
         </tbody>
       </table>
       <div class="alerta-green alerta" style="margin-top:12px">
-        ✅ Otavio tem 72% de conversão — maior do time. João Gonçalves lidera em volume (37 reuniões). Benchmark SaaS para SDR: 40–60% de connect-to-meeting.
+        ✅ Otavio tem 62% de conversão real — maior do time. João Mattos e João Gonçalves têm o maior volume de leads represados (79 e 70) sem virar reunião ainda. Benchmark SaaS para SDR: 40–60% de connect-to-meeting.
       </div>
     </div>
 
@@ -661,7 +667,7 @@ new Chart(document.getElementById('cSDR'),{
   type:'bar',
   data:{
     labels:['João G.','Otavio','João M.','Bruno','Leonardo','Victor'],
-    datasets:[{label:'Reuniões',data:[37,28,25,21,19,3],backgroundColor:['#10b981','#10b981','#3b82f6','#3b82f6','#f59e0b','#9ca3af'],borderRadius:4,borderSkipped:false}]
+    datasets:[{label:'Reuniões',data:[43,31,28,24,23,3],backgroundColor:['#3b82f6','#10b981','#f59e0b','#3b82f6','#f59e0b','#9ca3af'],borderRadius:4,borderSkipped:false}]
   },
   options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.parsed.x} reuniões`}}},scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},y:{grid:{display:false},ticks:{color:'#374151',font:{size:11,weight:'600'}}}}}
 });
