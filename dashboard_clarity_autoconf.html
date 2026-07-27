@@ -6,82 +6,55 @@
 <title>Clarity Dashboard — Autoconf</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh}
-
-  /* Topbar */
-  .topbar{background:#161b22;border-bottom:1px solid #30363d;height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-  .logo{font-size:15px;font-weight:700;color:#e6edf3}.logo span{color:#58a6ff}
-  .topbar-right{display:flex;align-items:center;gap:12px}
-  .badge-live{display:flex;align-items:center;gap:6px;background:#1f2937;border:1px solid #30363d;padding:4px 12px;border-radius:20px;font-size:12px;color:#8b949e}
-  .dot-live{width:7px;height:7px;border-radius:50%;background:#3fb950;animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .btn-refresh{background:#1f6feb;border:none;color:#fff;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:background .2s}
-  .btn-refresh:hover{background:#388bfd}
-  .btn-refresh:disabled{background:#21262d;color:#6e7681;cursor:not-allowed}
-
-  /* Layout */
-  .main{max-width:1400px;margin:0 auto;padding:24px 32px}
-  .section-label{font-size:11px;font-weight:600;color:#6e7681;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-  .section-label::after{content:'';flex:1;height:1px;background:#21262d}
-
-  /* Cards */
-  .card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:20px}
-  .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-  .card-title{font-size:13px;font-weight:600;color:#c9d1d9}
-  .card-tag{font-size:11px;color:#6e7681;background:#21262d;padding:2px 8px;border-radius:4px}
-
-  /* KPIs */
-  .grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
-  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
-  .kpi{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
-  .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
-  .kpi.blue::before{background:#58a6ff}
-  .kpi.green::before{background:#3fb950}
-  .kpi.amber::before{background:#d29922}
-  .kpi.red::before{background:#f85149}
-  .kpi.purple::before{background:#bc8cff}
-  .kpi-label{font-size:10px;font-weight:600;color:#6e7681;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-  .kpi-value{font-size:28px;font-weight:700;color:#e6edf3;letter-spacing:-0.5px;line-height:1}
-  .kpi-value.sm{font-size:20px}
-  .kpi-trend{font-size:11px;margin-top:5px;font-weight:600}
-  .kpi-trend.up{color:#3fb950}.kpi-trend.down{color:#f85149}.kpi-trend.neutral{color:#6e7681}
-  .kpi-sub{font-size:11px;color:#6e7681;margin-top:3px}
-
-  /* Score badges */
-  .score-good{color:#3fb950;font-weight:700}
-  .score-mid{color:#d29922;font-weight:700}
-  .score-bad{color:#f85149;font-weight:700}
-
-  /* Tabela páginas */
-  .page-table{width:100%;border-collapse:collapse;font-size:12px}
-  .page-table th{text-align:left;padding:8px 10px;color:#6e7681;font-size:11px;font-weight:600;text-transform:uppercase;border-bottom:1px solid #21262d}
-  .page-table th.right{text-align:right}
-  .page-table td{padding:8px 10px;border-bottom:1px solid #161b22;color:#c9d1d9}
-  .page-table td.right{text-align:right;font-variant-numeric:tabular-nums}
-  .page-table tr:hover td{background:#1c2128}
-  .url-cell{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#58a6ff;font-size:11px}
-
-  /* Barra de score */
-  .score-bar-bg{width:100%;height:4px;background:#21262d;border-radius:2px;margin-top:4px}
-  .score-bar-fill{height:100%;border-radius:2px;transition:width .5s}
-
-  /* Loading / Error */
-  .loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px;color:#6e7681}
-  .spinner{width:36px;height:36px;border:3px solid #21262d;border-top-color:#58a6ff;border-radius:50%;animation:spin 1s linear infinite}
-  @keyframes spin{to{transform:rotate(360deg)}}
-  .error-box{background:#1c1010;border:1px solid #f85149;border-radius:8px;padding:16px 20px;color:#f85149;font-size:13px;text-align:center;max-width:500px}
-
-  /* Alerta */
-  .alerta{border-left:3px solid;border-radius:0 6px 6px 0;padding:8px 12px;font-size:11px;line-height:1.6;margin-bottom:8px}
-  .alerta-red{background:#1c0a0a;border-color:#f85149;color:#ffa198}
-  .alerta-amber{background:#1c1500;border-color:#d29922;color:#e3b341}
-  .alerta-green{background:#0a1c0a;border-color:#3fb950;color:#56d364}
-  .alerta-blue{background:#0a1628;border-color:#58a6ff;color:#79c0ff}
-
-  .footer{text-align:center;padding:24px 0;font-size:11px;color:#484f58}
-  .last-updated{font-size:11px;color:#6e7681}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh}
+.topbar{background:#161b22;border-bottom:1px solid #30363d;height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-size:15px;font-weight:700;color:#e6edf3}.logo span{color:#58a6ff}
+.badge-live{display:flex;align-items:center;gap:6px;background:#1f2937;border:1px solid #30363d;padding:4px 12px;border-radius:20px;font-size:12px;color:#8b949e}
+.dot-live{width:7px;height:7px;border-radius:50%;background:#3fb950;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.btn{background:#1f6feb;border:none;color:#fff;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:background .2s}
+.btn:hover{background:#388bfd}.btn:disabled{background:#21262d;color:#6e7681;cursor:not-allowed}
+.main{max-width:1400px;margin:0 auto;padding:24px 32px}
+.section-label{font-size:11px;font-weight:600;color:#6e7681;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:#21262d}
+.card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:20px}
+.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.card-title{font-size:13px;font-weight:600;color:#c9d1d9}
+.card-tag{font-size:11px;color:#6e7681;background:#21262d;padding:2px 8px;border-radius:4px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.kpi{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.kpi.blue::before{background:#58a6ff}.kpi.green::before{background:#3fb950}
+.kpi.amber::before{background:#d29922}.kpi.red::before{background:#f85149}
+.kpi.purple::before{background:#bc8cff}
+.kpi-label{font-size:10px;font-weight:600;color:#6e7681;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.kpi-value{font-size:26px;font-weight:700;color:#e6edf3;line-height:1}
+.kpi-value.sm{font-size:20px}
+.kpi-sub{font-size:11px;color:#6e7681;margin-top:4px}
+.kpi-trend{font-size:11px;margin-top:5px;font-weight:600}
+.up{color:#3fb950}.down{color:#f85149}.neutral{color:#6e7681}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{text-align:left;padding:7px 10px;color:#6e7681;font-size:10px;font-weight:600;text-transform:uppercase;border-bottom:1px solid #21262d}
+.tbl th.r{text-align:right}
+.tbl td{padding:7px 10px;border-bottom:1px solid #1c2128;color:#c9d1d9}
+.tbl td.r{text-align:right;font-variant-numeric:tabular-nums}
+.tbl tr:hover td{background:#1c2128}
+.url-cell{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#58a6ff;font-size:11px}
+.alerta{border-left:3px solid;border-radius:0 6px 6px 0;padding:8px 12px;font-size:11px;line-height:1.6;margin-bottom:6px}
+.alerta-red{background:#1c0a0a;border-color:#f85149;color:#ffa198}
+.alerta-amber{background:#1c1500;border-color:#d29922;color:#e3b341}
+.alerta-green{background:#0a1c0a;border-color:#3fb950;color:#56d364}
+.bar-bg{width:100%;height:4px;background:#21262d;border-radius:2px;margin-top:5px}
+.bar-fill{height:100%;border-radius:2px;transition:width .6s}
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;height:55vh;gap:16px;color:#6e7681}
+.spinner{width:36px;height:36px;border:3px solid #21262d;border-top-color:#58a6ff;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err{background:#1c0a0a;border:1px solid #f85149;border-radius:8px;padding:16px 20px;color:#ffa198;font-size:13px;max-width:500px;text-align:center}
+.raw-box{background:#1c2128;border:1px solid #30363d;border-radius:6px;padding:12px;font-size:11px;color:#8b949e;overflow:auto;max-height:300px;white-space:pre-wrap;word-break:break-all;margin-top:12px}
+.footer{text-align:center;padding:24px 0;font-size:11px;color:#484f58}
 </style>
 </head>
 <body>
@@ -91,14 +64,14 @@
     <div class="logo">Auto<span>conf</span></div>
     <span style="color:#484f58;font-size:13px">Clarity Dashboard — Comportamento de Usuários</span>
   </div>
-  <div class="topbar-right">
+  <div style="display:flex;align-items:center;gap:10px">
     <div class="badge-live"><div class="dot-live"></div><span id="lastUpdated">Carregando...</span></div>
-    <button class="btn-refresh" id="btnRefresh" onclick="loadData()">↻ Atualizar</button>
+    <button class="btn" id="btnRefresh" onclick="loadData()">↻ Atualizar</button>
   </div>
 </div>
 
-<div class="main" id="mainContent">
-  <div class="loading-screen" id="loadingScreen">
+<div class="main" id="app">
+  <div class="loading" id="loadingScreen">
     <div class="spinner"></div>
     <div style="font-size:13px">Conectando ao Microsoft Clarity...</div>
   </div>
@@ -107,202 +80,256 @@
 <script>
 const TOKEN = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4M0FCMDhFNUYwRDMxNjdEOTRFMTQ3M0FEQTk2RTcyRDkwRUYwRkYiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI2OTBiODVmYS1mNjdjLTQ0NmYtYWUxNy0zNDg1YmU5YTE0MmEiLCJzdWIiOiIzMjAzMDkwMTExMDA4MjczIiwic2NvcGUiOiJEYXRhLkV4cG9ydCIsIm5iZiI6MTc4NTE3OTgxOSwiZXhwIjo0OTM4Nzc5ODE5LCJpYXQiOjE3ODUxNzk4MTksImlzcyI6ImNsYXJpdHkiLCJhdWQiOiJjbGFyaXR5LmRhdGEtZXhwb3J0ZXIifQ.ctqrshYKNyUovCHg-6i5iUWgjwij_vJmb5lPfNOOgBn18EOpGg1hGnr1W5AP142FPWZCWdCszInPk4xECnAREC5Tff-btHu-Hw-kxTxKy-GGgjdDpQCaZcOCyFuHKqJiBs-3RnfAh_6JF9ro66PNT4PkHaCn3PiK_tGjNEq0Eg0f75zxBO_-hv_Lx2_5qMPjHwr8P8wRa1Xm8V_Q4N5s6Cj2fSVsMs9Dy2TACWJukLRb23_VoqgZHjhdBwUT1rRjbypDGX8Z-Aw65UfjpblFW8uys69euY8H-SFsvXwwaDQrgGClVHgB02AJsEISc_iBzgIkfcb1btYnIcxyv7OQcw";
 const PROJECT_ID = "vjefa6raxd";
-const BASE_URL = "https://www.clarity.ms/export-data/api/v1/project-live-insights";
-
+const BASE = "https://www.clarity.ms/export-data/api/v1/project-live-insights";
 let charts = {};
 
-function destroyCharts() {
-  Object.values(charts).forEach(c => { try { c.destroy(); } catch(e){} });
-  charts = {};
-}
+function killCharts(){ Object.values(charts).forEach(c=>{try{c.destroy()}catch(e){}}); charts={}; }
 
-async function fetchClarity(dimension1, dimension2) {
-  const params = new URLSearchParams({ projectId: PROJECT_ID, numOfDays: 3 });
-  if (dimension1) params.append("dimension1", dimension1);
-  if (dimension2) params.append("dimension2", dimension2);
-  const res = await fetch(`${BASE_URL}?${params}`, {
-    headers: { "Authorization": `Bearer ${TOKEN}`, "Content-Type": "application/json" }
+async function api(dim1, dim2){
+  const p = new URLSearchParams({ projectId: PROJECT_ID, numOfDays: 3 });
+  if(dim1) p.append("dimension1", dim1);
+  if(dim2) p.append("dimension2", dim2);
+  const r = await fetch(`${BASE}?${p}`, {
+    headers:{ "Authorization":`Bearer ${TOKEN}`, "Content-Type":"application/json" }
   });
-  if (!res.ok) throw new Error(`Erro ${res.status}: ${await res.text()}`);
-  return res.json();
+  const text = await r.text();
+  if(!r.ok) throw new Error(`HTTP ${r.status}: ${text}`);
+  return JSON.parse(text);
 }
 
-function fmt(n) { return n?.toLocaleString('pt-BR') ?? '—'; }
-function pct(n) { return n != null ? (n * 100).toFixed(1) + '%' : '—'; }
-function secs(n) { if (!n) return '—'; const m = Math.floor(n/60); const s = Math.round(n%60); return m > 0 ? `${m}m ${s}s` : `${s}s`; }
-function scoreColor(v, good, bad) { if (v >= good) return '#3fb950'; if (v <= bad) return '#f85149'; return '#d29922'; }
-function scoreClass(v, good, bad) { if (v >= good) return 'score-good'; if (v <= bad) return 'score-bad'; return 'score-mid'; }
+function fmt(n){ return n!=null ? Number(n).toLocaleString('pt-BR') : '—'; }
+function pct(n){ return n!=null ? (Number(n)*100).toFixed(1)+'%' : '—'; }
+function secs(n){ if(!n) return '—'; const v=Number(n); const m=Math.floor(v/60); const s=Math.round(v%60); return m>0?`${m}m ${s}s`:`${s}s`; }
 
-async function loadData() {
+// Extrai o bloco de informação de um metricName específico
+function getMetric(data, name){
+  if(!Array.isArray(data)) return null;
+  const block = data.find(d => d.metricName && d.metricName.toLowerCase().includes(name.toLowerCase()));
+  return block ? block.information : null;
+}
+
+// Soma um campo numérico em todos os registros de um bloco
+function sumField(arr, field){
+  if(!arr) return 0;
+  return arr.reduce((a,r) => a + (Number(r[field])||0), 0);
+}
+
+// Pega o valor global (sem dimensão) — geralmente o primeiro registro ou registro com chave vazia
+function globalVal(arr, field){
+  if(!arr || arr.length===0) return null;
+  // Tenta pegar o total — some todos
+  return sumField(arr, field);
+}
+
+async function loadData(){
   const btn = document.getElementById('btnRefresh');
-  btn.disabled = true; btn.textContent = '↻ Carregando...';
+  btn.disabled=true; btn.textContent='↻ Carregando...';
+  killCharts();
+  document.getElementById('app').innerHTML = `<div class="loading"><div class="spinner"></div><div style="font-size:13px">Buscando dados...</div></div>`;
 
   try {
-    destroyCharts();
-    document.getElementById('loadingScreen')?.remove();
-
-    // Buscar dados em paralelo
-    const [general, byURL, byDevice, bySource] = await Promise.all([
-      fetchClarity(null, null),
-      fetchClarity("URL", null),
-      fetchClarity("Device", null),
-      fetchClarity("Channel", null)
+    // Busca sem dimensão = dados globais
+    const [raw, byDevice, byURL, byChannel] = await Promise.all([
+      api(null, null),
+      api("Device", null),
+      api("URL", null),
+      api("Channel", null)
     ]);
 
-    renderDashboard(general, byURL, byDevice, bySource);
+    render(raw, byDevice, byURL, byChannel);
     document.getElementById('lastUpdated').textContent = 'Atualizado ' + new Date().toLocaleTimeString('pt-BR');
   } catch(e) {
-    document.getElementById('mainContent').innerHTML = `
-      <div class="loading-screen">
-        <div class="error-box">
-          <strong>Erro ao conectar ao Clarity</strong><br>${e.message}<br><br>
-          <button class="btn-refresh" onclick="loadData()">Tentar novamente</button>
+    document.getElementById('app').innerHTML = `
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:55vh;gap:16px">
+        <div class="err">
+          <strong>Erro ao conectar ao Clarity</strong><br><br>${e.message}
         </div>
       </div>`;
   }
-  btn.disabled = false; btn.textContent = '↻ Atualizar';
+  btn.disabled=false; btn.textContent='↻ Atualizar';
 }
 
-function agg(data) {
-  return data.reduce((a, r) => {
-    a.sessions       += r.sessionCount       || 0;
-    a.users          += r.distinctUserCount   || 0;
-    a.pageViews      += r.pageCount          || 0;
-    a.deadClicks     += r.deadClickCount     || 0;
-    a.rageClicks     += r.rageClickCount     || 0;
-    a.quickBacks     += r.quickBackCount     || 0;
-    a.excessiveScroll+= r.excessiveScrollCount || 0;
-    a.scriptErrors   += r.jsErrorCount       || 0;
-    a.totalScrollPct += (r.scrollDepth       || 0) * (r.sessionCount || 0);
-    a.totalEngageSecs+= (r.activeTime        || 0) * (r.sessionCount || 0);
-    return a;
-  }, { sessions:0, users:0, pageViews:0, deadClicks:0, rageClicks:0,
-       quickBacks:0, excessiveScroll:0, scriptErrors:0, totalScrollPct:0, totalEngageSecs:0 });
-}
+function render(raw, byDevice, byURL, byChannel){
+  // Estrutura real: array de {metricName, information:[...]}
+  // Vamos inspecionar o raw para pegar os campos certos
+  const traffic    = getMetric(raw, 'Traffic');
+  const scroll     = getMetric(raw, 'Scroll');
+  const engage     = getMetric(raw, 'Engagement');
+  const deadClick  = getMetric(raw, 'Dead');
+  const rageClick  = getMetric(raw, 'Rage');
+  const quickBack  = getMetric(raw, 'Quick') || getMetric(raw, 'quickback');
+  const scriptErr  = getMetric(raw, 'Script') || getMetric(raw, 'Error');
 
-function renderDashboard(general, byURL, byDevice, bySource) {
-  const g = agg(general);
-  const scrollDepth = g.sessions > 0 ? (g.totalScrollPct / g.sessions) : 0;
-  const engageTime  = g.sessions > 0 ? (g.totalEngageSecs / g.sessions) : 0;
-  const deadPct     = g.sessions > 0 ? g.deadClicks  / g.sessions : 0;
-  const ragePct     = g.sessions > 0 ? g.rageClicks  / g.sessions : 0;
-  const qbPct       = g.sessions > 0 ? g.quickBacks  / g.sessions : 0;
-  const pagesPerSess= g.sessions > 0 ? g.pageViews   / g.sessions : 0;
+  // Totais de tráfego
+  const sessions   = sumField(traffic, 'totalSessionCount') || sumField(traffic, 'sessionCount') || 0;
+  const users      = sumField(traffic, 'distantUserCount')  || sumField(traffic, 'distinctUserCount') || 0;
+  const pages      = sumField(traffic, 'PagesPerSessionPercentage') > 0 
+    ? (sumField(traffic, 'PagesPerSessionPercentage') * sessions).toFixed(0)
+    : sumField(traffic, 'pageCount') || 0;
 
-  // Top URLs por sessões
-  const topURLs = [...byURL]
-    .sort((a,b) => (b.sessionCount||0)-(a.sessionCount||0))
-    .slice(0, 10);
+  // Scroll depth — média ponderada
+  let avgScroll = 0;
+  if(scroll && scroll.length > 0){
+    const totalSess = scroll.reduce((a,r)=>a+(Number(r.totalSessionCount)||Number(r.sessionCount)||1),0);
+    const wScroll   = scroll.reduce((a,r)=>{
+      const s = Number(r.totalSessionCount)||Number(r.sessionCount)||1;
+      const v = Number(r.scrollDepth||r.Scroll||r.scrollDepthPercentage||0);
+      return a + v*s;
+    },0);
+    avgScroll = totalSess > 0 ? wScroll/totalSess : 0;
+    if(avgScroll > 1) avgScroll = avgScroll/100; // normalizar se vier em %
+  }
+
+  // Engage time
+  let avgEngage = 0;
+  if(engage && engage.length > 0){
+    const totalSess = engage.reduce((a,r)=>a+(Number(r.totalSessionCount)||Number(r.sessionCount)||1),0);
+    const wEngage   = engage.reduce((a,r)=>{
+      const s = Number(r.totalSessionCount)||Number(r.sessionCount)||1;
+      const v = Number(r.activeTime||r.engagementTime||r.EngagementTime||0);
+      return a + v*s;
+    },0);
+    avgEngage = totalSess > 0 ? wEngage/totalSess : 0;
+  }
+
+  const totalDead  = sumField(deadClick, 'totalSessionCount') || sumField(deadClick, 'deadClickCount') || sumField(deadClick, 'sessionCount') || 0;
+  const totalRage  = sumField(rageClick, 'totalSessionCount') || sumField(rageClick, 'rageClickCount') || sumField(rageClick, 'sessionCount') || 0;
+  const totalQB    = sumField(quickBack, 'totalSessionCount') || sumField(quickBack, 'quickBackCount')  || sumField(quickBack, 'sessionCount') || 0;
+  const totalErr   = sumField(scriptErr, 'totalSessionCount') || sumField(scriptErr, 'scriptErrorCount')|| sumField(scriptErr, 'sessionCount') || 0;
+
+  const deadPct = sessions>0 ? totalDead/sessions : 0;
+  const ragePct = sessions>0 ? totalRage/sessions : 0;
+  const qbPct   = sessions>0 ? totalQB/sessions   : 0;
 
   // Device breakdown
-  const devices = byDevice.reduce((a,r) => {
-    const d = r.dimensions?.[0]?.value || 'Unknown';
-    a[d] = (a[d]||0) + (r.sessionCount||0); return a; }, {});
+  const devTraffic = getMetric(byDevice, 'Traffic');
+  const devMap = {};
+  (devTraffic||[]).forEach(r => {
+    const k = r.Device || r.device || Object.values(r).find(v=>typeof v==='string'&&['Phone','Tablet','Desktop'].includes(v)) || 'Other';
+    devMap[k] = (devMap[k]||0) + (Number(r.totalSessionCount)||Number(r.sessionCount)||0);
+  });
 
-  // Source breakdown
-  const sources = bySource.reduce((a,r) => {
-    const s = r.dimensions?.[0]?.value || 'Direct';
-    a[s] = (a[s]||0) + (r.sessionCount||0); return a; }, {});
+  // URL breakdown
+  const urlTraffic = getMetric(byURL, 'Traffic');
+  const urlDead    = getMetric(byURL, 'Dead');
+  const urlRage    = getMetric(byURL, 'Rage');
+  const urlScroll  = getMetric(byURL, 'Scroll');
 
-  const main = document.getElementById('mainContent');
-  main.innerHTML = `
+  // Montar mapa de URL com todas as métricas
+  const urlMap = {};
+  (urlTraffic||[]).forEach(r => {
+    const u = r.URL || r.url || r.Url || Object.values(r).find(v=>typeof v==='string'&&v.startsWith('http')) || '?';
+    urlMap[u] = { sessions: Number(r.totalSessionCount)||Number(r.sessionCount)||0, dead:0, rage:0, scroll:0 };
+  });
+  (urlDead||[]).forEach(r => {
+    const u = r.URL || r.url || Object.values(r).find(v=>typeof v==='string'&&v.startsWith('http')) || '?';
+    if(urlMap[u]) urlMap[u].dead = Number(r.totalSessionCount)||Number(r.sessionCount)||0;
+  });
+  (urlRage||[]).forEach(r => {
+    const u = r.URL || r.url || Object.values(r).find(v=>typeof v==='string'&&v.startsWith('http')) || '?';
+    if(urlMap[u]) urlMap[u].rage = Number(r.totalSessionCount)||Number(r.sessionCount)||0;
+  });
+  (urlScroll||[]).forEach(r => {
+    const u = r.URL || r.url || Object.values(r).find(v=>typeof v==='string'&&v.startsWith('http')) || '?';
+    if(urlMap[u]) urlMap[u].scroll = Number(r.scrollDepth||r.scrollDepthPercentage||0);
+  });
 
-  <!-- KPIs principais -->
+  const topURLs = Object.entries(urlMap)
+    .sort((a,b)=>b[1].sessions-a[1].sessions).slice(0,10);
+
+  // Channel breakdown
+  const chTraffic = getMetric(byChannel, 'Traffic');
+  const chMap = {};
+  (chTraffic||[]).forEach(r => {
+    const k = r.Channel || r.channel || Object.values(r).find(v=>typeof v==='string'&&v.length>0&&!v.startsWith('http')) || 'Direct';
+    chMap[k] = (chMap[k]||0) + (Number(r.totalSessionCount)||Number(r.sessionCount)||0);
+  });
+
+  // Definir scores visuais
+  function scoreColor(good){ return good ? '#3fb950' : '#f85149'; }
+  function scrollColor(v){ return v>=0.5?'#3fb950':v>=0.3?'#d29922':'#f85149'; }
+
+  const app = document.getElementById('app');
+  app.innerHTML = `
+
   <div class="section-label">Visão geral — últimos 3 dias</div>
-  <div class="grid-5" style="margin-bottom:16px">
+  <div class="grid-4" style="margin-bottom:16px">
     <div class="kpi blue">
       <div class="kpi-label">Sessões</div>
-      <div class="kpi-value">${fmt(g.sessions)}</div>
-      <div class="kpi-sub">${fmt(g.users)} usuários únicos</div>
-    </div>
-    <div class="kpi blue">
-      <div class="kpi-label">Páginas vistas</div>
-      <div class="kpi-value">${fmt(g.pageViews)}</div>
-      <div class="kpi-sub">${pagesPerSess.toFixed(1)} págs/sessão</div>
+      <div class="kpi-value">${fmt(sessions)}</div>
+      <div class="kpi-sub">${fmt(users)} usuários únicos</div>
     </div>
     <div class="kpi green">
       <div class="kpi-label">Tempo de engajamento</div>
-      <div class="kpi-value sm">${secs(engageTime)}</div>
+      <div class="kpi-value sm">${secs(avgEngage)}</div>
       <div class="kpi-sub">por sessão</div>
     </div>
     <div class="kpi green">
-      <div class="kpi-label">Scroll depth</div>
-      <div class="kpi-value sm ${scoreClass(scrollDepth, 0.5, 0.25)}">${pct(scrollDepth)}</div>
-      <div class="score-bar-bg"><div class="score-bar-fill" style="width:${Math.min(scrollDepth*100,100)}%;background:${scoreColor(scrollDepth,0.5,0.25)}"></div></div>
+      <div class="kpi-label">Scroll Depth médio</div>
+      <div class="kpi-value sm" style="color:${scrollColor(avgScroll)}">${pct(avgScroll)}</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${Math.min(avgScroll*100,100)}%;background:${scrollColor(avgScroll)}"></div></div>
     </div>
-    <div class="kpi amber">
+    <div class="kpi ${totalErr>0?'red':'green'}">
       <div class="kpi-label">Script Errors</div>
-      <div class="kpi-value sm">${fmt(g.scriptErrors)}</div>
-      <div class="kpi-sub">erros de JS</div>
+      <div class="kpi-value sm">${fmt(totalErr)}</div>
+      <div class="kpi-sub">erros de JavaScript</div>
     </div>
   </div>
 
-  <!-- Sinais de fricção -->
-  <div class="section-label">Sinais de fricção — onde o usuário encontra problema</div>
+  <div class="section-label">Sinais de fricção</div>
   <div class="grid-3" style="margin-bottom:16px">
     <div class="card">
       <div class="card-header">
         <span class="card-title">Dead Clicks</span>
         <span class="card-tag">cliques sem resposta</span>
       </div>
-      <div style="font-size:32px;font-weight:700;color:${scoreColor(1-deadPct,0.85,0.7)};margin-bottom:8px">${fmt(g.deadClicks)}</div>
-      <div class="score-bar-bg" style="margin-bottom:10px"><div class="score-bar-fill" style="width:${Math.min(deadPct*100*3,100)}%;background:${scoreColor(1-deadPct,0.85,0.7)}"></div></div>
-      <div class="${scoreClass(1-deadPct,0.85,0.7)}" style="font-size:12px">${pct(deadPct)} das sessões</div>
-      <div class="alerta-amber alerta" style="margin-top:10px">⚠️ Indica elementos que parecem clicáveis mas não são. Revisar CTAs e botões visuais.</div>
+      <div style="font-size:30px;font-weight:700;color:${deadPct>0.15?'#f85149':deadPct>0.05?'#d29922':'#3fb950'};margin-bottom:6px">${fmt(totalDead)}</div>
+      <div style="font-size:12px;color:#6e7681;margin-bottom:8px">${(deadPct*100).toFixed(1)}% das sessões</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${Math.min(deadPct*500,100)}%;background:${deadPct>0.15?'#f85149':'#d29922'}"></div></div>
+      <div class="alerta-amber alerta" style="margin-top:10px">Elementos visuais que parecem clicáveis mas não são. Revisar CTAs e links.</div>
     </div>
     <div class="card">
       <div class="card-header">
         <span class="card-title">Rage Clicks</span>
         <span class="card-tag">frustração do usuário</span>
       </div>
-      <div style="font-size:32px;font-weight:700;color:${scoreColor(1-ragePct,0.95,0.85)};margin-bottom:8px">${fmt(g.rageClicks)}</div>
-      <div class="score-bar-bg" style="margin-bottom:10px"><div class="score-bar-fill" style="width:${Math.min(ragePct*100*5,100)}%;background:${scoreColor(1-ragePct,0.95,0.85)}"></div></div>
-      <div class="${scoreClass(1-ragePct,0.95,0.85)}" style="font-size:12px">${pct(ragePct)} das sessões</div>
-      <div class="alerta-red alerta" style="margin-top:10px">🔴 Usuário clicou repetidamente no mesmo lugar. Alto sinal de frustração.</div>
+      <div style="font-size:30px;font-weight:700;color:${ragePct>0.05?'#f85149':ragePct>0.02?'#d29922':'#3fb950'};margin-bottom:6px">${fmt(totalRage)}</div>
+      <div style="font-size:12px;color:#6e7681;margin-bottom:8px">${(ragePct*100).toFixed(1)}% das sessões</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${Math.min(ragePct*1000,100)}%;background:${ragePct>0.05?'#f85149':'#d29922'}"></div></div>
+      <div class="alerta-red alerta" style="margin-top:10px">Usuário clicou repetidamente frustrado. Alto sinal de problema de UX.</div>
     </div>
     <div class="card">
       <div class="card-header">
         <span class="card-title">Quick Backs</span>
         <span class="card-tag">saída rápida da página</span>
       </div>
-      <div style="font-size:32px;font-weight:700;color:${scoreColor(1-qbPct,0.9,0.8)};margin-bottom:8px">${fmt(g.quickBacks)}</div>
-      <div class="score-bar-bg" style="margin-bottom:10px"><div class="score-bar-fill" style="width:${Math.min(qbPct*100*3,100)}%;background:${scoreColor(1-qbPct,0.9,0.8)}"></div></div>
-      <div class="${scoreClass(1-qbPct,0.9,0.8)}" style="font-size:12px">${pct(qbPct)} das sessões</div>
-      <div class="alerta-amber alerta" style="margin-top:10px">⚠️ Usuário entrou e saiu rapidamente. Conteúdo pode não corresponder à expectativa.</div>
+      <div style="font-size:30px;font-weight:700;color:${qbPct>0.1?'#f85149':qbPct>0.05?'#d29922':'#3fb950'};margin-bottom:6px">${fmt(totalQB)}</div>
+      <div style="font-size:12px;color:#6e7681;margin-bottom:8px">${(qbPct*100).toFixed(1)}% das sessões</div>
+      <div class="bar-bg"><div class="bar-fill" style="width:${Math.min(qbPct*500,100)}%;background:${qbPct>0.1?'#f85149':'#d29922'}"></div></div>
+      <div class="alerta-amber alerta" style="margin-top:10px">Usuário entrou e voltou rapidamente. Conteúdo pode não corresponder à expectativa.</div>
     </div>
   </div>
 
-  <!-- Páginas + Dispositivos -->
   <div class="grid-2" style="margin-bottom:16px">
     <div class="card">
       <div class="card-header">
-        <span class="card-title">Top páginas por sessões</span>
-        <span class="card-tag">últimos 3 dias</span>
+        <span class="card-title">Top páginas</span>
+        <span class="card-tag">por sessões · últimos 3 dias</span>
       </div>
-      <table class="page-table">
-        <thead>
-          <tr>
-            <th>URL</th>
-            <th class="right">Sessões</th>
-            <th class="right">Scroll</th>
-            <th class="right">Tempo</th>
-            <th class="right">Dead</th>
-            <th class="right">Rage</th>
-          </tr>
-        </thead>
+      <table class="tbl">
+        <thead><tr>
+          <th>URL</th><th class="r">Sessões</th><th class="r">Scroll</th><th class="r">Dead</th><th class="r">Rage</th>
+        </tr></thead>
         <tbody>
-          ${topURLs.map(r => {
-            const url = r.dimensions?.[0]?.value || '/';
-            const slug = url.replace(/https?:\/\/[^\/]+/, '') || '/';
-            const scroll = r.scrollDepth != null ? (r.scrollDepth*100).toFixed(0)+'%' : '—';
-            const time = secs(r.activeTime);
+          ${topURLs.map(([url, d]) => {
+            const slug = url.replace(/https?:\/\/[^\/]+/,'') || '/';
+            const scroll = d.scroll>0 ? (d.scroll>1?d.scroll.toFixed(0):( d.scroll*100).toFixed(0))+'%' : '—';
             return `<tr>
               <td class="url-cell" title="${url}">${slug}</td>
-              <td class="right">${fmt(r.sessionCount)}</td>
-              <td class="right">${scroll}</td>
-              <td class="right">${time}</td>
-              <td class="right">${fmt(r.deadClickCount||0)}</td>
-              <td class="right">${fmt(r.rageClickCount||0)}</td>
+              <td class="r">${fmt(d.sessions)}</td>
+              <td class="r">${scroll}</td>
+              <td class="r">${d.dead||'—'}</td>
+              <td class="r">${d.rage||'—'}</td>
             </tr>`;
           }).join('')}
         </tbody>
@@ -313,66 +340,51 @@ function renderDashboard(general, byURL, byDevice, bySource) {
         <span class="card-title">Dispositivos</span>
         <span class="card-tag">por sessões</span>
       </div>
-      <div style="position:relative;height:180px;margin-bottom:16px">
-        <canvas id="cDevices"></canvas>
+      <div style="position:relative;height:175px;margin-bottom:16px">
+        <canvas id="cDev"></canvas>
       </div>
-      <div class="card-header" style="margin-top:8px;margin-bottom:8px">
+      <div class="card-header" style="margin-bottom:8px">
         <span class="card-title">Canais de origem</span>
       </div>
-      <div style="position:relative;height:180px">
-        <canvas id="cSources"></canvas>
+      <div style="position:relative;height:175px">
+        <canvas id="cCh"></canvas>
       </div>
     </div>
   </div>
 
-  <div class="footer">Autoconf · Microsoft Clarity · Project ${PROJECT_ID} · Últimos 3 dias · ${new Date().toLocaleDateString('pt-BR')}</div>
+  <div class="footer">Autoconf · Microsoft Clarity · Project vjefa6raxd · Últimos 3 dias · ${new Date().toLocaleDateString('pt-BR')}</div>
   `;
 
   // Gráfico dispositivos
-  const deviceLabels = Object.keys(devices);
-  const deviceData   = Object.values(devices);
-  charts.devices = new Chart(document.getElementById('cDevices'), {
-    type: 'doughnut',
-    data: {
-      labels: deviceLabels,
-      datasets: [{ data: deviceData,
-        backgroundColor: ['#58a6ff','#3fb950','#d29922','#bc8cff'],
-        borderWidth: 0 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false, cutout: '60%',
-      plugins: {
-        legend: { position: 'right', labels: { color: '#8b949e', font: { size: 10 }, boxWidth: 10, padding: 8 } },
-        tooltip: { backgroundColor: '#1c2128', titleColor: '#e6edf3', bodyColor: '#8b949e', padding: 10 }
-      }
-    }
-  });
+  const devKeys = Object.keys(devMap).filter(k=>devMap[k]>0);
+  if(devKeys.length>0){
+    charts.dev = new Chart(document.getElementById('cDev'),{
+      type:'doughnut',
+      data:{labels:devKeys,datasets:[{data:devKeys.map(k=>devMap[k]),
+        backgroundColor:['#58a6ff','#3fb950','#d29922','#bc8cff'],borderWidth:0}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
+        plugins:{legend:{position:'right',labels:{color:'#8b949e',font:{size:10},boxWidth:10,padding:6}},
+          tooltip:{backgroundColor:'#1c2128',titleColor:'#e6edf3',bodyColor:'#8b949e',padding:10}}}
+    });
+  }
 
   // Gráfico canais
-  const srcLabels = Object.keys(sources).slice(0,6);
-  const srcData   = srcLabels.map(k => sources[k]);
-  charts.sources = new Chart(document.getElementById('cSources'), {
-    type: 'bar',
-    data: {
-      labels: srcLabels,
-      datasets: [{ data: srcData,
-        backgroundColor: '#58a6ff', borderRadius: 4, borderSkipped: false }]
-    },
-    options: {
-      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: { backgroundColor: '#1c2128', titleColor: '#e6edf3', bodyColor: '#8b949e', padding: 10 }
-      },
-      scales: {
-        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#6e7681', font: { size: 10 } }, beginAtZero: true },
-        y: { grid: { display: false }, ticks: { color: '#8b949e', font: { size: 10 } } }
-      }
-    }
-  });
+  const chKeys = Object.keys(chMap).filter(k=>chMap[k]>0).slice(0,6);
+  if(chKeys.length>0){
+    charts.ch = new Chart(document.getElementById('cCh'),{
+      type:'bar',
+      data:{labels:chKeys,datasets:[{data:chKeys.map(k=>chMap[k]),
+        backgroundColor:'#58a6ff',borderRadius:4,borderSkipped:false}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{backgroundColor:'#1c2128',titleColor:'#e6edf3',bodyColor:'#8b949e',padding:10}},
+        scales:{
+          x:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#6e7681',font:{size:10}},beginAtZero:true},
+          y:{grid:{display:false},ticks:{color:'#8b949e',font:{size:11}}}
+        }}
+    });
+  }
 }
 
-// Carregar automaticamente
 loadData();
 </script>
 </body>
