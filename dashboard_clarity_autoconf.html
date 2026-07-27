@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clarity Dashboard — Autoconf</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#e6edf3;min-height:100vh}
+
+  /* Topbar */
+  .topbar{background:#161b22;border-bottom:1px solid #30363d;height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+  .logo{font-size:15px;font-weight:700;color:#e6edf3}.logo span{color:#58a6ff}
+  .topbar-right{display:flex;align-items:center;gap:12px}
+  .badge-live{display:flex;align-items:center;gap:6px;background:#1f2937;border:1px solid #30363d;padding:4px 12px;border-radius:20px;font-size:12px;color:#8b949e}
+  .dot-live{width:7px;height:7px;border-radius:50%;background:#3fb950;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .btn-refresh{background:#1f6feb;border:none;color:#fff;font-size:12px;font-weight:600;padding:6px 14px;border-radius:6px;cursor:pointer;transition:background .2s}
+  .btn-refresh:hover{background:#388bfd}
+  .btn-refresh:disabled{background:#21262d;color:#6e7681;cursor:not-allowed}
+
+  /* Layout */
+  .main{max-width:1400px;margin:0 auto;padding:24px 32px}
+  .section-label{font-size:11px;font-weight:600;color:#6e7681;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+  .section-label::after{content:'';flex:1;height:1px;background:#21262d}
+
+  /* Cards */
+  .card{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:20px}
+  .card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+  .card-title{font-size:13px;font-weight:600;color:#c9d1d9}
+  .card-tag{font-size:11px;color:#6e7681;background:#21262d;padding:2px 8px;border-radius:4px}
+
+  /* KPIs */
+  .grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+  .kpi{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
+  .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+  .kpi.blue::before{background:#58a6ff}
+  .kpi.green::before{background:#3fb950}
+  .kpi.amber::before{background:#d29922}
+  .kpi.red::before{background:#f85149}
+  .kpi.purple::before{background:#bc8cff}
+  .kpi-label{font-size:10px;font-weight:600;color:#6e7681;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+  .kpi-value{font-size:28px;font-weight:700;color:#e6edf3;letter-spacing:-0.5px;line-height:1}
+  .kpi-value.sm{font-size:20px}
+  .kpi-trend{font-size:11px;margin-top:5px;font-weight:600}
+  .kpi-trend.up{color:#3fb950}.kpi-trend.down{color:#f85149}.kpi-trend.neutral{color:#6e7681}
+  .kpi-sub{font-size:11px;color:#6e7681;margin-top:3px}
+
+  /* Score badges */
+  .score-good{color:#3fb950;font-weight:700}
+  .score-mid{color:#d29922;font-weight:700}
+  .score-bad{color:#f85149;font-weight:700}
+
+  /* Tabela páginas */
+  .page-table{width:100%;border-collapse:collapse;font-size:12px}
+  .page-table th{text-align:left;padding:8px 10px;color:#6e7681;font-size:11px;font-weight:600;text-transform:uppercase;border-bottom:1px solid #21262d}
+  .page-table th.right{text-align:right}
+  .page-table td{padding:8px 10px;border-bottom:1px solid #161b22;color:#c9d1d9}
+  .page-table td.right{text-align:right;font-variant-numeric:tabular-nums}
+  .page-table tr:hover td{background:#1c2128}
+  .url-cell{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#58a6ff;font-size:11px}
+
+  /* Barra de score */
+  .score-bar-bg{width:100%;height:4px;background:#21262d;border-radius:2px;margin-top:4px}
+  .score-bar-fill{height:100%;border-radius:2px;transition:width .5s}
+
+  /* Loading / Error */
+  .loading-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px;color:#6e7681}
+  .spinner{width:36px;height:36px;border:3px solid #21262d;border-top-color:#58a6ff;border-radius:50%;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .error-box{background:#1c1010;border:1px solid #f85149;border-radius:8px;padding:16px 20px;color:#f85149;font-size:13px;text-align:center;max-width:500px}
+
+  /* Alerta */
+  .alerta{border-left:3px solid;border-radius:0 6px 6px 0;padding:8px 12px;font-size:11px;line-height:1.6;margin-bottom:8px}
+  .alerta-red{background:#1c0a0a;border-color:#f85149;color:#ffa198}
+  .alerta-amber{background:#1c1500;border-color:#d29922;color:#e3b341}
+  .alerta-green{background:#0a1c0a;border-color:#3fb950;color:#56d364}
+  .alerta-blue{background:#0a1628;border-color:#58a6ff;color:#79c0ff}
+
+  .footer{text-align:center;padding:24px 0;font-size:11px;color:#484f58}
+  .last-updated{font-size:11px;color:#6e7681}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="logo">Auto<span>conf</span></div>
+    <span style="color:#484f58;font-size:13px">Clarity Dashboard — Comportamento de Usuários</span>
+  </div>
+  <div class="topbar-right">
+    <div class="badge-live"><div class="dot-live"></div><span id="lastUpdated">Carregando...</span></div>
+    <button class="btn-refresh" id="btnRefresh" onclick="loadData()">↻ Atualizar</button>
+  </div>
+</div>
+
+<div class="main" id="mainContent">
+  <div class="loading-screen" id="loadingScreen">
+    <div class="spinner"></div>
+    <div style="font-size:13px">Conectando ao Microsoft Clarity...</div>
+  </div>
+</div>
+
+<script>
+const TOKEN = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjQ4M0FCMDhFNUYwRDMxNjdEOTRFMTQ3M0FEQTk2RTcyRDkwRUYwRkYiLCJ0eXAiOiJKV1QifQ.eyJqdGkiOiI2OTBiODVmYS1mNjdjLTQ0NmYtYWUxNy0zNDg1YmU5YTE0MmEiLCJzdWIiOiIzMjAzMDkwMTExMDA4MjczIiwic2NvcGUiOiJEYXRhLkV4cG9ydCIsIm5iZiI6MTc4NTE3OTgxOSwiZXhwIjo0OTM4Nzc5ODE5LCJpYXQiOjE3ODUxNzk4MTksImlzcyI6ImNsYXJpdHkiLCJhdWQiOiJjbGFyaXR5LmRhdGEtZXhwb3J0ZXIifQ.ctqrshYKNyUovCHg-6i5iUWgjwij_vJmb5lPfNOOgBn18EOpGg1hGnr1W5AP142FPWZCWdCszInPk4xECnAREC5Tff-btHu-Hw-kxTxKy-GGgjdDpQCaZcOCyFuHKqJiBs-3RnfAh_6JF9ro66PNT4PkHaCn3PiK_tGjNEq0Eg0f75zxBO_-hv_Lx2_5qMPjHwr8P8wRa1Xm8V_Q4N5s6Cj2fSVsMs9Dy2TACWJukLRb23_VoqgZHjhdBwUT1rRjbypDGX8Z-Aw65UfjpblFW8uys69euY8H-SFsvXwwaDQrgGClVHgB02AJsEISc_iBzgIkfcb1btYnIcxyv7OQcw";
+const PROJECT_ID = "vjefa6raxd";
+const BASE_URL = "https://www.clarity.ms/export-data/api/v1/project-live-insights";
+
+let charts = {};
+
+function destroyCharts() {
+  Object.values(charts).forEach(c => { try { c.destroy(); } catch(e){} });
+  charts = {};
+}
+
+async function fetchClarity(dimension1, dimension2) {
+  const params = new URLSearchParams({ projectId: PROJECT_ID, numOfDays: 3 });
+  if (dimension1) params.append("dimension1", dimension1);
+  if (dimension2) params.append("dimension2", dimension2);
+  const res = await fetch(`${BASE_URL}?${params}`, {
+    headers: { "Authorization": `Bearer ${TOKEN}`, "Content-Type": "application/json" }
+  });
+  if (!res.ok) throw new Error(`Erro ${res.status}: ${await res.text()}`);
+  return res.json();
+}
+
+function fmt(n) { return n?.toLocaleString('pt-BR') ?? '—'; }
+function pct(n) { return n != null ? (n * 100).toFixed(1) + '%' : '—'; }
+function secs(n) { if (!n) return '—'; const m = Math.floor(n/60); const s = Math.round(n%60); return m > 0 ? `${m}m ${s}s` : `${s}s`; }
+function scoreColor(v, good, bad) { if (v >= good) return '#3fb950'; if (v <= bad) return '#f85149'; return '#d29922'; }
+function scoreClass(v, good, bad) { if (v >= good) return 'score-good'; if (v <= bad) return 'score-bad'; return 'score-mid'; }
+
+async function loadData() {
+  const btn = document.getElementById('btnRefresh');
+  btn.disabled = true; btn.textContent = '↻ Carregando...';
+
+  try {
+    destroyCharts();
+    document.getElementById('loadingScreen')?.remove();
+
+    // Buscar dados em paralelo
+    const [general, byURL, byDevice, bySource] = await Promise.all([
+      fetchClarity(null, null),
+      fetchClarity("URL", null),
+      fetchClarity("Device", null),
+      fetchClarity("Channel", null)
+    ]);
+
+    renderDashboard(general, byURL, byDevice, bySource);
+    document.getElementById('lastUpdated').textContent = 'Atualizado ' + new Date().toLocaleTimeString('pt-BR');
+  } catch(e) {
+    document.getElementById('mainContent').innerHTML = `
+      <div class="loading-screen">
+        <div class="error-box">
+          <strong>Erro ao conectar ao Clarity</strong><br>${e.message}<br><br>
+          <button class="btn-refresh" onclick="loadData()">Tentar novamente</button>
+        </div>
+      </div>`;
+  }
+  btn.disabled = false; btn.textContent = '↻ Atualizar';
+}
+
+function agg(data) {
+  return data.reduce((a, r) => {
+    a.sessions       += r.sessionCount       || 0;
+    a.users          += r.distinctUserCount   || 0;
+    a.pageViews      += r.pageCount          || 0;
+    a.deadClicks     += r.deadClickCount     || 0;
+    a.rageClicks     += r.rageClickCount     || 0;
+    a.quickBacks     += r.quickBackCount     || 0;
+    a.excessiveScroll+= r.excessiveScrollCount || 0;
+    a.scriptErrors   += r.jsErrorCount       || 0;
+    a.totalScrollPct += (r.scrollDepth       || 0) * (r.sessionCount || 0);
+    a.totalEngageSecs+= (r.activeTime        || 0) * (r.sessionCount || 0);
+    return a;
+  }, { sessions:0, users:0, pageViews:0, deadClicks:0, rageClicks:0,
+       quickBacks:0, excessiveScroll:0, scriptErrors:0, totalScrollPct:0, totalEngageSecs:0 });
+}
+
+function renderDashboard(general, byURL, byDevice, bySource) {
+  const g = agg(general);
+  const scrollDepth = g.sessions > 0 ? (g.totalScrollPct / g.sessions) : 0;
+  const engageTime  = g.sessions > 0 ? (g.totalEngageSecs / g.sessions) : 0;
+  const deadPct     = g.sessions > 0 ? g.deadClicks  / g.sessions : 0;
+  const ragePct     = g.sessions > 0 ? g.rageClicks  / g.sessions : 0;
+  const qbPct       = g.sessions > 0 ? g.quickBacks  / g.sessions : 0;
+  const pagesPerSess= g.sessions > 0 ? g.pageViews   / g.sessions : 0;
+
+  // Top URLs por sessões
+  const topURLs = [...byURL]
+    .sort((a,b) => (b.sessionCount||0)-(a.sessionCount||0))
+    .slice(0, 10);
+
+  // Device breakdown
+  const devices = byDevice.reduce((a,r) => {
+    const d = r.dimensions?.[0]?.value || 'Unknown';
+    a[d] = (a[d]||0) + (r.sessionCount||0); return a; }, {});
+
+  // Source breakdown
+  const sources = bySource.reduce((a,r) => {
+    const s = r.dimensions?.[0]?.value || 'Direct';
+    a[s] = (a[s]||0) + (r.sessionCount||0); return a; }, {});
+
+  const main = document.getElementById('mainContent');
+  main.innerHTML = `
+
+  <!-- KPIs principais -->
+  <div class="section-label">Visão geral — últimos 3 dias</div>
+  <div class="grid-5" style="margin-bottom:16px">
+    <div class="kpi blue">
+      <div class="kpi-label">Sessões</div>
+      <div class="kpi-value">${fmt(g.sessions)}</div>
+      <div class="kpi-sub">${fmt(g.users)} usuários únicos</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Páginas vistas</div>
+      <div class="kpi-value">${fmt(g.pageViews)}</div>
+      <div class="kpi-sub">${pagesPerSess.toFixed(1)} págs/sessão</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">Tempo de engajamento</div>
+      <div class="kpi-value sm">${secs(engageTime)}</div>
+      <div class="kpi-sub">por sessão</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">Scroll depth</div>
+      <div class="kpi-value sm ${scoreClass(scrollDepth, 0.5, 0.25)}">${pct(scrollDepth)}</div>
+      <div class="score-bar-bg"><div class="score-bar-fill" style="width:${Math.min(scrollDepth*100,100)}%;background:${scoreColor(scrollDepth,0.5,0.25)}"></div></div>
+    </div>
+    <div class="kpi amber">
+      <div class="kpi-label">Script Errors</div>
+      <div class="kpi-value sm">${fmt(g.scriptErrors)}</div>
+      <div class="kpi-sub">erros de JS</div>
+    </div>
+  </div>
+
+  <!-- Sinais de fricção -->
+  <div class="section-label">Sinais de fricção — onde o usuário encontra problema</div>
+  <div class="grid-3" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Dead Clicks</span>
+        <span class="card-tag">cliques sem resposta</span>
+      </div>
+      <div style="font-size:32px;font-weight:700;color:${scoreColor(1-deadPct,0.85,0.7)};margin-bottom:8px">${fmt(g.deadClicks)}</div>
+      <div class="score-bar-bg" style="margin-bottom:10px"><div class="score-bar-fill" style="width:${Math.min(deadPct*100*3,100)}%;background:${scoreColor(1-deadPct,0.85,0.7)}"></div></div>
+      <div class="${scoreClass(1-deadPct,0.85,0.7)}" style="font-size:12px">${pct(deadPct)} das sessões</div>
+      <div class="alerta-amber alerta" style="margin-top:10px">⚠️ Indica elementos que parecem clicáveis mas não são. Revisar CTAs e botões visuais.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Rage Clicks</span>
+        <span class="card-tag">frustração do usuário</span>
+      </div>
+      <div style="font-size:32px;font-weight:700;color:${scoreColor(1-ragePct,0.95,0.85)};margin-bottom:8px">${fmt(g.rageClicks)}</div>
+      <div class="score-bar-bg" style="margin-bottom:10px"><div class="score-bar-fill" style="width:${Math.min(ragePct*100*5,100)}%;background:${scoreColor(1-ragePct,0.95,0.85)}"></div></div>
+      <div class="${scoreClass(1-ragePct,0.95,0.85)}" style="font-size:12px">${pct(ragePct)} das sessões</div>
+      <div class="alerta-red alerta" style="margin-top:10px">🔴 Usuário clicou repetidamente no mesmo lugar. Alto sinal de frustração.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Quick Backs</span>
+        <span class="card-tag">saída rápida da página</span>
+      </div>
+      <div style="font-size:32px;font-weight:700;color:${scoreColor(1-qbPct,0.9,0.8)};margin-bottom:8px">${fmt(g.quickBacks)}</div>
+      <div class="score-bar-bg" style="margin-bottom:10px"><div class="score-bar-fill" style="width:${Math.min(qbPct*100*3,100)}%;background:${scoreColor(1-qbPct,0.9,0.8)}"></div></div>
+      <div class="${scoreClass(1-qbPct,0.9,0.8)}" style="font-size:12px">${pct(qbPct)} das sessões</div>
+      <div class="alerta-amber alerta" style="margin-top:10px">⚠️ Usuário entrou e saiu rapidamente. Conteúdo pode não corresponder à expectativa.</div>
+    </div>
+  </div>
+
+  <!-- Páginas + Dispositivos -->
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Top páginas por sessões</span>
+        <span class="card-tag">últimos 3 dias</span>
+      </div>
+      <table class="page-table">
+        <thead>
+          <tr>
+            <th>URL</th>
+            <th class="right">Sessões</th>
+            <th class="right">Scroll</th>
+            <th class="right">Tempo</th>
+            <th class="right">Dead</th>
+            <th class="right">Rage</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${topURLs.map(r => {
+            const url = r.dimensions?.[0]?.value || '/';
+            const slug = url.replace(/https?:\/\/[^\/]+/, '') || '/';
+            const scroll = r.scrollDepth != null ? (r.scrollDepth*100).toFixed(0)+'%' : '—';
+            const time = secs(r.activeTime);
+            return `<tr>
+              <td class="url-cell" title="${url}">${slug}</td>
+              <td class="right">${fmt(r.sessionCount)}</td>
+              <td class="right">${scroll}</td>
+              <td class="right">${time}</td>
+              <td class="right">${fmt(r.deadClickCount||0)}</td>
+              <td class="right">${fmt(r.rageClickCount||0)}</td>
+            </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Dispositivos</span>
+        <span class="card-tag">por sessões</span>
+      </div>
+      <div style="position:relative;height:180px;margin-bottom:16px">
+        <canvas id="cDevices"></canvas>
+      </div>
+      <div class="card-header" style="margin-top:8px;margin-bottom:8px">
+        <span class="card-title">Canais de origem</span>
+      </div>
+      <div style="position:relative;height:180px">
+        <canvas id="cSources"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Autoconf · Microsoft Clarity · Project ${PROJECT_ID} · Últimos 3 dias · ${new Date().toLocaleDateString('pt-BR')}</div>
+  `;
+
+  // Gráfico dispositivos
+  const deviceLabels = Object.keys(devices);
+  const deviceData   = Object.values(devices);
+  charts.devices = new Chart(document.getElementById('cDevices'), {
+    type: 'doughnut',
+    data: {
+      labels: deviceLabels,
+      datasets: [{ data: deviceData,
+        backgroundColor: ['#58a6ff','#3fb950','#d29922','#bc8cff'],
+        borderWidth: 0 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: {
+        legend: { position: 'right', labels: { color: '#8b949e', font: { size: 10 }, boxWidth: 10, padding: 8 } },
+        tooltip: { backgroundColor: '#1c2128', titleColor: '#e6edf3', bodyColor: '#8b949e', padding: 10 }
+      }
+    }
+  });
+
+  // Gráfico canais
+  const srcLabels = Object.keys(sources).slice(0,6);
+  const srcData   = srcLabels.map(k => sources[k]);
+  charts.sources = new Chart(document.getElementById('cSources'), {
+    type: 'bar',
+    data: {
+      labels: srcLabels,
+      datasets: [{ data: srcData,
+        backgroundColor: '#58a6ff', borderRadius: 4, borderSkipped: false }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { backgroundColor: '#1c2128', titleColor: '#e6edf3', bodyColor: '#8b949e', padding: 10 }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#6e7681', font: { size: 10 } }, beginAtZero: true },
+        y: { grid: { display: false }, ticks: { color: '#8b949e', font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+// Carregar automaticamente
+loadData();
+</script>
+</body>
+</html>
