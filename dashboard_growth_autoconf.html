@@ -103,7 +103,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     </div>
     <div class="kpi blue">
       <div class="kpi-label">MQLs (estimativa)</div>
-      <div class="kpi-value">938</div>
+      <div class="kpi-value">861</div>
       <div class="kpi-trend up">▲ 69% de taxa</div>
       <div class="kpi-sub">Jun fechado: 1.1324 leads · julho fechado</div>
       <span class="kpi-bench bench-above">Bench SaaS: 31–41% ✓ acima</span>
@@ -113,14 +113,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="kpi-value">271</div>
       <div class="kpi-trend up">▲ +35% vs jun fechado</div>
       <div class="kpi-sub">Jun fechado: 202 reuniões</div>
-      <span class="kpi-bench bench-above">Taxa 18,6% · bench: 115% ✓</span>
+      <span class="kpi-bench bench-above">Taxa 18,6% · bench: 108% ✓</span>
     </div>
     <div class="kpi amber">
       <div class="kpi-label">Fechamentos (VENDAS)</div>
-      <div class="kpi-value">54</div>
-      <div class="kpi-trend neutral">→ Jul parcial dia 24</div>
-      <div class="kpi-sub">Jun fechado: 41 · Mai: 57</div>
-      <span class="kpi-bench bench-below">Taxa 24.8% · bench: 36% ↓</span>
+      <div class="kpi-value">102</div>
+      <div class="kpi-trend neutral">→ Julho fechado 🏆</div>
+      <div class="kpi-sub">Jun fechado: 41 · Jul: 102 🏆</div>
+      <span class="kpi-bench bench-above">Taxa 37.6% · bench: 36% ✅</span>
     </div>
     <div class="kpi purple">
       <div class="kpi-label">Taxa Lead → Close</div>
@@ -339,10 +339,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         <div>
           <div style="display:flex;justify-content:space-between;margin-bottom:6px">
             <span style="font-size:12px;font-weight:600">Fechamentos (VENDAS)</span>
-            <span style="font-size:12px;color:#6b7280">54 de ~57 meta <strong style="color:#f59e0b">75%</strong></span>
+            <span style="font-size:12px;color:#6b7280">102 de ~57 meta <strong style="color:#f59e0b">75%</strong></span>
           </div>
           <div style="height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden">
-            <div style="width:95%;height:100%;background:#8b5cf6;border-radius:4px"></div>
+            <div style="width:100%;height:100%;background:#8b5cf6;border-radius:4px"></div>
           </div>
           <div style="font-size:10px;color:#9ca3af;margin-top:4px">Referência: mai/26 (melhor mês = 57)</div>
         </div>
@@ -395,7 +395,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="display:flex;flex-direction:column;gap:10px">
         <div style="border:1px solid #fecaca;border-left:4px solid #ef4444;border-radius:0 8px 8px 0;padding:10px 12px;background:#fef2f2">
           <div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:4px">🔴 URGENTE — Converter reuniões em vendas</div>
-          <div style="font-size:11px;color:#7f1d1d;line-height:1.6">Taxa reunião→close em 23.0% vs benchmark 36%. Revisar o processo de proposta e follow-up pós-reunião. Potencial de +24 fechamentos/mês se chegar ao benchmark.</div>
+          <div style="font-size:11px;color:#7f1d1d;line-height:1.6">Taxa reunião→close em 37.6% vs benchmark 36% ✅. Revisar o processo de proposta e follow-up pós-reunião. Benchmark SaaS batido! 37.6% vs 36% — manter o ritmo.</div>
         </div>
         <div style="border:1px solid #fde68a;border-left:4px solid #f59e0b;border-radius:0 8px 8px 0;padding:10px 12px;background:#fffbeb">
           <div style="font-size:11px;font-weight:700;color:#92400e;margin-bottom:4px">🟡 ALTO — Reduzir leads Fora do ICP (21%)</div>
@@ -599,9 +599,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 const gc='rgba(0,0,0,0.04)', lc='#9ca3af';
 
 const leads   = [0, 0, 16, 217, 277, 345, 342, 315, 271, 350, 344, 293, 585, 562, 462, 880, 1167, 1299, 1324];
-const mqls    = [0, 0, 4, 8, 10, 82, 86, 104, 79, 102, 98, 83, 351, 202, 132, 431, 671, 771, 938];
+const mqls    = [0, 0, 4, 8, 10, 82, 86, 104, 79, 102, 98, 83, 351, 202, 132, 431, 671, 771, 861];
 const reunions= [0, 0, 4, 8, 9, 82, 86, 104, 79, 102, 98, 83, 109, 71, 98, 134, 212, 202, 271];
-const perdidos= [0, 0, 12, 209, 267, 263, 256, 211, 192, 248, 246, 210, 234, 360, 330, 449, 496, 528, 386];
+const perdidos= [0, 0, 12, 209, 267, 263, 256, 211, 192, 248, 246, 210, 234, 360, 330, 449, 496, 528, 463];
 const meses19=['Jan/25','Fev/25','Mar/25','Abr/25','Mai/25','Jun/25','Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'];
 
 // Histórico
@@ -625,7 +625,7 @@ new Chart(document.getElementById('cFechamentos'),{
     labels:['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26*'],
     datasets:[{
       label:'Fechamentos',
-      data:[42,38,47,31,57,41,54],
+      data:[42,38,47,31,57,41,102],
       backgroundColor:['#10b981','#10b981','#10b981','#ef4444','#10b981','#10b981','rgba(16,185,129,0.5)'],
       borderRadius:4,borderSkipped:false
     }]
@@ -651,7 +651,7 @@ new Chart(document.getElementById('cMotivos'),{
   type:'doughnut',
   data:{
     labels:['Fora do ICP','Não é do ramo','Funcionalidade','Tent. esgotadas','Desistiu reunião','Outros'],
-    datasets:[{data:[123,115,78,81,48,55],backgroundColor:['#ef4444','#f97316','#f59e0b','#6366f1','#8b5cf6','#9ca3af'],borderWidth:0}]
+    datasets:[{data:[190,161,99,81,48,62],backgroundColor:['#ef4444','#f97316','#f59e0b','#6366f1','#8b5cf6','#9ca3af'],borderWidth:0}]
   },
   options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'right',labels:{font:{size:10},color:'#374151',boxWidth:10,padding:6}},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}}}
 });
