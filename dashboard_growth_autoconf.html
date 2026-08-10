@@ -98,8 +98,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
           <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Reuniões</div>
-          <div style="font-size:22px;font-weight:700;color:#3b82f6">268</div>
-          <div style="font-size:10px;color:#10b981">+34% vs jun</div>
+          <div style="font-size:22px;font-weight:700;color:#3b82f6">301</div>
+          <div style="font-size:10px;color:#10b981">+49% vs jun</div>
         </div>
         <div style="text-align:center;padding:10px 6px;background:#fef9f0;border-radius:8px;border:1px solid #fde68a">
           <div style="font-size:10px;color:#92400e;text-transform:uppercase;font-weight:600;margin-bottom:4px">Contratos</div>
@@ -109,7 +109,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:11px">
         <div style="padding:6px 8px;background:#f3f4f6;border-radius:6px;text-align:center"><div style="color:#9ca3af">Taxa MQL</div><strong>65%</strong></div>
-        <div style="padding:6px 8px;background:#d1fae5;border-radius:6px;text-align:center"><div style="color:#065f46">Taxa Close</div><strong style="color:#10b981">37,6% ✅</strong></div>
+        <div style="padding:6px 8px;background:#d1fae5;border-radius:6px;text-align:center"><div style="color:#065f46">Taxa Close</div><strong style="color:#10b981">33.9% ✅</strong></div>
         <div style="padding:6px 8px;background:#f3f4f6;border-radius:6px;text-align:center"><div style="color:#9ca3af">Perdidos</div><strong>463</strong></div>
       </div>
     </div>
@@ -337,7 +337,7 @@ const gc='rgba(0,0,0,0.04)', lc='#9ca3af';
 const meses14=['Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26*'];
 const leads   = [342,315,271,350,344,293,585,562,462,880,1167,1324,1324,313];
 const mqls    = [86,104,79,102,98,83,351,202,132,431,671,861,861,252];
-const reunions= [86,104,79,102,98,83,109,71,98,134,212,268,268,75];
+const reunions= [86,104,79,102,98,83,109,71,98,134,212,268,301,75];
 
 // Histórico
 new Chart(document.getElementById('cHistorico'),{
@@ -373,7 +373,7 @@ new Chart(document.getElementById('cSemanal'),{
   data:{labels:['S4 Jun','S1 Jul','S2 Jul','S3 Jul','S4 Jul','S1 Ago'],
     datasets:[
       {label:'Leads',data:[268,362,264,315,383,313],backgroundColor:'rgba(59,130,246,0.6)',borderRadius:3,yAxisID:'y'},
-      {label:'Reuniões',data:[56,46,77,62,83,75],backgroundColor:'rgba(139,92,246,0.8)',borderRadius:3,yAxisID:'y2'},
+      {label:'Reuniões',data:[56,46,77,62,120,75],backgroundColor:'rgba(139,92,246,0.8)',borderRadius:3,yAxisID:'y2'},
     ]},
   options:{responsive:true,maintainAspectRatio:false,
     plugins:{legend:{position:'bottom',labels:{font:{size:10},color:lc,boxWidth:9}},
