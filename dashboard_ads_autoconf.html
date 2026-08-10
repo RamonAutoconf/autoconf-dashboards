@@ -1026,6 +1026,97 @@ tr.highlight-row td { background: #eff6ff; font-weight: 600; }
     </div>
   </div>
 
+
+  <!-- ANÁLISE DE CAMPANHAS META ADS - AGOSTO -->
+  <div class="section-label">Análise de campanhas Meta Ads — agosto 2026</div>
+
+  <!-- KPIs gerais -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px">
+    <div class="kpi green">
+      <div class="kpi-label">Total leads</div>
+      <div class="kpi-value">1.236</div>
+      <div class="kpi-sub">7 campanhas ativas</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-label">Investimento</div>
+      <div class="kpi-value sm">R$22.196</div>
+      <div class="kpi-sub">agosto parcial</div>
+    </div>
+    <div class="kpi amber">
+      <div class="kpi-label">CPL médio</div>
+      <div class="kpi-value sm">R$17,96</div>
+      <div class="kpi-sub">todas as campanhas</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">Melhor CPL</div>
+      <div class="kpi-value sm">R$11,78</div>
+      <div class="kpi-sub">RENAVE Brasil 🏆</div>
+    </div>
+  </div>
+
+  <!-- Gráficos de performance -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Leads por campanha</span>
+        <span class="card-tag">Agosto 2026</span>
+      </div>
+      <div style="position:relative;height:240px">
+        <canvas id="cCampLeads"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">CPL por campanha — benchmark R$17,96</span>
+        <span class="card-tag">Azul = abaixo · Vermelho = acima</span>
+      </div>
+      <div style="position:relative;height:240px">
+        <canvas id="cCampCPL"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Eficiência + decisões -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;align-items:start">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Eficiência — leads por R$1.000 investidos</span>
+        <span class="card-tag">Azul ≥ 50 · Cinza abaixo</span>
+      </div>
+      <div style="position:relative;height:240px">
+        <canvas id="cCampEfic"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Decisão por campanha</span>
+        <span class="card-tag">Baseado em CPL + eficiência</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#f0fdf4;border-left:3px solid #10b981;border-radius:0 6px 6px 0;padding:10px 12px">
+          <div style="font-size:11px;font-weight:700;color:#065f46;margin-bottom:3px">🚀 ESCALAR — RENAVE Brasil</div>
+          <div style="font-size:11px;color:#166534">CPL R$11,78 · 84,9 leads/R$1k · melhor eficiência da conta. Dobrar orçamento para testar o teto.</div>
+        </div>
+        <div style="background:#f0fdf4;border-left:3px solid #10b981;border-radius:0 6px 6px 0;padding:10px 12px">
+          <div style="font-size:11px;font-weight:700;color:#065f46;margin-bottom:3px">✅ MANTER — Simulador de Financiamento</div>
+          <div style="font-size:11px;color:#166534">CPL R$12,70 · maior volume (352 leads). Atenção: freq. 2,56× — próximo da saturação.</div>
+        </div>
+        <div style="background:#fef2f2;border-left:3px solid #ef4444;border-radius:0 6px 6px 0;padding:10px 12px">
+          <div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:3px">⛔ PAUSAR — Lista Clientes</div>
+          <div style="font-size:11px;color:#7f1d1d">Frequência 7,4× · R$607 gastos · 0 leads. Público saturado — pausar ou renovar criativo.</div>
+        </div>
+        <div style="background:#fef2f2;border-left:3px solid #ef4444;border-radius:0 6px 6px 0;padding:10px 12px">
+          <div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:3px">⚠️ REVISAR — Agente de IA</div>
+          <div style="font-size:11px;color:#7f1d1d">CPL R$53,84 · 3× acima da média · R$4.953 investidos. Testar novo criativo antes de pausar.</div>
+        </div>
+        <div style="background:#fffbeb;border-left:3px solid #f59e0b;border-radius:0 6px 6px 0;padding:10px 12px">
+          <div style="font-size:11px;font-weight:700;color:#92400e;margin-bottom:3px">📊 OTIMIZAR — Artes Segmentadas</div>
+          <div style="font-size:11px;color:#78350f">Maior investimento (R$5.207) · CPL R$31,37 · 6 recomendações do Meta. Revisar segmentação.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <div class="footer">
   Autoconf · Dashboard de Mídia Paga · Planilha de Performance · Fev–Jun 2026
 </div>
@@ -1245,6 +1336,54 @@ new Chart(document.getElementById('cCPLDiaJulJun'), {
       y:{grid:{color:'rgba(0,0,0,0.04)'}, ticks:{color:'#9ca3af',font:{size:11},callback:v=>`R$${v}`}, beginAtZero:true, max:45}
     }
   }
+});
+
+
+// Campanhas Meta Ads - análise agosto
+const campLabels = ['Simulador','Artes Seg.','Autoconf Pro','Agente IA','RENAVE Brasil','Loja Motos'];
+const campLeads  = [352, 166, 136, 92, 90, 37];
+const campCPL    = [12.70, 31.37, 17.55, 53.84, 11.78, 29.14];
+const campInv    = [4468.75, 5207.42, 2386.87, 4953.00, 1060.16, 1078.28];
+const campEfic   = campLeads.map((l,i) => Math.round(l/campInv[i]*1000*10)/10);
+const cplBench   = 17.96;
+
+const cplLabelsSorted = ['RENAVE Brasil','Simulador','Autoconf Pro','Loja Motos','Artes Seg.','Agente IA'];
+const cplValsSorted   = [11.78, 12.70, 17.55, 29.14, 31.37, 53.84];
+const cplColors       = cplValsSorted.map(v => v <= cplBench ? '#10b981' : '#ef4444');
+
+const eficLabelsSorted = ['RENAVE Brasil','Simulador','Autoconf Pro','Loja Motos','Artes Seg.','Agente IA'];
+const eficValsSorted   = [84.9, 78.8, 57.0, 34.3, 31.9, 18.6];
+const eficColors       = eficValsSorted.map(v => v >= 50 ? '#3b82f6' : '#9ca3af');
+
+new Chart(document.getElementById('cCampLeads'),{
+  type:'bar',
+  data:{labels:campLabels,datasets:[{data:campLeads,
+    backgroundColor:['#3b82f6','#f59e0b','#10b981','#ef4444','#8b5cf6','#6366f1'],
+    borderRadius:4,borderSkipped:false}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.parsed.x} leads`}}},
+    scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9ca3af',font:{size:10}},beginAtZero:true},
+      y:{grid:{display:false},ticks:{color:'#374151',font:{size:11}}}}}
+});
+
+new Chart(document.getElementById('cCampCPL'),{
+  type:'bar',
+  data:{labels:cplLabelsSorted,datasets:[{data:cplValsSorted,
+    backgroundColor:cplColors,borderRadius:4,borderSkipped:false}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` R$${c.parsed.x.toFixed(2)} CPL`}}},
+    scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9ca3af',font:{size:10},callback:v=>'R$'+v},beginAtZero:true},
+      y:{grid:{display:false},ticks:{color:'#374151',font:{size:11}}}}}
+});
+
+new Chart(document.getElementById('cCampEfic'),{
+  type:'bar',
+  data:{labels:eficLabelsSorted,datasets:[{data:eficValsSorted,
+    backgroundColor:eficColors,borderRadius:4,borderSkipped:false}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.parsed.x} leads/R$1k`}}},
+    scales:{x:{grid:{color:'rgba(0,0,0,0.04)'},ticks:{color:'#9ca3af',font:{size:10}},beginAtZero:true},
+      y:{grid:{display:false},ticks:{color:'#374151',font:{size:11}}}}}
 });
 
 </script>
