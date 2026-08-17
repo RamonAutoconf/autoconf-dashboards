@@ -121,7 +121,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px">
         <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
           <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Leads</div>
-          <div style="font-size:22px;font-weight:700;color:#111">484</div>
+          <div style="font-size:22px;font-weight:700;color:#111">571</div>
           <div style="font-size:10px;color:#9ca3af">33.6/dia</div>
         </div>
         <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
@@ -131,7 +131,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
         </div>
         <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
           <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Reuniões</div>
-          <div style="font-size:22px;font-weight:700;color:#3b82f6">136</div>
+          <div style="font-size:22px;font-weight:700;color:#3b82f6">147</div>
           <div style="font-size:10px;color:#10b981">8.6/dia 🟢</div>
         </div>
         <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
@@ -238,7 +238,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
           <th>SDR</th><th class="right">1º Dia</th><th class="right">Agendado</th><th class="right">Reunião</th><th class="right">Status</th>
         </tr></thead>
         <tbody>
-<tr><td><strong>Otavio Amaral</strong></td><td class="right">1</td><td class="right">—</td><td class="right"><span class="pill pill-green">30</span></td><td class="right">97%</td><td class="right"><span class="pill pill-green">🏆 Top</span></td></tr>
+<tr><td><strong>Otavio Amaral</strong></td><td class="right">1</td><td class="right">—</td><td class="right"><span class="pill pill-green">37</span></td><td class="right">97%</td><td class="right"><span class="pill pill-green">🏆 Top</span></td></tr>
 <tr><td><strong>Leonardo Maldaner</strong></td><td class="right">8</td><td class="right">3</td><td class="right"><span class="pill pill-green">29</span></td><td class="right">72%</td><td class="right"><span class="pill pill-green">🏆 Top</span></td></tr>
 <tr><td><strong>João Gonçalves</strong></td><td class="right">18</td><td class="right">10</td><td class="right"><span class="pill pill-blue">24</span></td><td class="right">46%</td><td class="right"><span class="pill pill-blue">✓ Bom</span></td></tr>
 <tr><td><strong>Bruno Ianai</strong></td><td class="right">5</td><td class="right">6</td><td class="right"><span class="pill pill-blue">17</span></td><td class="right">61%</td><td class="right"><span class="pill pill-blue">✓ Bom</span></td></tr>
@@ -411,9 +411,9 @@ new Chart(document.getElementById('cSDR'),{
 // Cadência etapas agosto
 new Chart(document.getElementById('cEtapas'),{
   type:'bar',
-  data:{labels:['1º DIA','2º DIA','3º DIA','4º DIA','5º DIA','Reagend.','Agendado','Reunião'],
-    datasets:[{data:[46,48,27,28,6,1,22,107],
-      backgroundColor:['#6366f1','#f59e0b','#f59e0b','#f59e0b','#ef4444','#ef4444','#10b981','#10b981'],
+  data:{labels:['Novo Lead','1º DIA','2º DIA','3º DIA','4º DIA','5º DIA','Reagend.','Agendado','Reunião'],
+    datasets:[{data:[73,32,56,24,28,5,1,20,114],
+      backgroundColor:['#6366f1','#6366f1','#f59e0b','#f59e0b','#f59e0b','#ef4444','#ef4444','#10b981','#10b981'],
       borderRadius:4,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
     plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.parsed.x} leads`}}},
@@ -424,7 +424,7 @@ new Chart(document.getElementById('cEtapas'),{
 // Forecast reuniões agosto
 new Chart(document.getElementById('cForecast'),{
   type:'bar',
-  data:{labels:['Acumulado\nDia 6','Pessimista\nFim Ago','Realista\nFim Ago','Otimista\nFim Ago','Meta'],
+  data:{labels:['Acumulado\nDia 17','Pessimista\nFim Ago','Realista\nFim Ago','Otimista\nFim Ago','Meta'],
     datasets:[{data:[147,252,273,308,300],
       backgroundColor:['#374151','#9ca3af','#f59e0b','#10b981','rgba(239,68,68,0.3)'],
       borderColor:['#374151','#9ca3af','#f59e0b','#10b981','#ef4444'],
