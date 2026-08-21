@@ -7,59 +7,49 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#113027}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;color:#111}
 .topbar{background:#0f172a;height:56px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{font-size:15px;font-weight:700;color:#fff}.logo span{color:#10b981}
-.badge{background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px}
+.badge{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px}
 .period{font-size:12px;color:#64748b;background:#1e293b;padding:4px 12px;border-radius:6px}
 .main{max-width:1400px;margin:0 auto;padding:24px 32px}
-.section-label{font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.section-label::after{content:'';flex:1;height:1px;background:#e5e7eb}
+.slabel{font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.slabel::after{content:'';flex:1;height:1px;background:#e5e7eb}
 .card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px}
-.card-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-.card-title{font-size:13px;font-weight:600;color:#374151}
-.card-tag{font-size:11px;color:#6b7280;background:#f3f4f6;padding:2px 8px;border-radius:4px}
-.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
-.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.ct{font-size:13px;font-weight:600;color:#374151}
+.ctag{font-size:11px;color:#6b7280;background:#f3f4f6;padding:2px 8px;border-radius:4px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:16px}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:16px}
 .kpi{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:16px 18px;position:relative;overflow:hidden}
 .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.kpi.green::before{background:#10b981}.kpi.blue::before{background:#3b82f6}
-.kpi.amber::before{background:#f59e0b}.kpi.red::before{background:#ef4444}
-.kpi.purple::before{background:#8b5cf6}.kpi.teal::before{background:#0ea5e9}
-.kpi-label{font-size:10px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
-.kpi-value{font-size:26px;font-weight:700;color:#111;letter-spacing:-0.5px;line-height:1}
-.kpi-value.sm{font-size:20px}
-.kpi-trend{font-size:11px;margin-top:5px;font-weight:600}
-.kpi-trend.up{color:#10b981}.kpi-trend.down{color:#ef4444}.kpi-trend.good-down{color:#10b981}.kpi-trend.neutral{color:#9ca3af}
-.kpi-sub{font-size:11px;color:#6b7280;margin-top:3px}
-.kpi-bench{font-size:10px;margin-top:6px;padding:3px 6px;border-radius:4px;display:inline-block;font-weight:600}
-.bench-above{background:#d1fae5;color:#065f46}.bench-below{background:#fee2e2;color:#991b1b}.bench-ok{background:#fef3c7;color:#92400e}
-.gauge-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #f3f4f6}
-.gauge-row:last-child{border-bottom:none}
-.gauge-label{font-size:12px;color:#374151;font-weight:500;min-width:140px}
-.gauge-bar-bg{flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden}
-.gauge-bar-fill{height:100%;border-radius:4px}
-.gauge-val{font-size:12px;font-weight:700;min-width:40px;text-align:right}
-.gauge-bench{font-size:10px;color:#9ca3af;min-width:60px;text-align:right}
-.sdr-table{width:100%;border-collapse:collapse;font-size:12px}
-.sdr-table th{text-align:left;padding:8px 10px;color:#6b7280;font-size:11px;font-weight:600;text-transform:uppercase;border-bottom:2px solid #e5e7eb}
-.sdr-table th.right{text-align:right}
-.sdr-table td{padding:8px 10px;border-bottom:1px solid #f3f4f6}
-.sdr-table td.right{text-align:right;font-variant-numeric:tabular-nums}
-.sdr-table tr:hover td{background:#fafafa}
+.kpi.gr::before{background:#10b981}.kpi.bl::before{background:#3b82f6}
+.kpi.am::before{background:#f59e0b}.kpi.pu::before{background:#8b5cf6}
+.kpi.te::before{background:#0ea5e9}.kpi.go::before{background:linear-gradient(90deg,#f59e0b,#10b981)}
+.klb{font-size:10px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.kv{font-size:26px;font-weight:700;color:#111;line-height:1}
+.kv.sm{font-size:20px}
+.kt{font-size:11px;margin-top:5px;font-weight:600}
+.kt.up{color:#10b981}.kt.dn{color:#ef4444}.kt.ne{color:#9ca3af}
+.ks{font-size:11px;color:#6b7280;margin-top:3px}
+.kb{font-size:10px;margin-top:6px;padding:3px 6px;border-radius:4px;display:inline-block;font-weight:600}
+.ba{background:#d1fae5;color:#065f46}.bb{background:#fef3c7;color:#92400e}.bc{background:#fee2e2;color:#991b1b}
 .pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
-.pill-green{background:#d1fae5;color:#065f46}.pill-amber{background:#fef3c7;color:#92400e}
-.pill-red{background:#fee2e2;color:#991b1b}.pill-blue{background:#dbeafe;color:#1e40af}
+.pg{background:#d1fae5;color:#065f46}.pb{background:#dbeafe;color:#1e40af}.pa{background:#fef3c7;color:#92400e}.pr{background:#fee2e2;color:#991b1b}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{text-align:left;padding:8px 10px;color:#6b7280;font-size:11px;font-weight:600;text-transform:uppercase;border-bottom:2px solid #e5e7eb}
+.tbl th.r{text-align:right}
+.tbl td{padding:8px 10px;border-bottom:1px solid #f3f4f6}
+.tbl td.r{text-align:right;font-variant-numeric:tabular-nums}
+.tbl tr:hover td{background:#fafafa}
 .alerta{border-left:4px solid;border-radius:0 6px 6px 0;padding:10px 14px;font-size:12px;line-height:1.6;margin-bottom:8px}
-.alerta-red{background:#fef2f2;border-color:#ef4444;color:#991b1b}
-.alerta-amber{background:#fffbeb;border-color:#f59e0b;color:#92400e}
-.alerta-green{background:#f0fdf4;border-color:#10b981;color:#166534}
-.alerta-blue{background:#eff6ff;border-color:#3b82f6;color:#1e40af}
-.meta-row{display:flex;flex-direction:column;gap:14px}
-.meta-item{}
-.meta-bar-bg{height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;margin:5px 0 3px}
-.meta-bar-fill{height:100%;border-radius:4px}
+.ag{background:#f0fdf4;border-color:#10b981;color:#166534}
+.aa{background:#fffbeb;border-color:#f59e0b;color:#92400e}
+.ar{background:#fef2f2;border-color:#ef4444;color:#991b1b}
+.ab{background:#eff6ff;border-color:#3b82f6;color:#1e40af}
+.bar-bg{flex:1;height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden;margin:5px 0 3px}
+.bar-fill{height:100%;border-radius:4px}
 .footer{text-align:center;padding:24px 0;font-size:11px;color:#9ca3af}
 </style>
 </head>
@@ -67,277 +57,230 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 <div class="topbar">
   <div style="display:flex;align-items:center;gap:12px">
     <div class="logo">Auto<span>conf</span></div>
-    <span style="color:#334155;font-size:13px">Growth Dashboard — Pipeline INBOUND</span>
+    <span style="color:#334155;font-size:13px">Growth Dashboard — Pipeline ATF-INBOUND</span>
   </div>
   <div style="display:flex;align-items:center;gap:10px">
-    <span class="period">Ago/26 · dia 20 · vs Jul/26</span>
-    <span class="badge">📈 Growth View</span>
+    <span class="period">Ago/26 · dia 21 · vs Jul/26</span>
+    <span class="badge">📈 Agosto em andamento</span>
   </div>
 </div>
 
 <div class="main">
 
-  <!-- BLOCO DUPLO: JUL FECHADO + AGO PARCIAL -->
-  <div class="section-label">Julho fechado vs Agosto em andamento</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-    <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <div><div style="font-size:13px;font-weight:700;color:#374151">Julho 2026</div><div style="font-size:11px;color:#9ca3af">Mês fechado</div></div>
-        <span style="background:#d1fae5;color:#065f46;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">✅ Fechado</span>
+<!-- BLOCO DUPLO -->
+<div class="slabel">Julho fechado vs Agosto em andamento</div>
+<div class="g2" style="margin-bottom:16px">
+  <div style="background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div><div style="font-size:13px;font-weight:700;color:#374151">Julho 2026</div><div style="font-size:11px;color:#9ca3af">Mês fechado</div></div>
+      <span style="background:#d1fae5;color:#065f46;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">✅ Fechado</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px">
+      <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
+        <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Leads</div>
+        <div style="font-size:22px;font-weight:700;color:#111">1.324</div>
+        <div style="font-size:10px;color:#10b981">+2% vs jun</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px">
-        <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
-          <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Leads</div>
-          <div style="font-size:22px;font-weight:700;color:#111">1.324</div>
-          <div style="font-size:10px;color:#10b981">+2% vs jun</div>
-        </div>
-        <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
-          <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">MQLs</div>
-          <div style="font-size:22px;font-weight:700;color:#10b981">861</div>
-          <div style="font-size:10px;color:#10b981">108% meta 🎉</div>
-        </div>
-        <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
-          <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Reuniões</div>
-          <div style="font-size:22px;font-weight:700;color:#3b82f6">301</div>
-          <div style="font-size:10px;color:#10b981">+49% vs jun</div>
-        </div>
-        <div style="text-align:center;padding:10px 6px;background:#fef9f0;border-radius:8px;border:1px solid #fde68a">
-          <div style="font-size:10px;color:#92400e;text-transform:uppercase;font-weight:600;margin-bottom:4px">Contratos</div>
-          <div style="font-size:22px;font-weight:700;color:#f59e0b">102</div>
-          <div style="font-size:10px;color:#92400e">🏆 Recorde</div>
-        </div>
+      <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
+        <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">MQLs</div>
+        <div style="font-size:22px;font-weight:700;color:#10b981">861</div>
+        <div style="font-size:10px;color:#10b981">108% meta 🎉</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:11px">
-        <div style="padding:6px 8px;background:#f3f4f6;border-radius:6px;text-align:center"><div style="color:#9ca3af">Taxa MQL</div><strong>65%</strong></div>
-        <div style="padding:6px 8px;background:#d1fae5;border-radius:6px;text-align:center"><div style="color:#065f46">Taxa Close</div><strong style="color:#10b981">33.9% ✅</strong></div>
-        <div style="padding:6px 8px;background:#f3f4f6;border-radius:6px;text-align:center"><div style="color:#9ca3af">Perdidos</div><strong>463</strong></div>
+      <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
+        <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Reuniões</div>
+        <div style="font-size:22px;font-weight:700;color:#3b82f6">301</div>
+        <div style="font-size:10px;color:#10b981">+49% vs jun</div>
+      </div>
+      <div style="text-align:center;padding:10px 6px;background:#fef9f0;border-radius:8px;border:1px solid #fde68a">
+        <div style="font-size:10px;color:#92400e;text-transform:uppercase;font-weight:600;margin-bottom:4px">Contratos</div>
+        <div style="font-size:22px;font-weight:700;color:#f59e0b">102</div>
+        <div style="font-size:10px;color:#92400e">🏆 Recorde</div>
       </div>
     </div>
-    <div style="background:#fff;border:2px solid #3b82f6;border-radius:10px;padding:20px">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <div><div style="font-size:13px;font-weight:700;color:#374151">Agosto 2026</div><div style="font-size:11px;color:#9ca3af">Dia 20 de 31 · parcial</div></div>
-        <span style="background:#dbeafe;color:#1e40af;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">📊 Em andamento</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:11px">
+      <div style="padding:6px 8px;background:#f3f4f6;border-radius:6px;text-align:center"><div style="color:#9ca3af">Taxa MQL</div><strong>65%</strong></div>
+      <div style="padding:6px 8px;background:#d1fae5;border-radius:6px;text-align:center"><div style="color:#065f46">Taxa Close</div><strong style="color:#10b981">37,6% ✅</strong></div>
+      <div style="padding:6px 8px;background:#f3f4f6;border-radius:6px;text-align:center"><div style="color:#9ca3af">Perdidos</div><strong>463</strong></div>
+    </div>
+  </div>
+  <div style="background:#fff;border:2px solid #3b82f6;border-radius:10px;padding:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+      <div><div style="font-size:13px;font-weight:700;color:#374151">Agosto 2026</div><div style="font-size:11px;color:#9ca3af">Dia 21 de 31 · parcial</div></div>
+      <span style="background:#dbeafe;color:#1e40af;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px">📊 Em andamento</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px">
+      <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
+        <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Leads</div>
+        <div style="font-size:22px;font-weight:700;color:#111">735</div>
+        <div style="font-size:10px;color:#9ca3af">35,0/dia</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px">
-        <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
-          <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Leads</div>
-          <div style="font-size:22px;font-weight:700;color:#111">571</div>
-          <div style="font-size:10px;color:#9ca3af">33.6/dia</div>
-        </div>
-        <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
-          <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">MQLs</div>
-          <div style="font-size:22px;font-weight:700;color:#6b7280">252</div>
-          <div style="font-size:10px;color:#9ca3af">252 leads</div>
-        </div>
-        <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
-          <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Reuniões</div>
-          <div style="font-size:22px;font-weight:700;color:#3b82f6">147</div>
-          <div style="font-size:10px;color:#10b981">8.6/dia 🟢</div>
-        </div>
-        <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
-          <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Contratos</div>
-          <div style="font-size:22px;font-weight:700;color:#f59e0b">18</div>
-          <div style="font-size:10px;color:#10b981">dia 10 🟢</div>
-        </div>
+      <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
+        <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">MQLs</div>
+        <div style="font-size:22px;font-weight:700;color:#10b981">550</div>
+        <div style="font-size:10px;color:#10b981">painel ✓</div>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:11px">
-        <div style="padding:6px 8px;background:#eff6ff;border-radius:6px;text-align:center"><div style="color:#1e40af">Proj. Leads</div><strong>970</strong></div>
-        <div style="padding:6px 8px;background:#eff6ff;border-radius:6px;text-align:center"><div style="color:#1e40af">Proj. Reun</div><strong>226</strong></div>
-        <div style="padding:6px 8px;background:#eff6ff;border-radius:6px;text-align:center"><div style="color:#1e40af">Dias rest.</div><strong>14</strong></div>
+      <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
+        <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Reuniões</div>
+        <div style="font-size:22px;font-weight:700;color:#3b82f6">203</div>
+        <div style="font-size:10px;color:#10b981">10,2/dia 🟢</div>
+      </div>
+      <div style="text-align:center;padding:10px 6px;background:#f8fafc;border-radius:8px">
+        <div style="font-size:10px;color:#9ca3af;text-transform:uppercase;font-weight:600;margin-bottom:4px">Contratos</div>
+        <div style="font-size:22px;font-weight:700;color:#f59e0b">59</div>
+        <div style="font-size:10px;color:#10b981">29,1% close</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:11px">
+      <div style="padding:6px 8px;background:#eff6ff;border-radius:6px;text-align:center"><div style="color:#1e40af">Proj. Leads</div><strong>~1.083</strong></div>
+      <div style="padding:6px 8px;background:#eff6ff;border-radius:6px;text-align:center"><div style="color:#1e40af">Proj. Reun</div><strong>~316</strong></div>
+      <div style="padding:6px 8px;background:#eff6ff;border-radius:6px;text-align:center"><div style="color:#1e40af">Dias rest.</div><strong>10</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- KPIs FUNIL AGOSTO -->
+<div class="slabel">Funil de conversão — agosto dia 21</div>
+<div class="g5" style="margin-bottom:16px">
+  <div class="kpi bl">
+    <div class="klb">Leads gerados</div>
+    <div class="kv">735</div>
+    <div class="kt dn">▼ 16% vs jul dia 21</div>
+    <div class="ks">Jul dia 21: 876 leads</div>
+  </div>
+  <div class="kpi gr">
+    <div class="klb">MQLs</div>
+    <div class="kv">550</div>
+    <div class="kt up">▲ 75% taxa · painel ✓</div>
+    <div class="ks">185 perdidos reais</div>
+  </div>
+  <div class="kpi te">
+    <div class="klb">Reuniões realizadas</div>
+    <div class="kv">203</div>
+    <div class="kt up">▲ +28% vs jul dia 21</div>
+    <div class="ks">Jul dia 21: 158 reuniões</div>
+    <span class="kb ba">10,2/dia · bench 13% ✓</span>
+  </div>
+  <div class="kpi am">
+    <div class="klb">Fechamentos</div>
+    <div class="kv sm">59</div>
+    <div class="kt up">▲ 29,1% close rate</div>
+    <div class="ks">Jul fechado: 102 🏆</div>
+  </div>
+  <div class="kpi pu">
+    <div class="klb">Taxa Lead → Reun</div>
+    <div class="kv sm">27,6%</div>
+    <div class="kt up">▲ vs 20,2% jul</div>
+    <span class="kb ba">Bench: 13% ✓</span>
+  </div>
+</div>
+
+<!-- METAS + CADÊNCIA + FORECAST -->
+<div class="slabel">Metas de agosto — dia 21 de 31</div>
+<div class="g3" style="margin-bottom:16px">
+  <div class="card">
+    <div class="ch"><span class="ct">Metas do mês</span><span class="ctag">Dia 21 · Faltam 250 MQLs</span></div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:12px;font-weight:600">MQLs</span>
+          <span style="font-size:12px;color:#6b7280">550 de 800 <strong style="color:#10b981">69%</strong></span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" style="width:69%;background:#10b981"></div></div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:3px">Faltam 250 em 10 dias · 25,0/dia</div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:12px;font-weight:600">Reuniões</span>
+          <span style="font-size:12px;color:#6b7280">203 de 300 <strong style="color:#10b981">68%</strong></span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" style="width:68%;background:#8b5cf6"></div></div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:3px">Faltam 97 em 10 dias · 9,7/dia</div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:12px;font-weight:600">Fechamentos</span>
+          <span style="font-size:12px;color:#6b7280">59 — aguardando meta</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" style="width:58%;background:#f59e0b"></div></div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:3px">Ref: jul/26 = 102 (recorde)</div>
       </div>
     </div>
   </div>
 
-  <!-- FUNIL + CONVERSÕES AGOSTO -->
-  <div class="section-label">Funil de conversão — agosto 2026 · dia 6</div>
-  <div class="grid-5" style="margin-bottom:16px">
-    <div class="kpi green">
-      <div class="kpi-label">Leads gerados</div>
-      <div class="kpi-value">693</div>
-      <div class="kpi-trend down">▲ +23% vs jul dia 20</div>
-      <div class="kpi-sub">Jul dia 20: 876 leads</div>
-    </div>
-    <div class="kpi blue">
-      <div class="kpi-label">MQLs (estimativa)</div>
-      <div class="kpi-value">~558</div>
-      <div class="kpi-trend neutral">→ 68% taxa est.</div>
-      <div class="kpi-sub">Aguardando painel HubSpot</div>
-    </div>
-    <div class="kpi teal">
-      <div class="kpi-label">Reuniões realizadas</div>
-      <div class="kpi-value">75</div>
-      <div class="kpi-trend up">▼ 21% vs jul dia 20</div>
-      <div class="kpi-sub">Jul dia 10: 93 reuniões</div>
-      <span class="kpi-bench bench-above">7.9.3/dia · bench: 13%</span>
-    </div>
-    <div class="kpi amber">
-      <div class="kpi-label">Fechamentos</div>
-      <div class="kpi-value sm">—</div>
-      <div class="kpi-trend neutral">→ Aguardando</div>
-      <div class="kpi-sub">Jul fechado: 102 🏆</div>
-    </div>
-    <div class="kpi purple">
-      <div class="kpi-label">Taxa Lead → Reun</div>
-      <div class="kpi-value sm">23.3%</div>
-      <div class="kpi-trend up">→ vs 20,2% jul fechado</div>
-      <span class="kpi-bench bench-above">Bench: 13% ✓</span>
+  <div class="card">
+    <div class="ch"><span class="ct">Cadência — leads por etapa</span><span class="ctag">735 leads · dia 21</span></div>
+    <div style="position:relative;height:210px"><canvas id="cEtapas"></canvas></div>
+    <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
+      <div style="background:#eff6ff;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#1e40af">🔵 NL+1D</span><strong>55</strong></div>
+      <div style="background:#fffbeb;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#92400e">🟡 2D-4D</span><strong>124</strong></div>
+      <div style="background:#fef2f2;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#991b1b">🔴 5D+</span><strong>12</strong></div>
+      <div style="background:#f0fdf4;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#166534">✅ Avançados</span><strong>195</strong></div>
     </div>
   </div>
 
-  <!-- TAXAS + FLUXO SEMANAL + MOTIVOS -->
-  <div class="section-label">Velocidade e qualidade — agosto</div>
-  <div class="grid-3" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-header"><span class="card-title">Taxas de conversão vs benchmark</span><span class="card-tag">B2B SaaS 2026</span></div>
-      <div class="gauge-row">
-        <span class="gauge-label">Lead → MQL</span>
-        <div class="gauge-bar-bg"><div class="gauge-bar-fill" style="width:32%;background:#10b981"></div></div>
-        <span class="gauge-val" style="color:#10b981">~68%</span>
-        <span class="gauge-bench">bench 31%</span>
-      </div>
-      <div class="gauge-row">
-        <span class="gauge-label">Lead → Reunião</span>
-        <div class="gauge-bar-bg"><div class="gauge-bar-fill" style="width:100%;background:#3b82f6"></div></div>
-        <span class="gauge-val" style="color:#3b82f6">25%</span>
-        <span class="gauge-bench">bench 13%</span>
-      </div>
-      <div class="gauge-row">
-        <span class="gauge-label">Reun → Fechamento</span>
-        <div class="gauge-bar-bg"><div class="gauge-bar-fill" style="width:64%;background:#10b981"></div></div>
-        <span class="gauge-val" style="color:#10b981">37,6%</span>
-        <span class="gauge-bench">bench 36%</span>
-      </div>
-      <div class="alerta-green alerta" style="margin-top:12px">
-        🏆 Jul/26 bateu o benchmark de Reun→Close (37,6% vs 36%). Manter o ritmo em agosto.
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><span class="card-title">Fluxo semanal — Leads e Reuniões</span><span class="card-tag">Ago dias 1–6</span></div>
-      <div style="position:relative;height:210px"><canvas id="cSemanal"></canvas></div>
-      <div style="margin-top:10px;font-size:11px;color:#6b7280;background:#f8fafc;border-radius:6px;padding:8px 10px">
-        📊 Ago semana 1: 196 leads · 49 reuniões · 25% conversão (vs 19% jul semana 1)
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><span class="card-title">Motivos de perda — julho fechado</span><span class="card-tag">463 perdidos</span></div>
-      <div style="position:relative;height:200px"><canvas id="cMotivos"></canvas></div>
-      <div style="margin-top:8px;display:flex;flex-direction:column;gap:4px;font-size:11px">
-        <div class="alerta-red alerta">🔴 Fora do ICP (41%) — ajustar segmentação</div>
-        <div class="alerta-amber alerta">🟡 Não é do ramo (35%) — filtrar melhor</div>
-      </div>
+  <div class="card">
+    <div class="ch"><span class="ct">Forecast reuniões</span><span class="ctag">3 cenários · 10 dias</span></div>
+    <div style="position:relative;height:210px"><canvas id="cForecast"></canvas></div>
+    <div style="margin-top:10px;font-size:11px;color:#6b7280;background:#f8fafc;border-radius:6px;padding:8px 10px">
+      🎯 Cenário otimista (12/dia) bate a meta! Ritmo atual: 10,2/dia.
     </div>
   </div>
+</div>
 
-  <!-- SDR PERFORMANCE -->
-  <div class="section-label">Performance dos SDRs — agosto 2026 (início)</div>
-  <div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:16px;align-items:start">
-    <div class="card">
-      <div class="card-header"><span class="card-title">Reuniões por SDR — agosto dia 6</span><span class="card-tag">190 reuniões atribuídas</span></div>
-      <table class="sdr-table">
-        <thead><tr>
-          <th>SDR</th><th class="right">1º Dia</th><th class="right">Agendado</th><th class="right">Reunião</th><th class="right">Status</th>
-        </tr></thead>
-        <tbody>
-<tr><td><strong>João Gonçalves</strong></td><td class="right">—</td><td class="right">—</td><td class="right"><span class="pill pill-green">45</span></td><td class="right">—</td><td class="right"><span class="pill pill-green">🏆 Top</span></td></tr>
-<tr><td><strong>Leonardo Maldaner</strong></td><td class="right">—</td><td class="right">—</td><td class="right"><span class="pill pill-green">44</span></td><td class="right">—</td><td class="right"><span class="pill pill-green">🏆 Top</span></td></tr>
-<tr><td><strong>Otavio Amaral</strong></td><td class="right">—</td><td class="right">—</td><td class="right"><span class="pill pill-green">40</span></td><td class="right">—</td><td class="right"><span class="pill pill-blue">✓ Bom</span></td></tr>
-<tr><td><strong>Bruno Ianai</strong></td><td class="right">—</td><td class="right">—</td><td class="right"><span class="pill pill-blue">24</span></td><td class="right">—</td><td class="right"><span class="pill pill-blue">✓ Bom</span></td></tr>
-<tr><td><strong>João Mattos</strong></td><td class="right">—</td><td class="right">—</td><td class="right"><span class="pill pill-blue">20</span></td><td class="right">—</td><td class="right"><span class="pill pill-blue">✓ Bom</span></td></tr>
-<tr><td><strong>Lucas Nikolofski</strong></td><td class="right">—</td><td class="right">—</td><td class="right">5</td><td class="right">—</td><td class="right"><span class="pill pill-amber">↑ Crescendo</span></td></tr>
-</tbody>
-      </table>
-      <div class="alerta-blue alerta" style="margin-top:12px">
-        ⚠️ Dados estimados para dia 6 — atualizar quando houver dados completos no HubSpot.
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header"><span class="card-title">Reuniões por SDR</span><span class="card-tag">Ago dia 6</span></div>
-      <div style="position:relative;height:200px"><canvas id="cSDR"></canvas></div>
-      <div style="margin-top:14px;display:flex;flex-direction:column;gap:5px;font-size:11px">
-        <div style="display:flex;justify-content:space-between;padding:5px 8px;background:#f8fafc;border-radius:4px"><span style="color:#6b7280">Reuniões/SDR/mês (bench)</span><span style="font-weight:700">15–25</span></div>
-        <div style="display:flex;justify-content:space-between;padding:5px 8px;background:#d1fae5;border-radius:4px"><span style="color:#065f46">Jul/26 média</span><span style="font-weight:700;color:#065f46">22 ✓</span></div>
-      </div>
+<!-- SDR + MOTIVOS -->
+<div class="slabel">Performance dos SDRs — agosto dia 21</div>
+<div style="display:grid;grid-template-columns:3fr 2fr;gap:16px;margin-bottom:16px;align-items:start">
+  <div class="card">
+    <div class="ch"><span class="ct">Reuniões por SDR</span><span class="ctag">208 reuniões atribuídas</span></div>
+    <table class="tbl">
+      <thead><tr><th>SDR</th><th class="r">Reuniões</th><th class="r">Status</th></tr></thead>
+      <tbody>
+        <tr><td><strong>João Gonçalves</strong></td><td class="r"><span class="pill pg">49</span></td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
+        <tr><td><strong>Leonardo Maldaner</strong></td><td class="r"><span class="pill pg">48</span></td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
+        <tr><td><strong>Otavio Amaral</strong></td><td class="r"><span class="pill pg">45</span></td><td class="r"><span class="pill pb">✓ Bom</span></td></tr>
+        <tr><td><strong>Bruno Ianai</strong></td><td class="r"><span class="pill pb">25</span></td><td class="r"><span class="pill pb">✓ Bom</span></td></tr>
+        <tr><td><strong>João Mattos</strong></td><td class="r"><span class="pill pb">20</span></td><td class="r"><span class="pill pb">✓ Bom</span></td></tr>
+        <tr><td><strong>Lucas Nikolofski</strong></td><td class="r">5</td><td class="r"><span class="pill pa">↑ Crescendo</span></td></tr>
+        <tr><td><strong>Thiago / William / Victor</strong></td><td class="r">4 cada</td><td class="r"><span class="pill pa">↑ Crescendo</span></td></tr>
+      </tbody>
+    </table>
+    <div class="ag alerta" style="margin-top:12px">🏆 Top 3 acima de 45 reuniões. Time bem distribuído — sem dependência de uma pessoa.</div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="ct">Motivos de perda — agosto</span><span class="ctag">185 perdidos · painel ✓</span></div>
+    <div style="position:relative;height:200px"><canvas id="cMotivos"></canvas></div>
+    <div style="margin-top:8px;display:flex;flex-direction:column;gap:4px;font-size:11px">
+      <div class="ar alerta">🔴 Fora do ICP (51%) — maior fatia em agosto vs julho (41%)</div>
+      <div class="aa alerta">🟡 Não é do ramo (34%) — tendência estável</div>
     </div>
   </div>
+</div>
 
-  <!-- METAS AGOSTO -->
-  <div class="section-label">Metas de agosto — dia 6 de 31</div>
-  <div class="grid-3" style="margin-bottom:16px">
-    <div class="card">
-      <div class="card-header"><span class="card-title">Metas do mês</span><span class="card-tag">Dia 10 · Faltam 587 MQLs</span></div>
-      <div class="meta-row">
-        <div class="meta-item">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-            <span style="font-size:12px;font-weight:600">MQLs</span>
-            <span style="font-size:12px;color:#6b7280">~558 de 800 <strong style="color:#f59e0b">70%</strong></span>
-          </div>
-          <div class="meta-bar-bg"><div class="meta-bar-fill" style="width:27%;background:#10b981"></div></div>
-          <div style="font-size:10px;color:#9ca3af;margin-top:3px">Projeção fim mês: pess ~1001 · real ~1074 · otim ~1133 leads</div>
-        </div>
-        <div class="meta-item">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-            <span style="font-size:12px;font-weight:600">Reuniões</span>
-            <span style="font-size:12px;color:#6b7280">195 de 300 <strong style="color:#f59e0b">65%</strong></span>
-          </div>
-          <div class="meta-bar-bg"><div class="meta-bar-fill" style="width:25%;background:#8b5cf6"></div></div>
-          <div style="font-size:10px;color:#9ca3af;margin-top:3px">Faltam 225 em 21 dias · 10.8/dia</div>
-        </div>
-        <div class="meta-item">
-          <div style="display:flex;justify-content:space-between;margin-bottom:4px">
-            <span style="font-size:12px;font-weight:600">Fechamentos</span>
-            <span style="font-size:12px;color:#6b7280">— aguardando</span>
-          </div>
-          <div class="meta-bar-bg"><div class="meta-bar-fill" style="width:0%;background:#f59e0b"></div></div>
-          <div style="font-size:10px;color:#9ca3af;margin-top:3px">Ref: jul/26 = 102 (recorde)</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><span class="card-title">Cadência — leads de agosto</span><span class="card-tag">693 leads · dia 20</span></div>
-      <div style="position:relative;height:200px"><canvas id="cEtapas"></canvas></div>
-      <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px">
-        <div style="background:#eff6ff;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#1e40af">🔵 NL+1º Dia</span><strong>105</strong></div>
-        <div style="background:#fffbeb;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#92400e">🟡 2D-4D</span><strong>108</strong></div>
-        <div style="background:#fef2f2;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#991b1b">🔴 5D+Reag</span><strong>6</strong></div>
-        <div style="background:#f0fdf4;border-radius:6px;padding:6px 8px;display:flex;justify-content:space-between"><span style="color:#166534">✅ Avançados</span><strong>134</strong></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><span class="card-title">Forecast de reuniões — agosto</span><span class="card-tag">3 cenários · 14 dias restantes</span></div>
-      <div style="position:relative;height:200px"><canvas id="cForecast"></canvas></div>
-      <div style="margin-top:10px;font-size:11px;color:#6b7280;background:#f8fafc;border-radius:6px;padding:8px 10px">
-        🎯 Cenário otimista (10.8/dia) bate a meta. Ritmo atual: 7.3/dia.
-      </div>
+<!-- HISTÓRICO -->
+<div class="slabel">Histórico 14 meses — Jul/25 a Ago/26*</div>
+<div class="g2">
+  <div class="card">
+    <div class="ch"><span class="ct">Leads, MQLs e Reuniões</span><span class="ctag">Jul/25–Ago/26*</span></div>
+    <div style="position:relative;height:220px"><canvas id="cHistorico"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="ch"><span class="ct">Fechamentos mensais 2026</span><span class="ctag">Jan–Ago · ATF-VENDAS</span></div>
+    <div style="position:relative;height:220px"><canvas id="cFechamentos"></canvas></div>
+    <div style="margin-top:10px;font-size:11px;color:#6b7280;background:#f8fafc;border-radius:6px;padding:8px 10px">
+      🏆 Jul/26: 102 — recorde histórico · Ago/26 dia 21: 59 (ritmo pra bater jul)
     </div>
   </div>
-
-  <!-- HISTÓRICO -->
-  <div class="section-label">Histórico e tendências — Jul/25 a Ago/26</div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-header"><span class="card-title">Leads, MQLs e Reuniões — 14 meses</span><span class="card-tag">Jul/25–Ago/26*</span></div>
-      <div style="position:relative;height:220px"><canvas id="cHistorico"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="card-header"><span class="card-title">Fechamentos mensais — 2026</span><span class="card-tag">Jan–Jul 2026 · ATF-VENDAS</span></div>
-      <div style="position:relative;height:220px"><canvas id="cFechamentos"></canvas></div>
-      <div style="margin-top:10px;font-size:11px;color:#6b7280;background:#f8fafc;border-radius:6px;padding:8px 10px">
-        🏆 Julho/26: 102 fechamentos — melhor mês da história da Autoconf
-      </div>
-    </div>
-  </div>
+</div>
 
 </div>
-<div class="footer">Autoconf · Growth Dashboard · Pipeline ATF-INBOUND · HubSpot · Ago/26 dia 13 · Benchmarks B2B SaaS 2026</div>
+<div class="footer">Autoconf · Growth Dashboard · ATF-INBOUND · HubSpot · Ago/26 dia 21 · Benchmarks B2B SaaS 2026</div>
 
 <script>
-const gc='rgba(0,0,0,0.04)', lc='#9ca3af';
+const gc='rgba(0,0,0,0.04)',lc='#9ca3af';
 const meses14=['Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26*'];
-const leads   = [342,315,271,350,344,293,585,562,462,880,1167,1324,1324,693];
-const mqls    = [86,104,79,102,98,83,351,202,132,431,671,861,861,558];
-const reunions= [86,104,79,102,98,83,109,71,98,134,212,301,301,195];
+const leads   =[342,315,271,350,344,293,585,562,462,880,1167,1324,1324,735];
+const mqls    =[86,104,79,102,98,83,351,202,132,431,671,861,861,550];
+const reunions=[86,104,79,102,98,83,109,71,98,134,212,301,301,203];
 
 // Histórico
 new Chart(document.getElementById('cHistorico'),{
@@ -354,87 +297,58 @@ new Chart(document.getElementById('cHistorico'),{
       y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
 });
 
-// Fechamentos 2026
+// Fechamentos
 new Chart(document.getElementById('cFechamentos'),{
   type:'bar',
-  data:{labels:['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26'],
-    datasets:[{label:'Fechamentos',data:[42,38,47,31,57,40,102],
-      backgroundColor:['#6366f1','#6366f1','#6366f1','#ef4444','#10b981','#6366f1','#f59e0b'],
+  data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago*'],
+    datasets:[{label:'Fechamentos',data:[42,38,47,31,57,40,102,59],
+      backgroundColor:['#6366f1','#6366f1','#6366f1','#ef4444','#10b981','#6366f1','#f59e0b','#3b82f6'],
       borderRadius:4,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.parsed.y} fechamentos`}}},
     scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}}},
       y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
 });
 
-// Semanal agosto
-new Chart(document.getElementById('cSemanal'),{
-  type:'bar',
-  data:{labels:['S4 Jun','S1 Jul','S2 Jul','S3 Jul','S4 Jul','S1 Ago'],
-    datasets:[
-      {label:'Leads',data:[30,29,24,17,4,3,2],backgroundColor:'rgba(59,130,246,0.6)',borderRadius:3,yAxisID:'y'},
-      {label:'Reuniões',data:[56,46,77,62,120,195],backgroundColor:'rgba(139,92,246,0.8)',borderRadius:3,yAxisID:'y2'},
-    ]},
-  options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:lc,boxWidth:9}},
-      tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}},
-    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:10}}},
-      y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true,position:'left'},
-      y2:{grid:{display:false},ticks:{color:lc,font:{size:10}},beginAtZero:true,position:'right'}}}
-});
-
-// Motivos de perda julho
-new Chart(document.getElementById('cMotivos'),{
-  type:'doughnut',
-  data:{labels:['Fora do ICP','Não é do ramo','Funcionalidade','Tent. esgotadas','Desistiu reunião','Outros'],
-    datasets:[{data:[190,161,99,81,48,45],
-      backgroundColor:['#ef4444','#f97316','#f59e0b','#6366f1','#8b5cf6','#9ca3af'],borderWidth:0}]},
-  options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
-    plugins:{legend:{position:'right',labels:{font:{size:10},color:'#374151',boxWidth:10,padding:6}},
-      tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10}}}
-});
-
-// SDR agosto
-new Chart(document.getElementById('cSDR'),{
-  type:'bar',
-  data:{labels:['Otavio','Leonardo','João G.','Bruno','João M.','William','Thiago'],
-    datasets:[{label:'Reuniões',data:[13,11,12,10,4,1],
-      backgroundColor:['#10b981','#10b981','#3b82f6','#3b82f6','#f59e0b','#f59e0b','#9ca3af'],
-      borderRadius:4,borderSkipped:false}]},
-  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
-    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.parsed.x} reuniões`}}},
-    scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},
-      y:{grid:{display:false},ticks:{color:'#374151',font:{size:11,weight:'600'}}}}}
-});
-
-// Cadência etapas agosto
+// Etapas
 new Chart(document.getElementById('cEtapas'),{
   type:'bar',
   data:{labels:['Novo Lead','1º DIA','2º DIA','3º DIA','4º DIA','5º DIA','Reagend.','Agendado','Reunião'],
-    datasets:[{data:[73,32,56,24,28,5,1,20,114],
+    datasets:[{data:[2,53,71,35,18,11,1,26,169],
       backgroundColor:['#6366f1','#6366f1','#f59e0b','#f59e0b','#f59e0b','#ef4444','#ef4444','#10b981','#10b981'],
       borderRadius:4,borderSkipped:false}]},
-  options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
     plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,callbacks:{label:c=>` ${c.parsed.x} leads`}}},
     scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},
       y:{grid:{display:false},ticks:{color:'#374151',font:{size:10,weight:'600'}}}}}
 });
 
-// Forecast reuniões agosto
+// Forecast
 new Chart(document.getElementById('cForecast'),{
   type:'bar',
-  data:{labels:['Acumulado\nDia 17','Pessimista\nFim Ago','Realista\nFim Ago','Otimista\nFim Ago','Meta'],
-    datasets:[{data:[195,278,294,322,300],
+  data:{labels:['Acumulado\nDia 21','Pessimista\n(7,5/dia)','Realista\n(9,7/dia)','Otimista\n(12/dia)','Meta'],
+    datasets:[{data:[203,278,300,323,300],
       backgroundColor:['#374151','#9ca3af','#f59e0b','#10b981','rgba(239,68,68,0.3)'],
       borderColor:['#374151','#9ca3af','#f59e0b','#10b981','#ef4444'],
       borderWidth:2,borderRadius:6,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,
-    plugins:{legend:{display:false},
-      tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:12,
-        callbacks:{label:c=>{const pct=Math.round(c.parsed.y/300*100);return ` ${c.parsed.y} reuniões (${pct}% da meta)`;
-        }}}},
-    scales:{x:{grid:{display:false},ticks:{color:'#374151',font:{size:10,weight:'600'}}},
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:12,
+      callbacks:{label:c=>{const pct=Math.round(c.parsed.y/300*100);return ` ${c.parsed.y} reuniões (${pct}% da meta)`;
+      }}}},
+    scales:{x:{grid:{display:false},ticks:{color:'#374151',font:{size:10}}},
       y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:false,min:0}}}
+});
+
+// Motivos de perda
+new Chart(document.getElementById('cMotivos'),{
+  type:'doughnut',
+  data:{labels:['Fora do ICP','Não é do ramo','Funcionalidade','Quer comprar veículo'],
+    datasets:[{data:[94,63,21,7],
+      backgroundColor:['#8b5cf6','#ef4444','#f59e0b','#06b6d4'],borderWidth:0}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
+    plugins:{legend:{position:'right',labels:{font:{size:10},color:'#374151',boxWidth:10,padding:6}},
+      tooltip:{backgroundColor:'#111',titleColor:'#fff',bodyColor:'#d1d5db',padding:10,
+        callbacks:{label:c=>` ${c.parsed} (${Math.round(c.parsed/185*100)}%)`}}}}
 });
 </script>
 </body>
