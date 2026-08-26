@@ -381,32 +381,147 @@ body {
     </div>
   </div>
 
-  <!-- ── CADÊNCIA + MOTIVOS ── -->
+    <!-- ── FUNIL DE CONVERSÃO ── -->
   <div>
-    <div class="section-header"><span class="section-label">Funil e qualidade de leads</span><div class="section-line"></div></div>
+    <div class="section-header"><span class="section-label">Funil de conversão — agosto vs julho</span><div class="section-line"></div></div>
+
+    <!-- Funil visual principal -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-header">
+        <div><div class="card-title">Funil completo — agosto 2026</div><div class="card-sub">Taxas de conversão etapa a etapa · comparativo com julho</div></div>
+        <span class="card-tag">Dia 25 · parcial</span>
+      </div>
+
+      <!-- Etapas do funil -->
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative">
+
+        <!-- Linha conectora de fundo -->
+        <div style="position:absolute;top:52px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,#4d9fff,#00e5a0,#a78bfa,#ffb830);opacity:0.15;z-index:0"></div>
+
+        <!-- LEADS -->
+        <div style="text-align:center;padding:20px 12px;position:relative;z-index:1">
+          <div style="width:72px;height:72px;border-radius:50%;background:rgba(77,159,255,0.12);border:2px solid #4d9fff;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;font-weight:800;color:#4d9fff;letter-spacing:-1px">869</div>
+          <div style="font-size:11px;font-weight:700;color:#f0f2f5;margin-bottom:4px">Total de Leads</div>
+          <div style="font-size:10px;color:#4d5566">34,8/dia</div>
+          <div style="margin-top:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="font-size:10px;color:#4d5566">Jul: 1.324</div>
+            <div style="font-size:10px;font-weight:600;color:#ff5a5a">▼ 34,4%</div>
+          </div>
+        </div>
+
+        <!-- SETA + TAXA -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 0">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#4d5566;margin-bottom:6px">Taxa MQL</div>
+          <div style="font-size:22px;font-weight:800;color:#00e5a0;letter-spacing:-1px">73,5%</div>
+          <div style="font-size:9px;color:#4d5566;margin-top:2px">230 perdidos</div>
+          <div style="width:100%;height:1px;background:rgba(255,255,255,0.05);margin:8px 0"></div>
+          <div style="font-size:10px;color:#4d5566">Jul: 65,0%</div>
+          <div style="font-size:10px;font-weight:600;color:#00e5a0">▲ +8,5pp</div>
+        </div>
+
+        <!-- MQLs -->
+        <div style="text-align:center;padding:20px 12px;position:relative;z-index:1">
+          <div style="width:72px;height:72px;border-radius:50%;background:rgba(0,229,160,0.12);border:2px solid #00e5a0;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;font-weight:800;color:#00e5a0;letter-spacing:-1px">639</div>
+          <div style="font-size:11px;font-weight:700;color:#f0f2f5;margin-bottom:4px">MQLs</div>
+          <div style="font-size:10px;color:#4d5566">80% da meta (800)</div>
+          <div style="margin-top:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="font-size:10px;color:#4d5566">Jul: 861</div>
+            <div style="font-size:10px;font-weight:600;color:#ff5a5a">▼ 25,8%</div>
+          </div>
+        </div>
+
+        <!-- SETA + TAXA -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px 0">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#4d5566;margin-bottom:6px">MQL→Reun.</div>
+          <div style="font-size:22px;font-weight:800;color:#a78bfa;letter-spacing:-1px">37,1%</div>
+          <div style="font-size:9px;color:#4d5566;margin-top:2px">dos MQLs</div>
+          <div style="width:100%;height:1px;background:rgba(255,255,255,0.05);margin:8px 0"></div>
+          <div style="font-size:10px;color:#4d5566">Jul: 35,0%</div>
+          <div style="font-size:10px;font-weight:600;color:#00e5a0">▲ +2,1pp</div>
+        </div>
+
+        <!-- REUNIÕES -->
+        <div style="text-align:center;padding:20px 12px;position:relative;z-index:1">
+          <div style="width:72px;height:72px;border-radius:50%;background:rgba(167,139,250,0.12);border:2px solid #a78bfa;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;font-weight:800;color:#a78bfa;letter-spacing:-1px">237</div>
+          <div style="font-size:11px;font-weight:700;color:#f0f2f5;margin-bottom:4px">Reuniões</div>
+          <div style="font-size:10px;color:#4d5566">79% da meta (300)</div>
+          <div style="margin-top:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="font-size:10px;color:#4d5566">Jul: 301</div>
+            <div style="font-size:10px;font-weight:600;color:#ff5a5a">▼ 21,3%</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Segunda linha: Reuniões → Contratos -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:4px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05)">
+        <div></div>
+
+        <!-- SETA + TAXA CLOSE -->
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0">
+          <div style="font-size:9px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#4d5566;margin-bottom:6px">Reun.→Contrato</div>
+          <div style="font-size:22px;font-weight:800;color:#ffb830;letter-spacing:-1px">30,4%</div>
+          <div style="font-size:9px;color:#4d5566;margin-top:2px">bench SaaS: 36%</div>
+          <div style="width:60%;height:1px;background:rgba(255,255,255,0.05);margin:8px 0"></div>
+          <div style="font-size:10px;color:#4d5566">Jul: 33,9%</div>
+          <div style="font-size:10px;font-weight:600;color:#ff5a5a">▼ 3,5pp</div>
+        </div>
+
+        <!-- CONTRATOS -->
+        <div style="text-align:center;padding:12px">
+          <div style="width:72px;height:72px;border-radius:50%;background:rgba(255,184,48,0.12);border:2px solid #ffb830;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;font-weight:800;color:#ffb830;letter-spacing:-1px">72</div>
+          <div style="font-size:11px;font-weight:700;color:#f0f2f5;margin-bottom:4px">Contratos</div>
+          <div style="font-size:10px;color:#4d5566">72% da meta (100)</div>
+          <div style="margin-top:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.05)">
+            <div style="font-size:10px;color:#4d5566">Jul: 102 🏆</div>
+            <div style="font-size:10px;font-weight:600;color:#ff5a5a">▼ 29,4%</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha de métricas resumo -->
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.05)">
+        <div style="background:rgba(77,159,255,0.07);border:1px solid rgba(77,159,255,0.15);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#4d9fff;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Lead → MQL</div>
+          <div style="font-size:20px;font-weight:800;color:#fff">73,5%</div>
+          <div style="font-size:10px;color:#00e5a0;margin-top:3px">▲ +8,5pp vs jul</div>
+        </div>
+        <div style="background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.15);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#00e5a0;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">MQL → Reunião</div>
+          <div style="font-size:20px;font-weight:800;color:#fff">37,1%</div>
+          <div style="font-size:10px;color:#00e5a0;margin-top:3px">▲ +2,1pp vs jul</div>
+        </div>
+        <div style="background:rgba(255,184,48,0.07);border:1px solid rgba(255,184,48,0.15);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#ffb830;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Reunião → Close</div>
+          <div style="font-size:20px;font-weight:800;color:#fff">30,4%</div>
+          <div style="font-size:10px;color:#ff5a5a;margin-top:3px">▼ 3,5pp vs jul</div>
+        </div>
+        <div style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.15);border-radius:10px;padding:12px;text-align:center">
+          <div style="font-size:10px;color:#a78bfa;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Lead → Contrato</div>
+          <div style="font-size:20px;font-weight:800;color:#fff">8,3%</div>
+          <div style="font-size:10px;color:#4d5566;margin-top:3px">Jul: 7,7% · stable</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Barras de comparação -->
     <div class="grid-2">
       <div class="card">
         <div class="card-header">
-          <div><div class="card-title">Cadência do pipeline</div><div class="card-sub">Leads por etapa · 869 total</div></div>
+          <div><div class="card-title">Volume por etapa — ago vs jul</div><div class="card-sub">Comparativo absoluto (jul fechado · ago dia 25)</div></div>
         </div>
-        <div style="position:relative;height:240px"><canvas id="cEtapas"></canvas></div>
-        <div class="mini-stats">
-          <div class="mini-stat"><span class="mini-stat-label">🔵 NL+1D</span><span class="mini-stat-val" style="color:var(--blue)">80</span></div>
-          <div class="mini-stat"><span class="mini-stat-label">🟡 2D-4D</span><span class="mini-stat-val" style="color:var(--amber)">119</span></div>
-          <div class="mini-stat"><span class="mini-stat-label">🔴 5D+Reag</span><span class="mini-stat-val" style="color:var(--red)">18</span></div>
-          <div class="mini-stat"><span class="mini-stat-label">✅ Avançados</span><span class="mini-stat-val" style="color:var(--green)">227</span></div>
-        </div>
+        <div style="position:relative;height:220px"><canvas id="cFunilComp"></canvas></div>
       </div>
       <div class="card">
         <div class="card-header">
-          <div><div class="card-title">Motivos de perda — agosto</div><div class="card-sub">230 perdidos reais · painel HubSpot ✓</div></div>
+          <div><div class="card-title">Taxas de conversão — ago vs jul</div><div class="card-sub">Percentual em cada etapa</div></div>
         </div>
-        <div style="position:relative;height:240px"><canvas id="cMotivos"></canvas></div>
+        <div style="position:relative;height:220px"><canvas id="cTaxas"></canvas></div>
       </div>
     </div>
   </div>
 
-  <!-- ── SDRs ── -->
+<!-- ── SDRs ── -->
   <div>
     <div class="section-header"><span class="section-label">Performance dos SDRs — agosto dia 25</span><div class="section-line"></div></div>
     <div class="grid-3-2">
@@ -615,6 +730,42 @@ new Chart(document.getElementById('cSDR'),{
       x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},
       y:{grid:{display:false},ticks:{color:'#8b93a5',font:{size:10}}}}}
 });
+
+// Funil comparativo volumes
+new Chart(document.getElementById('cFunilComp'),{
+  type:'bar',
+  data:{
+    labels:['Leads','MQLs','Reuniões','Contratos'],
+    datasets:[
+      {label:'Julho (fechado)',data:[1324,861,301,102],backgroundColor:'rgba(255,255,255,0.08)',borderColor:'rgba(255,255,255,0.2)',borderWidth:1.5,borderRadius:4},
+      {label:'Agosto (dia 25)',data:[869,639,237,72],backgroundColor:['rgba(77,159,255,0.5)','rgba(0,229,160,0.5)','rgba(167,139,250,0.5)','rgba(255,184,48,0.5)'],borderColor:['#4d9fff','#00e5a0','#a78bfa','#ffb830'],borderWidth:1.5,borderRadius:4}
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8b93a5',boxWidth:8,padding:12,usePointStyle:true}},
+      tooltip:{backgroundColor:'#1e2433',titleColor:'#f0f2f5',bodyColor:'#8b93a5',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,padding:12,cornerRadius:8}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:'#4d5566',font:{size:11}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#4d5566',font:{size:10}},beginAtZero:true}}}
+});
+
+// Taxas de conversão comparativo
+new Chart(document.getElementById('cTaxas'),{
+  type:'bar',
+  data:{
+    labels:['Lead→MQL','MQL→Reunião','Reun.→Close','Lead→Close'],
+    datasets:[
+      {label:'Julho',data:[65.0,35.0,33.9,7.7],backgroundColor:'rgba(255,255,255,0.08)',borderColor:'rgba(255,255,255,0.2)',borderWidth:1.5,borderRadius:4},
+      {label:'Agosto',data:[73.5,37.1,30.4,8.3],backgroundColor:['rgba(0,229,160,0.5)','rgba(0,229,160,0.5)','rgba(255,90,90,0.4)','rgba(77,159,255,0.5)'],borderColor:['#00e5a0','#00e5a0','#ff5a5a','#4d9fff'],borderWidth:1.5,borderRadius:4}
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8b93a5',boxWidth:8,padding:12,usePointStyle:true}},
+      tooltip:{backgroundColor:'#1e2433',titleColor:'#f0f2f5',bodyColor:'#8b93a5',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,padding:12,cornerRadius:8,
+        callbacks:{label:c=>` ${c.parsed.y}%`}}},
+    scales:{
+      x:{grid:{display:false},ticks:{color:'#4d5566',font:{size:10}}},
+      y:{grid:{color:'rgba(255,255,255,0.04)'},ticks:{color:'#4d5566',font:{size:10},callback:v=>v+'%'},beginAtZero:true,max:100}}}
+});
+
 </script>
 </body>
 </html>
