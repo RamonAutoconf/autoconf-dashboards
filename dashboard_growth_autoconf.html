@@ -246,9 +246,9 @@ body {
       </div>
       <div class="hero-kpi">
         <div class="hero-kpi-label">MQLs — meta 800</div>
-        <div class="hero-kpi-value" style="color:var(--green)">684</div>
-        <div class="hero-kpi-sub">185 perdidos reais · painel ✓</div>
-        <div class="hero-kpi-badge badge-up">86% da meta</div>
+        <div class="hero-kpi-value" style="color:var(--green)">639</div>
+        <div class="hero-kpi-sub">230 perdidos reais · painel ✓</div>
+        <div class="hero-kpi-badge badge-up">80% da meta</div>
         <div class="accent-bar" style="background:var(--green)"></div>
       </div>
       <div class="hero-kpi">
@@ -289,12 +289,12 @@ body {
           <div class="meta-row">
             <span class="meta-name">MQLs</span>
             <span style="display:flex;align-items:center;gap:8px">
-              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-2)">684 / 800</span>
-              <span class="meta-pct" style="background:var(--green-dim);color:var(--green)">86%</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-2)">639 / 800</span>
+              <span class="meta-pct" style="background:var(--green-dim);color:var(--green)">80%</span>
             </span>
           </div>
-          <div class="meta-bar-bg"><div class="meta-bar-fill" style="width:86%;background:var(--green)"></div></div>
-          <div class="meta-note">Faltam 116 · 19,3/dia necessários</div>
+          <div class="meta-bar-bg"><div class="meta-bar-fill" style="width:80%;background:var(--green)"></div></div>
+          <div class="meta-note">Faltam 161 · 26.8/dia necessários</div>
         </div>
         <div class="meta-item">
           <div class="meta-row">
@@ -350,7 +350,7 @@ body {
         </div>
         <div class="insight bad">
           <strong>🔴 Fora do ICP subiu para 51% dos perdidos</strong>
-          Em julho era 41%. Sinal de piora na segmentação das campanhas — revisar públicos do Meta Ads.
+          Em julho era 41%. Com 230 perdidos totais, Fora do ICP representa 117 leads (51%). Revisar públicos do Meta Ads.
         </div>
         <div class="insight info">
           <strong>🔵 Impacto eleitoral a partir de 19/ago</strong>
@@ -399,7 +399,7 @@ body {
       </div>
       <div class="card">
         <div class="card-header">
-          <div><div class="card-title">Motivos de perda — agosto</div><div class="card-sub">185 perdidos reais · painel HubSpot ✓</div></div>
+          <div><div class="card-title">Motivos de perda — agosto</div><div class="card-sub">230 perdidos reais · painel HubSpot ✓</div></div>
         </div>
         <div style="position:relative;height:240px"><canvas id="cMotivos"></canvas></div>
       </div>
@@ -481,7 +481,7 @@ body {
         <div class="month-sub">Dia 25 · qualidade superior · volume menor (sem webinar)</div>
         <div class="month-stats">
           <div class="month-stat"><div class="month-stat-label">Leads</div><div class="month-stat-val" style="color:var(--blue)">869</div><div class="month-stat-note">34,8/dia</div></div>
-          <div class="month-stat"><div class="month-stat-label">MQLs</div><div class="month-stat-val" style="color:var(--green)">684</div><div class="month-stat-note">86% meta ✓</div></div>
+          <div class="month-stat"><div class="month-stat-label">MQLs</div><div class="month-stat-val" style="color:var(--green)">639</div><div class="month-stat-note">80% meta ✓</div></div>
           <div class="month-stat"><div class="month-stat-label">Reuniões</div><div class="month-stat-val" style="color:var(--purple)">237</div><div class="month-stat-note">79% meta</div></div>
           <div class="month-stat"><div class="month-stat-label">Contratos</div><div class="month-stat-val" style="color:var(--amber)">72</div><div class="month-stat-note">72% meta</div></div>
         </div>
@@ -584,7 +584,7 @@ new Chart(document.getElementById('cMotivos'),{
   data:{
     labels:['Fora do ICP (51%)','Não é do ramo (34%)','Funcionalidade (11%)','Quer comprar veículo (4%)'],
     datasets:[{
-      data:[94,63,21,7],
+      data:[117,78,25,9],
       backgroundColor:['rgba(167,139,250,0.7)','rgba(255,90,90,0.7)','rgba(255,184,48,0.7)','rgba(77,159,255,0.7)'],
       borderColor:['#a78bfa','#ff5a5a','#ffb830','#4d9fff'],
       borderWidth:1.5
@@ -593,7 +593,7 @@ new Chart(document.getElementById('cMotivos'),{
     plugins:{
       legend:{position:'right',labels:{font:{size:10},color:'#8b93a5',boxWidth:10,padding:10,usePointStyle:true}},
       tooltip:{backgroundColor:'#1e2433',titleColor:'#f0f2f5',bodyColor:'#8b93a5',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,padding:12,cornerRadius:8,
-        callbacks:{label:c=>` ${c.parsed} perdidos (${Math.round(c.parsed/185*100)}%)`}}}}
+        callbacks:{label:c=>` ${c.parsed} perdidos (${Math.round(c.parsed/230*100)}%)`}}}}
 });
 
 // SDR horizontal
