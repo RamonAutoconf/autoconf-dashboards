@@ -449,6 +449,84 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 </div>
 
 
+
+  <!-- TRIMESTRE: LEADS NA MESA -->
+  <div>
+    <div class="slabel-row"><span class="slabel">Leads na mesa — trimestre Jun·Jul·Ago/26</span><div class="sline"></div></div>
+
+    <!-- Hero total abertos -->
+    <div style="background:var(--surface2);border:1px solid var(--border2);border-radius:14px;padding:24px;margin-bottom:16px;display:grid;grid-template-columns:1fr 3fr;gap:24px;align-items:center">
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Total abertos no trimestre</div>
+        <div style="font-size:52px;font-weight:800;color:var(--amber);letter-spacing:-2px;line-height:1">1.017</div>
+        <div style="font-size:12px;color:var(--text2);margin-top:6px">de 3.613 leads gerados (jun+jul+ago)</div>
+        <div style="margin-top:14px;display:flex;flex-direction:column;gap:6px;font-size:11px">
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:var(--surface);border-radius:7px">
+            <span style="color:var(--text3)">Na cadência (1D–5D)</span><strong style="color:var(--red)">242</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:var(--surface);border-radius:7px">
+            <span style="color:var(--text3)">Agendados + Reagend.</span><strong style="color:var(--amber)">97</strong>
+          </div>
+          <div style="display:flex;justify-content:space-between;padding:6px 10px;background:var(--surface);border-radius:7px">
+            <span style="color:var(--text3)">Reunião Realizada</span><strong style="color:var(--green)">678</strong>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px">Potencial estimado de contratos nos abertos</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:16px">
+          <div style="background:rgba(0,229,160,0.08);border:1px solid rgba(0,229,160,0.2);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Reuniões abertas</div>
+            <div style="font-size:28px;font-weight:800;color:#fff">678</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px">× 31,2% close rate</div>
+            <div style="font-size:16px;font-weight:700;color:var(--green);margin-top:4px">~212 contratos</div>
+          </div>
+          <div style="background:rgba(255,184,48,0.08);border:1px solid rgba(255,184,48,0.2);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:10px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Agendados abertos</div>
+            <div style="font-size:28px;font-weight:800;color:#fff">97</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px">70% viram reunião → close</div>
+            <div style="font-size:16px;font-weight:700;color:var(--amber);margin-top:4px">~21 contratos</div>
+          </div>
+          <div style="background:rgba(167,139,250,0.08);border:1px solid rgba(167,139,250,0.2);border-radius:10px;padding:14px;text-align:center">
+            <div style="font-size:10px;color:var(--purple);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Potencial total</div>
+            <div style="font-size:28px;font-weight:800;color:#fff">~233</div>
+            <div style="font-size:10px;color:var(--text3);margin-top:4px">contratos potenciais</div>
+            <div style="font-size:11px;color:var(--purple);margin-top:4px">ainda na mesa</div>
+          </div>
+        </div>
+        <div style="background:var(--surface);border-left:3px solid var(--amber);border-radius:0 8px 8px 0;padding:10px 14px;font-size:11px;color:var(--text2)">
+          🎯 <strong style="color:var(--text)">678 leads em Reunião Realizada</strong> ainda não foram fechados ou perdidos. Com 31,2% de close rate, representam ~212 contratos potenciais dormindo no pipeline. Prioridade máxima para o time comercial.
+        </div>
+      </div>
+    </div>
+
+    <!-- Gráficos trimestre -->
+    <div class="g2">
+      <div class="card">
+        <div class="ch"><div><div class="ct">Abertos por etapa — acumulado Jun·Jul·Ago</div><div class="cs">1.017 leads ainda ativos no pipeline</div></div></div>
+        <div style="position:relative;height:230px"><canvas id="cTriEtapas"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="ch"><div><div class="ct">Abertos por mês de entrada</div><div class="cs">Quanto de cada mês ainda está na mesa</div></div></div>
+        <div style="position:relative;height:230px"><canvas id="cTriMeses"></canvas></div>
+        <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:11px">
+          <div style="background:var(--surface2);border-radius:7px;padding:8px 10px;text-align:center">
+            <div style="color:var(--text3);font-size:9px;margin-bottom:3px">Jun/26 aberto</div>
+            <div style="font-weight:700">218 <span style="color:var(--text3);font-size:9px">(17% dos leads)</span></div>
+          </div>
+          <div style="background:var(--surface2);border-radius:7px;padding:8px 10px;text-align:center">
+            <div style="color:var(--text3);font-size:9px;margin-bottom:3px">Jul/26 aberto</div>
+            <div style="font-weight:700">340 <span style="color:var(--text3);font-size:9px">(25% dos leads)</span></div>
+          </div>
+          <div style="background:var(--surface2);border-radius:7px;padding:8px 10px;text-align:center">
+            <div style="color:var(--text3);font-size:9px;margin-bottom:3px">Ago/26 aberto</div>
+            <div style="font-weight:700">459 <span style="color:var(--text3);font-size:9px">(48% dos leads)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- TENTATIVAS ESGOTADAS POR SDR -->
   <div>
     <div class="slabel-row"><span class="slabel">Tentativas Esgotadas por SDR — agosto 2026</span><div class="sline"></div></div>
@@ -595,6 +673,35 @@ new Chart(document.getElementById('cTERatio'),{type:'bar',
       tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.x} ${c.dataset.label}`}}},
     scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true,stacked:true},
       y:{grid:{display:false},ticks:{color:'#8b93a5',font:{size:10}},stacked:true}}}
+});
+
+
+// Trimestre — etapas abertas
+new Chart(document.getElementById('cTriEtapas'),{type:'bar',
+  data:{labels:['Novo Lead','1º DIA','2º DIA','3º DIA','4º DIA','5º DIA','Agendado','Reagend.','Reunião'],
+    datasets:[{data:[3,56,78,38,28,39,84,13,678],
+      backgroundColor:['rgba(77,159,255,0.5)','rgba(77,159,255,0.5)','rgba(255,184,48,0.5)','rgba(255,184,48,0.45)','rgba(255,184,48,0.4)','rgba(255,90,90,0.5)','rgba(0,229,160,0.5)','rgba(0,229,160,0.45)','rgba(0,229,160,0.7)'],
+      borderColor:['#4d9fff','#4d9fff','#ffb830','#ffb830','#ffb830','#ff5a5a','#00e5a0','#00e5a0','#00e5a0'],
+      borderWidth:1.5,borderRadius:4,borderSkipped:false}]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.x} leads abertos`}}},
+    scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},
+      y:{grid:{display:false},ticks:{color:'#8b93a5',font:{size:10}}}}}
+});
+
+// Trimestre — abertos por mês
+new Chart(document.getElementById('cTriMeses'),{type:'bar',
+  data:{labels:['Jun/26','Jul/26','Ago/26'],
+    datasets:[
+      {label:'Na cadência',data:[2,30,210],backgroundColor:'rgba(255,90,90,0.4)',borderColor:'#ff5a5a',borderWidth:1.5,borderRadius:4,stack:'s'},
+      {label:'Agendados',data:[29,34,34],backgroundColor:'rgba(255,184,48,0.5)',borderColor:'#ffb830',borderWidth:1.5,borderRadius:4,stack:'s'},
+      {label:'Reunião Realizada',data:[187,276,215],backgroundColor:'rgba(0,229,160,0.5)',borderColor:'#00e5a0',borderWidth:1.5,borderRadius:4,stack:'s'},
+    ]},
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8b93a5',boxWidth:8,padding:12,usePointStyle:true}},
+      tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.y} ${c.dataset.label}`}}},
+    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}},stacked:true},
+      y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},stacked:true,beginAtZero:true}}}
 });
 
 </script>
