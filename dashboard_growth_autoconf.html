@@ -9,7 +9,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#0a0b0e;--surface:#111318;--surface2:#181c24;--surface3:#1e2433;
+  --bg:#0a0b0e;--surface:#111318;--surface2:#181c24;
   --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
   --text:#f0f2f5;--text2:#8b93a5;--text3:#4d5566;
   --green:#00e5a0;--green-d:rgba(0,229,160,0.12);
@@ -23,12 +23,11 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .topbar{background:var(--surface);border-bottom:1px solid var(--border);height:60px;padding:0 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
 .logo{font-size:16px;font-weight:800;letter-spacing:-0.5px}.logo span{color:var(--brand)}
 .topbar-title{font-size:13px;color:var(--text2);font-weight:500}
-.div{width:1px;height:20px;background:var(--border2);margin:0 16px}
+.dv{width:1px;height:20px;background:var(--border2);margin:0 16px}
 .chip{font-size:11px;font-weight:600;padding:5px 12px;border-radius:20px}
 .chip-date{background:var(--surface2);color:var(--text2);border:1px solid var(--border2)}
-.chip-live{background:var(--green-d);color:var(--green);border:1px solid rgba(0,229,160,0.2)}
-.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:5px;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.chip-ok{background:var(--green-d);color:var(--green);border:1px solid rgba(0,229,160,0.2)}
+.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:5px}
 .main{max-width:1440px;margin:0 auto;padding:28px 32px;display:flex;flex-direction:column;gap:28px}
 .slrow{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .sl{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3)}
@@ -92,12 +91,12 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 <div class="topbar">
   <div style="display:flex;align-items:center">
     <div class="logo">Auto<span>conf</span></div>
-    <div class="div"></div>
+    <div class="dv"></div>
     <div class="topbar-title">Growth Dashboard — ATF-INBOUND</div>
   </div>
   <div style="display:flex;align-items:center;gap:10px">
-    <span class="chip chip-date">Ago/26 · dia 28 de 31</span>
-    <span class="chip chip-live"><span class="dot"></span>Ao vivo · HubSpot</span>
+    <span class="chip chip-date">Ago/26 · mês fechado</span>
+    <span class="chip chip-ok"><span class="dot"></span>101 contratos · meta batida 🎉</span>
   </div>
 </div>
 
@@ -105,109 +104,106 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 
 <!-- HERO KPIs -->
 <div>
-  <div class="slrow"><span class="sl">Performance agosto 2026</span><div class="sln"></div></div>
+  <div class="slrow"><span class="sl">Agosto 2026 — fechamento do mês</span><div class="sln"></div></div>
   <div class="hero">
     <div class="hk">
       <div class="hkl">Leads gerados</div>
-      <div class="hkv" style="color:var(--blue)">958</div>
-      <div class="hks">34,2/dia · proj. ~960</div>
-      <div class="hkb dn">▼ 21% vs jul dia 28</div>
+      <div class="hkv" style="color:var(--blue)">996</div>
+      <div class="hks">32,1/dia · mês completo</div>
+      <div class="hkb dn">▼ 24,8% vs jul (1.324)</div>
       <div class="acc" style="background:var(--blue)"></div>
     </div>
     <div class="hk">
       <div class="hkl">MQLs — meta 800</div>
-      <div class="hkv" style="color:var(--green)">728</div>
+      <div class="hkv" style="color:var(--green)">766</div>
       <div class="hks">230 perdidos · painel MKT ✓</div>
-      <div class="hkb up">91% da meta</div>
+      <div class="hkb up">96% da meta</div>
       <div class="acc" style="background:var(--green)"></div>
     </div>
     <div class="hk">
       <div class="hkl">Reuniões — meta 300</div>
-      <div class="hkv" style="color:var(--purple)">272</div>
-      <div class="hks">9,7/dia · proj. ~300</div>
-      <div class="hkb up">▲ +17,2% vs jul dia 28</div>
+      <div class="hkv" style="color:var(--purple)">273</div>
+      <div class="hks">91% da meta</div>
+      <div class="hkb up">▲ +17,7% vs jul dia 28</div>
       <div class="acc" style="background:var(--purple)"></div>
     </div>
     <div class="hk">
       <div class="hkl">Contratos — meta 100</div>
-      <div class="hkv" style="color:var(--amber)">92</div>
-      <div class="hks">33.8% close rate</div>
-      <div class="hkb up">92% da meta</div>
-      <div class="acc" style="background:var(--amber)"></div>
+      <div class="hkv" style="color:var(--green)">101</div>
+      <div class="hks">37,0% close rate 🟢</div>
+      <div class="hkb up">101% da meta 🎉</div>
+      <div class="acc" style="background:linear-gradient(90deg,var(--amber),var(--green))"></div>
     </div>
     <div class="hk">
       <div class="hkl">Taxa Lead → Reunião</div>
-      <div class="hkv" style="color:#fff">28,4%</div>
-      <div class="hks">Bench SaaS: 13% · 2,2× acima</div>
+      <div class="hkv" style="color:#fff">27,4%</div>
+      <div class="hks">Bench SaaS: 13% · 2,1× acima</div>
       <div class="hkb up">▲ vs 22,7% jul</div>
       <div class="acc" style="background:linear-gradient(90deg,var(--green),var(--blue))"></div>
     </div>
   </div>
 </div>
 
-<!-- METAS + FORECAST + INSIGHTS -->
+<!-- METAS + RESUMO + INSIGHTS -->
 <div>
-  <div class="slrow"><span class="sl">Metas e previsibilidade</span><div class="sln"></div></div>
+  <div class="slrow"><span class="sl">Resultado vs metas</span><div class="sln"></div></div>
   <div class="g3">
     <div class="card">
-      <div class="ch"><div><div class="ct">Metas de agosto</div><div class="cs">Dia 28 · 3 dias restantes</div></div></div>
+      <div class="ch"><div><div class="ct">Metas de agosto — resultado final</div><div class="cs">Mês encerrado</div></div></div>
       <div class="mi">
         <div class="mr">
           <span class="mn">MQLs</span>
           <span style="display:flex;align-items:center;gap:8px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">728 / 800</span>
-            <span class="mp" style="background:var(--green-d);color:var(--green)">91%</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">766 / 800</span>
+            <span class="mp" style="background:var(--amber-d);color:var(--amber)">96%</span>
           </span>
         </div>
-        <div class="bb"><div class="bf" style="width:91%;background:var(--green)"></div></div>
-        <div class="mn2">Faltam 72 · 24,0/dia necessários</div>
-        <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
-          <div style="background:var(--red-d);border-radius:6px;padding:6px 8px;text-align:center"><div style="font-size:9px;color:var(--text3);margin-bottom:2px">Proj. pess.</div><div style="font-size:13px;font-weight:700;color:var(--red)">792</div><div style="font-size:9px;color:var(--text3)">99% meta</div></div>
-          <div style="background:var(--amber-d);border-radius:6px;padding:6px 8px;text-align:center"><div style="font-size:9px;color:var(--text3);margin-bottom:2px">Proj. real.</div><div style="font-size:13px;font-weight:700;color:var(--amber)">806</div><div style="font-size:9px;color:var(--text3)">101% meta</div></div>
-          <div style="background:var(--green-d);border-radius:6px;padding:6px 8px;text-align:center"><div style="font-size:9px;color:var(--text3);margin-bottom:2px">Proj. otim.</div><div style="font-size:13px;font-weight:700;color:var(--green)">819</div><div style="font-size:9px;color:var(--text3)">102% meta</div></div>
-        </div>
+        <div class="bb"><div class="bf" style="width:96%;background:var(--amber)"></div></div>
+        <div class="mn2">Quase lá · 34 abaixo da meta</div>
       </div>
       <div class="mi">
         <div class="mr">
           <span class="mn">Reuniões realizadas</span>
           <span style="display:flex;align-items:center;gap:8px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">272 / 300</span>
-            <span class="mp" style="background:var(--purple-d);color:var(--purple)">91%</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">273 / 300</span>
+            <span class="mp" style="background:var(--amber-d);color:var(--amber)">91%</span>
           </span>
         </div>
-        <div class="bb"><div class="bf" style="width:91%;background:var(--purple)"></div></div>
-        <div class="mn2">Faltam 28 · 9,3/dia necessários · ritmo atual 9,7/dia ✅</div>
+        <div class="bb"><div class="bf" style="width:91%;background:var(--amber)"></div></div>
+        <div class="mn2">27 abaixo da meta · taxa de conversão compensou</div>
       </div>
       <div class="mi">
         <div class="mr">
           <span class="mn">Contratos</span>
           <span style="display:flex;align-items:center;gap:8px">
-            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">92 / 100</span>
-            <span class="mp" style="background:var(--green-d);color:var(--green)">92%</span>
+            <span style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)">101 / 100</span>
+            <span class="mp" style="background:var(--green-d);color:var(--green)">101% 🎉</span>
           </span>
         </div>
-        <div class="bb"><div class="bf" style="width:92%;background:var(--green)"></div></div>
-        <div class="mn2">Faltam 8 · com 33.8% close → precisamos de ~24 reun. nos 3 dias</div>
+        <div class="bb"><div class="bf" style="width:100%;background:var(--green)"></div></div>
+        <div class="mn2">Meta batida! Close rate 37,0% — acima do benchmark SaaS (36%) ✅</div>
       </div>
     </div>
 
     <div class="card">
-      <div class="ch"><div><div class="ct">Forecast de reuniões</div><div class="cs">3 cenários · 3 dias restantes</div></div></div>
-      <div style="position:relative;height:190px"><canvas id="cForecast"></canvas></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
-        <div style="background:var(--surface2);border-radius:8px;padding:10px;text-align:center"><div style="font-size:10px;color:var(--red);font-weight:600;margin-bottom:3px">Pessimista</div><div style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--red)">293 <span style="font-size:10px;color:var(--text3)">98%</span></div></div>
-        <div style="background:var(--surface2);border-radius:8px;padding:10px;text-align:center"><div style="font-size:10px;color:var(--amber);font-weight:600;margin-bottom:3px">Realista</div><div style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--amber)">300 <span style="font-size:10px;color:var(--text3)">100%</span></div></div>
-        <div style="background:var(--surface2);border-radius:8px;padding:10px;text-align:center"><div style="font-size:10px;color:var(--green);font-weight:600;margin-bottom:3px">Otimista</div><div style="font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;color:var(--green)">308 <span style="font-size:10px;color:var(--text3)">103%</span></div></div>
+      <div class="ch"><div><div class="ct">Ago vs Jul — resultado final</div><div class="cs">Mês fechado · comparativo direto</div></div></div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:12px">
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Leads</span><span><span style="color:var(--text3);margin-right:8px">Jul 1.324</span><strong style="color:var(--blue)">Ago 996</strong> <span style="color:var(--red);font-size:10px">▼24,8%</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">MQLs</span><span><span style="color:var(--text3);margin-right:8px">Jul 861</span><strong style="color:var(--green)">Ago 766</strong> <span style="color:var(--red);font-size:10px">▼11,0%</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Reuniões</span><span><span style="color:var(--text3);margin-right:8px">Jul 301</span><strong style="color:var(--green)">Ago 273</strong> <span style="color:var(--red);font-size:10px">▼9,3%</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Contratos</span><span><span style="color:var(--text3);margin-right:8px">Jul 102🏆</span><strong style="color:var(--green)">Ago 101</strong> <span style="color:var(--green);font-size:10px">≈ empate técnico</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Close rate</span><span><span style="color:var(--text3);margin-right:8px">Jul 33,9%</span><strong style="color:var(--green)">Ago 37,0%</strong> <span style="color:var(--green);font-size:10px">▲+3,1pp ✅</span></span></div>
+        <div style="display:flex;justify-content:space-between;padding:9px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Taxa MQL</span><span><span style="color:var(--text3);margin-right:8px">Jul 65,0%</span><strong style="color:var(--green)">Ago 76,9%</strong> <span style="color:var(--green);font-size:10px">▲+11,9pp</span></span></div>
       </div>
     </div>
 
     <div class="card">
-      <div class="ch"><div><div class="ct">Insights do mês</div><div class="cs">Diagnóstico automático · dia 28</div></div></div>
-      <div class="ins ig"><strong>🟢 Reuniões +17,2% vs julho no mesmo período</strong>272 vs 232 de julho — com menos leads, conversão muito superior.</div>
-      <div class="ins ig"><strong>🟢 Projeção MQL bate a meta nos 3 cenários</strong>Pess 792 (99%) · Real 806 (101%) · Otim 819 (102%). Agosto fecha acima de 800.</div>
-      <div class="ins iw"><strong>🟡 Contratos: faltam 8 em 3 dias</strong>Precisamos de ~24 reuniões nos próximos 3 dias. Ritmo atual comporta.</div>
-      <div class="ins ir"><strong>🔴 Fora do ICP subiu para 51% dos perdidos</strong>Em julho era 41%. Revisar segmentação das campanhas Meta Ads urgente.</div>
-      <div class="ins ib"><strong>🔵 TE: Otavio Amaral com 43 tentativas esgotadas</strong>Ratio de 44% (1 em cada 2 leads não responde). Revisar abordagem ou redistribuição.</div>
+      <div class="ch"><div><div class="ct">Insights do mês</div><div class="cs">Diagnóstico agosto 2026 · fechado</div></div></div>
+      <div class="ins ig"><strong>🎉 101 contratos — meta batida com menos leads!</strong>Com 25% menos leads que julho, agosto entregou 101 contratos. Qualidade de processo superior.</div>
+      <div class="ins ig"><strong>🟢 Close rate 37,0% — acima do benchmark</strong>Bench SaaS é 36%. Melhor close rate do ano — melhor que julho (33,9%) e que a média trimestral (26,9%).</div>
+      <div class="ins ig"><strong>🟢 Taxa MQL subiu de 65% para 76,9%</strong>+11,9pp vs julho. Qualidade dos leads gerados claramente melhorou. Segmentação mais precisa.</div>
+      <div class="ins ir"><strong>🔴 Fora do ICP ainda 51% dos perdidos</strong>230 perdidos MKT · 117 fora do ICP. Revisar segmentação das campanhas Meta Ads para setembro.</div>
+      <div class="ins ib"><strong>🔵 Leonardo e Otavio lideram TE (47 e 43)</strong>118 tentativas esgotadas no mês. Revisar abordagem e redistribuição de leads para setembro.</div>
     </div>
   </div>
 </div>
@@ -216,86 +212,86 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 <div>
   <div class="slrow"><span class="sl">Funil de conversão — agosto vs julho</span><div class="sln"></div></div>
   <div class="card" style="margin-bottom:16px">
-    <div class="ch"><div><div class="ct">Funil completo com taxas de conversão</div><div class="cs">Etapa a etapa · comparativo julho vs agosto · dia 28</div></div></div>
+    <div class="ch"><div><div class="ct">Funil completo com taxas de conversão</div><div class="cs">Agosto fechado · comparativo julho · médias trimestre Mai–Jul</div></div><span class="ctag" style="color:var(--green)">✅ Mês fechado</span></div>
     <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:center;gap:0;margin-bottom:24px">
       <div class="fs">
-        <div class="fc" style="background:rgba(77,159,255,0.12);border:2px solid var(--blue)"><span style="color:var(--blue)">958</span></div>
-        <div class="fl">Total de Leads</div><div class="fsb">34,2/dia</div>
-        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 1.324</div><div style="font-size:10px;font-weight:600;color:var(--red)">▼ 27,6%</div></div>
+        <div class="fc" style="background:rgba(77,159,255,0.12);border:2px solid var(--blue)"><span style="color:var(--blue)">996</span></div>
+        <div class="fl">Total de Leads</div><div class="fsb">32,1/dia</div>
+        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 1.324</div><div style="font-size:10px;font-weight:600;color:var(--red)">▼ 24,8%</div></div>
       </div>
       <div class="fa">
         <div class="frl">Taxa MQL</div>
-        <div class="fr" style="color:var(--green)">76,0%</div>
+        <div class="fr" style="color:var(--green)">76,9%</div>
         <div style="font-size:9px;color:var(--text3)">Jul: 65,0%</div>
-        <div style="font-size:10px;font-weight:600;color:var(--green)">▲ +11pp</div>
+        <div style="font-size:10px;font-weight:600;color:var(--green)">▲ +11,9pp</div>
         <div style="width:100%;height:1px;background:rgba(255,255,255,0.05);margin:6px 0"></div>
-        <div style="font-size:9px;color:var(--text3)">Média Autoconf (trimestre)</div>
+        <div style="font-size:9px;color:var(--text3)">Média (trimestre)</div>
         <div style="font-size:12px;font-weight:700;color:var(--text2)">62,5%</div>
       </div>
       <div class="fs">
-        <div class="fc" style="background:rgba(0,229,160,0.12);border:2px solid var(--green)"><span style="color:var(--green)">728</span></div>
-        <div class="fl">MQLs</div><div class="fsb">91% da meta (800)</div>
-        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 861</div><div style="font-size:10px;font-weight:600;color:var(--red)">▼ 15,4%</div></div>
+        <div class="fc" style="background:rgba(0,229,160,0.12);border:2px solid var(--green)"><span style="color:var(--green)">766</span></div>
+        <div class="fl">MQLs</div><div class="fsb">96% da meta (800)</div>
+        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 861</div><div style="font-size:10px;font-weight:600;color:var(--red)">▼ 11,0%</div></div>
       </div>
       <div class="fa">
         <div class="frl">MQL→Reun.</div>
-        <div class="fr" style="color:var(--purple)">37,4%</div>
+        <div class="fr" style="color:var(--purple)">35,6%</div>
         <div style="font-size:9px;color:var(--text3)">Jul: 35,0%</div>
-        <div style="font-size:10px;font-weight:600;color:var(--green)">▲ +2,4pp</div>
+        <div style="font-size:10px;font-weight:600;color:var(--green)">▲ +0,6pp</div>
         <div style="width:100%;height:1px;background:rgba(255,255,255,0.05);margin:6px 0"></div>
-        <div style="font-size:9px;color:var(--text3)">Média Autoconf (trimestre)</div>
+        <div style="font-size:9px;color:var(--text3)">Média (trimestre)</div>
         <div style="font-size:12px;font-weight:700;color:var(--text2)">30,0%</div>
       </div>
       <div class="fs">
-        <div class="fc" style="background:rgba(167,139,250,0.12);border:2px solid var(--purple)"><span style="color:var(--purple)">272</span></div>
+        <div class="fc" style="background:rgba(167,139,250,0.12);border:2px solid var(--purple)"><span style="color:var(--purple)">273</span></div>
         <div class="fl">Reuniões</div><div class="fsb">91% da meta (300)</div>
-        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 301</div><div style="font-size:10px;font-weight:600;color:var(--green)">▲ +17,2%</div></div>
+        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 301</div><div style="font-size:10px;font-weight:600;color:var(--red)">▼ 9,3%</div></div>
       </div>
       <div class="fa">
         <div class="frl">Close Rate</div>
-        <div class="fr" style="color:var(--amber)">31,2%</div>
+        <div class="fr" style="color:var(--green)">37,0%</div>
         <div style="font-size:9px;color:var(--text3)">Jul: 33,9%</div>
-        <div style="font-size:10px;font-weight:600;color:var(--red)">▼ 2,7pp</div>
+        <div style="font-size:10px;font-weight:600;color:var(--green)">▲ +3,1pp ✅</div>
         <div style="width:100%;height:1px;background:rgba(255,255,255,0.05);margin:6px 0"></div>
-        <div style="font-size:9px;color:var(--text3)">Média Autoconf (trimestre)</div>
+        <div style="font-size:9px;color:var(--text3)">Média (trimestre)</div>
         <div style="font-size:12px;font-weight:700;color:var(--text2)">26,9%</div>
       </div>
       <div class="fs">
-        <div class="fc" style="background:rgba(255,184,48,0.12);border:2px solid var(--amber)"><span style="color:var(--amber)">92</span></div>
-        <div class="fl">Contratos</div><div class="fsb">92% da meta (100)</div>
-        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 102 🏆</div><div style="font-size:10px;font-weight:600;color:var(--amber)">→ faltam 8</div></div>
+        <div class="fc" style="background:rgba(0,229,160,0.15);border:2px solid var(--green)"><span style="color:var(--green)">101</span></div>
+        <div class="fl">Contratos</div><div class="fsb">101% da meta 🎉</div>
+        <div class="fcomp"><div style="font-size:10px;color:var(--text3)">Jul: 102 🏆</div><div style="font-size:10px;font-weight:600;color:var(--green)">≈ empate técnico</div></div>
       </div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding-top:18px;border-top:1px solid var(--border)">
       <div style="background:var(--blue-d);border:1px solid rgba(77,159,255,0.15);border-radius:10px;padding:14px;text-align:center">
         <div style="font-size:10px;color:var(--blue);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Lead → MQL</div>
-        <div style="font-size:24px;font-weight:800;color:#fff">76,0%</div>
-        <div style="font-size:10px;color:var(--green);margin-top:4px">▲ +11pp vs jul</div>
-        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média Autoconf (trimestre): <strong style="color:var(--text2)">62,5%</strong></div>
+        <div style="font-size:24px;font-weight:800;color:#fff">76,9%</div>
+        <div style="font-size:10px;color:var(--green);margin-top:4px">▲ +11,9pp vs jul</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média (trimestre): <strong style="color:var(--text2)">62,5%</strong></div>
       </div>
       <div style="background:var(--green-d);border:1px solid rgba(0,229,160,0.15);border-radius:10px;padding:14px;text-align:center">
         <div style="font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">MQL → Reunião</div>
-        <div style="font-size:24px;font-weight:800;color:#fff">37,4%</div>
-        <div style="font-size:10px;color:var(--green);margin-top:4px">▲ +2,4pp vs jul</div>
-        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média Autoconf (trimestre): <strong style="color:var(--text2)">30,0%</strong></div>
+        <div style="font-size:24px;font-weight:800;color:#fff">35,6%</div>
+        <div style="font-size:10px;color:var(--green);margin-top:4px">▲ +0,6pp vs jul</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média (trimestre): <strong style="color:var(--text2)">30,0%</strong></div>
       </div>
-      <div style="background:var(--amber-d);border:1px solid rgba(255,184,48,0.15);border-radius:10px;padding:14px;text-align:center">
-        <div style="font-size:10px;color:var(--amber);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Reunião → Close</div>
-        <div style="font-size:24px;font-weight:800;color:#fff">31,2%</div>
-        <div style="font-size:10px;color:var(--red);margin-top:4px">▼ 2,7pp vs jul · bench 36%</div>
-        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média Autoconf (trimestre): <strong style="color:var(--text2)">26,9%</strong></div>
+      <div style="background:var(--green-d);border:1px solid rgba(0,229,160,0.15);border-radius:10px;padding:14px;text-align:center">
+        <div style="font-size:10px;color:var(--green);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Reunião → Close</div>
+        <div style="font-size:24px;font-weight:800;color:#fff">37,0%</div>
+        <div style="font-size:10px;color:var(--green);margin-top:4px">▲ +3,1pp vs jul · bench 36% ✅</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média (trimestre): <strong style="color:var(--text2)">26,9%</strong></div>
       </div>
       <div style="background:var(--purple-d);border:1px solid rgba(167,139,250,0.15);border-radius:10px;padding:14px;text-align:center">
         <div style="font-size:10px;color:var(--purple);font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Lead → Contrato</div>
-        <div style="font-size:24px;font-weight:800;color:#fff">9.6%</div>
-        <div style="font-size:10px;color:var(--green);margin-top:4px">▲ vs 7,7% jul</div>
-        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média Autoconf (trimestre): <strong style="color:var(--text2)">5,2%</strong></div>
+        <div style="font-size:24px;font-weight:800;color:#fff">10,1%</div>
+        <div style="font-size:10px;color:var(--green);margin-top:4px">▲ vs 7,7% jul · melhor do ano</div>
+        <div style="font-size:9px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid rgba(255,255,255,0.07)">Média (trimestre): <strong style="color:var(--text2)">5,2%</strong></div>
       </div>
     </div>
   </div>
   <div class="g2">
     <div class="card">
-      <div class="ch"><div><div class="ct">Volume por etapa — ago vs jul</div><div class="cs">Absoluto · jul fechado · ago dia 28</div></div></div>
+      <div class="ch"><div><div class="ct">Volume por etapa — ago vs jul</div><div class="cs">Ambos os meses fechados</div></div></div>
       <div style="position:relative;height:220px"><canvas id="cFunilComp"></canvas></div>
     </div>
     <div class="card">
@@ -307,14 +303,14 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 
 <!-- HISTÓRICO -->
 <div>
-  <div class="slrow"><span class="sl">Histórico — Jul/25 a Ago/26*</span><div class="sln"></div></div>
+  <div class="slrow"><span class="sl">Histórico — Jul/25 a Ago/26</span><div class="sln"></div></div>
   <div class="g2">
     <div class="card">
-      <div class="ch"><div><div class="ct">Leads, MQLs e Reuniões</div><div class="cs">14 meses</div></div><span class="ctag">Parcial *</span></div>
+      <div class="ch"><div><div class="ct">Leads, MQLs e Reuniões</div><div class="cs">14 meses</div></div></div>
       <div style="position:relative;height:230px"><canvas id="cHistorico"></canvas></div>
     </div>
     <div class="card">
-      <div class="ch"><div><div class="ct">Fechamentos mensais 2026</div><div class="cs">ATF-VENDAS</div></div><span class="ctag" style="color:var(--amber)">🏆 Recorde jul: 102</span></div>
+      <div class="ch"><div><div class="ct">Fechamentos mensais 2026</div><div class="cs">ATF-VENDAS · Jan–Ago fechados</div></div><span class="ctag" style="color:var(--amber)">🏆 Jul: 102 · Ago: 101</span></div>
       <div style="position:relative;height:230px"><canvas id="cFechamentos"></canvas></div>
     </div>
   </div>
@@ -322,18 +318,18 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 
 <!-- SDRs -->
 <div>
-  <div class="slrow"><span class="sl">Performance dos SDRs — agosto dia 28</span><div class="sln"></div></div>
+  <div class="slrow"><span class="sl">Performance dos SDRs — agosto fechado</span><div class="sln"></div></div>
   <div class="g32">
     <div class="card">
-      <div class="ch"><div><div class="ct">Reuniões por SDR</div><div class="cs">272 reuniões atribuídas</div></div><span class="ctag">Meta: 40+ reun/mês</span></div>
+      <div class="ch"><div><div class="ct">Reuniões por SDR</div><div class="cs">273 reuniões no mês</div></div><span class="ctag">Meta: 40+ reun/mês</span></div>
       <table class="stbl">
         <thead><tr><th>#</th><th>SDR</th><th class="r">Reuniões</th><th class="r">% total</th><th class="r">Status</th></tr></thead>
         <tbody>
-          <tr><td><span class="rank r1">1</span></td><td><strong>João Gonçalves</strong></td><td class="r" style="color:var(--green);font-weight:700">68</td><td class="r" style="color:var(--text2)">25,0%</td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
-          <tr><td><span class="rank r2">2</span></td><td><strong>Leonardo Maldaner</strong></td><td class="r" style="color:var(--green);font-weight:700">62</td><td class="r" style="color:var(--text2)">22,8%</td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
-          <tr><td><span class="rank r3">3</span></td><td><strong>Otavio Amaral</strong></td><td class="r" style="color:var(--green);font-weight:700">54</td><td class="r" style="color:var(--text2)">19,9%</td><td class="r"><span class="pill pb">✓ Meta</span></td></tr>
-          <tr><td><span class="rank rn">4</span></td><td><strong>Bruno Ianai</strong></td><td class="r" style="color:var(--amber);font-weight:700">29</td><td class="r" style="color:var(--text2)">10,7%</td><td class="r"><span class="pill pa">↑ Crescendo</span></td></tr>
-          <tr><td><span class="rank rn">5</span></td><td><strong>João Mattos</strong></td><td class="r" style="color:var(--amber);font-weight:700">20</td><td class="r" style="color:var(--text2)">7,4%</td><td class="r"><span class="pill pa">↑ Crescendo</span></td></tr>
+          <tr><td><span class="rank r1">1</span></td><td><strong>João Gonçalves</strong></td><td class="r" style="color:var(--green);font-weight:700">70</td><td class="r" style="color:var(--text2)">25,6%</td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
+          <tr><td><span class="rank r2">2</span></td><td><strong>Leonardo Maldaner</strong></td><td class="r" style="color:var(--green);font-weight:700">65</td><td class="r" style="color:var(--text2)">23,8%</td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
+          <tr><td><span class="rank r3">3</span></td><td><strong>Otavio Amaral</strong></td><td class="r" style="color:var(--green);font-weight:700">54</td><td class="r" style="color:var(--text2)">19,8%</td><td class="r"><span class="pill pb">✓ Meta</span></td></tr>
+          <tr><td><span class="rank rn">4</span></td><td><strong>Bruno Ianai</strong></td><td class="r" style="color:var(--amber);font-weight:700">29</td><td class="r" style="color:var(--text2)">10,6%</td><td class="r"><span class="pill pa">↑ Crescendo</span></td></tr>
+          <tr><td><span class="rank rn">5</span></td><td><strong>João Mattos</strong></td><td class="r" style="color:var(--amber);font-weight:700">20</td><td class="r" style="color:var(--text2)">7,3%</td><td class="r"><span class="pill pa">↑ Crescendo</span></td></tr>
           <tr><td><span class="rank rn">6</span></td><td>Lucas Nikolofski</td><td class="r">8</td><td class="r" style="color:var(--text3)">2,9%</td><td class="r"><span class="pill pd">Novo</span></td></tr>
           <tr><td><span class="rank rn">7</span></td><td>Otávio Amancio</td><td class="r">7</td><td class="r" style="color:var(--text3)">2,6%</td><td class="r"><span class="pill pd">Novo</span></td></tr>
           <tr><td><span class="rank rn">8</span></td><td>Thiago / William / Victor</td><td class="r">5 cada</td><td class="r" style="color:var(--text3)">1,8%</td><td class="r"><span class="pill pd">Novo</span></td></tr>
@@ -343,16 +339,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
     <div style="display:flex;flex-direction:column;gap:14px">
       <div class="card" style="flex:1">
         <div class="ct" style="margin-bottom:14px">Reuniões por SDR</div>
-        <div style="position:relative;height:180px"><canvas id="cSDR"></canvas></div>
-      </div>
-      <div class="card">
-        <div class="ct" style="margin-bottom:12px">Ago vs Jul — dia 28</div>
-        <div style="display:flex;flex-direction:column;gap:7px;font-size:12px">
-          <div style="display:flex;justify-content:space-between;padding:7px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Leads</span><span><span style="color:var(--text3);margin-right:8px">Jul 1.324</span><strong style="color:var(--blue)">Ago 958</strong> <span style="color:var(--red);font-size:10px">▼27,6%</span></span></div>
-          <div style="display:flex;justify-content:space-between;padding:7px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Reuniões</span><span><span style="color:var(--text3);margin-right:8px">Jul 232</span><strong style="color:var(--green)">Ago 272</strong> <span style="color:var(--green);font-size:10px">▲+17%</span></span></div>
-          <div style="display:flex;justify-content:space-between;padding:7px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Taxa close</span><span><span style="color:var(--text3);margin-right:8px">Jul 33,9%</span><strong style="color:var(--amber)">Ago 31,2%</strong></span></div>
-          <div style="display:flex;justify-content:space-between;padding:7px 12px;background:var(--surface2);border-radius:8px"><span style="color:var(--text2)">Contratos</span><span><span style="color:var(--text3);margin-right:8px">Jul 102🏆</span><strong style="color:var(--green)">Ago 92</strong> <span style="color:var(--green);font-size:10px">+8 pra bater 🔥</span></span></div>
-        </div>
+        <div style="position:relative;height:190px"><canvas id="cSDR"></canvas></div>
       </div>
     </div>
   </div>
@@ -375,54 +362,21 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
     <div>
       <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px">Contratos potenciais nos abertos</div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-        <div style="background:rgba(255,184,48,0.07);border:1px solid rgba(255,184,48,0.2);border-radius:10px;padding:14px;text-align:center">
+        <div style="background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.2);border-radius:10px;padding:14px;text-align:center">
           <div style="font-size:38px;font-weight:800;color:var(--purple);letter-spacing:-1px">~228</div>
           <div style="font-size:10px;color:var(--text3);margin-top:4px">contratos potenciais</div>
         </div>
         <div style="display:flex;flex-direction:column;gap:8px;justify-content:center">
-          <div style="padding:8px 12px;background:var(--surface);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">% dos abertos</span><strong style="font-size:14px;color:var(--purple)">28,7%</strong></div>
-          <div style="padding:8px 12px;background:var(--surface);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">% dos leads gerados</span><strong style="font-size:14px;color:var(--text2)">5,9%</strong></div>
-          <div style="padding:8px 12px;background:var(--surface);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">Leads na mesa</span><strong style="font-size:14px;color:var(--amber)">795</strong></div>
+          <div style="padding:8px 12px;background:var(--surface);border-radius:8px;display:flex;justify-content:space-between"><span style="font-size:11px;color:var(--text3)">% dos abertos</span><strong style="font-size:14px;color:var(--purple)">28,7%</strong></div>
+          <div style="padding:8px 12px;background:var(--surface);border-radius:8px;display:flex;justify-content:space-between"><span style="font-size:11px;color:var(--text3)">% dos leads gerados</span><strong style="font-size:14px;color:var(--text2)">5,9%</strong></div>
+          <div style="padding:8px 12px;background:var(--surface);border-radius:8px;display:flex;justify-content:space-between"><span style="font-size:11px;color:var(--text3)">Leads na mesa</span><strong style="font-size:14px;color:var(--amber)">795</strong></div>
         </div>
       </div>
-      <div style="font-size:11px;color:var(--text3);background:var(--surface);border-radius:8px;padding:8px 12px;border-left:3px solid var(--purple)">205 de reunião realizada · 23 de agendados · 34 leads em risco na cadência</div>
+      <div style="font-size:11px;color:var(--text3);background:var(--surface);border-radius:8px;padding:8px 12px;border-left:3px solid var(--purple)">
+        🎯 <strong style="color:var(--text)">656 leads em Reunião Realizada</strong> ainda não fechados. Com 37,0% de close rate de agosto → ~243 contratos potenciais dormindo no pipeline.
+      </div>
     </div>
   </div>
-
-  <!-- Cards contratos -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px">
-    <div class="card">
-      <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px">Agosto — contratos potenciais na mesa</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-        <div style="text-align:center;padding:14px;background:rgba(0,229,160,0.07);border:1px solid rgba(0,229,160,0.2);border-radius:10px">
-          <div style="font-size:38px;font-weight:800;color:var(--green);letter-spacing:-1px">~77</div>
-          <div style="font-size:10px;color:var(--text3);margin-top:4px">contratos potenciais</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;justify-content:center">
-          <div style="padding:8px 12px;background:var(--surface2);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">% dos abertos</span><strong style="font-size:14px;color:var(--green)">16,7%</strong></div>
-          <div style="padding:8px 12px;background:var(--surface2);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">% dos leads gerados</span><strong style="font-size:14px;color:var(--text2)">8,0%</strong></div>
-          <div style="padding:8px 12px;background:var(--surface2);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">Leads na mesa</span><strong style="font-size:14px;color:var(--blue)">460</strong></div>
-        </div>
-      </div>
-      <div style="font-size:11px;color:var(--text3);background:var(--surface2);border-radius:8px;padding:8px 12px;border-left:3px solid var(--green)">69 de reunião realizada · 8 de agendados · com 31,2% close rate</div>
-    </div>
-    <div class="card">
-      <div style="font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:14px">Trimestre Mai·Jun·Jul — contratos potenciais na mesa</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px">
-        <div style="text-align:center;padding:14px;background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.2);border-radius:10px">
-          <div style="font-size:38px;font-weight:800;color:var(--purple);letter-spacing:-1px">~228</div>
-          <div style="font-size:10px;color:var(--text3);margin-top:4px">contratos potenciais</div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;justify-content:center">
-          <div style="padding:8px 12px;background:var(--surface2);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">% dos abertos</span><strong style="font-size:14px;color:var(--purple)">28,7%</strong></div>
-          <div style="padding:8px 12px;background:var(--surface2);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">% dos leads gerados</span><strong style="font-size:14px;color:var(--text2)">5,9%</strong></div>
-          <div style="padding:8px 12px;background:var(--surface2);border-radius:8px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:11px;color:var(--text3)">Leads na mesa</span><strong style="font-size:14px;color:var(--amber)">795</strong></div>
-        </div>
-      </div>
-      <div style="font-size:11px;color:var(--text3);background:var(--surface2);border-radius:8px;padding:8px 12px;border-left:3px solid var(--purple)">205 de reunião realizada · 23 de agendados · 34 leads em risco na cadência</div>
-    </div>
-  </div>
-
   <div class="g2">
     <div class="card">
       <div class="ch"><div><div class="ct">Abertos por etapa — trimestre Mai·Jun·Jul</div><div class="cs">795 leads ainda ativos</div></div></div>
@@ -437,58 +391,29 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 
 <!-- TENTATIVAS ESGOTADAS -->
 <div>
-  <div class="slrow"><span class="sl">Tentativas Esgotadas por SDR — agosto 2026</span><div class="sln"></div></div>
+  <div class="slrow"><span class="sl">Tentativas Esgotadas por SDR — agosto fechado</span><div class="sln"></div></div>
   <div class="g2">
     <div class="card">
-      <div class="ch"><div><div class="ct">Leads perdidos por Tentativas Esgotadas</div><div class="cs">92 total · cadência encerrada sem resposta</div></div><span class="ctag" style="color:var(--red)">⚠️ Risco de processo</span></div>
+      <div class="ch"><div><div class="ct">Leads perdidos por Tentativas Esgotadas</div><div class="cs">118 total · agosto fechado</div></div><span class="ctag" style="color:var(--red)">⚠️ Risco de processo</span></div>
       <div style="position:relative;height:220px"><canvas id="cTE"></canvas></div>
       <div style="margin-top:12px;font-size:11px;background:var(--surface2);border-radius:8px;padding:10px 12px;border-left:3px solid var(--red);color:var(--text2)">
-        ⚠️ <strong style="color:var(--text)">Otavio (43) e Leonardo (25)</strong> concentram 74% das tentativas esgotadas. Otavio tem ratio de 44% — quase 1 a cada 2 leads não responde.
+        ⚠️ <strong style="color:var(--text)">Leonardo (47) e Otavio (43)</strong> concentram 76% das TE. Revisar abordagem e qualidade dos leads distribuídos para setembro.
       </div>
     </div>
     <div class="card">
-      <div class="ch"><div><div class="ct">TE vs Reuniões — eficiência por SDR</div><div class="cs">% de tentativas esgotadas sobre total avançado</div></div></div>
+      <div class="ch"><div><div class="ct">TE vs Reuniões — eficiência por SDR</div><div class="cs">Stacked: reuniões convertidas vs perdidas por TE</div></div></div>
       <div style="position:relative;height:220px"><canvas id="cTERatio"></canvas></div>
       <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:11px">
-        <div style="background:var(--green-d);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--green);font-size:10px;margin-bottom:3px">Melhor ratio</div><div style="font-weight:700">João G. 6%</div></div>
-        <div style="background:var(--surface2);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--text3);font-size:10px;margin-bottom:3px">Média</div><div style="font-weight:700">25%</div></div>
-        <div style="background:var(--red-d);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--red);font-size:10px;margin-bottom:3px">Maior ratio</div><div style="font-weight:700">Otavio 44%</div></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- JUL FECHADO -->
-<div>
-  <div class="slrow"><span class="sl">Referência — julho 2026 fechado</span><div class="sln"></div></div>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border);border-radius:14px;overflow:hidden">
-    <div style="background:var(--surface);padding:24px">
-      <div style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:8px;background:var(--green-d);color:var(--green);margin-bottom:14px">✅ Mês fechado</div>
-      <div style="font-size:15px;font-weight:700;margin-bottom:4px">Julho 2026</div>
-      <div style="font-size:11px;color:var(--text3);margin-bottom:18px">Melhor mês histórico · benchmark SaaS batido</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
-        <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">Leads</div><div style="font-size:20px;font-weight:800;color:var(--blue)">1.324</div><div style="font-size:9px;color:var(--text3)">+2% vs jun</div></div>
-        <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">MQLs</div><div style="font-size:20px;font-weight:800;color:var(--green)">861</div><div style="font-size:9px;color:var(--green)">108% meta 🎉</div></div>
-        <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">Reuniões</div><div style="font-size:20px;font-weight:800;color:var(--purple)">301</div><div style="font-size:9px;color:var(--text3)">+49% vs jun</div></div>
-        <div style="background:var(--amber-d);border-radius:10px;padding:12px;text-align:center;border:1px solid rgba(255,184,48,0.2)"><div style="font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">Contratos</div><div style="font-size:20px;font-weight:800;color:var(--amber)">102</div><div style="font-size:9px;color:var(--amber)">🏆 Recorde</div></div>
-      </div>
-    </div>
-    <div style="background:var(--surface2);padding:24px">
-      <div style="display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 10px;border-radius:8px;background:var(--blue-d);color:var(--blue);margin-bottom:14px"><span class="dot"></span>Em andamento</div>
-      <div style="font-size:15px;font-weight:700;margin-bottom:4px">Agosto 2026</div>
-      <div style="font-size:11px;color:var(--text3);margin-bottom:18px">Dia 28 · qualidade superior · 3 dias para fechar</div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
-        <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">Leads</div><div style="font-size:20px;font-weight:800;color:var(--blue)">958</div><div style="font-size:9px;color:var(--text3)">34,2/dia</div></div>
-        <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">MQLs</div><div style="font-size:20px;font-weight:800;color:var(--green)">728</div><div style="font-size:9px;color:var(--green)">91% meta ✓</div></div>
-        <div style="background:rgba(255,255,255,0.03);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)"><div style="font-size:9px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">Reuniões</div><div style="font-size:20px;font-weight:800;color:var(--purple)">272</div><div style="font-size:9px;color:var(--text3)">91% meta</div></div>
-        <div style="background:var(--amber-d);border-radius:10px;padding:12px;text-align:center;border:1px solid rgba(255,184,48,0.2)"><div style="font-size:9px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">Contratos</div><div style="font-size:20px;font-weight:800;color:var(--amber)">92</div><div style="font-size:9px;color:var(--amber)">92% · faltam 8 🔥</div></div>
+        <div style="background:var(--green-d);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--green);font-size:10px;margin-bottom:3px">Melhor ratio</div><div style="font-weight:700">João G. 10%</div></div>
+        <div style="background:var(--surface2);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--text3);font-size:10px;margin-bottom:3px">Total TE</div><div style="font-weight:700">118</div></div>
+        <div style="background:var(--red-d);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--red);font-size:10px;margin-bottom:3px">Maior ratio</div><div style="font-weight:700">Leonardo 42%</div></div>
       </div>
     </div>
   </div>
 </div>
 
 </div>
-<div class="footer">Autoconf · Growth Dashboard · ATF-INBOUND · HubSpot · Agosto/26 · dia 28</div>
+<div class="footer">Autoconf · Growth Dashboard · ATF-INBOUND · HubSpot · Agosto/26 · mês fechado</div>
 
 <script>
 const gc='rgba(255,255,255,0.04)',lc='#4d5566';
@@ -497,41 +422,31 @@ Chart.defaults.borderColor='rgba(255,255,255,0.06)';
 const tip={backgroundColor:'#1e2433',titleColor:'#f0f2f5',bodyColor:'#8b93a5',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,padding:12,cornerRadius:8};
 
 new Chart(document.getElementById('cHistorico'),{type:'line',
-  data:{labels:['Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26*'],
+  data:{labels:['Jul/25','Ago/25','Set/25','Out/25','Nov/25','Dez/25','Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26'],
     datasets:[
-      {label:'Leads',data:[342,315,271,350,344,293,585,562,462,880,1167,1324,1324,958],borderColor:'#4d9fff',backgroundColor:'rgba(77,159,255,0.07)',fill:true,tension:0.4,pointRadius:2,pointHoverRadius:5,borderWidth:2},
-      {label:'MQLs',data:[86,104,79,102,98,83,351,202,132,431,671,861,861,728],borderColor:'#00e5a0',backgroundColor:'rgba(0,229,160,0.07)',fill:true,tension:0.4,pointRadius:2,pointHoverRadius:5,borderWidth:2},
-      {label:'Reuniões',data:[86,104,79,102,98,83,109,71,98,134,212,301,301,272],borderColor:'#a78bfa',backgroundColor:'rgba(167,139,250,0.07)',fill:true,tension:0.4,pointRadius:2,pointHoverRadius:5,borderWidth:2},
+      {label:'Leads',data:[342,315,271,350,344,293,585,562,462,880,1167,1324,1324,996],borderColor:'#4d9fff',backgroundColor:'rgba(77,159,255,0.07)',fill:true,tension:0.4,pointRadius:2,pointHoverRadius:5,borderWidth:2},
+      {label:'MQLs',data:[86,104,79,102,98,83,351,202,132,431,671,861,861,766],borderColor:'#00e5a0',backgroundColor:'rgba(0,229,160,0.07)',fill:true,tension:0.4,pointRadius:2,pointHoverRadius:5,borderWidth:2},
+      {label:'Reuniões',data:[86,104,79,102,98,83,109,71,98,134,212,301,301,273],borderColor:'#a78bfa',backgroundColor:'rgba(167,139,250,0.07)',fill:true,tension:0.4,pointRadius:2,pointHoverRadius:5,borderWidth:2},
     ]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8b93a5',boxWidth:8,padding:16,usePointStyle:true}},tooltip:tip},
     scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:9},maxRotation:45}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
 });
 
 new Chart(document.getElementById('cFechamentos'),{type:'bar',
-  data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago*'],
-    datasets:[{data:[42,38,47,31,57,40,102,92],
-      backgroundColor:['rgba(77,159,255,0.4)','rgba(77,159,255,0.4)','rgba(77,159,255,0.4)','rgba(255,90,90,0.4)','rgba(0,229,160,0.4)','rgba(77,159,255,0.4)','#ffb830','rgba(77,159,255,0.6)'],
-      borderColor:['#4d9fff','#4d9fff','#4d9fff','#ff5a5a','#00e5a0','#4d9fff','#ffb830','#4d9fff'],
+  data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago'],
+    datasets:[{data:[42,38,47,31,57,40,102,101],
+      backgroundColor:['rgba(77,159,255,0.4)','rgba(77,159,255,0.4)','rgba(77,159,255,0.4)','rgba(255,90,90,0.4)','rgba(0,229,160,0.4)','rgba(77,159,255,0.4)','#ffb830','#00e5a0'],
+      borderColor:['#4d9fff','#4d9fff','#4d9fff','#ff5a5a','#00e5a0','#4d9fff','#ffb830','#00e5a0'],
       borderWidth:1,borderRadius:5,borderSkipped:false}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.y} contratos`}}},
     scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
 });
 
-new Chart(document.getElementById('cForecast'),{type:'bar',
-  data:{labels:['Atual','Pess.\n7,0/dia','Real.\n9,5/dia','Otim.\n12/dia','Meta'],
-    datasets:[{data:[272,293,300,308,300],
-      backgroundColor:['rgba(77,159,255,0.3)','rgba(255,90,90,0.3)','rgba(255,184,48,0.4)','rgba(0,229,160,0.4)','rgba(255,255,255,0.06)'],
-      borderColor:['#4d9fff','#ff5a5a','#ffb830','#00e5a0','rgba(255,255,255,0.2)'],
-      borderWidth:1.5,borderRadius:6,borderSkipped:false}]},
-  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>{const p=Math.round(c.parsed.y/300*100);return ` ${c.parsed.y} reuniões · ${p}% meta`;}}}},
-    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},min:250,max:320}}}
-});
-
 new Chart(document.getElementById('cFunilComp'),{type:'bar',
   data:{labels:['Leads','MQLs','Reuniões','Contratos'],
     datasets:[
-      {label:'Julho (fechado)',data:[1324,861,301,102],backgroundColor:'rgba(255,255,255,0.07)',borderColor:'rgba(255,255,255,0.18)',borderWidth:1.5,borderRadius:4},
-      {label:'Agosto (dia 28)',data:[958,728,272,92],backgroundColor:['rgba(77,159,255,0.5)','rgba(0,229,160,0.5)','rgba(167,139,250,0.5)','rgba(255,184,48,0.5)'],borderColor:['#4d9fff','#00e5a0','#a78bfa','#ffb830'],borderWidth:1.5,borderRadius:4}
+      {label:'Julho',data:[1324,861,301,102],backgroundColor:'rgba(255,255,255,0.07)',borderColor:'rgba(255,255,255,0.18)',borderWidth:1.5,borderRadius:4},
+      {label:'Agosto',data:[996,766,273,101],backgroundColor:['rgba(77,159,255,0.5)','rgba(0,229,160,0.5)','rgba(167,139,250,0.5)','rgba(0,229,160,0.6)'],borderColor:['#4d9fff','#00e5a0','#a78bfa','#00e5a0'],borderWidth:1.5,borderRadius:4}
     ]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8b93a5',boxWidth:8,padding:12,usePointStyle:true}},tooltip:tip},
     scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
@@ -541,7 +456,7 @@ new Chart(document.getElementById('cTaxas'),{type:'bar',
   data:{labels:['Lead→MQL','MQL→Reunião','Reun.→Close','Lead→Close'],
     datasets:[
       {label:'Julho',data:[65.0,35.0,33.9,7.7],backgroundColor:'rgba(255,255,255,0.07)',borderColor:'rgba(255,255,255,0.18)',borderWidth:1.5,borderRadius:4},
-      {label:'Agosto',data:[76.0,37.4,33.8,9.6],backgroundColor:['rgba(0,229,160,0.5)','rgba(0,229,160,0.5)','rgba(255,90,90,0.4)','rgba(77,159,255,0.5)'],borderColor:['#00e5a0','#00e5a0','#ff5a5a','#4d9fff'],borderWidth:1.5,borderRadius:4}
+      {label:'Agosto',data:[76.9,35.6,37.0,10.1],backgroundColor:['rgba(0,229,160,0.5)','rgba(0,229,160,0.5)','rgba(0,229,160,0.6)','rgba(0,229,160,0.5)'],borderColor:['#00e5a0','#00e5a0','#00e5a0','#00e5a0'],borderWidth:1.5,borderRadius:4}
     ]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8b93a5',boxWidth:8,padding:12,usePointStyle:true}},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.y}%`}}},
     scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10},callback:v=>v+'%'},beginAtZero:true,max:100}}}
@@ -549,7 +464,7 @@ new Chart(document.getElementById('cTaxas'),{type:'bar',
 
 new Chart(document.getElementById('cSDR'),{type:'bar',
   data:{labels:['João G.','Leonardo','Otavio','Bruno','João M.','Lucas'],
-    datasets:[{data:[68,62,54,29,20,8],
+    datasets:[{data:[70,65,54,29,20,8],
       backgroundColor:['rgba(0,229,160,0.7)','rgba(0,229,160,0.6)','rgba(0,229,160,0.5)','rgba(255,184,48,0.5)','rgba(255,184,48,0.4)','rgba(77,159,255,0.4)'],
       borderColor:['#00e5a0','#00e5a0','#00e5a0','#ffb830','#ffb830','#4d9fff'],
       borderWidth:1,borderRadius:4,borderSkipped:false}]},
@@ -579,20 +494,20 @@ new Chart(document.getElementById('cTriMeses'),{type:'bar',
 });
 
 new Chart(document.getElementById('cTE'),{type:'bar',
-  data:{labels:['Otavio Amaral','Leonardo Maldaner','Bruno Ianai','João Mattos','João Gonçalves'],
-    datasets:[{label:'Tentativas Esgotadas',data:[43,25,14,6,4],
-      backgroundColor:['rgba(255,90,90,0.7)','rgba(255,90,90,0.6)','rgba(255,184,48,0.6)','rgba(255,184,48,0.4)','rgba(0,229,160,0.5)'],
-      borderColor:['#ff5a5a','#ff5a5a','#ffb830','#ffb830','#00e5a0'],
+  data:{labels:['Leonardo Maldaner','Otavio Amaral','Bruno Ianai','João Gonçalves','João Mattos'],
+    datasets:[{data:[47,43,14,8,6],
+      backgroundColor:['rgba(255,90,90,0.7)','rgba(255,90,90,0.6)','rgba(255,184,48,0.6)','rgba(0,229,160,0.5)','rgba(255,184,48,0.4)'],
+      borderColor:['#ff5a5a','#ff5a5a','#ffb830','#00e5a0','#ffb830'],
       borderWidth:1.5,borderRadius:5,borderSkipped:false}]},
   options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.x} tentativas esgotadas`}}},
     scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},y:{grid:{display:false},ticks:{color:'#8b93a5',font:{size:11}}}}}
 });
 
 new Chart(document.getElementById('cTERatio'),{type:'bar',
-  data:{labels:['João Gonçalves','Bruno Ianai','João Mattos','Leonardo Maldaner','Otavio Amaral'],
+  data:{labels:['João Gonçalves','Bruno Ianai','João Mattos','Otavio Amaral','Leonardo Maldaner'],
     datasets:[
-      {label:'Reuniões',data:[68,29,20,62,54],backgroundColor:'rgba(0,229,160,0.4)',borderColor:'#00e5a0',borderWidth:1.5,borderRadius:4,stack:'s'},
-      {label:'Tent. Esgotadas',data:[4,14,6,25,43],backgroundColor:'rgba(255,90,90,0.5)',borderColor:'#ff5a5a',borderWidth:1.5,borderRadius:4,stack:'s'},
+      {label:'Reuniões',data:[70,29,20,54,65],backgroundColor:'rgba(0,229,160,0.4)',borderColor:'#00e5a0',borderWidth:1.5,borderRadius:4,stack:'s'},
+      {label:'Tent. Esgotadas',data:[8,14,6,43,47],backgroundColor:'rgba(255,90,90,0.5)',borderColor:'#ff5a5a',borderWidth:1.5,borderRadius:4,stack:'s'},
     ]},
   options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8b93a5',boxWidth:8,padding:12,usePointStyle:true}},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.x} ${c.dataset.label}`}}},
     scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true,stacked:true},y:{grid:{display:false},ticks:{color:'#8b93a5',font:{size:10}},stacked:true}}}
