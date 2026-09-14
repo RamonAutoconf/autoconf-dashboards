@@ -189,9 +189,15 @@
   </div>
 
   <div class="chart-card">
-    <div class="chart-title">Investimento total por campanha (mai—ago)</div>
-    <div class="chart-note">Comparação do gasto acumulado nos 4 meses por campanha ativa.</div>
-    <svg id="chartInvest" viewBox="0 0 1080 220" style="width:100%;height:auto;"></svg>
+    <div class="chart-title">Investimento por campanha — mês a mês (mai—ago)</div>
+    <div class="chart-note">Investimento mensal de cada campanha. "Outras" agrupa Webinar, Artes-02, Carrossel e campanhas eventuais não recorrentes.</div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;" id="filterBtns">
+      <button onclick="setView('inv')" id="btnInv" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(76,148,232,0.5);background:rgba(76,148,232,0.15);color:#4C94E8;cursor:pointer;font-family:Inter;">Investimento</button>
+      <button onclick="setView('leads')" id="btnLeads" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">Leads</button>
+      <button onclick="setView('cpl')" id="btnCpl" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">CPL</button>
+    </div>
+    <svg id="chartMicro" viewBox="0 0 1080 280" style="width:100%;height:auto;"></svg>
+    <div class="legend" id="microLegend"></div>
   </div>
 
   <div class="callout red">Lista Clientes: CPL foi de R$33 (jun) → R$121 (jul) → R$231 (ago). R$693 gastos em agosto para 3 leads. Pausa imediata recomendada antes de qualquer novo aporte.</div>
@@ -379,23 +385,121 @@ const campaigns=[
   tbody.innerHTML=html;
 })();
 
-// --- CHART INVEST ---
-(function(){
-  const svg=document.getElementById('chartInvest');
-  const W=1080,H=220,padL=140,padB=18,padT=10,chartW=W-padL-20,chartH=H-padT-padB;
-  const vals=campaigns.map(c=>c.inv),maxV=Math.max(...vals)*1.15;
-  const bh=(chartH/campaigns.length)*0.55;
+// --- CHART MICRO MES A MES ---
+const microMeses = ['Mai','Jun','Jul','Ago'];
+const microData = {
+  inv: {
+    'Simulador Financ.': [4540.78, 5350.23, 4468.75, 4540.85],
+    'Agente de IA':      [4989.38, 4822.31, 4953.00, 4601.79],
+    'Artes Seg.':        [6944.77, 5977.92, 5207.42, 1979.88],
+    'Autoconf Pro':      [784.09,  744.62,  2386.87, 2418.59],
+    'Renave Brasil':     [0,       0,       1060.16, 4667.80],
+    'Loja de Motos':     [1243.18, 1203.24, 1078.28, 930.43],
+    'Lista Clientes':    [0,       570.79,  607.31,  693.66],
+    'Outras':            [1802.27, 4703.20, 2465.70, 2498.73],
+  },
+  leads: {
+    'Simulador Financ.': [400, 489, 352, 293],
+    'Agente de IA':      [108, 123,  92,  85],
+    'Artes Seg.':        [317, 244, 166,  54],
+    'Autoconf Pro':      [22,   54, 136,  81],
+    'Renave Brasil':     [0,     0,  90, 188],
+    'Loja de Motos':     [34,   60,  37,  27],
+    'Lista Clientes':    [0,    17,   5,   3],
+    'Outras':            [18,  487,   0,   2],
+  },
+  cpl: {
+    'Simulador Financ.': [11.35, 10.94, 12.70, 15.50],
+    'Agente de IA':      [46.20, 39.21, 53.84, 54.14],
+    'Artes Seg.':        [21.91, 24.50, 31.37, 36.66],
+    'Autoconf Pro':      [35.64, 13.79, 17.55, 29.86],
+    'Renave Brasil':     [0,     0,     11.78, 24.83],
+    'Loja de Motos':     [36.56, 20.05, 29.14, 34.46],
+    'Lista Clientes':    [0,     33.58, 121.46, 231.22],
+    'Outras':            [null,  null,  null,  null],
+  },
+};
+const microColors = {
+  'Simulador Financ.': '#35C07A',
+  'Agente de IA':      '#E5533D',
+  'Artes Seg.':        '#9AA3B2',
+  'Autoconf Pro':      '#4C94E8',
+  'Renave Brasil':     '#00C2A0',
+  'Loja de Motos':     '#EAAA00',
+  'Lista Clientes':    '#FF6B6B',
+  'Outras':            '#4A5060',
+};
+const microFmt = {
+  inv:   v => v > 0 ? 'R$'+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0}) : '—',
+  leads: v => v > 0 ? v : '—',
+  cpl:   v => v > 0 ? 'R$'+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—',
+};
+
+let currentView = 'inv';
+
+function drawMicroChart(view){
+  const svg = document.getElementById('chartMicro');
+  const W=1080,H=280,padL=12,padR=12,padT=20,padB=60;
+  const chartW=W-padL-padR, chartH=H-padT-padB;
+  const nMeses=4, nCamps=Object.keys(microData[view]).length;
+  const groupW=chartW/nMeses;
+  const barW=Math.min((groupW*0.85)/nCamps, 28);
+  const gap=(groupW - barW*nCamps)/2;
+
+  const campNames = Object.keys(microData[view]);
+  let allVals = [];
+  campNames.forEach(c=>microData[view][c].forEach(v=>{ if(v>0) allVals.push(v); }));
+  const maxV = Math.max(...allVals)*1.18;
+
   let html='';
-  const colors=['#35C07A','#35C07A','#4C94E8','#9AA3B2','#E5533D','#9AA3B2','#E5533D'];
-  campaigns.forEach((c,i)=>{
-    const cy=padT+(chartH*(i+0.5)/campaigns.length);
-    const w=chartW*(c.inv/maxV);
-    html+=`<text x="${padL-8}" y="${cy+4}" text-anchor="end" font-size="11.5" fill="#9AA3B2" font-family="Inter">${c.name.split('—')[0].trim()}</text>`;
-    html+=`<rect x="${padL}" y="${cy-bh/2}" width="${w}" height="${bh}" rx="3" fill="${colors[i]}40" stroke="${colors[i]}" stroke-width="1"/>`;
-    html+=`<text x="${padL+w+8}" y="${cy+4}" font-size="11.5" fill="#F2F3F5" font-family="Inter" font-weight="600">${fmtBRL(c.inv)}</text>`;
+  // Gridlines
+  for(let i=0;i<=4;i++){
+    const y=padT+chartH-(chartH*i/4);
+    html+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
+    const label = view==='inv' ? 'R$'+Math.round(maxV*i/4).toLocaleString('pt-BR')
+                : view==='leads' ? Math.round(maxV*i/4)
+                : 'R$'+Math.round(maxV*i/4);
+    html+=`<text x="${padL+2}" y="${y-4}" font-size="9" fill="#4d5566" font-family="Inter">${label}</text>`;
+  }
+
+  // Barras por mês
+  microMeses.forEach((mes,mi)=>{
+    const gx = padL + groupW*mi + gap;
+    campNames.forEach((camp,ci)=>{
+      const val = microData[view][camp][mi];
+      if(!val || val===0) return;
+      const bh = chartH*(val/maxV);
+      const x = gx + barW*ci;
+      const y = padT+chartH-bh;
+      const color = microColors[camp];
+      html+=`<rect x="${x}" y="${y}" width="${barW-2}" height="${bh}" rx="2" fill="${color}55" stroke="${color}" stroke-width="1">
+        <title>${camp} — ${mes}: ${microFmt[view](val)}</title></rect>`;
+    });
+    // Label mês
+    const cx = padL + groupW*(mi+0.5);
+    html+=`<text x="${cx}" y="${H-padB+20}" text-anchor="middle" font-size="13" fill="#9AA3B2" font-family="Inter" font-weight="600">${mes}</text>`;
+    // Linha separadora
+    if(mi<3) html+=`<line x1="${padL+groupW*(mi+1)}" y1="${padT}" x2="${padL+groupW*(mi+1)}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>`;
   });
+
   svg.innerHTML=html;
-})();
+
+  // Legenda
+  const leg=document.getElementById('microLegend');
+  leg.innerHTML=campNames.map(c=>`<div class="legend-item"><span class="legend-dot" style="background:${microColors[c]}"></span>${c}</div>`).join('');
+
+  // Botões
+  ['inv','leads','cpl'].forEach(v=>{
+    const btn=document.getElementById('btn'+v.charAt(0).toUpperCase()+v.slice(1));
+    if(v===view){
+      btn.style.background='rgba(76,148,232,0.15)';btn.style.color='#4C94E8';btn.style.borderColor='rgba(76,148,232,0.5)';
+    } else {
+      btn.style.background='transparent';btn.style.color='#6B7280';btn.style.borderColor='rgba(255,255,255,0.1)';
+    }
+  });
+}
+function setView(v){currentView=v;drawMicroChart(v);}
+drawMicroChart('inv');
 
 // --- NANO SIMULATOR ---
 const CPL_OPT=19.04, CPL_MID=22.16, CPL_CONS=27.50;
