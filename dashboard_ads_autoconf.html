@@ -116,28 +116,28 @@
     <h1>Painel de Geração de Leads — Meta Ads</h1>
     <div class="subtitle">Leitura em três camadas — visão geral da conta, desempenho por campanha e simulação de investimento adicional.</div>
   </div>
-  <div class="period-pill">Fev — Ago <b>/2026</b></div>
+  <div class="period-pill">Fev — Ago <b>/2026</b> · sem Abril</div>
 </header>
 
 <!-- MACRO -->
 <section class="section" id="macro">
   <div class="section-head"><span class="section-tag">MACRO</span><h2>Visão geral da conta</h2></div>
-  <p class="section-desc">Evolução de investimento, volume e CPL desde fevereiro. Estrutura de campanhas mudou em maio.</p>
+  <p class="section-desc">Evolução de investimento, volume e CPL de fevereiro a agosto (sem Abril). Estrutura de campanhas mudou em maio.</p>
 
   <div class="kpi-row">
     <div class="kpi">
-      <div class="kpi-label">Investido (mai—ago)</div>
-      <div class="kpi-value">R$ 88.235</div>
-      <div class="kpi-sub">4 meses · estrutura atual</div>
+      <div class="kpi-label">Investido (fev—ago)</div>
+      <div class="kpi-value">R$ 117.885</div>
+      <div class="kpi-sub">6 meses (sem Abril) · fev a ago</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Leads gerados (mai—ago)</div>
-      <div class="kpi-value blue">3.982</div>
-      <div class="kpi-sub">996 leads/mês em média</div>
+      <div class="kpi-label">Leads gerados (fev—ago)</div>
+      <div class="kpi-value blue">4.213</div>
+      <div class="kpi-sub">702 leads/mês em média</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">CPL médio (mai—ago)</div>
-      <div class="kpi-value gold">R$ 22,16</div>
+      <div class="kpi-label">CPL médio (fev—ago)</div>
+      <div class="kpi-value gold">R$ 27,98</div>
       <div class="kpi-sub">base usada nas projeções</div>
     </div>
     <div class="kpi">
@@ -221,7 +221,7 @@
       </div>
       <div class="scenario mid">
         <div class="scenario-tag">Realista</div>
-        <div class="scenario-basis">CPL médio da conta em mai—ago (R$22,16), somando todas as campanhas ativas</div>
+        <div class="scenario-basis">CPL médio da conta em fev—ago (R$27,98), incluindo fev e mar com CPL alto</div>
         <div class="scenario-leads" id="scenMidLeads">+226 <small>leads/mês</small></div>
         <div class="scenario-total" id="scenMidTotal"></div>
       </div>
@@ -245,7 +245,7 @@
 
 <footer>
   <span>Fonte: Meta Ads Manager — conta [HORIZZONT] Autoconf</span>
-  <span>Dados de fev, mar, mai, jun, jul e ago/2026</span>
+  <span>Dados de fev, mar, mai, jun, jul e ago/2026 (sem Abril)</span>
 </footer>
 </div>
 
@@ -343,7 +343,7 @@ const campaigns=[
 
 // --- NANO SIMULATOR ---
 const CPL_OPT=19.04, CPL_MID=22.16, CPL_CONS=27.50;
-const CURRENT_LEADS=996;
+const CURRENT_LEADS=702;
 const slider=document.getElementById('simSlider');
 
 function updateSim(){
