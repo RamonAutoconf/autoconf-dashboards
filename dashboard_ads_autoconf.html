@@ -474,6 +474,16 @@ function drawMicroChart(view){
       const color = microColors[camp];
       html+=`<rect x="${x}" y="${y}" width="${barW-2}" height="${bh}" rx="2" fill="${color}55" stroke="${color}" stroke-width="1">
         <title>${camp} — ${mes}: ${microFmt[view](val)}</title></rect>`;
+      // Label dentro/acima da barra
+      const labelVal = view==='inv'
+        ? 'R$'+Math.round(val/1000)+'k'
+        : view==='leads'
+        ? String(val)
+        : 'R$'+val.toFixed(0);
+      const fontSize = barW > 22 ? 9 : 8;
+      const labelY = bh > 24 ? y + bh - 5 : y - 4;
+      const labelFill = bh > 24 ? '#fff' : color;
+      html+=`<text x="${x+(barW-2)/2}" y="${labelY}" text-anchor="middle" font-size="${fontSize}" fill="${labelFill}" font-family="Inter" font-weight="600" transform="rotate(-90,${x+(barW-2)/2},${labelY})" style="pointer-events:none">${labelVal}</text>`;
     });
     // Label mês
     const cx = padL + groupW*(mi+0.5);
