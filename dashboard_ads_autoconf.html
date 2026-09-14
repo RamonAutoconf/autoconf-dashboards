@@ -250,6 +250,74 @@
 </section>
 
 
+
+<!-- GOOGLE ADS -->
+<section class="section" id="google">
+  <div class="section-head"><span class="section-tag" style="color:#4285F4">GOOGLE ADS</span><h2>Desempenho por mês</h2></div>
+  <p class="section-desc">Leads, investimento e CPL do Google Ads de fevereiro a agosto/2026. Apenas leads de formulário. Detalhamento por campanha disponível assim que os prints forem incluídos.</p>
+
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="kpi-label">Investido (fev—ago)</div>
+      <div class="kpi-value">R$ 21.716</div>
+      <div class="kpi-sub">7 meses · fev a ago</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Leads gerados (fev—ago)</div>
+      <div class="kpi-value blue">362</div>
+      <div class="kpi-sub">52 leads/mês em média</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">CPL médio (fev—ago)</div>
+      <div class="kpi-value gold">R$ 59,99</div>
+      <div class="kpi-sub">2,6× mais caro que Meta Ads</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-label">Melhor mês</div>
+      <div class="kpi-value" style="color:var(--green)">Jul · R$ 24,92</div>
+      <div class="kpi-sub down">153 leads · CPL próximo ao Meta</div>
+    </div>
+  </div>
+
+  <div class="chart-card">
+    <div class="chart-title">Google Ads — Leads e CPL por mês</div>
+    <div class="chart-note">Julho foi o pico de volume (153 leads) com o menor CPL do período (R$24,92) — vale investigar o que mudou nesse mês.</div>
+    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+      <button onclick="setGoogleView('leads')" id="gBtnLeads" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(66,133,244,0.5);background:rgba(66,133,244,0.15);color:#4285F4;cursor:pointer;font-family:Inter;">Leads</button>
+      <button onclick="setGoogleView('inv')" id="gBtnInv" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">Investimento</button>
+      <button onclick="setGoogleView('cpl')" id="gBtnCpl" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">CPL</button>
+    </div>
+    <svg id="chartGoogle" viewBox="0 0 1080 240" style="width:100%;height:auto;"></svg>
+  </div>
+
+  <div class="table-card" style="margin-top:24px">
+    <table>
+      <thead>
+        <tr>
+          <th>Mês</th>
+          <th class="center">Leads</th>
+          <th class="center">Investimento</th>
+          <th class="center">CPL</th>
+          <th class="center">vs Meta (CPL)</th>
+          <th class="center">Leitura</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Fevereiro</td><td class="center">20</td><td class="center">R$ 1.746,26</td><td class="center">R$ 87,31</td><td class="center" style="color:var(--red)">+194% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
+        <tr><td>Março</td><td class="center">18</td><td class="center">R$ 1.916,14</td><td class="center">R$ 106,45</td><td class="center" style="color:var(--red)">+210% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
+        <tr><td>Abril</td><td class="center">18</td><td class="center">R$ 1.592,32</td><td class="center">R$ 88,46</td><td class="center" style="color:var(--red)">+336% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
+        <tr><td>Maio</td><td class="center">50</td><td class="center">R$ 3.581,52</td><td class="center">R$ 71,63</td><td class="center" style="color:var(--red)">+249% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
+        <tr><td>Junho</td><td class="center">31</td><td class="center">R$ 4.763,72</td><td class="center" style="color:var(--red)">R$ 153,67</td><td class="center" style="color:var(--red)">+711% vs Meta</td><td class="center"><span class="row-flag critical">Revisar</span></td></tr>
+        <tr><td><strong>Julho</strong></td><td class="center" style="color:var(--green);font-weight:700">153</td><td class="center">R$ 3.813,17</td><td class="center" style="color:var(--green);font-weight:700">R$ 24,92</td><td class="center" style="color:var(--green)">+16% vs Meta</td><td class="center"><span class="row-flag strong">Investigar ↑</span></td></tr>
+        <tr><td>Agosto</td><td class="center">72</td><td class="center">R$ 4.302,75</td><td class="center">R$ 59,76</td><td class="center" style="color:var(--red)">+126% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout" style="margin-top:20px">🔍 <strong>Julho merece atenção:</strong> CPL caiu de R$153 (jun) para R$24,92 (jul) — queda de 84% — e o volume triplicou. Vale verificar se houve campanha nova, ajuste de lance ou público diferente. Se replicável, pode ser uma alavanca real de volume.</div>
+  <div class="callout red" style="margin-top:12px">⚠️ <strong>Google vs Meta:</strong> Na média, Google custa R$59,99/lead contra R$23,10 do Meta — 2,6× mais caro. O Google representa apenas 6,8% dos leads totais com 17,8% do investimento conjunto. A exceção foi julho (R$24,92), praticamente empatado com o Meta.</div>
+</section>
+
 <section class="section" id="eleitoral">
   <div class="section-head"><span class="section-tag" style="color:#E5533D">ALERTA</span><h2>Impacto do período eleitoral</h2></div>
   <p class="section-desc">Eleições municipais em outubro/2026 tendem a pressionar o CPL das campanhas de performance.</p>
