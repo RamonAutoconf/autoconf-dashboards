@@ -664,18 +664,16 @@ function drawMicroChart(view){
       const x = gx + barW*ci;
       const y = padT+chartH-bh;
       const color = microColors[camp];
-      html+=`<rect x="${x}" y="${y}" width="${barW-2}" height="${bh}" rx="2" fill="${color}55" stroke="${color}" stroke-width="1">
-        <title>${camp} — ${mes}: ${microFmt[view](val)}</title></rect>`;
-      // Label dentro/acima da barra
-      const labelVal = view==='inv'
-        ? 'R$'+Math.round(val/1000)+'k'
-        : view==='leads'
-        ? String(val)
-        : 'R$'+val.toFixed(0);
-      const fontSize = barW > 22 ? 9 : 8;
-      const labelY = bh > 24 ? y + bh - 5 : y - 4;
-      const labelFill = bh > 24 ? '#fff' : color;
-      html+=`<text x="${x+(barW-2)/2}" y="${labelY}" text-anchor="middle" font-size="${fontSize}" fill="${labelFill}" font-family="Inter" font-weight="600" transform="rotate(-90,${x+(barW-2)/2},${labelY})" style="pointer-events:none">${labelVal}</text>`;
+      const labelFull = view==='inv'
+        ? 'R$ '+val.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
+        : view==='leads' ? val+' leads'
+        : 'CPL R$ '+val.toFixed(2);
+      html+=`<rect x="${x}" y="${y}" width="${barW-2}" height="${bh}" rx="2" fill="${color}55" stroke="${color}" stroke-width="1.5" style="cursor:pointer" onmouseenter="showTip(event,'${camp} · ${mes}<br><b>${labelFull.replace(/'/g,'')}</b>')" onmouseleave="hideTip()"/>`;
+      // Valor acima da barra — só se barra for larga o suficiente
+      if(barW >= 18){
+        const shortVal = view==='inv' ? 'R$'+Math.round(val/1000)+'k' : view==='leads' ? String(val) : 'R$'+Math.round(val);
+        html+=`<text x="${x+(barW-2)/2}" y="${y-5}" text-anchor="middle" font-size="9" fill="${color}" font-family="Inter" font-weight="600" style="pointer-events:none">${shortVal}</text>`;
+      }
     });
     // Label mês
     const cx = padL + groupW*(mi+0.5);
@@ -794,6 +792,16 @@ function drawGoogleChart(view){
 }
 function setGoogleView(v){gView=v;drawGoogleChart(v);}
 drawGoogleChart('leads');
+
+
+// Tooltip flutuante
+const tip = document.createElement('div');
+tip.style.cssText='position:fixed;background:#1e2433;border:1px solid rgba(255,255,255,0.12);color:#f0f2f5;font-size:12px;font-family:Inter,sans-serif;padding:8px 12px;border-radius:8px;pointer-events:none;display:none;z-index:999;line-height:1.5;box-shadow:0 4px 20px rgba(0,0,0,0.4)';
+document.body.appendChild(tip);
+function showTip(e,html){tip.innerHTML=html;tip.style.display='block';moveTip(e);}
+function hideTip(){tip.style.display='none';}
+function moveTip(e){tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY-10)+'px';}
+document.addEventListener('mousemove',function(e){if(tip.style.display!='none')moveTip(e);});
 
 </script>
 </body>
