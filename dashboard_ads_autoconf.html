@@ -394,8 +394,8 @@
     </div>
     <div class="kpi">
       <div class="kpi-label">Melhor mês</div>
-      <div class="kpi-value" style="color:var(--green)">Jul · R$ 24,92</div>
-      <div class="kpi-sub down">153 leads · CPL próximo ao Meta</div>
+      <div class="kpi-value" style="color:var(--green)">Set* · R$ 21,19</div>
+      <div class="kpi-sub down">Dia 1–18 · novo mínimo histórico</div>
     </div>
   </div>
 
@@ -430,12 +430,13 @@
         <tr><td>Junho</td><td class="center">31</td><td class="center">R$ 4.763,72</td><td class="center" style="color:var(--red)">R$ 153,67</td><td class="center" style="color:var(--red)">+711% vs Meta</td><td class="center"><span class="row-flag critical">Revisar</span></td></tr>
         <tr><td><strong>Julho</strong></td><td class="center" style="color:var(--green);font-weight:700">153</td><td class="center">R$ 3.813,17</td><td class="center" style="color:var(--green);font-weight:700">R$ 24,92</td><td class="center" style="color:var(--green)">+16% vs Meta</td><td class="center"><span class="row-flag strong">Investigar ↑</span></td></tr>
         <tr><td>Agosto</td><td class="center">72</td><td class="center">R$ 4.302,75</td><td class="center">R$ 59,76</td><td class="center" style="color:var(--red)">+126% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
+        <tr style="background:rgba(66,133,244,0.05)"><td><strong>Set/26*</strong> <span style="font-size:10px;color:#4285F4">(dia 1–18)</span></td><td class="center" style="color:#4285F4;font-weight:700">—</td><td class="center" style="color:#4285F4;font-weight:700">R$ 2.030</td><td class="center" style="color:#35C07A;font-weight:700">R$ 21,19</td><td class="center" style="color:#35C07A">↓ CPL mínimo histórico</td><td class="center"><span class="row-flag strong">🔥 Melhor CPL</span></td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="callout" style="margin-top:20px">🔍 <strong>Julho merece atenção:</strong> CPL caiu de R$153 (jun) para R$24,92 (jul) — queda de 84% — e o volume triplicou. Vale verificar se houve campanha nova, ajuste de lance ou público diferente. Se replicável, pode ser uma alavanca real de volume.</div>
-  <div class="callout red" style="margin-top:12px">⚠️ <strong>Google vs Meta:</strong> Na média, Google custa R$59,99/lead contra R$23,10 do Meta — 2,6× mais caro. O Google representa apenas 6,8% dos leads totais com 17,8% do investimento conjunto. A exceção foi julho (R$24,92), praticamente empatado com o Meta.</div>
+  <div class="callout" style="margin-top:20px">🔍 <strong>Setembro já tem o menor CPL histórico:</strong> R$21,19 em dia 1–18 — abaixo de julho (R$24,92). Investimento de R$2.030 no período. Conversões Google não equivalem a leads formulário — volume real de leads a confirmar.</div>
+  <div class="callout red" style="margin-top:12px">⚠️ <strong>Google vs Meta:</strong> Na média histórica (fev–ago), Google custa R$59,99/lead vs R$23,10 do Meta — 2,6× mais caro. Setembro muda esse quadro: CPL Google de R$21,19 ficou abaixo do Meta. Leads formulário de setembro ainda não confirmados — número de conversões (95,6) inclui outros objetivos do Google.</div>
 </section>
 
 <section class="section" id="eleitoral">
@@ -718,10 +719,10 @@ updateSim();
 
 // --- GOOGLE ADS CHART ---
 const gDados = {
-  meses:  ['Fev','Mar','Abr','Mai','Jun','Jul','Ago'],
-  leads:  [20,   18,   18,   50,   31,   153,  72],
-  inv:    [1746.26, 1916.14, 1592.32, 3581.52, 4763.72, 3813.17, 4302.75],
-  cpl:    [87.31, 106.45, 88.46, 71.63, 153.67, 24.92, 59.76],
+  meses:  ['Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set*'],
+  leads:  [20,   18,   18,   50,   31,   153,  72,   null],
+  inv:    [1746.26, 1916.14, 1592.32, 3581.52, 4763.72, 3813.17, 4302.75, 2030],
+  cpl:    [87.31, 106.45, 88.46, 71.63, 153.67, 24.92, 59.76, 21.19],
 };
 const gColors = {
   leads: '#4285F4',
