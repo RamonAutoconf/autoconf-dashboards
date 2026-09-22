@@ -367,7 +367,7 @@ new Chart(document.getElementById('cMRR'),{type:'bar',
 new Chart(document.getElementById('cROAS'),{type:'line',
   data:{labels:meses,datasets:[
     {label:'ROAS',data:[2.31,1.99,4.36,1.93,3.36,2.30,4.28,4.27,3.47],borderColor:'#fbbf24',backgroundColor:'rgba(251,191,36,0.07)',fill:true,tension:0.4,pointRadius:4,pointHoverRadius:6,borderWidth:2.5,pointBackgroundColor:(ctx)=>{const v=ctx.parsed?.y;return v>=3?'#22d3a5':v>=2?'#fbbf24':'#f87171'},pointBorderColor:'#09090b',pointBorderWidth:2},
-    {label:'Break-even 3×',data:[3,3,3,3,3,3,3,3,3],borderColor:'rgba(255,255,255,0.15)',borderDash:[4,4],borderWidth:1,pointRadius:0,fill:false}
+    {label:'Referência mercado SaaS B2B (3×)',data:[3,3,3,3,3,3,3,3,3],borderColor:'rgba(255,255,255,0.15)',borderDash:[4,4],borderWidth:1,pointRadius:0,fill:false}
   ]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#a1a1aa',boxWidth:8,padding:12,usePointStyle:true}},tooltip:{...tip,callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y}×`}}},
     scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10},callback:v=>v+'×'},min:0,max:5}}}
