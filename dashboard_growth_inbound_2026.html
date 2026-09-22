@@ -294,6 +294,57 @@ footer{text-align:center;padding:20px 0;font-size:11px;color:var(--t3)}
 </div>
 
 </div>
+
+<!-- ROAS 3 TABELAS -->
+<div>
+  <div class="sl"><span>ROAS — três cálculos</span><hr></div>
+
+  <!-- ROAS 1: MRR x12 churn 30% -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="ch">
+      <div><div class="ct">ROAS — MRR × 12 (churn 30%)</div><div class="cs">(MRR × 12 × 0,70) ÷ investimento total · retorno anual estimado</div></div>
+      <span class="ctag" style="color:var(--amber)">🏆 Ago: 27,42×</span>
+    </div>
+    <table class="tbl">
+      <thead><tr>
+        <th style="text-align:left">Mês</th><th>MRR</th><th>MRR × 12</th><th>× 0,70</th>
+        <th>Inv. Meta</th><th>Inv. Google</th><th>Total inv.</th><th>ROAS</th>
+      </tr></thead>
+      <tbody id="roas1body"></tbody>
+    </table>
+  </div>
+
+  <!-- ROAS 2: Setup -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="ch">
+      <div><div class="ct">ROAS — Setup</div><div class="cs">Setup ÷ investimento total · retorno imediato da taxa de implantação</div></div>
+      <span class="ctag" style="color:var(--blue)">Complementar ao MRR</span>
+    </div>
+    <table class="tbl">
+      <thead><tr>
+        <th style="text-align:left">Mês</th><th>Setup</th>
+        <th>Inv. Meta</th><th>Inv. Google</th><th>Total inv.</th><th>ROAS</th>
+      </tr></thead>
+      <tbody id="roas2body"></tbody>
+    </table>
+  </div>
+
+  <!-- ROAS 3: MRR + Setup -->
+  <div class="card">
+    <div class="ch">
+      <div><div class="ct">ROAS — MRR + Setup</div><div class="cs">(MRR + Setup) ÷ investimento total · receita total gerada no mês</div></div>
+      <span class="ctag" style="color:var(--green)">Principal métrica de retorno</span>
+    </div>
+    <table class="tbl">
+      <thead><tr>
+        <th style="text-align:left">Mês</th><th>MRR</th><th>Setup</th><th>MRR + Setup</th>
+        <th>Inv. Meta</th><th>Inv. Google</th><th>Total inv.</th><th>ROAS</th>
+      </tr></thead>
+      <tbody id="roas3body"></tbody>
+    </table>
+  </div>
+</div>
+
 <footer>Autoconf · Growth Marketing Dashboard · INBOUND GERAL · Jan–Set/2026 · Set parcial</footer>
 
 <script>
@@ -356,6 +407,41 @@ new Chart(document.getElementById('cContrRec'),{type:'bar',
       y2:{grid:{display:false},ticks:{color:'#22d3a5',font:{size:10},callback:v=>'R$'+Math.round(v/1000)+'k'},beginAtZero:true,position:'right'}
     }}
 });
+
+// ROAS 3 tabelas
+(function(){
+  const dados=[
+    {mes:'Jan',meta:17436.68,goog:1456.31,mrr:28284.94,setup:15326.54},
+    {mes:'Fev',meta:14514.70,goog:1746.26,mrr:18615.63,setup:13812.70},
+    {mes:'Mar',meta:14270.20,goog:1916.14,mrr:44103.75,setup:26468.84},
+    {mes:'Abr',meta:15959.76,goog:1592.32,mrr:26919.90,setup:6939.00},
+    {mes:'Mai',meta:20274.55,goog:3581.52,mrr:54728.00,setup:25389.00},
+    {mes:'Jun',meta:18802.63,goog:4763.72,mrr:39721.00,setup:14474.50},
+    {mes:'Jul',meta:19154.79,goog:3813.17,mrr:71631.10,setup:26689.00},
+    {mes:'Ago',meta:19502.65,goog:4302.75,mrr:77696.00,setup:23971.50},
+    {mes:'Set',meta:13152.71,goog:2386.52,mrr:41897.00,setup:12053.75},
+  ];
+  function brl(v){return'R$'+Math.round(v).toLocaleString('pt-BR')}
+  function pill(v){
+    const c=v>=4?'var(--green)':v>=3?'var(--blue)':v>=2?'var(--amber)':'var(--red)';
+    const bg=v>=4?'var(--green-d)':v>=3?'var(--blue-d)':v>=2?'var(--amber-d)':'var(--red-d)';
+    return`<span class="pill" style="background:${bg};color:${c};min-width:52px;justify-content:center">${v.toFixed(2)}×</span>`;
+  }
+  let h1='',h2='',h3='';
+  dados.forEach(d=>{
+    const inv=d.meta+d.goog;
+    const r1=(d.mrr*12*0.7)/inv, r2=d.setup/inv, r3=(d.mrr+d.setup)/inv;
+    const isStar=d.mes==='Set';
+    const mes=isStar?`<span style="color:var(--blue)">${d.mes}*</span>`:d.mes;
+    h1+=`<tr><td>${mes}</td><td class="mono">${brl(d.mrr)}</td><td class="mono">${brl(d.mrr*12)}</td><td class="mono" style="color:var(--green)">${brl(d.mrr*12*0.7)}</td><td class="mono" style="color:var(--text3)">${brl(d.meta)}</td><td class="mono" style="color:var(--text3)">${brl(d.goog)}</td><td class="mono">${brl(inv)}</td><td>${pill(r1)}</td></tr>`;
+    h2+=`<tr><td>${mes}</td><td class="mono">${brl(d.setup)}</td><td class="mono" style="color:var(--text3)">${brl(d.meta)}</td><td class="mono" style="color:var(--text3)">${brl(d.goog)}</td><td class="mono">${brl(inv)}</td><td>${pill(r2)}</td></tr>`;
+    h3+=`<tr><td>${mes}</td><td class="mono">${brl(d.mrr)}</td><td class="mono">${brl(d.setup)}</td><td class="mono" style="font-weight:600;color:var(--text)">${brl(d.mrr+d.setup)}</td><td class="mono" style="color:var(--text3)">${brl(d.meta)}</td><td class="mono" style="color:var(--text3)">${brl(d.goog)}</td><td class="mono">${brl(inv)}</td><td>${pill(r3)}</td></tr>`;
+  });
+  document.getElementById('roas1body').innerHTML=h1;
+  document.getElementById('roas2body').innerHTML=h2;
+  document.getElementById('roas3body').innerHTML=h3;
+})();
+
 </script>
 </body>
 </html>
