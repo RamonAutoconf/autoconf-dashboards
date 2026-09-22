@@ -305,12 +305,12 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
           <tr><td><span class="rank r2">2</span></td><td><strong>Leonardo Maldaner</strong></td><td class="r" style="color:var(--green);font-weight:700">25</td><td class="r">6</td><td class="r" style="color:var(--amber)">19%</td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
           <tr><td><span class="rank r3">3</span></td><td><strong>Otavio Amaral</strong></td><td class="r" style="color:var(--amber);font-weight:700">20</td><td class="r" style="color:var(--red)">14</td><td class="r" style="color:var(--red)">41%</td><td class="r"><span class="pill pr">⚠️ TE alto</span></td></tr>
           <tr><td><span class="rank rn">4</span></td><td><strong>Bruno Ianai</strong></td><td class="r" style="color:var(--amber);font-weight:700">18</td><td class="r">4</td><td class="r" style="color:var(--amber)">18%</td><td class="r"><span class="pill pb">↑ Sólido</span></td></tr>
-          <tr><td><span class="rank rn">5</span></td><td><strong>Novo SDR</strong></td><td class="r">16</td><td class="r" style="color:var(--red)">13</td><td class="r" style="color:var(--red)">45%</td><td class="r"><span class="pill pr">⚠️ TE alto</span></td></tr>
+          <tr><td><span class="rank rn">5</span></td><td><strong>Pâmela Souza</strong></td><td class="r">16</td><td class="r" style="color:var(--red)">13</td><td class="r" style="color:var(--red)">45%</td><td class="r"><span class="pill pr">⚠️ TE alto</span></td></tr>
           <tr><td><span class="rank rn">6</span></td><td>Lucas Nikolofski</td><td class="r">6</td><td class="r" style="color:var(--green)">0</td><td class="r" style="color:var(--green)">0%</td><td class="r"><span class="pill pd">Novo</span></td></tr>
           <tr><td><span class="rank rn">—</span></td><td style="color:var(--text3)">Outros SDRs</td><td class="r" style="color:var(--text3)">20</td><td class="r" style="color:var(--text3)">0</td><td class="r">—</td><td class="r"><span class="pill pd">—</span></td></tr>
         </tbody>
       </table>
-      <div class="ins ir" style="margin-top:12px">⚠️ Novo SDR (45%) e Otavio (41%) com ratio TE crítico. Mais de 1 em cada 2 leads não responde — revisão de abordagem urgente.</div>
+      <div class="ins ir" style="margin-top:12px">⚠️ Pâmela Souza (45%) e Otavio (41%) com ratio TE crítico. Mais de 1 em cada 2 leads não responde — revisão de abordagem urgente.</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:14px">
       <div class="card" style="flex:1">
@@ -349,7 +349,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
       <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:11px">
         <div style="background:var(--green-d);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--green);font-size:10px;margin-bottom:3px">Melhor</div><div style="font-weight:700">Lucas 0%</div></div>
         <div style="background:var(--surface2);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--text3);font-size:10px;margin-bottom:3px">Total TE</div><div style="font-weight:700">45</div></div>
-        <div style="background:var(--red-d);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--red);font-size:10px;margin-bottom:3px">Pior</div><div style="font-weight:700">Novo SDR 45%</div></div>
+        <div style="background:var(--red-d);border-radius:7px;padding:8px 10px;text-align:center"><div style="color:var(--red);font-size:10px;margin-bottom:3px">Pior</div><div style="font-weight:700">Pâmela Souza 45%</div></div>
       </div>
     </div>
   </div>
@@ -472,7 +472,7 @@ new Chart(document.getElementById('cTaxas'),{type:'bar',
 });
 
 new Chart(document.getElementById('cSDR'),{type:'bar',
-  data:{labels:['João G.','Leonardo','Otavio','Bruno','Novo SDR','Lucas'],
+  data:{labels:['João G.','Leonardo','Otavio','Bruno','Pâmela Souza','Lucas'],
     datasets:[{data:[34,25,20,18,16,6],
       backgroundColor:['rgba(0,229,160,0.7)','rgba(0,229,160,0.6)','rgba(255,184,48,0.5)','rgba(77,159,255,0.5)','rgba(77,159,255,0.4)','rgba(77,159,255,0.3)'],
       borderColor:['#00e5a0','#00e5a0','#ffb830','#4d9fff','#4d9fff','#4d9fff'],
@@ -490,7 +490,7 @@ new Chart(document.getElementById('cMotivos'),{type:'doughnut',
 });
 
 new Chart(document.getElementById('cTE'),{type:'bar',
-  data:{labels:['Otavio','Novo SDR','João G.','Leonardo','Bruno'],
+  data:{labels:['Otavio','Pâmela Souza','João G.','Leonardo','Bruno'],
     datasets:[{data:[14,13,8,6,4],
       backgroundColor:['rgba(255,90,90,0.7)','rgba(255,90,90,0.6)','rgba(255,184,48,0.5)','rgba(255,184,48,0.4)','rgba(77,159,255,0.4)'],
       borderColor:['#ff5a5a','#ff5a5a','#ffb830','#ffb830','#4d9fff'],
@@ -500,7 +500,7 @@ new Chart(document.getElementById('cTE'),{type:'bar',
 });
 
 new Chart(document.getElementById('cTERatio'),{type:'bar',
-  data:{labels:['Lucas','Bruno','Leonardo','João G.','Novo SDR','Otavio'],
+  data:{labels:['Lucas','Bruno','Leonardo','João G.','Pâmela Souza','Otavio'],
     datasets:[
       {label:'Reuniões',data:[6,18,25,34,16,20],backgroundColor:'rgba(0,229,160,0.4)',borderColor:'#00e5a0',borderWidth:1.5,borderRadius:4,stack:'s'},
       {label:'TE',data:[0,4,6,8,13,14],backgroundColor:'rgba(255,90,90,0.5)',borderColor:'#ff5a5a',borderWidth:1.5,borderRadius:4,stack:'s'},
