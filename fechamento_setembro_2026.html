@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fechamento Setembro 2026 — Autoconf Marketing</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#070809;--s1:#0f1114;--s2:#161a1f;--s3:#1c2028;
+  --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.12);
+  --t:#eef0f4;--t2:#8892a4;--t3:#4a5568;--t4:#2d3748;
+  --green:#05d38b;--gd:rgba(5,211,139,0.10);--gb:rgba(5,211,139,0.06);
+  --blue:#4f8ef7;--bd_:rgba(79,142,247,0.10);
+  --amber:#f5a623;--ad:rgba(245,166,35,0.10);
+  --red:#f05252;--rd:rgba(240,82,82,0.10);
+  --purple:#9f7aea;--pd_:rgba(159,122,234,0.10);
+  --brand:#307FE2;
+  --r:10px;
+}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t);min-height:100vh;-webkit-font-smoothing:antialiased;font-size:13px}
+/* TOPBAR */
+.topbar{background:var(--s1);border-bottom:1px solid var(--bd);padding:0 40px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.logo{font-size:15px;font-weight:800;letter-spacing:-0.4px}.logo b{color:var(--brand)}
+.nav-pills{display:flex;gap:4px}
+.npill{font-size:11px;font-weight:500;padding:5px 14px;border-radius:20px;color:var(--t2);cursor:pointer;transition:all .15s}
+.npill:hover,.npill.active{background:var(--s3);color:var(--t)}
+.chips{display:flex;gap:8px;align-items:center}
+.chip{font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px}
+.c-set{background:var(--gd);color:var(--green);border:1px solid rgba(5,211,139,0.2)}
+.c-rec{background:rgba(255,255,255,0.04);color:var(--amber);border:1px solid rgba(245,166,35,0.2)}
+
+/* HERO BANNER */
+.banner{background:var(--s1);border-bottom:1px solid var(--bd);padding:40px 40px 32px}
+.banner-inner{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.b-label{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--t3);margin-bottom:10px}
+.b-title{font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1;margin-bottom:10px}
+.b-title span{color:var(--green)}
+.b-sub{font-size:14px;color:var(--t2);font-weight:400}
+.b-badges{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:6px 14px;border-radius:8px}
+.badge-g{background:var(--gd);color:var(--green);border:1px solid rgba(5,211,139,0.2)}
+.badge-a{background:var(--ad);color:var(--amber);border:1px solid rgba(245,166,35,0.2)}
+.badge-r{background:var(--rd);color:var(--red);border:1px solid rgba(240,82,82,0.2)}
+.b-stat{text-align:center}
+.bs-v{font-size:64px;font-weight:900;letter-spacing:-3px;line-height:1;color:var(--green)}
+.bs-l{font-size:12px;color:var(--t2);margin-top:6px}
+.bs-s{font-size:11px;font-weight:600;color:var(--t3);margin-top:4px}
+
+/* MAIN */
+.main{max-width:1440px;margin:0 auto;padding:32px 40px;display:flex;flex-direction:column;gap:32px}
+
+/* SECTION */
+.sl{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.sl-t{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3)}
+.sl-l{flex:1;height:1px;background:var(--bd)}
+.sl-badge{font-size:10px;font-weight:600;padding:3px 10px;border-radius:6px}
+
+/* HERO GRID */
+.hero{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bd);border-radius:var(--r);overflow:hidden}
+.hk{background:var(--s1);padding:24px 20px;position:relative;overflow:hidden}
+.hkl{font-size:9.5px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);margin-bottom:12px}
+.hkv{font-size:38px;font-weight:900;letter-spacing:-2px;line-height:1}
+.hks{font-size:11px;color:var(--t2);margin-top:7px}
+.hkb{display:inline-flex;align-items:center;gap:4px;font-size:10.5px;font-weight:600;padding:4px 9px;border-radius:6px;margin-top:10px}
+.up{background:var(--gd);color:var(--green)}.dn{background:var(--rd);color:var(--red)}.am{background:var(--ad);color:var(--amber)}
+.acc{position:absolute;bottom:0;left:0;right:0;height:3px}
+
+/* CARDS */
+.card{background:var(--s1);border:1px solid var(--bd);border-radius:var(--r);padding:24px}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.ct{font-size:13px;font-weight:600;color:var(--t)}
+.cs{font-size:11px;color:var(--t3);margin-top:3px}
+.ctag{font-size:10px;font-weight:600;padding:4px 10px;border-radius:6px;white-space:nowrap;background:var(--s3);color:var(--t3)}
+
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px}
+.g23{display:grid;grid-template-columns:2fr 3fr;gap:16px}
+.g32{display:grid;grid-template-columns:3fr 2fr;gap:16px}
+
+/* META BARS */
+.mrow{margin-bottom:16px}.mrow:last-child{margin-bottom:0}
+.mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.mname{font-size:12px;font-weight:600}
+.mval{font-size:11px;font-family:'JetBrains Mono',monospace;color:var(--t2)}
+.mpct{font-size:11px;font-weight:700;padding:2px 7px;border-radius:5px}
+.bar{width:100%;height:7px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden}
+.bf{height:100%;border-radius:4px}
+.msub{font-size:10px;color:var(--t3);margin-top:5px}
+
+/* FUNIL VISUAL */
+.funnel{display:grid;grid-template-columns:1fr 44px 1fr 44px 1fr 44px 1fr;align-items:center;gap:0}
+.fnode{text-align:center;padding:18px 10px}
+.fcircle{width:80px;height:80px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:21px;font-weight:900;letter-spacing:-1px}
+.fname{font-size:11px;font-weight:700;margin-bottom:3px}
+.fsub{font-size:10px;color:var(--t3)}
+.fcomp{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.05);font-size:10px;color:var(--t3)}
+.farrow{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 4px}
+.farr-rate{font-size:18px;font-weight:800;letter-spacing:-0.5px;margin-bottom:2px}
+.farr-l{font-size:8.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--t3)}
+.farr-cmp{font-size:9px;color:var(--t3);margin-top:4px}
+
+/* TAXAS GRID */
+.tgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tcard{border-radius:8px;padding:16px;text-align:center;border:1px solid transparent}
+.tc-v{font-size:28px;font-weight:800;letter-spacing:-1px}
+.tc-l{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
+.tc-cmp{font-size:10px;margin-top:6px}
+.tc-med{font-size:9px;color:var(--t3);margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.06)}
+
+/* INSIGHT */
+.ins{border-radius:9px;padding:13px 15px;font-size:11.5px;line-height:1.6;margin-bottom:8px;border-left:3px solid}
+.ins:last-child{margin-bottom:0}
+.ins strong{font-weight:700;display:block;margin-bottom:2px;font-size:12px}
+.ig{background:var(--gb);border-color:var(--green);color:#9eead0}
+.iw{background:rgba(245,166,35,0.07);border-color:var(--amber);color:#f5d99f}
+.ir{background:var(--rd);border-color:var(--red);color:#fca5a5}
+.ib{background:var(--bd_);border-color:var(--blue);color:#bfdbfe}
+
+/* TABELA */
+.tbl{width:100%;border-collapse:collapse}
+.tbl th{font-size:9.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--t3);padding:0 14px 10px;text-align:left;border-bottom:1px solid var(--bd)}
+.tbl th.r{text-align:right}
+.tbl td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px;vertical-align:middle}
+.tbl td.r{text-align:right;font-family:'JetBrains Mono',monospace}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(255,255,255,0.015)}
+
+/* RANK */
+.rank{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:5px;font-size:10px;font-weight:700}
+.rk1{background:rgba(245,166,35,0.15);color:var(--amber)}
+.rk2{background:rgba(148,163,184,0.1);color:#94a3b8}
+.rk3{background:rgba(180,120,80,0.1);color:#cd7c4b}
+.rkn{background:var(--s3);color:var(--t3)}
+
+/* PILLS */
+.pill{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 8px;border-radius:5px}
+.pg{background:var(--gd);color:var(--green)}.pb{background:var(--bd_);color:var(--blue)}
+.pa{background:var(--ad);color:var(--amber)}.pd{background:var(--s3);color:var(--t3)}.pr{background:var(--rd);color:var(--red)}
+
+/* MINI STAT */
+.mstat{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-radius:8px;background:var(--s2);margin-bottom:8px}
+.mstat:last-child{margin-bottom:0}
+.ms-l{font-size:11.5px;color:var(--t2)}
+.ms-r{font-size:12px;font-weight:700}
+
+/* ACUMULADO */
+.acc-bar{display:flex;align-items:flex-end;gap:6px;height:100px;padding-bottom:4px}
+.ab-col{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1}
+.ab-bar{width:100%;border-radius:3px 3px 0 0;min-height:4px;transition:height .3s}
+.ab-l{font-size:9px;color:var(--t3);font-weight:600}
+.ab-v{font-size:9px;font-weight:700}
+
+/* HIGHLIGHT BOX */
+.hbox{border-radius:12px;padding:28px;border:1px solid}
+.hbox-g{background:rgba(5,211,139,0.04);border-color:rgba(5,211,139,0.15)}
+.hbox-a{background:rgba(245,166,35,0.04);border-color:rgba(245,166,35,0.15)}
+.hbox-r{background:rgba(240,82,82,0.04);border-color:rgba(240,82,82,0.15)}
+
+/* FOOTER */
+footer{text-align:center;padding:28px 0 32px;font-size:11px;color:var(--t4)}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div style="display:flex;align-items:center;gap:20px">
+    <div class="logo">Auto<b>conf</b></div>
+    <div style="width:1px;height:18px;background:var(--bd2)"></div>
+    <span style="font-size:13px;color:var(--t2);font-weight:500">Fechamento · Marketing Growth</span>
+  </div>
+  <div class="nav-pills">
+    <span class="npill active">Funil</span>
+    <span class="npill">SDRs</span>
+    <span class="npill">Qualidade</span>
+    <span class="npill">Acumulado</span>
+  </div>
+  <div class="chips">
+    <span class="chip c-set">✅ Setembro 2026 · fechado</span>
+    <span class="chip c-rec">🏆 2º melhor mês do ano</span>
+  </div>
+</div>
+
+<!-- HERO BANNER -->
+<div class="banner">
+  <div class="banner-inner">
+    <div>
+      <div class="b-label">Fechamento mensal · Marketing Growth — ATF-INBOUND</div>
+      <div class="b-title">Setembro<br><span>2026</span></div>
+      <div class="b-sub">97 contratos fechados · close rate de 41,8% — maior do ano · segundo melhor volume histórico</div>
+      <div class="b-badges">
+        <span class="badge badge-g">🏆 Close rate 41,8% — recorde anual</span>
+        <span class="badge badge-g">🥈 97 contratos — 2º melhor do ano</span>
+        <span class="badge badge-a">⚠️ Reuniões 25,9% abaixo de agosto</span>
+        <span class="badge badge-a">🟡 121 TEs no mês</span>
+        <span class="badge badge-r">🔴 3 de bater a meta de 100</span>
+      </div>
+    </div>
+    <div style="display:flex;gap:32px">
+      <div class="b-stat">
+        <div class="bs-v" style="color:var(--green)">97</div>
+        <div class="bs-l">contratos fechados</div>
+        <div class="bs-s">meta: 100 · 97% atingida</div>
+      </div>
+      <div style="width:1px;background:var(--bd)"></div>
+      <div class="b-stat">
+        <div class="bs-v" style="color:var(--amber)">41,8%</div>
+        <div class="bs-l">close rate</div>
+        <div class="bs-s">maior do ano · ago: 37,7%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- KPIs HERO -->
+<div>
+  <div class="sl"><span class="sl-t">Números do mês</span><div class="sl-l"></div><span class="sl-badge" style="background:var(--gd);color:var(--green)">setembro fechado</span></div>
+  <div class="hero">
+    <div class="hk">
+      <div class="hkl">Leads gerados</div>
+      <div class="hkv" style="color:var(--blue)">987</div>
+      <div class="hks">32,9/dia · meta implícita ~1.000</div>
+      <div class="hkb dn">▼ 8,9% vs agosto (1.083)</div>
+      <div class="acc" style="background:var(--blue)"></div>
+    </div>
+    <div class="hk">
+      <div class="hkl">MQLs · meta 800</div>
+      <div class="hkv" style="color:var(--green)">696</div>
+      <div class="hks">291 perdidos · 70,5% de qualificação</div>
+      <div class="hkb am">87% da meta</div>
+      <div class="acc" style="background:var(--green)"></div>
+    </div>
+    <div class="hk">
+      <div class="hkl">Reuniões · meta 300</div>
+      <div class="hkv" style="color:var(--purple)">232</div>
+      <div class="hks">7,7/dia · 77% da meta</div>
+      <div class="hkb dn">▼ 25,9% vs agosto (313)</div>
+      <div class="acc" style="background:var(--purple)"></div>
+    </div>
+    <div class="hk">
+      <div class="hkl">Contratos · meta 100</div>
+      <div class="hkv" style="color:var(--green)">97</div>
+      <div class="hks">3,2/dia · 2º melhor do ano</div>
+      <div class="hkb up">97% da meta 🔥</div>
+      <div class="acc" style="background:linear-gradient(90deg,var(--amber),var(--green))"></div>
+    </div>
+    <div class="hk">
+      <div class="hkl">Close rate</div>
+      <div class="hkv" style="color:var(--amber)">41,8%</div>
+      <div class="hks">Maior do ano · ago foi 37,7%</div>
+      <div class="hkb up">🏆 Recorde anual</div>
+      <div class="acc" style="background:var(--amber)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- METAS + COMPARATIVO + INSIGHTS -->
+<div class="g3">
+
+  <!-- METAS -->
+  <div class="card">
+    <div class="ch"><div><div class="ct">Metas — setembro fechado</div><div class="cs">Resultado final vs objetivos do mês</div></div></div>
+    <div class="mrow">
+      <div class="mhead"><span class="mname">MQLs</span><span style="display:flex;align-items:center;gap:8px"><span class="mval">696 / 800</span><span class="mpct" style="background:var(--gd);color:var(--green)">87%</span></span></div>
+      <div class="bar"><div class="bf" style="width:87%;background:var(--green)"></div></div>
+      <div class="msub">Taxa de qualificação 70,5% · acima da média trimestral (62,5%)</div>
+    </div>
+    <div class="mrow">
+      <div class="mhead"><span class="mname">Reuniões</span><span style="display:flex;align-items:center;gap:8px"><span class="mval">232 / 300</span><span class="mpct" style="background:var(--ad);color:var(--amber)">77%</span></span></div>
+      <div class="bar"><div class="bf" style="width:77%;background:var(--purple)"></div></div>
+      <div class="msub">Gargalo do mês · 81 abaixo de agosto · 121 TEs desperdiçados</div>
+    </div>
+    <div class="mrow">
+      <div class="mhead"><span class="mname">Contratos</span><span style="display:flex;align-items:center;gap:8px"><span class="mval">97 / 100</span><span class="mpct" style="background:var(--gd);color:var(--green)">97% 🔥</span></span></div>
+      <div class="bar"><div class="bf" style="width:97%;background:linear-gradient(90deg,var(--amber),var(--green))"></div></div>
+      <div class="msub">Faltaram apenas 3 · com mais reuniões seria meta batida folgado</div>
+    </div>
+    <div style="margin-top:20px;padding:14px;background:var(--s2);border-radius:8px;border:1px solid var(--bd)">
+      <div style="font-size:10px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Se tivéssemos as reuniões de agosto (313)…</div>
+      <div style="font-size:28px;font-weight:900;color:var(--green);letter-spacing:-1px">~131 contratos</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:4px">com o close rate de 41,8% aplicado sobre 313 reuniões</div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO -->
+  <div class="card">
+    <div class="ch"><div><div class="ct">Set vs Ago — comparativo fechado</div><div class="cs">Dois meses completos · variação real</div></div></div>
+    <div class="mstat"><span class="ms-l">Leads</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 1.083</span><span class="ms-r" style="color:var(--red)">Set 987 <span style="font-size:10px;font-weight:400">▼8,9%</span></span></span></div>
+    <div class="mstat"><span class="ms-l">Perdidos MKT</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 311</span><span class="ms-r" style="color:var(--green)">Set 291 <span style="font-size:10px;font-weight:400">▲ melhor</span></span></span></div>
+    <div class="mstat"><span class="ms-l">MQLs</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 772</span><span class="ms-r">Set 696</span></span></div>
+    <div class="mstat"><span class="ms-l">Taxa MQL</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 71,3%</span><span class="ms-r">Set 70,5%</span></span></div>
+    <div class="mstat"><span class="ms-l">Reuniões</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 313</span><span class="ms-r" style="color:var(--red)">Set 232 <span style="font-size:10px;font-weight:400">▼25,9%</span></span></span></div>
+    <div class="mstat"><span class="ms-l">MQL → Reunião</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 40,5%</span><span class="ms-r" style="color:var(--red)">Set 33,3% <span style="font-size:10px;font-weight:400">▼7,2pp</span></span></span></div>
+    <div class="mstat"><span class="ms-l">Close rate</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 37,7%</span><span class="ms-r" style="color:var(--green)">Set 41,8% <span style="font-size:10px;font-weight:400">▲4,1pp 🔥</span></span></span></div>
+    <div class="mstat" style="background:rgba(5,211,139,0.06);border:1px solid rgba(5,211,139,0.12)"><span class="ms-l">Contratos</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 107 HubSpot</span><span class="ms-r" style="color:var(--green)">Set 97 <span style="font-size:10px;font-weight:400">🥈 2º melhor</span></span></span></div>
+    <div class="mstat"><span class="ms-l">Lead → Contrato</span><span><span style="color:var(--t3);margin-right:10px;font-size:11px">Ago 9,9%</span><span class="ms-r" style="color:var(--green)">Set 9,8%</span></span></div>
+  </div>
+
+  <!-- INSIGHTS -->
+  <div class="card">
+    <div class="ch"><div><div class="ct">Diagnóstico do mês</div><div class="cs">Análise qualitativa · setembro/26</div></div></div>
+    <div class="ins ig"><strong>🏆 Close rate 41,8% — melhor do ano</strong>Com 81 reuniões a menos que agosto, o comercial entregou o maior índice de conversão da história recente. A qualidade das reuniões melhorou expressivamente.</div>
+    <div class="ins ig"><strong>🥈 97 contratos — segundo melhor mês do ano</strong>Faltaram apenas 3 para bater a meta e 10 para igualar julho. Com o volume de reuniões de agosto e o close rate de setembro, o resultado seria em torno de 131 contratos.</div>
+    <div class="ins ir"><strong>🔴 Reuniões: principal gargalo do mês</strong>232 vs 313 em agosto. A queda de 25,9% nas reuniões foi o único fator que impediu um mês histórico. Cada reunião a mais, a 41,8%, vale 0,42 contratos.</div>
+    <div class="ins iw"><strong>🟡 121 TEs — leads perdidos na cadência</strong>Equivale a perder potencialmente ~50 reuniões e ~21 contratos por mês só por falha de abordagem. Bruno (95%), Pâmela (100%) e Leonardo (69%) precisam de atenção imediata.</div>
+    <div class="ins iw"><strong>🟡 Fora do ICP e Não é do ramo quase empatados (110 vs 109)</strong>Juntos representam 75% dos leads perdidos no MKT. Revisão de segmentação de campanhas é prioritária para outubro.</div>
+  </div>
+</div>
+
+<!-- FUNIL VISUAL -->
+<div>
+  <div class="sl"><span class="sl-t">Funil de conversão</span><div class="sl-l"></div><span class="sl-badge" style="background:var(--bd_);color:var(--blue)">set/26 fechado</span></div>
+  <div class="card">
+    <div class="funnel" style="margin-bottom:28px">
+      <!-- Leads -->
+      <div class="fnode">
+        <div class="fcircle" style="background:rgba(79,142,247,0.12);border:2px solid var(--blue)"><span style="color:var(--blue);font-size:19px">987</span></div>
+        <div class="fname">Leads gerados</div>
+        <div class="fsub">32,9/dia</div>
+        <div class="fcomp">Ago: 1.083 <span style="color:var(--red)">▼8,9%</span></div>
+      </div>
+      <!-- Seta 1 -->
+      <div class="farrow">
+        <div class="farr-rate" style="color:var(--green)">70,5%</div>
+        <div class="farr-l">L → MQL</div>
+        <div class="farr-cmp">Ago: 71,3%</div>
+        <svg width="30" height="16" viewBox="0 0 30 16" fill="none" style="margin-top:6px"><path d="M0 8h24M20 2l8 6-8 6" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <!-- MQLs -->
+      <div class="fnode">
+        <div class="fcircle" style="background:rgba(5,211,139,0.10);border:2px solid var(--green)"><span style="color:var(--green);font-size:19px">696</span></div>
+        <div class="fname">MQLs qualificados</div>
+        <div class="fsub">87% da meta (800)</div>
+        <div class="fcomp">Ago: 772 <span style="color:var(--red)">▼9,8%</span></div>
+      </div>
+      <!-- Seta 2 -->
+      <div class="farrow">
+        <div class="farr-rate" style="color:var(--red)">33,3%</div>
+        <div class="farr-l">M → Reun.</div>
+        <div class="farr-cmp">Ago: 40,5%</div>
+        <svg width="30" height="16" viewBox="0 0 30 16" fill="none" style="margin-top:6px"><path d="M0 8h24M20 2l8 6-8 6" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <!-- Reuniões -->
+      <div class="fnode">
+        <div class="fcircle" style="background:rgba(159,122,234,0.10);border:2px solid var(--purple)"><span style="color:var(--purple);font-size:19px">232</span></div>
+        <div class="fname">Reuniões realizadas</div>
+        <div class="fsub">77% da meta (300)</div>
+        <div class="fcomp">Ago: 313 <span style="color:var(--red)">▼25,9%</span></div>
+      </div>
+      <!-- Seta 3 -->
+      <div class="farrow">
+        <div class="farr-rate" style="color:var(--green)">41,8%</div>
+        <div class="farr-l">Close rate</div>
+        <div class="farr-cmp">Ago: 37,7% 🔥</div>
+        <svg width="30" height="16" viewBox="0 0 30 16" fill="none" style="margin-top:6px"><path d="M0 8h24M20 2l8 6-8 6" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </div>
+      <!-- Contratos -->
+      <div class="fnode">
+        <div class="fcircle" style="background:rgba(5,211,139,0.15);border:2.5px solid var(--green)"><span style="color:var(--green);font-size:19px">97</span></div>
+        <div class="fname">Contratos fechados</div>
+        <div class="fsub">97% da meta (100)</div>
+        <div class="fcomp">Ago: 107 HubSpot</div>
+      </div>
+    </div>
+    <!-- Taxas -->
+    <div class="tgrid" style="padding-top:20px;border-top:1px solid var(--bd)">
+      <div class="tcard" style="background:rgba(79,142,247,0.06);border-color:rgba(79,142,247,0.15)">
+        <div class="tc-l" style="color:var(--blue)">Lead → MQL</div>
+        <div class="tc-v" style="color:#fff">70,5%</div>
+        <div class="tc-cmp" style="color:var(--red)">▼ 0,8pp vs ago</div>
+        <div class="tc-med">Média tri-mestre: <strong style="color:var(--t2)">62,5%</strong></div>
+      </div>
+      <div class="tcard" style="background:rgba(159,122,234,0.06);border-color:rgba(159,122,234,0.15)">
+        <div class="tc-l" style="color:var(--purple)">MQL → Reunião</div>
+        <div class="tc-v" style="color:#fff">33,3%</div>
+        <div class="tc-cmp" style="color:var(--red)">▼ 7,2pp vs ago</div>
+        <div class="tc-med">Média tri-mestre: <strong style="color:var(--t2)">30,0%</strong></div>
+      </div>
+      <div class="tcard" style="background:rgba(5,211,139,0.06);border-color:rgba(5,211,139,0.15)">
+        <div class="tc-l" style="color:var(--green)">Reunião → Close</div>
+        <div class="tc-v" style="color:#fff">41,8%</div>
+        <div class="tc-cmp" style="color:var(--green)">▲ +4,1pp vs ago 🏆</div>
+        <div class="tc-med">Média tri-mestre: <strong style="color:var(--t2)">26,9%</strong></div>
+      </div>
+      <div class="tcard" style="background:rgba(245,166,35,0.06);border-color:rgba(245,166,35,0.15)">
+        <div class="tc-l" style="color:var(--amber)">Lead → Contrato</div>
+        <div class="tc-v" style="color:#fff">9,8%</div>
+        <div class="tc-cmp" style="color:var(--green)">▲ acima da média</div>
+        <div class="tc-med">Média tri-mestre: <strong style="color:var(--t2)">5,2%</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FUNIL CHARTS -->
+<div class="g2">
+  <div class="card">
+    <div class="ch"><div><div class="ct">Volume por etapa — set vs ago</div></div><span class="ctag">meses fechados</span></div>
+    <div style="position:relative;height:240px"><canvas id="cFunil"></canvas></div>
+  </div>
+  <div class="card">
+    <div class="ch"><div><div class="ct">Taxas de conversão — set vs ago</div></div></div>
+    <div style="position:relative;height:240px"><canvas id="cTaxas"></canvas></div>
+  </div>
+</div>
+
+<!-- SDRs -->
+<div>
+  <div class="sl"><span class="sl-t">Performance dos SDRs</span><div class="sl-l"></div><span class="sl-badge" style="background:var(--rd);color:var(--red)">121 TEs no mês</span></div>
+  <div class="g32">
+    <div class="card">
+      <div class="ch"><div><div class="ct">Ranking de SDRs — setembro fechado</div><div class="cs">Leads recebidos, reuniões geradas, TEs e taxas de conversão</div></div><span class="ctag">meta: 40+ reun/mês</span></div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>#</th><th>SDR</th>
+            <th class="r">Leads</th><th class="r">Reun.</th><th class="r">L→R</th>
+            <th class="r">TE</th><th class="r">TE/R</th><th class="r">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="rank rk1">1</span></td><td><strong>João Gonçalves</strong></td><td class="r" style="color:var(--t2)">200</td><td class="r" style="color:var(--green);font-weight:700">64</td><td class="r" style="color:var(--green)">32,0%</td><td class="r">22</td><td class="r" style="color:var(--amber)">34,4%</td><td class="r"><span class="pill pg">🏆 Top</span></td></tr>
+          <tr><td><span class="rank rk2">2</span></td><td><strong>Leonardo Maldaner</strong></td><td class="r" style="color:var(--t2)">167</td><td class="r" style="color:var(--green);font-weight:700">45</td><td class="r" style="color:var(--green)">26,9%</td><td class="r" style="color:var(--red)">31</td><td class="r" style="color:var(--red)">68,9%</td><td class="r"><span class="pill pr">⚠️ TE alto</span></td></tr>
+          <tr><td><span class="rank rk3">3</span></td><td><strong>Otavio Amaral</strong></td><td class="r" style="color:var(--t2)">160</td><td class="r" style="color:var(--amber);font-weight:700">33</td><td class="r" style="color:var(--amber)">20,6%</td><td class="r" style="color:var(--red)">20</td><td class="r" style="color:var(--red)">60,6%</td><td class="r"><span class="pill pr">⚠️ TE alto</span></td></tr>
+          <tr><td><span class="rank rkn">4</span></td><td><strong>Pâmela Souza</strong></td><td class="r" style="color:var(--t2)">129</td><td class="r">24</td><td class="r" style="color:var(--amber)">18,6%</td><td class="r" style="color:var(--red)">24</td><td class="r" style="color:var(--red)">100,0%</td><td class="r"><span class="pill pr">🔴 Crítico</span></td></tr>
+          <tr><td><span class="rank rkn">5</span></td><td><strong>Bruno Ianai</strong></td><td class="r" style="color:var(--t2)">193</td><td class="r" style="color:var(--red)">21</td><td class="r" style="color:var(--red)">10,9%</td><td class="r" style="color:var(--red)">20</td><td class="r" style="color:var(--red)">95,2%</td><td class="r"><span class="pill pr">🔴 Crítico</span></td></tr>
+          <tr><td><span class="rank rkn">6</span></td><td>Samuel Prevedello</td><td class="r" style="color:var(--t2)">63</td><td class="r">12</td><td class="r" style="color:var(--amber)">19,0%</td><td class="r">2</td><td class="r" style="color:var(--green)">16,7%</td><td class="r"><span class="pill pb">↑ Sólido</span></td></tr>
+          <tr><td><span class="rank rkn">7</span></td><td>Silvio Junior</td><td class="r" style="color:var(--t2)">57</td><td class="r">8</td><td class="r" style="color:var(--red)">14,0%</td><td class="r">2</td><td class="r" style="color:var(--amber)">25,0%</td><td class="r"><span class="pill pd">Evoluindo</span></td></tr>
+        </tbody>
+      </table>
+      <div class="ins ir" style="margin-top:16px"><strong>🔴 Bruno (193 leads, apenas 21 reuniões)</strong>A maior distorção do mês: Bruno recebe o 2º maior volume de leads mas converte apenas 10,9% em reuniões — a pior taxa do time. Com a taxa de João (32%), geraria 62 reuniões a mais.</div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div class="card">
+        <div class="ct" style="margin-bottom:14px">Reuniões por SDR</div>
+        <div style="position:relative;height:200px"><canvas id="cSDRReun"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="ct" style="margin-bottom:14px">TEs por SDR — 121 total</div>
+        <div style="position:relative;height:180px"><canvas id="cSDRTE"></canvas></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SDR RATIO + LEADS DISTRIB -->
+<div class="g2">
+  <div class="card">
+    <div class="ch"><div><div class="ct">Reuniões vs TE por SDR</div><div class="cs">Eficiência de cadência — empilhado</div></div></div>
+    <div style="position:relative;height:260px"><canvas id="cSDRStack"></canvas></div>
+    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+      <div style="background:var(--gd);border-radius:7px;padding:10px;text-align:center"><div style="color:var(--green);font-size:9.5px;font-weight:700;margin-bottom:3px">Melhor TE%</div><div style="font-weight:700;font-size:13px">Samuel 16,7%</div></div>
+      <div style="background:var(--s2);border-radius:7px;padding:10px;text-align:center"><div style="color:var(--t3);font-size:9.5px;font-weight:700;margin-bottom:3px">Total TE</div><div style="font-weight:700;font-size:13px">121 perdidos</div></div>
+      <div style="background:var(--rd);border-radius:7px;padding:10px;text-align:center"><div style="color:var(--red);font-size:9.5px;font-weight:700;margin-bottom:3px">Pior TE%</div><div style="font-weight:700;font-size:13px">Pâmela 100%</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ch"><div><div class="ct">Distribuição de leads por SDR</div><div class="cs">987 leads no mês</div></div></div>
+    <div style="position:relative;height:260px"><canvas id="cLeadsDist"></canvas></div>
+  </div>
+</div>
+
+<!-- QUALIDADE -->
+<div>
+  <div class="sl"><span class="sl-t">Qualidade dos leads</span><div class="sl-l"></div><span class="sl-badge" style="background:var(--ad);color:var(--amber)">291 perdidos · 29,5%</span></div>
+  <div class="g3">
+    <div class="card">
+      <div class="ch"><div><div class="ct">Motivos de perda MKT</div><div class="cs">291 leads perdidos · setembro</div></div></div>
+      <div style="position:relative;height:220px"><canvas id="cMotivos"></canvas></div>
+      <div class="ins iw" style="margin-top:12px"><strong>🟡 Fora do ICP (110) ≈ Não é do ramo (109) — quase empatados</strong>Juntos representam 75% de todos os perdidos. Funcionalidade cresceu para 60. Revisão de segmentação urgente para outubro.</div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div><div class="ct">Perdidos MKT — evolução mensal</div><div class="cs">Mai–Set/26</div></div></div>
+      <div style="position:relative;height:220px"><canvas id="cPerdidos"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="ch"><div><div class="ct">Análise dos 291 perdidos</div></div></div>
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span style="font-size:12px;font-weight:600">Fora do ICP</span><span style="font-size:11px;color:var(--t2)">110 · 37,8%</span></div>
+        <div class="bar"><div class="bf" style="width:37.8%;background:var(--purple)"></div></div>
+      </div>
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span style="font-size:12px;font-weight:600">Não é do ramo</span><span style="font-size:11px;color:var(--t2)">109 · 37,5%</span></div>
+        <div class="bar"><div class="bf" style="width:37.5%;background:var(--red)"></div></div>
+      </div>
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span style="font-size:12px;font-weight:600">Funcionalidade</span><span style="font-size:11px;color:var(--t2)">60 · 20,6%</span></div>
+        <div class="bar"><div class="bf" style="width:20.6%;background:var(--amber)"></div></div>
+      </div>
+      <div style="margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span style="font-size:12px;font-weight:600">Quer comprar veículo</span><span style="font-size:11px;color:var(--t2)">7 · 2,4%</span></div>
+        <div class="bar"><div class="bf" style="width:2.4%;background:var(--blue)"></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px"><span style="font-size:12px;font-weight:600">Buscando curso</span><span style="font-size:11px;color:var(--t2)">5 · 1,7%</span></div>
+        <div class="bar"><div class="bf" style="width:1.7%;background:var(--t3)"></div></div>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:var(--s2);border-radius:8px">
+        <div style="font-size:10px;color:var(--t3);font-weight:600;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.07em">Impacto no funil</div>
+        <div style="font-size:11px;color:var(--t2)">Se reduzirmos perdidos MKT em <strong style="color:var(--t)">20%</strong> (−58 leads), ganharíamos <strong style="color:var(--green)">~19 reuniões</strong> adicionais e <strong style="color:var(--green)">~8 contratos</strong> com o close rate atual.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACUMULADO 2026 -->
+<div>
+  <div class="sl"><span class="sl-t">Acumulado 2026</span><div class="sl-l"></div><span class="sl-badge" style="background:var(--gd);color:var(--green)">539 contratos jan–set</span></div>
+  <div class="g2">
+    <div class="card">
+      <div class="ch"><div><div class="ct">Contratos por mês — 2026</div><div class="cs">Jan a Set · 539 total · 59,9/mês de média</div></div><span class="ctag" style="color:var(--amber)">🏆 Ago: 107*</span></div>
+      <div style="position:relative;height:240px"><canvas id="cAcum"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ch"><div><div class="ct">Funil mensal — volume Mai–Set</div><div class="cs">Evolução dos 5 últimos meses</div></div></div>
+      <div style="position:relative;height:240px"><canvas id="cFunilMeses"></canvas></div>
+    </div>
+  </div>
+
+  <!-- SUMÁRIO ACUMULADO -->
+  <div class="g4" style="margin-top:16px">
+    <div class="hbox hbox-g">
+      <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Total 2026</div>
+      <div style="font-size:44px;font-weight:900;color:var(--green);letter-spacing:-2px">539</div>
+      <div style="font-size:11px;color:var(--t2);margin-top:6px">contratos fechados jan–set</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:4px">média 59,9/mês</div>
+    </div>
+    <div class="hbox hbox-a">
+      <div style="font-size:10px;font-weight:700;color:var(--amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Melhor mês</div>
+      <div style="font-size:44px;font-weight:900;color:var(--amber);letter-spacing:-2px">107</div>
+      <div style="font-size:11px;color:var(--t2);margin-top:6px">contratos — agosto/26</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:4px">313 reuniões · close 34,2%</div>
+    </div>
+    <div class="hbox hbox-g">
+      <div style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Maior close rate</div>
+      <div style="font-size:44px;font-weight:900;color:var(--green);letter-spacing:-2px">41,8%</div>
+      <div style="font-size:11px;color:var(--t2);margin-top:6px">setembro/26 — recorde do ano</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:4px">2º maior: jul/26 com 44,8%</div>
+    </div>
+    <div class="hbox" style="background:rgba(79,142,247,0.04);border-color:rgba(79,142,247,0.15)">
+      <div style="font-size:10px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">Projeção Q4</div>
+      <div style="font-size:44px;font-weight:900;color:var(--blue);letter-spacing:-2px">~180</div>
+      <div style="font-size:11px;color:var(--t2);margin-top:6px">contratos estimados out–dez</div>
+      <div style="font-size:11px;color:var(--t3);margin-top:4px">com 60/mês de média</div>
+    </div>
+  </div>
+</div>
+
+<!-- PLANO DE AÇÃO -->
+<div>
+  <div class="sl"><span class="sl-t">Plano de ação — outubro 2026</span><div class="sl-l"></div><span class="sl-badge" style="background:var(--bd_);color:var(--blue)">alavancas identificadas</span></div>
+  <div class="g3">
+    <div class="card" style="border-color:rgba(240,82,82,0.2)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--rd);display:flex;align-items:center;justify-content:center;font-size:16px">🔴</div>
+        <div><div class="ct">Urgente — TEs e conversão de reuniões</div><div class="cs">Impacto: +20–30 reuniões/mês</div></div>
+      </div>
+      <div class="ins ir"><strong>Bruno Ianai: 193 leads → 21 reuniões (10,9%)</strong>Redistribuir parte do volume para SDRs com maior taxa. Sessão de escuta/abordagem com coaching individual.</div>
+      <div class="ins ir"><strong>Pâmela e Bruno: 100% e 95% de TE</strong>Revisão completa de cadência — scripts, canais, timing. A abordagem atual não está funcionando.</div>
+      <div class="ins ir"><strong>Leonardo: 31 TEs (68,9%)</strong>Alto volume de reuniões (45) mas muitos TEs. Revisar critério de agendamento e qualidade do lead trabalhado.</div>
+    </div>
+    <div class="card" style="border-color:rgba(245,166,35,0.2)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--ad);display:flex;align-items:center;justify-content:center;font-size:16px">🟡</div>
+        <div><div class="ct">Prioritário — qualidade dos leads</div><div class="cs">Impacto: +40–60 MQLs/mês</div></div>
+      </div>
+      <div class="ins iw"><strong>Revisão de segmentação nas campanhas</strong>"Fora do ICP" (110) e "Não é do ramo" (109) juntos = 75% das perdas. Revisar públicos, criativos e copy para outubro.</div>
+      <div class="ins iw"><strong>Funcionalidade cresceu para 60</strong>Leads chegando sem entender o produto. Considerar landing pages ou vídeos de qualificação pré-form.</div>
+      <div class="ins iw"><strong>Criativo específico por segmento</strong>Separar campanhas por vertical (motos, carros, multimarcas) para reduzir "Não é do ramo".</div>
+    </div>
+    <div class="card" style="border-color:rgba(5,211,139,0.2)">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+        <div style="width:32px;height:32px;border-radius:8px;background:var(--gd);display:flex;align-items:center;justify-content:center;font-size:16px">🟢</div>
+        <div><div class="ct">Manter e ampliar — close rate</div><div class="cs">Alavanca: +reuniões com 41,8% → +contratos</div></div>
+      </div>
+      <div class="ins ig"><strong>Close rate 41,8% — preservar o que está funcionando</strong>O comercial está em seu melhor momento do ano. O que mudou em setembro? Identificar e documentar para replicar.</div>
+      <div class="ins ig"><strong>Meta outubro: 300 reuniões + 41,8% close = 125 contratos</strong>Com o volume de agosto e o close rate de setembro, outubro pode ser histórico.</div>
+      <div class="ins ig"><strong>João Gonçalves como modelo de cadência</strong>64 reuniões com 34,4% de TE — melhor equilíbrio do time. Usar como referência de abordagem para os demais.</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<footer>Autoconf · Fechamento de Marketing Growth · Setembro 2026 · Dados: HubSpot ATF-INBOUND + ATF-VENDAS</footer>
+
+<script>
+const gc='rgba(255,255,255,0.04)',lc='#4a5568';
+Chart.defaults.color=lc;Chart.defaults.borderColor='rgba(255,255,255,0.05)';
+const tip={backgroundColor:'#1a2030',titleColor:'#eef0f4',bodyColor:'#8892a4',borderColor:'rgba(255,255,255,0.08)',borderWidth:1,padding:12,cornerRadius:8};
+
+// FUNIL COMPARATIVO
+new Chart(document.getElementById('cFunil'),{type:'bar',
+  data:{labels:['Leads','MQLs','Reuniões','Contratos'],datasets:[
+    {label:'Agosto',data:[1083,772,313,107],backgroundColor:'rgba(255,255,255,0.06)',borderColor:'rgba(255,255,255,0.15)',borderWidth:1.5,borderRadius:5},
+    {label:'Setembro',data:[987,696,232,97],backgroundColor:['rgba(79,142,247,0.5)','rgba(5,211,139,0.5)','rgba(159,122,234,0.5)','rgba(5,211,139,0.65)'],borderColor:['#4f8ef7','#05d38b','#9f7aea','#05d38b'],borderWidth:1.5,borderRadius:5}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8892a4',boxWidth:8,padding:14,usePointStyle:true}},tooltip:tip},
+    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
+});
+
+// TAXAS
+new Chart(document.getElementById('cTaxas'),{type:'bar',
+  data:{labels:['L→MQL','MQL→Reun.','Reun.→Close','L→Close'],datasets:[
+    {label:'Agosto',data:[71.3,40.5,37.7,9.9],backgroundColor:'rgba(255,255,255,0.06)',borderColor:'rgba(255,255,255,0.15)',borderWidth:1.5,borderRadius:5},
+    {label:'Setembro',data:[70.5,33.3,41.8,9.8],backgroundColor:['rgba(5,211,139,0.5)','rgba(240,82,82,0.45)','rgba(5,211,139,0.7)','rgba(79,142,247,0.5)'],borderColor:['#05d38b','#f05252','#05d38b','#4f8ef7'],borderWidth:1.5,borderRadius:5}
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8892a4',boxWidth:8,padding:14,usePointStyle:true}},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.y}%`}}},
+    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:10}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10},callback:v=>v+'%'},beginAtZero:true,max:80}}}
+});
+
+// SDR REUNIÕES
+new Chart(document.getElementById('cSDRReun'),{type:'bar',
+  data:{labels:['João G.','Leonardo','Otavio','Pâmela','Bruno','Samuel','Silvio'],datasets:[
+    {data:[64,45,33,24,21,12,8],backgroundColor:['rgba(5,211,139,0.75)','rgba(245,166,35,0.55)','rgba(245,166,35,0.5)','rgba(240,82,82,0.45)','rgba(240,82,82,0.45)','rgba(79,142,247,0.55)','rgba(79,142,247,0.45)'],borderColor:['#05d38b','#f5a623','#f5a623','#f05252','#f05252','#4f8ef7','#4f8ef7'],borderWidth:1.5,borderRadius:4,borderSkipped:false}
+  ]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.x} reuniões`}}},
+    scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},y:{grid:{display:false},ticks:{color:'#8892a4',font:{size:10}}}}}
+});
+
+// SDR TEs
+new Chart(document.getElementById('cSDRTE'),{type:'bar',
+  data:{labels:['Leonardo','Pâmela','Bruno','Otavio','João G.','Samuel','Silvio'],datasets:[
+    {data:[31,24,20,20,22,2,2],backgroundColor:['rgba(240,82,82,0.75)','rgba(240,82,82,0.7)','rgba(240,82,82,0.65)','rgba(240,82,82,0.6)','rgba(245,166,35,0.55)','rgba(79,142,247,0.4)','rgba(79,142,247,0.4)'],borderColor:['#f05252','#f05252','#f05252','#f05252','#f5a623','#4f8ef7','#4f8ef7'],borderWidth:1.5,borderRadius:4,borderSkipped:false}
+  ]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.x} TEs`}}},
+    scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true},y:{grid:{display:false},ticks:{color:'#8892a4',font:{size:11}}}}}
+});
+
+// SDR STACK
+new Chart(document.getElementById('cSDRStack'),{type:'bar',
+  data:{labels:['Samuel','João G.','Silvio','Otavio','Leonardo','Pâmela','Bruno'],datasets:[
+    {label:'Reuniões',data:[12,64,8,33,45,24,21],backgroundColor:'rgba(5,211,139,0.45)',borderColor:'#05d38b',borderWidth:1.5,borderRadius:3,stack:'s'},
+    {label:'TEs',data:[2,22,2,20,31,24,20],backgroundColor:'rgba(240,82,82,0.5)',borderColor:'#f05252',borderWidth:1.5,borderRadius:3,stack:'s'}
+  ]},
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8892a4',boxWidth:8,padding:12,usePointStyle:true}},tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.x} ${c.dataset.label}`}}},
+    scales:{x:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true,stacked:true},y:{grid:{display:false},ticks:{color:'#8892a4',font:{size:10}},stacked:true}}}
+});
+
+// LEADS DISTRIBUIÇÃO
+new Chart(document.getElementById('cLeadsDist'),{type:'doughnut',
+  data:{labels:['João G. (200)','Bruno (193)','Leonardo (167)','Otavio (160)','Pâmela (129)','Samuel (63)','Silvio (57)','Outros (18)'],
+    datasets:[{data:[200,193,167,160,129,63,57,18],backgroundColor:['#05d38b','#f05252','#f5a623','#9f7aea','#4f8ef7','#06b6d4','#64748b','#374151'],borderWidth:0,hoverOffset:8}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'55%',
+    plugins:{legend:{position:'right',labels:{font:{size:10},color:'#8892a4',boxWidth:8,padding:5,usePointStyle:true}},
+      tooltip:{...tip,callbacks:{label:c=>` ${c.parsed} leads (${Math.round(c.parsed/987*100)}%)`}}}}
+});
+
+// MOTIVOS
+new Chart(document.getElementById('cMotivos'),{type:'doughnut',
+  data:{labels:['Fora do ICP (110)','Não é do ramo (109)','Funcionalidade (60)','Quer veículo (7)','Buscando curso (5)'],
+    datasets:[{data:[110,109,60,7,5],backgroundColor:['#9f7aea','#f05252','#f5a623','#06b6d4','#64748b'],borderWidth:0,hoverOffset:8}]},
+  options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
+    plugins:{legend:{position:'right',labels:{font:{size:10},color:'#8892a4',boxWidth:8,padding:5,usePointStyle:true}},
+      tooltip:{...tip,callbacks:{label:c=>` ${c.parsed} (${Math.round(c.parsed/291*100)}%)`}}}}
+});
+
+// PERDIDOS EVOLUÇÃO
+new Chart(document.getElementById('cPerdidos'),{type:'bar',
+  data:{labels:['Mai','Jun','Jul','Ago','Set'],datasets:[
+    {label:'Fora do ICP',data:[76,80,70,89,110],backgroundColor:'rgba(159,122,234,0.6)',borderColor:'#9f7aea',borderWidth:1,borderRadius:3,stack:'s'},
+    {label:'Não é do ramo',data:[61,58,65,103,109],backgroundColor:'rgba(240,82,82,0.6)',borderColor:'#f05252',borderWidth:1,borderRadius:3,stack:'s'},
+    {label:'Funcionalidade',data:[40,48,55,80,60],backgroundColor:'rgba(245,166,35,0.6)',borderColor:'#f5a623',borderWidth:1,borderRadius:3,stack:'s'},
+    {label:'Outros',data:[16,11,9,39,12],backgroundColor:'rgba(100,116,139,0.5)',borderColor:'#64748b',borderWidth:1,borderRadius:3,stack:'s'},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8892a4',boxWidth:8,padding:10,usePointStyle:true}},tooltip:tip},
+    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true,stacked:true}}}
+});
+
+// ACUMULADO
+new Chart(document.getElementById('cAcum'),{type:'bar',
+  data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set'],
+    datasets:[{data:[42,38,47,31,57,40,80,107,97],
+      backgroundColor:['rgba(79,142,247,0.4)','rgba(79,142,247,0.4)','rgba(79,142,247,0.4)','rgba(240,82,82,0.4)','rgba(5,211,139,0.4)','rgba(79,142,247,0.4)','rgba(245,166,35,0.6)','#f5a623','rgba(5,211,139,0.7)'],
+      borderColor:['#4f8ef7','#4f8ef7','#4f8ef7','#f05252','#05d38b','#4f8ef7','#f5a623','#f5a623','#05d38b'],
+      borderWidth:1.5,borderRadius:5,borderSkipped:false}]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},
+    tooltip:{...tip,callbacks:{label:c=>` ${c.parsed.y} contratos`}},
+    annotation:{annotations:{line1:{type:'line',yMin:59.9,yMax:59.9,borderColor:'rgba(255,255,255,0.15)',borderWidth:1,borderDash:[4,4]}}}},
+    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
+});
+
+// FUNIL 5 MESES
+new Chart(document.getElementById('cFunilMeses'),{type:'line',
+  data:{labels:['Mai','Jun','Jul','Ago','Set'],datasets:[
+    {label:'Leads',data:[1167,1324,1324,1083,987],borderColor:'#4f8ef7',backgroundColor:'rgba(79,142,247,0.07)',fill:true,tension:0.4,pointRadius:4,pointHoverRadius:7,borderWidth:2},
+    {label:'MQLs',data:[671,861,861,772,696],borderColor:'#05d38b',backgroundColor:'rgba(5,211,139,0.07)',fill:true,tension:0.4,pointRadius:4,pointHoverRadius:7,borderWidth:2},
+    {label:'Reuniões',data:[212,301,221,313,232],borderColor:'#9f7aea',backgroundColor:'rgba(159,122,234,0.07)',fill:true,tension:0.4,pointRadius:4,pointHoverRadius:7,borderWidth:2},
+    {label:'Contratos',data:[57,40,80,107,97],borderColor:'#f5a623',backgroundColor:'rgba(245,166,35,0.07)',fill:true,tension:0.4,pointRadius:4,pointHoverRadius:7,borderWidth:2},
+  ]},
+  options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:10},color:'#8892a4',boxWidth:8,padding:14,usePointStyle:true}},tooltip:tip},
+    scales:{x:{grid:{display:false},ticks:{color:lc,font:{size:11}}},y:{grid:{color:gc},ticks:{color:lc,font:{size:10}},beginAtZero:true}}}
+});
+
+// NAV PILLS (scroll suave)
+document.querySelectorAll('.npill').forEach((p,i)=>{
+  p.addEventListener('click',()=>{
+    document.querySelectorAll('.npill').forEach(x=>x.classList.remove('active'));
+    p.classList.add('active');
+    const sections=document.querySelectorAll('.main > div');
+    const targets=[0,5,7,9];
+    if(sections[targets[i]]) sections[targets[i]].scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
