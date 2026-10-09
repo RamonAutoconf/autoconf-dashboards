@@ -64,6 +64,15 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
   </section>
 
   <section class="card">
+    <h2>Cadastro manual por pessoa · outubro/2026</h2>
+    <p class="cap">Quem criou no CRM o contato das vendas sem canal rastreado. É aqui que o campo de canal de entrada precisa ser preenchido no cadastro.</p>
+    <div class="tblwrap"><table>
+      <thead><tr><th>Cadastrado por</th><th class="r">Vendas</th><th class="r">MRR</th><th class="r">Setup</th></tr></thead>
+      <tbody id="tmanual"></tbody>
+    </table></div>
+  </section>
+
+  <section class="card">
     <h2>Vendas de inbound · outubro/2026</h2>
     <p class="cap">As 23 vendas do mês, em ordem de data. Em amarelo, o anúncio ou ponto de entrada quando o lead foi rastreado.</p>
     <div class="tblwrap"><table>
@@ -93,32 +102,32 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
 <script>
 const PERIODO = 'outubro/2026 (01 a 09/10)';
 const FONTES = {PAID_SOCIAL:'Social pago (Meta)',PAID_SEARCH:'Pesquisa paga (Google)',ORGANIC_SEARCH:'Pesquisa orgânica',DIRECT_TRAFFIC:'Tráfego direto',OFF_INT:'Off-line · Integração (app 277017)',OFF_MANUAL:'Off-line · Cadastro manual no CRM',OFF_SEMCONTATO:'Off-line · Sem contato associado'};
-// [data da venda, fonte, MRR, setup, origem rastreada, alerta]
+// [data da venda, fonte, MRR, setup, origem rastreada, alerta, cadastrado por]
 const VENDAS = [
- ['2026-10-01','OFF_MANUAL',1996,0,'',''],
- ['2026-10-01','PAID_SEARCH',499,0,'',''],
- ['2026-10-01','OFF_MANUAL',499,499,'',''],
- ['2026-10-02','PAID_SEARCH',1296,0,'',''],
- ['2026-10-02','OFF_MANUAL',2196,0,'',''],
- ['2026-10-02','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE',''],
- ['2026-10-02','OFF_INT',1397,1197,'',''],
- ['2026-10-05','OFF_INT',798,499,'',''],
- ['2026-10-05','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE',''],
- ['2026-10-05','PAID_SOCIAL',499,250,'AN114 · Vídeo Autoconf Pro',''],
- ['2026-10-05','OFF_INT',699,350,'',''],
- ['2026-10-05','OFF_INT',499,0,'',''],
- ['2026-10-06','OFF_INT',499,250,'',''],
- ['2026-10-07','ORGANIC_SEARCH',3299,0,'',''],
- ['2026-10-07','OFF_MANUAL',499,499,'','1'],
- ['2026-10-07','DIRECT_TRAFFIC',499,499,'AN66 · Vídeo RENAVE',''],
- ['2026-10-08','OFF_MANUAL',600,0,'AN28/AN16 · Vídeo Simulador',''],
- ['2026-10-08','OFF_MANUAL',599,599,'Popup RENAVE (site)',''],
- ['2026-10-08','OFF_INT',1199,0,'',''],
- ['2026-10-08','PAID_SOCIAL',1497,0,'AN76 Agente de IA / AN28 Simulador',''],
- ['2026-10-08','OFF_SEMCONTATO',998,0,'',''],
- ['2026-10-08','OFF_INT',599,0,'',''],
- ['2026-10-08','OFF_MANUAL',499,250,'','']
-].map(([data,fonte,mrr,setup,anuncio,flag]) => ({data,fonte,mrr,setup,anuncio,flag}));
+ ['2026-10-01','OFF_MANUAL',1996,0,'','','Leonardo Maldaner'],
+ ['2026-10-01','PAID_SEARCH',499,0,'','',''],
+ ['2026-10-01','OFF_MANUAL',499,499,'','','Alícia Sinclair'],
+ ['2026-10-02','PAID_SEARCH',1296,0,'','',''],
+ ['2026-10-02','OFF_MANUAL',2196,0,'','','Ramon Lemes'],
+ ['2026-10-02','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE','',''],
+ ['2026-10-02','OFF_INT',1397,1197,'','',''],
+ ['2026-10-05','OFF_INT',798,499,'','',''],
+ ['2026-10-05','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE','',''],
+ ['2026-10-05','PAID_SOCIAL',499,250,'AN114 · Vídeo Autoconf Pro','',''],
+ ['2026-10-05','OFF_INT',699,350,'','',''],
+ ['2026-10-05','OFF_INT',499,0,'','',''],
+ ['2026-10-06','OFF_INT',499,250,'','',''],
+ ['2026-10-07','ORGANIC_SEARCH',3299,0,'','',''],
+ ['2026-10-07','OFF_MANUAL',499,499,'','1','Alícia Sinclair'],
+ ['2026-10-07','DIRECT_TRAFFIC',499,499,'AN66 · Vídeo RENAVE','',''],
+ ['2026-10-08','OFF_MANUAL',600,0,'AN28/AN16 · Vídeo Simulador','','Malu Fressato'],
+ ['2026-10-08','OFF_MANUAL',599,599,'Popup RENAVE (site)','','Ramon Lemes'],
+ ['2026-10-08','OFF_INT',1199,0,'','',''],
+ ['2026-10-08','PAID_SOCIAL',1497,0,'AN76 Agente de IA / AN28 Simulador','',''],
+ ['2026-10-08','OFF_SEMCONTATO',998,0,'','',''],
+ ['2026-10-08','OFF_INT',599,0,'','',''],
+ ['2026-10-08','OFF_MANUAL',499,250,'','','Felipe da Silva']
+].map(([data,fonte,mrr,setup,anuncio,flag,quem]) => ({data,fonte,mrr,setup,anuncio,flag,quem}));
 
 const brl = v => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
 const pct = v => (v*100).toFixed(0) + '%';
@@ -143,9 +152,13 @@ document.getElementById('take').textContent =
  ['Vendas com anúncio rastreado', `${comAnuncio} (${pct(comAnuncio/n)})`, 'Cruzado com o relatório de anúncios']
 ].forEach(([l,v,nn,hl])=>{ const c=el('div','card kpi'+(hl?' hl':'')); c.append(el('div','l',l),el('div','v',String(v)),el('div','n',nn)); document.getElementById('kpis').append(c); });
 
+const man = Object.entries(VENDAS.filter(v=>v.fonte==='OFF_MANUAL').reduce((m,v)=>{(m[v.quem]=m[v.quem]||{vendas:0,mrr:0,setup:0}); m[v.quem].vendas++; m[v.quem].mrr+=v.mrr; m[v.quem].setup+=v.setup; return m;},{}))
+  .sort((a,b)=>b[1].mrr-a[1].mrr);
+man.forEach(([q,o])=>{ const tr=el('tr'); tr.append(el('td','',q),el('td','r',o.vendas),el('td','r',brl(o.mrr)),el('td','r',brl(o.setup))); document.getElementById('tmanual').append(tr); });
+
 const tv=document.getElementById('tvendas');
 VENDAS.slice().sort((a,b)=>a.data.localeCompare(b.data)||b.mrr-a.mrr).forEach((v,i)=>{
-  const tr=el('tr'); const fx=el('td','s',FONTES[v.fonte]||v.fonte); if(v.flag) fx.append(el('span','flag','⚠ confirmar venda'));
+  const tr=el('tr'); const fx=el('td','s',(FONTES[v.fonte]||v.fonte)+(v.quem?' · '+v.quem:'')); if(v.flag) fx.append(el('span','flag','⚠ confirmar venda'));
   tr.append(el('td','s',String(i+1)), el('td','',dt(v.data)), fx, el('td',v.anuncio?'ad':'s',v.anuncio||'—'), el('td','r',brl(v.mrr)), el('td','r',brl(v.setup)));
   tv.append(tr);
 });
