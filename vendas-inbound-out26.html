@@ -58,16 +58,16 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
 
   <section class="card">
     <h2>Vendas e MRR por fonte original · outubro/2026</h2>
-    <p class="cap">Fonte original do tráfego registrada no HubSpot. “Fontes off-line” são leads que entraram por integração, importação ou cadastro manual, sem rastreio de canal.</p>
+    <p class="cap">Fonte original do tráfego do contato no HubSpot. As vendas “off-line” estão separadas em três grupos: integração (app 277017, provável WhatsApp — a confirmar), cadastro manual no CRM pela equipe e negócio sem contato associado.</p>
     <div class="legend"><span><i style="background:var(--grey)"></i>Vendas</span><span><i style="background:var(--yellow)"></i>MRR</span></div>
     <div class="chart" id="chart"></div>
   </section>
 
   <section class="card">
     <h2>Vendas de inbound · outubro/2026</h2>
-    <p class="cap">As 23 vendas do mês, em ordem de data. Em amarelo, o anúncio de origem quando o lead foi rastreado no HubSpot.</p>
+    <p class="cap">As 23 vendas do mês, em ordem de data. Em amarelo, o anúncio ou ponto de entrada quando o lead foi rastreado.</p>
     <div class="tblwrap"><table>
-      <thead><tr><th>#</th><th>Data da venda</th><th>Fonte original</th><th>Anúncio de origem</th><th class="r">MRR</th><th class="r">Setup</th></tr></thead>
+      <thead><tr><th>#</th><th>Data da venda</th><th>Fonte original</th><th>Origem rastreada</th><th class="r">MRR</th><th class="r">Setup</th></tr></thead>
       <tbody id="tvendas"></tbody>
       <tfoot id="tfoot"></tfoot>
     </table></div>
@@ -86,38 +86,38 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
     <b>Período:</b> outubro/2026, parcial — negócios que entraram em “Ganhos” (ATF - VENDAS) entre 01/10 e 09/10/2026.<br>
     <b>Critério de inbound:</b> propriedade “[ATF] Pipeline que gerou o negócio” = ATF - INBOUND. Ficaram de fora 4 vendas do mês sem essa propriedade preenchida e 1 de origem ATF - Resgate.<br>
     <b>⚠</b> A venda marcada na tabela entrou em Ganhos em 07/10, mas hoje está em outra etapa do pipe; vale confirmar se se mantém.<br>
-    <b>Fonte:</b> HubSpot, dados de 09/10/2026 — esta página não atualiza sozinha.
+    <b>Fontes off-line:</b> separadas pelo detalhamento da fonte original do contato (INTEGRATION 277017 ou CRM_UI). O app 277017 ainda precisa ser confirmado no HubSpot (Configurações → Integrações).<br><b>Fonte:</b> HubSpot, dados de 09/10/2026 — esta página não atualiza sozinha.
   </p>
 </div>
 
 <script>
 const PERIODO = 'outubro/2026 (01 a 09/10)';
-const FONTES = {PAID_SOCIAL:'Social pago (Meta)',PAID_SEARCH:'Pesquisa paga (Google)',ORGANIC_SEARCH:'Pesquisa orgânica',DIRECT_TRAFFIC:'Tráfego direto',OFFLINE:'Fontes off-line'};
-// [data da venda, fonte, MRR, setup, anúncio rastreado, alerta]
+const FONTES = {PAID_SOCIAL:'Social pago (Meta)',PAID_SEARCH:'Pesquisa paga (Google)',ORGANIC_SEARCH:'Pesquisa orgânica',DIRECT_TRAFFIC:'Tráfego direto',OFF_INT:'Off-line · Integração (app 277017)',OFF_MANUAL:'Off-line · Cadastro manual no CRM',OFF_SEMCONTATO:'Off-line · Sem contato associado'};
+// [data da venda, fonte, MRR, setup, origem rastreada, alerta]
 const VENDAS = [
- ['2026-10-01','OFFLINE',1996,0,'',''],
+ ['2026-10-01','OFF_MANUAL',1996,0,'',''],
  ['2026-10-01','PAID_SEARCH',499,0,'',''],
- ['2026-10-01','OFFLINE',499,499,'',''],
+ ['2026-10-01','OFF_MANUAL',499,499,'',''],
  ['2026-10-02','PAID_SEARCH',1296,0,'',''],
- ['2026-10-02','OFFLINE',2196,0,'',''],
+ ['2026-10-02','OFF_MANUAL',2196,0,'',''],
  ['2026-10-02','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE',''],
- ['2026-10-02','OFFLINE',1397,1197,'',''],
- ['2026-10-05','OFFLINE',798,499,'',''],
+ ['2026-10-02','OFF_INT',1397,1197,'',''],
+ ['2026-10-05','OFF_INT',798,499,'',''],
  ['2026-10-05','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE',''],
  ['2026-10-05','PAID_SOCIAL',499,250,'AN114 · Vídeo Autoconf Pro',''],
- ['2026-10-05','OFFLINE',699,350,'',''],
- ['2026-10-05','OFFLINE',499,0,'',''],
- ['2026-10-06','OFFLINE',499,250,'',''],
+ ['2026-10-05','OFF_INT',699,350,'',''],
+ ['2026-10-05','OFF_INT',499,0,'',''],
+ ['2026-10-06','OFF_INT',499,250,'',''],
  ['2026-10-07','ORGANIC_SEARCH',3299,0,'',''],
- ['2026-10-07','OFFLINE',499,499,'','1'],
+ ['2026-10-07','OFF_MANUAL',499,499,'','1'],
  ['2026-10-07','DIRECT_TRAFFIC',499,499,'AN66 · Vídeo RENAVE',''],
- ['2026-10-08','OFFLINE',600,0,'AN28/AN16 · Vídeo Simulador',''],
- ['2026-10-08','OFFLINE',599,599,'',''],
- ['2026-10-08','OFFLINE',1199,0,'',''],
+ ['2026-10-08','OFF_MANUAL',600,0,'AN28/AN16 · Vídeo Simulador',''],
+ ['2026-10-08','OFF_MANUAL',599,599,'Popup RENAVE (site)',''],
+ ['2026-10-08','OFF_INT',1199,0,'',''],
  ['2026-10-08','PAID_SOCIAL',1497,0,'AN76 Agente de IA / AN28 Simulador',''],
- ['2026-10-08','OFFLINE',998,0,'',''],
- ['2026-10-08','OFFLINE',599,0,'',''],
- ['2026-10-08','OFFLINE',499,250,'','']
+ ['2026-10-08','OFF_SEMCONTATO',998,0,'',''],
+ ['2026-10-08','OFF_INT',599,0,'',''],
+ ['2026-10-08','OFF_MANUAL',499,250,'','']
 ].map(([data,fonte,mrr,setup,anuncio,flag]) => ({data,fonte,mrr,setup,anuncio,flag}));
 
 const brl = v => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
@@ -130,9 +130,11 @@ const comAnuncio = VENDAS.filter(v=>v.anuncio).length;
 const porFonte = Object.entries(VENDAS.reduce((m,v)=>{(m[v.fonte]=m[v.fonte]||{vendas:0,mrr:0,setup:0}); m[v.fonte].vendas++; m[v.fonte].mrr+=v.mrr; m[v.fonte].setup+=v.setup; return m;},{}))
   .map(([f,o])=>({fonte:FONTES[f]||f,...o})).sort((a,b)=>b.mrr-a.mrr);
 
+const off = VENDAS.filter(v=>v.fonte.startsWith('OFF_'));
+const offInt = VENDAS.filter(v=>v.fonte==='OFF_INT').length, offMan = VENDAS.filter(v=>v.fonte==='OFF_MANUAL').length;
 document.getElementById('take').textContent =
   `Em ${PERIODO}, o inbound fechou ${n} vendas, com ${brl(mrr)} de MRR e ${brl(setup)} de setup. ` +
-  `${comAnuncio} dessas vendas têm anúncio rastreado no HubSpot; a maior parte (${porFonte[0].vendas} vendas) aparece como “${porFonte[0].fonte}”, sem canal identificado.`;
+  `${off.length} vendas não têm canal rastreado: ${offInt} entraram por integração (provável WhatsApp) e ${offMan} foram cadastradas manualmente pela equipe.`;
 
 [['Vendas de inbound', n, 'Ganhos · outubro', true],
  ['MRR vendido', brl(mrr), 'Soma do [ATF] MRR', true],
