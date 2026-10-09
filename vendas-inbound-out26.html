@@ -38,6 +38,7 @@ td.ad{color:var(--yellow);font-size:12.5px}
 .r{text-align:right;white-space:nowrap}
 tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
 .flag{color:#FFB547;font-size:11px;margin-left:6px}
+.multi{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;background:rgba(48,127,226,.18);border:1px solid rgba(48,127,226,.5);color:#8FBBF5;font-size:11px;font-weight:600;cursor:help;white-space:nowrap}
 .foot{color:var(--muted);font-size:12px;line-height:1.6}
 .foot b{color:var(--fg);font-weight:600}
 @media (max-width:640px){.hs{display:none}}
@@ -74,7 +75,7 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
 
   <section class="card">
     <h2>Vendas de inbound · outubro/2026</h2>
-    <p class="cap">As 23 vendas do mês, em ordem de data. Em amarelo, o anúncio ou ponto de entrada quando o lead foi rastreado.</p>
+    <p class="cap">As 23 vendas do mês, em ordem de data. Em amarelo, o anúncio ou ponto de entrada quando o lead foi rastreado. A tag 🔁 marca os leads com mais de uma conversão (formulários enviados) no HubSpot; passe o mouse para ver a primeira e a mais recente.</p>
     <div class="tblwrap"><table>
       <thead><tr><th>#</th><th>Data da venda</th><th>Fonte original</th><th>Origem rastreada</th><th class="r">MRR</th><th class="r">Setup</th></tr></thead>
       <tbody id="tvendas"></tbody>
@@ -158,9 +159,17 @@ VENDAS.filter(v=>v.fonte==='OFF_MANUAL').sort((a,b)=>b.mrr-a.mrr).forEach(v=>{
   document.getElementById('tmanual').append(tr);
 });
 
+const CONV = {
+  '2026-10-02|PAID_SOCIAL|499': [4,'Facebook Lead Ads: [HORIZZONT] Formulário de Cadastro','Formulário de Contrato'],
+  '2026-10-08|OFF_MANUAL|600': [7,'Facebook Lead Ads: Campanha regiões 21-04','Facebook Lead Ads: [HORIZZONT] Formulário de Cadastro'],
+  '2026-10-01|PAID_SEARCH|499': [3,'Formulário de site','Formulário de Contrato'],
+  '2026-10-07|DIRECT_TRAFFIC|499': [2,'[DLPL] Aulão C+R 14-03','Facebook Lead Ads: [HORIZZONT] Formulário de Cadastro'],
+  '2026-10-08|PAID_SOCIAL|1497': [2,'Facebook Lead Ads: [HORIZZONT] Formulário de Cadastro','Facebook Lead Ads: [HORIZZONT] Formulário de Cadastro']
+};
 const tv=document.getElementById('tvendas');
 VENDAS.slice().sort((a,b)=>a.data.localeCompare(b.data)||b.mrr-a.mrr).forEach((v,i)=>{
   const tr=el('tr'); const fx=el('td','s',(FONTES[v.fonte]||v.fonte)+(v.quem?' · '+v.quem:'')); if(v.flag) fx.append(el('span','flag','⚠ confirmar venda'));
+  const c=CONV[v.data+'|'+v.fonte+'|'+v.mrr]; if(c){ const b=el('span','multi','🔁 '+c[0]+' conversões'); b.title='Primeira: '+c[1]+'\nMais recente: '+c[2]; fx.append(b); }
   tr.append(el('td','s',String(i+1)), el('td','',dt(v.data)), fx, el('td',v.anuncio?'ad':'s',v.anuncio||'—'), el('td','r',brl(v.mrr)), el('td','r',brl(v.setup)));
   tv.append(tr);
 });
