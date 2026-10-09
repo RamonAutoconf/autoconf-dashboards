@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vendas de inbound · Outubro/2026 · Autoconf</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#16161A;--panel:#1F1F25;--line:#2E2E36;--fg:#ECECEE;--muted:#9A9AA3;--yellow:#EAAA00;--grey:#5A5A66}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(16px,3vw,40px);display:flex;flex-direction:column;gap:20px}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+h1{margin:0;font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.01em}
+.period{display:inline-flex;align-items:center;gap:8px;background:rgba(234,170,0,.14);border:1px solid rgba(234,170,0,.45);color:var(--yellow);font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;white-space:nowrap}
+.period small{color:#F2D27A;font-weight:500}
+.sub{color:var(--muted);font-size:13px;margin:6px 0 0}
+.take{font-size:16px;margin:0;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--yellow);border-radius:10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.kpi .l{color:var(--muted);font-size:12px}
+.kpi .v{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;margin:4px 0 2px}
+.kpi .n{color:var(--muted);font-size:12px}
+.kpi.hl .v{color:var(--yellow)}
+h2{margin:0 0 4px;font-size:16px;font-weight:600}
+.cap{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-bottom:8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.chart{position:relative}
+.tip{position:absolute;pointer-events:none;background:#26262D;border:1px solid #3A3A44;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.5);padding:8px 10px;font-size:12px;white-space:nowrap;display:none;z-index:3}
+.tip .t{color:#A8A8B0;margin-bottom:3px}
+.tblwrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th{text-align:left;color:var(--muted);font-weight:500;font-size:12px;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line)}
+td.s{color:var(--muted);font-size:12.5px}
+td.ad{color:var(--yellow);font-size:12.5px}
+.r{text-align:right;white-space:nowrap}
+tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
+.flag{color:#FFB547;font-size:11px;margin-left:6px}
+.foot{color:var(--muted);font-size:12px;line-height:1.6}
+.foot b{color:var(--fg);font-weight:600}
+@media (max-width:640px){.hs{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>Vendas de inbound</h1>
+      <p class="sub">Negócios ganhos no ATF - VENDAS com “[ATF] Pipeline que gerou o negócio” = ATF - INBOUND</p>
+    </div>
+    <span class="period">📅 Outubro/2026 <small>· parcial, de 01/10 a 09/10</small></span>
+  </div>
+
+  <p class="take" id="take"></p>
+  <section class="kpis" id="kpis"></section>
+
+  <section class="card">
+    <h2>Vendas e MRR por fonte original · outubro/2026</h2>
+    <p class="cap">Fonte original do tráfego registrada no HubSpot. “Fontes off-line” são leads que entraram por integração, importação ou cadastro manual, sem rastreio de canal.</p>
+    <div class="legend"><span><i style="background:var(--grey)"></i>Vendas</span><span><i style="background:var(--yellow)"></i>MRR</span></div>
+    <div class="chart" id="chart"></div>
+  </section>
+
+  <section class="card">
+    <h2>Reuniões e vendas por anúncio · outubro/2026</h2>
+    <p class="cap">Mesma tabela do relatório de anúncios. Um lead que interagiu com mais de um anúncio aparece em cada um deles, por isso a soma das linhas passa do total. Inclui uma venda do Webinar RENAVE (R$ 2.300) que veio de anúncio, mas está sem a origem de pipeline preenchida; por isso ela não entra nas 23 vendas de inbound acima.</p>
+    <div class="tblwrap"><table>
+      <thead><tr><th>Anúncio</th><th>Campanha</th><th class="hs">Público</th><th class="r">Reuniões</th><th class="r">Vendas</th><th class="r">Conversão</th><th class="r">MRR</th><th class="r hs">Setup</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+  </section>
+
+  <p class="foot">
+    <b>Período:</b> outubro/2026, parcial — negócios que entraram em “Ganhos” (ATF - VENDAS) entre 01/10 e 09/10/2026.<br>
+    <b>Critério de inbound:</b> propriedade “[ATF] Pipeline que gerou o negócio” = ATF - INBOUND. Ficaram de fora 4 vendas do mês sem essa propriedade preenchida e 1 de origem ATF - Resgate.<br>
+    <b>⚠</b> 1 das 23 vendas entrou em Ganhos em 07/10, mas hoje está em outra etapa do pipe; vale confirmar se se mantém.<br>
+    <b>Fonte:</b> HubSpot, dados de 09/10/2026 — esta página não atualiza sozinha.
+  </p>
+</div>
+
+<script>
+const PERIODO = 'outubro/2026 (01 a 09/10)';
+const FONTES = {PAID_SOCIAL:'Social pago (Meta)',PAID_SEARCH:'Pesquisa paga (Google)',ORGANIC_SEARCH:'Pesquisa orgânica',DIRECT_TRAFFIC:'Tráfego direto',OFFLINE:'Fontes off-line'};
+// [data da venda, fonte, MRR, setup, tem anúncio rastreado]
+const VENDAS = [
+ ['2026-10-01','OFFLINE',1996,0,0],
+ ['2026-10-01','PAID_SEARCH',499,0,0],
+ ['2026-10-01','OFFLINE',499,499,0],
+ ['2026-10-02','PAID_SEARCH',1296,0,0],
+ ['2026-10-02','OFFLINE',2196,0,0],
+ ['2026-10-02','PAID_SOCIAL',499,499,1],
+ ['2026-10-02','OFFLINE',1397,1197,0],
+ ['2026-10-05','OFFLINE',798,499,0],
+ ['2026-10-05','PAID_SOCIAL',499,499,1],
+ ['2026-10-05','PAID_SOCIAL',499,250,1],
+ ['2026-10-05','OFFLINE',699,350,0],
+ ['2026-10-05','OFFLINE',499,0,0],
+ ['2026-10-06','OFFLINE',499,250,0],
+ ['2026-10-07','ORGANIC_SEARCH',3299,0,0],
+ ['2026-10-07','OFFLINE',499,499,0],
+ ['2026-10-07','DIRECT_TRAFFIC',499,499,1],
+ ['2026-10-08','OFFLINE',600,0,1],
+ ['2026-10-08','OFFLINE',599,599,0],
+ ['2026-10-08','OFFLINE',1199,0,0],
+ ['2026-10-08','PAID_SOCIAL',1497,0,1],
+ ['2026-10-08','OFFLINE',998,0,0],
+ ['2026-10-08','OFFLINE',599,0,0],
+ ['2026-10-08','OFFLINE',499,250,0]
+].map(([data,fonte,mrr,setup,anuncio]) => ({data,fonte,mrr,setup,anuncio}));
+
+const brl = v => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
+const pct = v => (v*100).toFixed(0) + '%';
+const dt = s => s.slice(8,10)+'/'+s.slice(5,7);
+const el = (t,c,txt) => { const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e; };
+
+const n = VENDAS.length, mrr = VENDAS.reduce((s,v)=>s+v.mrr,0), setup = VENDAS.reduce((s,v)=>s+v.setup,0);
+const comAnuncio = VENDAS.filter(v=>v.anuncio).length;
+const porFonte = Object.entries(VENDAS.reduce((m,v)=>{(m[v.fonte]=m[v.fonte]||{vendas:0,mrr:0,setup:0}); m[v.fonte].vendas++; m[v.fonte].mrr+=v.mrr; m[v.fonte].setup+=v.setup; return m;},{}))
+  .map(([f,o])=>({fonte:FONTES[f]||f,...o})).sort((a,b)=>b.mrr-a.mrr);
+
+document.getElementById('take').textContent =
+  `Em ${PERIODO}, o inbound fechou ${n} vendas, com ${brl(mrr)} de MRR e ${brl(setup)} de setup. ` +
+  `${comAnuncio} dessas vendas têm anúncio rastreado no HubSpot; a maior parte (${porFonte[0].vendas} vendas) aparece como “${porFonte[0].fonte}”, sem canal identificado.`;
+
+[['Vendas de inbound', n, 'Ganhos · outubro', true],
+ ['MRR vendido', brl(mrr), 'Soma do [ATF] MRR', true],
+ ['Setup vendido', brl(setup), 'Soma do [ATF] Setup'],
+ ['Ticket médio (MRR)', brl(mrr/n), 'MRR ÷ vendas'],
+ ['Vendas com anúncio rastreado', `${comAnuncio} (${pct(comAnuncio/n)})`, 'Cruzado com o relatório de anúncios']
+].forEach(([l,v,nn,hl])=>{ const c=el('div','card kpi'+(hl?' hl':'')); c.append(el('div','l',l),el('div','v',String(v)),el('div','n',nn)); document.getElementById('kpis').append(c); });
+
+const ANUNCIOS = [
+  ['AN76 · Vídeo Agente de IA','Agente de IA','Vendedor de Carros',2,1,1497,0],
+  ['AN15 · Vídeo Agente de IA','Agente de IA','Loja de Veículos',1,0,0,0],
+  ['AN28 · Vídeo Simulador','Simulador de Financiamento','Loja de Veículos',14,2,2097,0],
+  ['AN28 · Vídeo Simulador','Simulador de Financiamento','Gerente Concessionária',2,0,0,0],
+  ['AN16 · Vídeo Simulador','Simulador de Financiamento','Vendedor de Automóveis',1,1,600,0],
+  ['AN16 · Vídeo Simulador','Simulador de Financiamento','Loja de Veículos',2,0,0,0],
+  ['AN114 · Vídeo Autoconf Pro','Autoconf Pro','Gerente Concessionária',1,1,499,250],
+  ['AN73 · Vídeo Autoconf Pro','Autoconf Pro','Vendedor de Automóveis',2,0,0,0],
+  ['AN73 · Vídeo Autoconf Pro','Autoconf Pro','Gerente Concessionária',3,0,0,0],
+  ['AN65 · Vídeo RENAVE','Renave Brasil','Gerente Concessionária',0,1,499,499],
+  ['AN80 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',2,0,0,0],
+  ['AN66 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',7,1,499,499],
+  ['AN65 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',5,1,499,499],
+  ['AN121 · Arte Autoconf Pay','Autoconf Pay','Gerente Concessionária',1,0,0,0],
+  ['AN121 · Arte Autoconf Pay','Autoconf Pay','Vendedor de Automóveis',1,0,0,0],
+  ['AN46 · Vídeo Webinar 23/06','Webinar','Vendedor de Carros',2,0,0,0],
+  ['AN99 · Arte Webinar RENAVE','Webinar Renave (LP)','Loja de Veículos',1,1,2300,0],
+  ['AN98 · Vídeo Webinar RENAVE','Webinar Renave (LP)','Vendedor de Carros',1,1,2300,0],
+  ['CE_AD028','GB_COEF (captação forms)','01_IG_Q_MIX_ENVOLVIMENTO',0,1,600,0],
+  ['PRE_VENDAS_PRO_AD015','GB_PREV (captação forms)','00-IG-Q-MIX-ENVOLVIMENTO',0,1,600,0]
+].map(([anuncio,campanha,publico,reunioes,vendas,mrr,setup]) => ({anuncio,campanha,publico,reunioes,vendas,mrr,setup,conv: reunioes ? vendas/reunioes : null}));
+const pct1 = v => v==null ? '—' : (v*100).toFixed(1).replace('.',',') + '%';
+const tb=document.getElementById('tbody');
+ANUNCIOS.slice().sort((a,b)=>(b.vendas-a.vendas)||(b.mrr-a.mrr)||(b.reunioes-a.reunioes)).forEach(r=>{
+  const tr=el('tr');
+  tr.append(el('td',r.vendas?'ad':'',r.anuncio), el('td','s',r.campanha), el('td','s hs',r.publico),
+    el('td','r',r.reunioes), el('td','r',r.vendas), el('td','r',pct1(r.conv)), el('td','r',brl(r.mrr)), el('td','r hs',brl(r.setup)));
+  tb.append(tr);
+});
+
+function draw(){
+  const box=document.getElementById('chart'); box.innerHTML=''; const NS='http://www.w3.org/2000/svg';
+  const W=box.clientWidth||800, rows=porFonte, barH=10, gap=5, rowH=barH*2+gap+16, top=4;
+  const svg=document.createElementNS(NS,'svg'); svg.setAttribute('width','100%'); box.append(svg);
+  const mk=(t,a)=>{const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); svg.append(e); return e;};
+  const meas=mk('text',{'font-size':12}); let maxL=0; rows.forEach(r=>{meas.textContent=r.fonte; maxL=Math.max(maxL,meas.getComputedTextLength());}); meas.remove();
+  const left=Math.min(maxL+14,W*0.42), right=90, H=top+rows.length*rowH+6;
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`); svg.setAttribute('height',H);
+  const maxN=Math.max(...rows.map(r=>r.vendas)), maxM=Math.max(...rows.map(r=>r.mrr));
+  const tip=el('div','tip'); box.append(tip);
+  rows.forEach((r,i)=>{
+    const y0=top+i*rowH;
+    const lt=mk('text',{x:left-8,y:y0+barH+gap/2+4,'text-anchor':'end',fill:'#ECECEE','font-size':12}); lt.textContent=r.fonte;
+    const w1=(W-right-left)*r.vendas/maxN, w2=(W-right-left)*r.mrr/maxM;
+    mk('rect',{x:left,y:y0,width:Math.max(3,w1),height:barH,rx:4,fill:'#5A5A66'});
+    const t1=mk('text',{x:left+w1+6,y:y0+barH-1,fill:'#9A9AA3','font-size':11}); t1.textContent=r.vendas+(r.vendas>1?' vendas':' venda');
+    mk('rect',{x:left,y:y0+barH+gap,width:Math.max(3,w2),height:barH,rx:4,fill:'#EAAA00'});
+    const t2=mk('text',{x:left+w2+6,y:y0+2*barH+gap-1,fill:'#9A9AA3','font-size':11}); t2.textContent=brl(r.mrr);
+    const hit=mk('rect',{x:0,y:y0-3,width:W,height:rowH-4,fill:'transparent'});
+    hit.addEventListener('mousemove',ev=>{tip.innerHTML=''; tip.append(el('div','t',r.fonte)); [['Vendas',r.vendas],['MRR',brl(r.mrr)],['Setup',brl(r.setup)],['Ticket médio',brl(r.mrr/r.vendas)]].forEach(([a,b])=>tip.append(el('div','',`${a}: ${b}`))); tip.style.display='block'; const b=box.getBoundingClientRect(); tip.style.left=Math.max(0,Math.min(ev.clientX-b.left+12,box.clientWidth-tip.offsetWidth))+'px'; tip.style.top=(ev.clientY-b.top+12)+'px';});
+    hit.addEventListener('mouseleave',()=>tip.style.display='none');
+  });
+}
+draw(); let rt; addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(draw,150);});
+</script>
+</body>
+</html>
