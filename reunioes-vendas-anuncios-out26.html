@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reuniões e vendas por anúncio · Outubro/2026 · Autoconf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#16161A;--panel:#1F1F25;--line:#2E2E36;--fg:#ECECEE;--muted:#9A9AA3;--yellow:#EAAA00;--grey:#5A5A66;--blue:#307FE2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:clamp(16px,3vw,40px);display:flex;flex-direction:column;gap:20px}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+h1{margin:0;font-size:clamp(22px,3vw,30px);font-weight:700;letter-spacing:-.01em}
+.period{display:inline-flex;align-items:center;gap:8px;background:rgba(234,170,0,.14);border:1px solid rgba(234,170,0,.45);color:var(--yellow);font-weight:700;font-size:14px;padding:8px 14px;border-radius:999px;white-space:nowrap}
+.period small{color:#F2D27A;font-weight:500}
+.sub{color:var(--muted);font-size:13px;margin:6px 0 0}
+.take{font-size:16px;margin:0;padding:14px 16px;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--yellow);border-radius:10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.kpi .l{color:var(--muted);font-size:12px}
+.kpi .v{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;margin:4px 0 2px}
+.kpi .n{color:var(--muted);font-size:12px}
+.kpi.hl .v{color:var(--yellow)}
+h2{margin:0 0 4px;font-size:16px;font-weight:600}
+.cap{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.legend{display:flex;gap:16px;font-size:12px;color:var(--muted);margin-bottom:8px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.chart{position:relative}
+.tip{position:absolute;pointer-events:none;background:#26262D;border:1px solid #3A3A44;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,.5);padding:8px 10px;font-size:12px;white-space:nowrap;display:none;z-index:3}
+.tip .t{color:#A8A8B0;margin-bottom:3px}
+.tblwrap{overflow:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+th{text-align:left;color:var(--muted);font-weight:500;font-size:12px;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 10px;border-bottom:1px solid var(--line)}
+td.s{color:var(--muted);font-size:12.5px}
+.r{text-align:right;white-space:nowrap}
+tr.win td:first-child{color:var(--yellow);font-weight:600}
+.foot{color:var(--muted);font-size:12px;line-height:1.6}
+.foot b{color:var(--fg);font-weight:600}
+@media (max-width:640px){.hs{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <div>
+      <h1>Reuniões e vendas por anúncio</h1>
+      <p class="sub">Leads de anúncios · ATF - INBOUND (reuniões realizadas) e ATF - VENDAS (vendas ganhas)</p>
+    </div>
+    <span class="period">📅 Outubro/2026 <small>· parcial, de 01/10 a 09/10</small></span>
+  </div>
+
+  <p class="take" id="take"></p>
+
+  <section class="kpis" id="kpis"></section>
+
+  <section class="card">
+    <h2>Reuniões e vendas por anúncio · outubro/2026</h2>
+    <p class="cap">Cada barra é um anúncio dentro do seu público. Ordenado por vendas, depois por MRR e reuniões.</p>
+    <div class="legend"><span><i style="background:var(--grey)"></i>Reuniões</span><span><i style="background:var(--yellow)"></i>Vendas</span></div>
+    <div class="chart" id="chart"></div>
+  </section>
+
+  <section class="card">
+    <h2>Detalhe por anúncio · outubro/2026</h2>
+    <p class="cap">Um lead que interagiu com mais de um anúncio aparece em cada um deles, por isso a soma das linhas passa do total do mês. Os números do topo contam cada negócio uma vez só.</p>
+    <div class="tblwrap"><table>
+      <thead><tr><th>Anúncio</th><th>Campanha</th><th class="hs">Público</th><th class="r">Reuniões</th><th class="r">Vendas</th><th class="r">Conversão</th><th class="r">MRR</th><th class="r hs">Setup</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table></div>
+  </section>
+
+  <p class="foot">
+    <b>Período:</b> outubro/2026, parcial — reuniões que entraram em “Reunião realizada” e vendas que entraram em “Ganhos” entre 01/10 e 09/10/2026. Leads que interagiram com anúncios em 2026.<br>
+    <b>Fonte:</b> relatório do HubSpot “[ATF] Este mês | Reuniões e vendas | Anúncios”. Foto dos dados em 09/10/2026 — esta página não atualiza sozinha.<br>
+    <b>Conversão:</b> vendas do mês ÷ reuniões do mês. Parte das vendas de outubro vem de reuniões de setembro, então é uma aproximação.
+  </p>
+</div>
+
+<script>
+const PERIODO = 'outubro/2026 (01 a 09/10)';
+const TOTAIS = { reunioes: 40, vendas: 7, mrr: 6393, setup: 1747 };
+const ANUNCIOS = [
+  ['AN76 · Vídeo Agente de IA','Agente de IA','Vendedor de Carros',2,1,1497,0],
+  ['AN15 · Vídeo Agente de IA','Agente de IA','Loja de Veículos',1,0,0,0],
+  ['AN28 · Vídeo Simulador','Simulador de Financiamento','Loja de Veículos',14,2,2097,0],
+  ['AN28 · Vídeo Simulador','Simulador de Financiamento','Gerente Concessionária',2,0,0,0],
+  ['AN16 · Vídeo Simulador','Simulador de Financiamento','Vendedor de Automóveis',1,1,600,0],
+  ['AN16 · Vídeo Simulador','Simulador de Financiamento','Loja de Veículos',2,0,0,0],
+  ['AN114 · Vídeo Autoconf Pro','Autoconf Pro','Gerente Concessionária',1,1,499,250],
+  ['AN73 · Vídeo Autoconf Pro','Autoconf Pro','Vendedor de Automóveis',2,0,0,0],
+  ['AN73 · Vídeo Autoconf Pro','Autoconf Pro','Gerente Concessionária',3,0,0,0],
+  ['AN65 · Vídeo RENAVE','Renave Brasil','Gerente Concessionária',0,1,499,499],
+  ['AN80 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',2,0,0,0],
+  ['AN66 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',7,1,499,499],
+  ['AN65 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',5,1,499,499],
+  ['AN121 · Arte Autoconf Pay','Autoconf Pay','Gerente Concessionária',1,0,0,0],
+  ['AN121 · Arte Autoconf Pay','Autoconf Pay','Vendedor de Automóveis',1,0,0,0],
+  ['AN46 · Vídeo Webinar 23/06','Webinar','Vendedor de Carros',2,0,0,0],
+  ['AN99 · Arte Webinar RENAVE','Webinar Renave (LP)','Loja de Veículos',1,1,2300,0],
+  ['AN98 · Vídeo Webinar RENAVE','Webinar Renave (LP)','Vendedor de Carros',1,1,2300,0],
+  ['CE_AD028','GB_COEF (captação forms)','01_IG_Q_MIX_ENVOLVIMENTO',0,1,600,0],
+  ['PRE_VENDAS_PRO_AD015','GB_PREV (captação forms)','00-IG-Q-MIX-ENVOLVIMENTO',0,1,600,0]
+].map(([anuncio,campanha,publico,reunioes,vendas,mrr,setup]) => ({anuncio,campanha,publico,reunioes,vendas,mrr,setup,conv: reunioes ? vendas/reunioes : null}));
+
+const brl = v => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
+const pct = v => v==null ? '—' : (v*100).toFixed(1).replace('.',',') + '%';
+const el = (t,c,txt) => { const e=document.createElement(t); if(c) e.className=c; if(txt!=null) e.textContent=txt; return e; };
+
+const rows = ANUNCIOS.slice().sort((a,b)=>(b.vendas-a.vendas)||(b.mrr-a.mrr)||(b.reunioes-a.reunioes));
+const topR = ANUNCIOS.slice().sort((a,b)=>b.reunioes-a.reunioes)[0];
+const conv = TOTAIS.vendas / TOTAIS.reunioes;
+
+document.getElementById('take').textContent =
+  `Em ${PERIODO}, os anúncios geraram ${TOTAIS.reunioes} reuniões e ${TOTAIS.vendas} vendas (${brl(TOTAIS.mrr)} de MRR). ` +
+  `${topR.anuncio} (${topR.publico}) é o que mais gera reunião, com ${topR.reunioes} e ${topR.vendas} vendas; os vídeos do RENAVE somam 3 vendas.`;
+
+const kpis = [
+  ['Reuniões realizadas', TOTAIS.reunioes, 'ATF - INBOUND · outubro'],
+  ['Vendas', TOTAIS.vendas, 'ATF - VENDAS · outubro', true],
+  ['Conversão reunião → venda', pct(conv), 'Vendas ÷ reuniões'],
+  ['MRR vendido', brl(TOTAIS.mrr), 'Soma do [ATF] MRR', true],
+  ['Setup vendido', brl(TOTAIS.setup), 'Soma do [ATF] Setup']
+];
+const K = document.getElementById('kpis');
+kpis.forEach(([l,v,n,hl]) => { const c=el('div','card kpi'+(hl?' hl':'')); c.append(el('div','l',l), el('div','v',String(v)), el('div','n',n)); K.append(c); });
+
+const tb = document.getElementById('tbody');
+rows.forEach(r => {
+  const tr = el('tr', r.vendas ? 'win' : '');
+  tr.append(el('td','',r.anuncio), el('td','s',r.campanha), el('td','s hs',r.publico),
+    el('td','r',r.reunioes), el('td','r',r.vendas), el('td','r',pct(r.conv)), el('td','r',brl(r.mrr)), el('td','r hs',brl(r.setup)));
+  tb.append(tr);
+});
+
+function draw(){
+  const box = document.getElementById('chart'); box.innerHTML = '';
+  const W = box.clientWidth || 800, NS='http://www.w3.org/2000/svg';
+  const barH=9, gap=4, rowH=barH*2+gap+12, top=4;
+  const labels = rows.map(r => r.anuncio + ' · ' + r.publico);
+  const svg = document.createElementNS(NS,'svg'); svg.setAttribute('width','100%'); box.append(svg);
+  const meas = document.createElementNS(NS,'text'); meas.setAttribute('font-size','12'); meas.setAttribute('font-family','Inter,Arial,sans-serif'); svg.append(meas);
+  let maxL=0; labels.forEach(t=>{ meas.textContent=t; maxL=Math.max(maxL, meas.getComputedTextLength()); }); meas.remove();
+  const narrow = W < 560;
+  const left = narrow ? 0 : Math.min(maxL+14, W*0.5), right=30, H = top + rows.length*(rowH + (narrow?16:0)) + 24;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('height', H);
+  const maxV = Math.max(...rows.map(r=>Math.max(r.reunioes,r.vendas)),1);
+  const x = v => left + (W-right-left) * v / maxV;
+  const mk = (t,a) => { const e=document.createElementNS(NS,t); for(const k in a) e.setAttribute(k,a[k]); svg.append(e); return e; };
+  const ticks = [0, Math.ceil(maxV/4), Math.ceil(maxV/2), Math.ceil(maxV*3/4), maxV].filter((v,i,a)=>a.indexOf(v)===i);
+  ticks.forEach(t => { mk('line',{x1:x(t),x2:x(t),y1:top,y2:H-20,stroke:'#2A2A31'}); const tx=mk('text',{x:x(t),y:H-6,'text-anchor':'middle',fill:'#9A9AA3','font-size':'11'}); tx.textContent=t; });
+  const tip = el('div','tip'); box.append(tip);
+  rows.forEach((r,i) => {
+    let y0 = top + i*(rowH + (narrow?16:0));
+    if (narrow) { const lt=mk('text',{x:0,y:y0+11,fill:'#ECECEE','font-size':'12'}); lt.textContent=labels[i]; y0+=16; }
+    else { const lt=mk('text',{x:left-8,y:y0+barH+gap/2+4,'text-anchor':'end',fill:'#ECECEE','font-size':'12'}); lt.textContent=labels[i]; }
+    [['reunioes','#5A5A66',0],['vendas','#EAAA00',1]].forEach(([k,c,j]) => {
+      const v=r[k], yy=y0+j*(barH+gap);
+      mk('rect',{x:left,y:yy,height:barH,width:Math.max(v?3:0,x(v)-left),rx:4,fill:c});
+      const vt=mk('text',{x:x(v)+5,y:yy+barH-1,fill:'#9A9AA3','font-size':'11'}); vt.textContent=v;
+    });
+    const hit = mk('rect',{x:0,y:y0-3,width:W,height:rowH-2,fill:'transparent'});
+    hit.addEventListener('mousemove', ev => {
+      tip.innerHTML=''; tip.append(el('div','t',`${r.anuncio} · ${r.campanha} · ${r.publico}`));
+      [['Reuniões',r.reunioes],['Vendas',r.vendas],['Conversão',pct(r.conv)],['MRR',brl(r.mrr)],['Setup',brl(r.setup)]].forEach(([a,b])=>tip.append(el('div','',`${a}: ${b}`)));
+      tip.style.display='block'; const b=box.getBoundingClientRect(); const mx=ev.clientX-b.left, my=ev.clientY-b.top;
+      tip.style.left=Math.max(0,Math.min(mx+12, box.clientWidth-tip.offsetWidth))+'px'; tip.style.top=(my+12)+'px';
+    });
+    hit.addEventListener('mouseleave', ()=>tip.style.display='none');
+  });
+}
+draw(); let rt; addEventListener('resize',()=>{clearTimeout(rt); rt=setTimeout(draw,150);});
+</script>
+</body>
+</html>
