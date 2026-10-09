@@ -64,6 +64,16 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
   </section>
 
   <section class="card">
+    <h2>Vendas de inbound · outubro/2026</h2>
+    <p class="cap">As 23 vendas do mês, em ordem de data. Em amarelo, o anúncio de origem quando o lead foi rastreado no HubSpot.</p>
+    <div class="tblwrap"><table>
+      <thead><tr><th>#</th><th>Data da venda</th><th>Fonte original</th><th>Anúncio de origem</th><th class="r">MRR</th><th class="r">Setup</th></tr></thead>
+      <tbody id="tvendas"></tbody>
+      <tfoot id="tfoot"></tfoot>
+    </table></div>
+  </section>
+
+  <section class="card">
     <h2>Reuniões e vendas por anúncio · outubro/2026</h2>
     <p class="cap">Mesma tabela do relatório de anúncios. Um lead que interagiu com mais de um anúncio aparece em cada um deles, por isso a soma das linhas passa do total. Inclui uma venda do Webinar RENAVE (R$ 2.300) que veio de anúncio, mas está sem a origem de pipeline preenchida; por isso ela não entra nas 23 vendas de inbound acima.</p>
     <div class="tblwrap"><table>
@@ -75,7 +85,7 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
   <p class="foot">
     <b>Período:</b> outubro/2026, parcial — negócios que entraram em “Ganhos” (ATF - VENDAS) entre 01/10 e 09/10/2026.<br>
     <b>Critério de inbound:</b> propriedade “[ATF] Pipeline que gerou o negócio” = ATF - INBOUND. Ficaram de fora 4 vendas do mês sem essa propriedade preenchida e 1 de origem ATF - Resgate.<br>
-    <b>⚠</b> 1 das 23 vendas entrou em Ganhos em 07/10, mas hoje está em outra etapa do pipe; vale confirmar se se mantém.<br>
+    <b>⚠</b> A venda marcada na tabela entrou em Ganhos em 07/10, mas hoje está em outra etapa do pipe; vale confirmar se se mantém.<br>
     <b>Fonte:</b> HubSpot, dados de 09/10/2026 — esta página não atualiza sozinha.
   </p>
 </div>
@@ -83,32 +93,32 @@ tfoot td{font-weight:700;border-top:1px solid var(--line);border-bottom:none}
 <script>
 const PERIODO = 'outubro/2026 (01 a 09/10)';
 const FONTES = {PAID_SOCIAL:'Social pago (Meta)',PAID_SEARCH:'Pesquisa paga (Google)',ORGANIC_SEARCH:'Pesquisa orgânica',DIRECT_TRAFFIC:'Tráfego direto',OFFLINE:'Fontes off-line'};
-// [data da venda, fonte, MRR, setup, tem anúncio rastreado]
+// [data da venda, fonte, MRR, setup, anúncio rastreado, alerta]
 const VENDAS = [
- ['2026-10-01','OFFLINE',1996,0,0],
- ['2026-10-01','PAID_SEARCH',499,0,0],
- ['2026-10-01','OFFLINE',499,499,0],
- ['2026-10-02','PAID_SEARCH',1296,0,0],
- ['2026-10-02','OFFLINE',2196,0,0],
- ['2026-10-02','PAID_SOCIAL',499,499,1],
- ['2026-10-02','OFFLINE',1397,1197,0],
- ['2026-10-05','OFFLINE',798,499,0],
- ['2026-10-05','PAID_SOCIAL',499,499,1],
- ['2026-10-05','PAID_SOCIAL',499,250,1],
- ['2026-10-05','OFFLINE',699,350,0],
- ['2026-10-05','OFFLINE',499,0,0],
- ['2026-10-06','OFFLINE',499,250,0],
- ['2026-10-07','ORGANIC_SEARCH',3299,0,0],
- ['2026-10-07','OFFLINE',499,499,0],
- ['2026-10-07','DIRECT_TRAFFIC',499,499,1],
- ['2026-10-08','OFFLINE',600,0,1],
- ['2026-10-08','OFFLINE',599,599,0],
- ['2026-10-08','OFFLINE',1199,0,0],
- ['2026-10-08','PAID_SOCIAL',1497,0,1],
- ['2026-10-08','OFFLINE',998,0,0],
- ['2026-10-08','OFFLINE',599,0,0],
- ['2026-10-08','OFFLINE',499,250,0]
-].map(([data,fonte,mrr,setup,anuncio]) => ({data,fonte,mrr,setup,anuncio}));
+ ['2026-10-01','OFFLINE',1996,0,'',''],
+ ['2026-10-01','PAID_SEARCH',499,0,'',''],
+ ['2026-10-01','OFFLINE',499,499,'',''],
+ ['2026-10-02','PAID_SEARCH',1296,0,'',''],
+ ['2026-10-02','OFFLINE',2196,0,'',''],
+ ['2026-10-02','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE',''],
+ ['2026-10-02','OFFLINE',1397,1197,'',''],
+ ['2026-10-05','OFFLINE',798,499,'',''],
+ ['2026-10-05','PAID_SOCIAL',499,499,'AN65 · Vídeo RENAVE',''],
+ ['2026-10-05','PAID_SOCIAL',499,250,'AN114 · Vídeo Autoconf Pro',''],
+ ['2026-10-05','OFFLINE',699,350,'',''],
+ ['2026-10-05','OFFLINE',499,0,'',''],
+ ['2026-10-06','OFFLINE',499,250,'',''],
+ ['2026-10-07','ORGANIC_SEARCH',3299,0,'',''],
+ ['2026-10-07','OFFLINE',499,499,'','1'],
+ ['2026-10-07','DIRECT_TRAFFIC',499,499,'AN66 · Vídeo RENAVE',''],
+ ['2026-10-08','OFFLINE',600,0,'AN28/AN16 · Vídeo Simulador',''],
+ ['2026-10-08','OFFLINE',599,599,'',''],
+ ['2026-10-08','OFFLINE',1199,0,'',''],
+ ['2026-10-08','PAID_SOCIAL',1497,0,'AN76 Agente de IA / AN28 Simulador',''],
+ ['2026-10-08','OFFLINE',998,0,'',''],
+ ['2026-10-08','OFFLINE',599,0,'',''],
+ ['2026-10-08','OFFLINE',499,250,'','']
+].map(([data,fonte,mrr,setup,anuncio,flag]) => ({data,fonte,mrr,setup,anuncio,flag}));
 
 const brl = v => new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0}).format(v);
 const pct = v => (v*100).toFixed(0) + '%';
@@ -130,6 +140,14 @@ document.getElementById('take').textContent =
  ['Ticket médio (MRR)', brl(mrr/n), 'MRR ÷ vendas'],
  ['Vendas com anúncio rastreado', `${comAnuncio} (${pct(comAnuncio/n)})`, 'Cruzado com o relatório de anúncios']
 ].forEach(([l,v,nn,hl])=>{ const c=el('div','card kpi'+(hl?' hl':'')); c.append(el('div','l',l),el('div','v',String(v)),el('div','n',nn)); document.getElementById('kpis').append(c); });
+
+const tv=document.getElementById('tvendas');
+VENDAS.slice().sort((a,b)=>a.data.localeCompare(b.data)||b.mrr-a.mrr).forEach((v,i)=>{
+  const tr=el('tr'); const fx=el('td','s',FONTES[v.fonte]||v.fonte); if(v.flag) fx.append(el('span','flag','⚠ confirmar venda'));
+  tr.append(el('td','s',String(i+1)), el('td','',dt(v.data)), fx, el('td',v.anuncio?'ad':'s',v.anuncio||'—'), el('td','r',brl(v.mrr)), el('td','r',brl(v.setup)));
+  tv.append(tr);
+});
+const ft=el('tr'); ft.append(el('td','',''),el('td','',`Total · ${n} vendas`),el('td','',''),el('td','',''),el('td','r',brl(mrr)),el('td','r',brl(setup))); document.getElementById('tfoot').append(ft);
 
 const ANUNCIOS = [
   ['AN76 · Vídeo Agente de IA','Agente de IA','Vendedor de Carros',2,1,1497,0],
