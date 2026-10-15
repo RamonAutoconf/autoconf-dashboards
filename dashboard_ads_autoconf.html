@@ -10,20 +10,12 @@
     --bg:#14171d;--panel:#1b1f27;--panel-2:#20242d;
     --line:rgba(255,255,255,0.08);--line-strong:rgba(255,255,255,0.16);
     --text:#F2F3F5;--text-dim:#9AA3B2;--text-faint:#6B7280;
-    --blue:#4C94E8;--blue-strong:#307FE2;
-    --gold:#EAAA00;--green:#35C07A;--amber:#EAAA00;--red:#E5533D;
+    --blue:#4C94E8;--blue-strong:#307FE2;--gold:#EAAA00;
+    --green:#35C07A;--amber:#EAAA00;--red:#E5533D;
     --radius-card:14px;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{
-    background:
-      radial-gradient(1100px 600px at 12% -10%,rgba(48,127,226,0.14),transparent 60%),
-      radial-gradient(900px 500px at 100% 0%,rgba(234,170,0,0.08),transparent 55%),
-      var(--bg);
-    color:var(--text);font-family:'Inter',sans-serif;
-    font-variant-numeric:tabular-nums;line-height:1.5;-webkit-font-smoothing:antialiased;
-  }
+  *{box-sizing:border-box;}html,body{margin:0;padding:0;}
+  body{background:radial-gradient(1100px 600px at 12% -10%,rgba(48,127,226,0.14),transparent 60%),radial-gradient(900px 500px at 100% 0%,rgba(234,170,0,0.08),transparent 55%),var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-variant-numeric:tabular-nums;line-height:1.5;-webkit-font-smoothing:antialiased;}
   h1,h2,h3,.headline{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.01em;}
   .wrap{max-width:1180px;margin:0 auto;padding:56px 28px 100px;}
   header{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:28px;}
@@ -43,12 +35,9 @@
   .kpi{background:var(--panel);padding:22px 20px;}
   .kpi-label{font-size:12.5px;color:var(--text-dim);margin-bottom:10px;}
   .kpi-value{font-family:'Space Grotesk';font-size:26px;font-weight:600;color:var(--text);}
-  .kpi-value.blue{color:var(--blue);}
-  .kpi-value.gold{color:var(--gold);}
-  .kpi-value.red{color:var(--red);}
+  .kpi-value.blue{color:var(--blue);}.kpi-value.gold{color:var(--gold);}.kpi-value.red{color:var(--red);}.kpi-value.green{color:var(--green);}
   .kpi-sub{font-size:12.5px;color:var(--text-faint);margin-top:6px;}
-  .kpi-sub.up{color:var(--red);}
-  .kpi-sub.down{color:var(--green);}
+  .kpi-sub.up{color:var(--red);}.kpi-sub.down{color:var(--green);}
   .chart-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:26px 26px 18px;margin-top:24px;}
   .chart-title{font-size:14.5px;font-weight:600;color:var(--text);margin-bottom:2px;}
   .chart-note{font-size:12.5px;color:var(--text-faint);margin-bottom:18px;}
@@ -56,28 +45,27 @@
   .legend-item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-dim);}
   .legend-dot{width:9px;height:9px;border-radius:2px;}
   .callout{margin-top:20px;padding:14px 18px;border-radius:10px;background:rgba(234,170,0,0.08);border:1px solid rgba(234,170,0,0.25);font-size:13px;color:#E8C87A;}
-  .callout.red{background:rgba(229,83,61,0.08);border-color:rgba(229,83,61,0.3);color:#F4937F;}
+  .callout.green{background:rgba(53,192,122,0.08);border-color:rgba(53,192,122,0.25);color:#86efac;}
+  .callout.red{background:rgba(229,83,61,0.08);border-color:rgba(229,83,61,0.25);color:#fca5a5;}
   .table-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);overflow:hidden;margin-top:24px;}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;}
-  thead th{text-align:left;padding:14px 16px;font-size:12px;color:var(--text-dim);font-weight:600;border-bottom:1px solid var(--line-strong);background:var(--panel-2);}
-  thead th.center,td.center{text-align:center;}
-  tbody td{padding:13px 16px;border-bottom:1px solid var(--line);color:var(--text);}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  thead th{text-align:left;padding:13px 16px;font-size:11.5px;color:var(--text-dim);font-weight:600;border-bottom:1px solid var(--line-strong);background:var(--panel-2);}
+  thead th.c{text-align:center;}
+  tbody td{padding:12px 16px;border-bottom:1px solid var(--line);color:var(--text);}
   tbody tr:last-child td{border-bottom:none;}
   tbody tr:hover{background:rgba(255,255,255,0.02);}
+  .c{text-align:center;}
   .campaign-name{font-weight:500;}
-  .cell-stat{display:flex;flex-direction:column;align-items:center;gap:3px;}
-  .dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
-  .dot.green{background:var(--green);}
-  .dot.amber{background:var(--amber);}
-  .dot.red{background:var(--red);}
-  .dot.gray{background:var(--text-faint);}
-  .cell-leads{font-weight:600;font-size:13.5px;}
-  .cell-cpl{font-size:11.5px;color:var(--text-faint);}
-  .cell-empty{color:var(--text-faint);text-align:center;}
-  .row-flag{font-size:11px;padding:3px 8px;border-radius:100px;font-weight:600;}
-  .row-flag.strong{background:rgba(53,192,122,0.14);color:var(--green);}
-  .row-flag.watch{background:rgba(234,170,0,0.14);color:var(--gold);}
-  .row-flag.critical{background:rgba(229,83,61,0.14);color:var(--red);}
+  .pill{font-size:11px;padding:3px 9px;border-radius:100px;font-weight:600;display:inline-block;}
+  .pill-green{background:rgba(53,192,122,0.14);color:var(--green);}
+  .pill-amber{background:rgba(234,170,0,0.14);color:var(--gold);}
+  .pill-red{background:rgba(229,83,61,0.14);color:var(--red);}
+  .var-up{color:var(--red);font-size:12px;font-weight:600;}
+  .var-down{color:var(--green);font-size:12px;font-weight:600;}
+  .var-neutral{color:var(--text-faint);font-size:12px;}
+  .var-new{color:var(--blue);font-size:12px;font-weight:600;}
+  .oct-val{font-weight:700;font-size:14px;}
+  .set-val{color:var(--text-faint);font-size:12px;}
   .sim-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:30px 30px 26px;}
   .sim-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:22px;}
   .sim-amount{font-family:'Space Grotesk';font-size:34px;font-weight:600;color:var(--gold);}
@@ -86,7 +74,7 @@
   input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--gold);cursor:pointer;border:3px solid var(--panel);box-shadow:0 0 0 1px var(--gold);}
   .sim-range-labels{display:flex;justify-content:space-between;font-size:11.5px;color:var(--text-faint);margin-bottom:28px;}
   .scenarios{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-  .scenario{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:20px;position:relative;}
+  .scenario{background:var(--panel-2);border:1px solid var(--line);border-radius:12px;padding:20px;}
   .scenario.mid{border-color:rgba(76,148,232,0.4);}
   .scenario-tag{font-size:11.5px;font-weight:600;margin-bottom:4px;}
   .scenario.opt .scenario-tag{color:var(--green);}
@@ -98,13 +86,14 @@
   .scenario-total{font-size:12px;color:var(--text-faint);margin-top:8px;}
   .alloc{margin-top:24px;padding-top:22px;border-top:1px solid var(--line);}
   .alloc-title{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:12px;}
-  .alloc-row{display:grid;grid-template-columns:180px 1fr 70px;align-items:center;gap:12px;font-size:12.5px;margin-bottom:10px;}
+  .alloc-bars{display:flex;flex-direction:column;gap:10px;}
+  .alloc-row{display:grid;grid-template-columns:170px 1fr 70px;align-items:center;gap:12px;font-size:12.5px;}
   .alloc-name{color:var(--text-dim);}
   .alloc-track{height:7px;background:var(--line);border-radius:4px;overflow:hidden;}
   .alloc-fill{height:100%;border-radius:4px;}
   .alloc-pct{text-align:right;color:var(--text-faint);}
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--text-faint);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
-  @media(max-width:760px){.kpi-row{grid-template-columns:repeat(2,1fr);}.scenarios{grid-template-columns:1fr;}.alloc-row{grid-template-columns:120px 1fr 50px;}table{font-size:12px;}}
+  @media (max-width:760px){.kpi-row{grid-template-columns:repeat(2,1fr);}.scenarios{grid-template-columns:1fr;}.alloc-row{grid-template-columns:120px 1fr 50px;}table{font-size:12px;}}
 </style>
 </head>
 <body>
@@ -116,223 +105,194 @@
     <h1>Painel de Geração de Leads — Meta Ads</h1>
     <div class="subtitle">Leitura em três camadas — visão geral da conta, desempenho por campanha e simulação de investimento adicional.</div>
   </div>
-  <div class="period-pill">Fev — Ago <b>/2026</b> · sem Abril</div>
+  <div class="period-pill">Fev — <b>Out/2026</b> · Out* mês vigente · Set como comparativo</div>
 </header>
-
-
-<!-- INBOUND HERO -->
-<section class="section" id="inbound-hero" style="margin-top:0">
-  <div class="section-head" style="margin-bottom:8px">
-    <span class="section-tag" style="color:var(--green)">INBOUND · ATF</span>
-    <h2>Leads · Reuniões · Fechamentos</h2>
-    <span style="font-size:12px;color:var(--text-faint);margin-left:auto">Set/26 dia 18 · mesmo período que ago/26</span>
-  </div>
-  <p class="section-desc" style="margin-bottom:20px">Pipeline ATF-INBOUND · HubSpot · comparativo setembro vs agosto — <strong style="color:var(--text-dim)">dias 1 a 18 de cada mês.</strong></p>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--line);border-radius:var(--radius-card);overflow:hidden;margin-bottom:16px">
-    <div style="background:var(--panel);padding:28px 24px;position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#4C94E8"></div>
-      <div style="font-size:11px;font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px">Leads gerados</div>
-      <div style="display:flex;align-items:flex-end;gap:24px;margin-bottom:16px">
-        <div>
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px">Set/26 · dia 1–18</div>
-          <div style="font-family:'Space Grotesk';font-size:48px;font-weight:700;color:#4C94E8;letter-spacing:-2px;line-height:1">615</div>
-          <div style="font-size:12px;color:var(--text-dim);margin-top:6px">34,2/dia · proj. ~1.026</div>
-        </div>
-        <div style="padding-bottom:8px">
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px">Ago/26 · dia 1–18</div>
-          <div style="font-family:'Space Grotesk';font-size:28px;font-weight:600;color:var(--text-faint);letter-spacing:-1px">597</div>
-          <div style="font-size:11px;color:var(--text-faint);margin-top:4px">33,2/dia</div>
-        </div>
-      </div>
-      <span style="background:rgba(53,192,122,0.12);color:#35C07A;font-size:12px;font-weight:700;padding:4px 10px;border-radius:100px">▲ 3,0% vs ago dia 18</span>
-    </div>
-
-    <div style="background:var(--panel);padding:28px 24px;position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#a78bfa"></div>
-      <div style="font-size:11px;font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px">Reuniões realizadas</div>
-      <div style="display:flex;align-items:flex-end;gap:24px;margin-bottom:16px">
-        <div>
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px">Set/26 · dia 1–18</div>
-          <div style="font-family:'Space Grotesk';font-size:48px;font-weight:700;color:#a78bfa;letter-spacing:-2px;line-height:1">130</div>
-          <div style="font-size:12px;color:var(--text-dim);margin-top:6px">7,2/dia · proj. ~216</div>
-        </div>
-        <div style="padding-bottom:8px">
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px">Ago/26 · dia 1–18</div>
-          <div style="font-family:'Space Grotesk';font-size:28px;font-weight:600;color:var(--text-faint);letter-spacing:-1px">141</div>
-          <div style="font-size:11px;color:var(--text-faint);margin-top:4px">7,8/dia</div>
-        </div>
-      </div>
-      <span style="background:rgba(229,83,61,0.12);color:#E5533D;font-size:12px;font-weight:700;padding:4px 10px;border-radius:100px">▼ 7,8% vs ago dia 18 · 21,1% lead→reun</span>
-    </div>
-
-    <div style="background:var(--panel);padding:28px 24px;position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#35C07A,#EAAA00)"></div>
-      <div style="font-size:11px;font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:14px">Negócios fechados</div>
-      <div style="display:flex;align-items:flex-end;gap:24px;margin-bottom:16px">
-        <div>
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px">Set/26 · dia 1–18</div>
-          <div style="font-family:'Space Grotesk';font-size:48px;font-weight:700;color:#35C07A;letter-spacing:-2px;line-height:1">51</div>
-          <div style="font-size:12px;color:var(--text-dim);margin-top:6px">2,8/dia · proj. ~84 · MRR R$48.124</div>
-        </div>
-        <div style="padding-bottom:8px">
-          <div style="font-size:11px;color:var(--text-faint);margin-bottom:4px">Ago/26 · dia 1–18</div>
-          <div style="font-family:'Space Grotesk';font-size:28px;font-weight:600;color:var(--text-faint);letter-spacing:-1px">39</div>
-          <div style="font-size:11px;color:var(--text-faint);margin-top:4px">2,2/dia</div>
-        </div>
-      </div>
-      <span style="background:rgba(53,192,122,0.12);color:#35C07A;font-size:12px;font-weight:700;padding:4px 10px;border-radius:100px">▲ 30,8% vs ago dia 18 · 39,2% close rate 🔥</span>
-    </div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-    <div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:22px">
-      <div style="font-size:13.5px;font-weight:600;margin-bottom:16px">Taxas de conversão — set vs ago (dia 1–18)</div>
-      <div style="display:flex;flex-direction:column;gap:14px">
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px">
-            <span style="color:var(--text-dim)">Lead → Reunião</span>
-            <span><strong style="color:#a78bfa">Set 21,1%</strong><span style="color:var(--text-faint);margin-left:8px">Ago 23,6%</span></span>
-          </div>
-          <div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden"><div style="width:21.1%;height:100%;background:#a78bfa;border-radius:3px"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px">
-            <span style="color:var(--text-dim)">Reunião → Close</span>
-            <span><strong style="color:#35C07A">Set 39,2%</strong><span style="color:var(--text-faint);margin-left:8px">Ago 27,7%</span></span>
-          </div>
-          <div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden"><div style="width:39.2%;height:100%;background:#35C07A;border-radius:3px"></div></div>
-        </div>
-        <div>
-          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px">
-            <span style="color:var(--text-dim)">Lead → Close</span>
-            <span><strong style="color:#EAAA00">Set 8,3%</strong><span style="color:var(--text-faint);margin-left:8px">Ago 6,5%</span></span>
-          </div>
-          <div style="height:6px;background:var(--line);border-radius:3px;overflow:hidden"><div style="width:58%;height:100%;background:#EAAA00;border-radius:3px"></div></div>
-        </div>
-      </div>
-    </div>
-
-    <div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--radius-card);padding:22px">
-      <div style="font-size:13.5px;font-weight:600;margin-bottom:14px">Projeção setembro — 12 dias restantes</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px">
-        <div style="background:var(--panel-2);border-radius:10px;padding:14px;text-align:center">
-          <div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Leads</div>
-          <div style="font-family:'Space Grotesk';font-size:24px;font-weight:600;color:#4C94E8">~1.026</div>
-          <div style="font-size:10px;color:var(--text-faint);margin-top:3px">34,2/dia</div>
-        </div>
-        <div style="background:var(--panel-2);border-radius:10px;padding:14px;text-align:center">
-          <div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Reuniões</div>
-          <div style="font-family:'Space Grotesk';font-size:24px;font-weight:600;color:#a78bfa">~216</div>
-          <div style="font-size:10px;color:var(--text-faint);margin-top:3px">7,2/dia</div>
-        </div>
-        <div style="background:var(--panel-2);border-radius:10px;padding:14px;text-align:center">
-          <div style="font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px">Fechamentos</div>
-          <div style="font-family:'Space Grotesk';font-size:24px;font-weight:600;color:#35C07A">~84</div>
-          <div style="font-size:10px;color:var(--text-faint);margin-top:3px">vs 118 em ago</div>
-        </div>
-      </div>
-      <div style="padding:10px 14px;background:rgba(53,192,122,0.08);border:1px solid rgba(53,192,122,0.2);border-radius:8px;font-size:12px;color:#6ee7b7">
-        🟢 Close rate de 39,2% — o maior do período. Com 12 dias restantes e ~84 contratos projetados, setembro supera qualquer mês exceto agosto (118).
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- MACRO -->
 <section class="section" id="macro">
   <div class="section-head"><span class="section-tag">MACRO</span><h2>Visão geral da conta</h2></div>
-  <p class="section-desc">Evolução de investimento, volume e CPL de fevereiro a agosto (sem Abril). Estrutura de campanhas mudou em maio. <strong style="color:#9AA3B2">Todos os leads contabilizados são exclusivamente de formulários Meta (Lead Ads) — conversões por site, ThruPlays e outros objetivos não entram nesse número.</strong></p>
+  <p class="section-desc">Evolução mensal desde a reestruturação de campanhas em abril. Outubro está em andamento — dados parciais do mês vigente.</p>
 
   <div class="kpi-row">
     <div class="kpi">
-      <div class="kpi-label">Investido (fev—ago)</div>
-      <div class="kpi-value">R$ 117.885</div>
-      <div class="kpi-sub">6 meses (sem Abril) · fev a ago</div>
+      <div class="kpi-label">Investimento outubro*</div>
+      <div class="kpi-value">R$ 10.800</div>
+      <div class="kpi-sub">Parcial — mês vigente</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Leads gerados (fev—ago)</div>
-      <div class="kpi-value blue">4.213</div>
-      <div class="kpi-sub">702 leads/mês em média</div>
+      <div class="kpi-label">Leads outubro*</div>
+      <div class="kpi-value blue">339</div>
+      <div class="kpi-sub up">↑ +1,2% vs set 335 campanhas</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">CPL médio (fev—ago)</div>
-      <div class="kpi-value gold">R$ 27,98</div>
-      <div class="kpi-sub">base usada nas projeções</div>
+      <div class="kpi-label">CPL outubro*</div>
+      <div class="kpi-value gold">R$ 31,86</div>
+      <div class="kpi-sub up">↑ +9,1% vs set (R$ 29,18)</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">CPL em agosto</div>
-      <div class="kpi-value red">R$ 27,50</div>
-      <div class="kpi-sub up">↑ 73% vs. junho (R$ 15,86)</div>
+      <div class="kpi-label">Nova campanha</div>
+      <div class="kpi-value green">Autoconf Pay</div>
+      <div class="kpi-sub">11 leads · CPL R$ 25,06 · Bom início</div>
     </div>
   </div>
 
   <div class="chart-card">
     <div class="chart-title">Leads gerados por mês</div>
-    <div class="chart-note">Fev e Mar operavam sob estrutura antiga. Set* parcial: 331 leads (dia 1–18).</div>
-    <svg id="chartLeads" viewBox="0 0 1080 220" style="width:100%;height:auto;"></svg>
+    <div class="chart-note">Fev/Mar: estrutura antiga (Lead Form). A partir de Abr: estrutura atual. Out* = mês vigente, dado parcial — campanhas da tabela Micro.</div>
+    <svg id="chartLeads" viewBox="0 0 1080 240" style="width:100%;height:auto;"></svg>
+    <div class="legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#3A4150"></span>Estrutura antiga</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#307FE2"></span>Estrutura atual</div>
+      <div class="legend-item"><span class="legend-dot" style="background:rgba(48,127,226,0.45);border:1px dashed #307FE2"></span>Outubro* (parcial)</div>
+    </div>
   </div>
 
   <div class="chart-card">
     <div class="chart-title">CPL médio por mês</div>
-    <div class="chart-note">A queda entre mar e mai reflete troca de estrutura de campanha. Set* (dia 1–18): R$27,41 — praticamente estável vs agosto.</div>
-    <svg id="chartCpl" viewBox="0 0 1080 220" style="width:100%;height:auto;"></svg>
+    <div class="chart-note">Tendência de alta desde junho. Outubro mantém trajetória ascendente — Autoconf Pay (R$ 25,06) é a exceção positiva do mês.</div>
+    <svg id="chartCpl" viewBox="0 0 1080 240" style="width:100%;height:auto;"></svg>
     <div class="legend">
-      <div class="legend-item"><span class="legend-dot" style="background:var(--text-faint)"></span>Estrutura antiga (Lead Form)</div>
-      <div class="legend-item"><span class="legend-dot" style="background:var(--blue-strong)"></span>Estrutura atual (Vídeos/Artes segmentados)</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#6B7280"></span>Estrutura antiga</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#EAAA00"></span>Estrutura atual</div>
+      <div class="legend-item"><span class="legend-dot" style="background:rgba(234,170,0,0.45);border:1px dashed #EAAA00"></span>Outubro* (parcial)</div>
     </div>
   </div>
 
-  <div class="callout">CPL subindo três meses seguidos (jun R$15,86 → jul R$25,32 → ago R$27,50) com investimento estável em ~R$22 mil. Isso indica saturação de público nas campanhas ativas, não apenas sazonalidade — relevante para calibrar as projeções abaixo e para a estratégia de setembro.</div>
+  <div class="callout red">🔴 CPL subindo pelo quinto mês consecutivo (jun → jul → ago → set → out*). Com investimento total do mês em R$ 10.800 parcial, a tendência indica que outubro pode encerrar próximo a R$ 30+ de CPL. A chegada da Autoconf Pay (R$ 25,06) pode ajudar a puxar a média para baixo — candidata a receber mais budget.</div>
 </section>
 
 <!-- MICRO -->
 <section class="section" id="micro">
   <div class="section-head"><span class="section-tag">MICRO</span><h2>Desempenho por campanha</h2></div>
-  <p class="section-desc">Leads e CPL das campanhas recorrentes, mai—ago/2026. "—" indica sem investimento relevante no mês. <strong style="color:#9AA3B2">Apenas leads de formulário (Lead Ads) — campanhas com objetivo de registro no site ou ThruPlays não geram leads nessa contagem.</strong></p>
+  <p class="section-desc">Outubro como mês principal · Setembro como comparativo · Variações em investimento, leads e CPL.</p>
 
   <div class="table-card">
     <table>
       <thead>
         <tr>
           <th>Campanha</th>
-          <th class="center">Mai</th>
-          <th class="center">Jun</th>
-          <th class="center">Jul</th>
-          <th class="center">Ago</th>
-          <th class="center">Inv. total</th>
-          <th class="center">Leitura</th>
+          <th class="c">Inv. Set</th>
+          <th class="c">Inv. Out</th>
+          <th class="c">Var. Inv.</th>
+          <th class="c">Leads Set</th>
+          <th class="c">Leads Out</th>
+          <th class="c">Var. Leads</th>
+          <th class="c">CPL Set</th>
+          <th class="c">CPL Out</th>
+          <th class="c">Var. CPL</th>
+          <th class="c">Status</th>
         </tr>
       </thead>
-      <tbody id="microTableBody"></tbody>
+      <tbody>
+        <tr>
+          <td class="campaign-name">Simulador</td>
+          <td class="c set-val">R$ 2.034</td>
+          <td class="c oct-val">R$ 2.814</td>
+          <td class="c"><span class="var-up">+38,4%</span></td>
+          <td class="c set-val">158</td>
+          <td class="c oct-val">134</td>
+          <td class="c"><span class="var-up">-15,2%</span></td>
+          <td class="c set-val">R$ 12,87</td>
+          <td class="c oct-val" style="color:#E5533D">R$ 21,00</td>
+          <td class="c"><span class="var-up">+63,2%</span></td>
+          <td class="c"><span class="pill pill-red">🔴 Piorou</span></td>
+        </tr>
+        <tr>
+          <td class="campaign-name">Renave</td>
+          <td class="c set-val">R$ 2.414</td>
+          <td class="c oct-val">R$ 3.603</td>
+          <td class="c"><span class="var-up">+49,2%</span></td>
+          <td class="c set-val">63</td>
+          <td class="c oct-val">92</td>
+          <td class="c"><span class="var-down">+46,0%</span></td>
+          <td class="c set-val">R$ 38,32</td>
+          <td class="c oct-val">R$ 39,16</td>
+          <td class="c"><span class="var-neutral">+2,2%</span></td>
+          <td class="c"><span class="pill pill-amber">🟡 Atenção</span></td>
+        </tr>
+        <tr>
+          <td class="campaign-name">Pro</td>
+          <td class="c set-val">R$ 1.109</td>
+          <td class="c oct-val">R$ 1.404</td>
+          <td class="c"><span class="var-up">+26,6%</span></td>
+          <td class="c set-val">53</td>
+          <td class="c oct-val">51</td>
+          <td class="c"><span class="var-neutral">-3,8%</span></td>
+          <td class="c set-val">R$ 20,92</td>
+          <td class="c oct-val" style="color:#E5533D">R$ 27,52</td>
+          <td class="c"><span class="var-up">+31,5%</span></td>
+          <td class="c"><span class="pill pill-red">🔴 Piorou</span></td>
+        </tr>
+        <tr>
+          <td class="campaign-name">Agente de IA</td>
+          <td class="c set-val">R$ 2.009</td>
+          <td class="c oct-val">R$ 1.996</td>
+          <td class="c"><span class="var-neutral">-0,6%</span></td>
+          <td class="c set-val">39</td>
+          <td class="c oct-val">35</td>
+          <td class="c"><span class="var-up">-10,3%</span></td>
+          <td class="c set-val">R$ 51,52</td>
+          <td class="c oct-val" style="color:#E5533D">R$ 57,04</td>
+          <td class="c"><span class="var-up">+10,7%</span></td>
+          <td class="c"><span class="pill pill-red">🔴 Piorou</span></td>
+        </tr>
+        <tr>
+          <td class="campaign-name">Motos</td>
+          <td class="c set-val">R$ 432</td>
+          <td class="c oct-val">R$ 423</td>
+          <td class="c"><span class="var-neutral">-2,1%</span></td>
+          <td class="c set-val">11</td>
+          <td class="c oct-val">11</td>
+          <td class="c"><span class="var-neutral">0,0%</span></td>
+          <td class="c set-val">R$ 39,24</td>
+          <td class="c oct-val">R$ 38,41</td>
+          <td class="c"><span class="var-down">-2,1%</span></td>
+          <td class="c"><span class="pill pill-green">🟢 Estável</span></td>
+        </tr>
+        <tr>
+          <td class="campaign-name">Artes</td>
+          <td class="c set-val">R$ 845</td>
+          <td class="c oct-val">R$ 285</td>
+          <td class="c"><span class="var-down">-66,3%</span></td>
+          <td class="c set-val">11</td>
+          <td class="c oct-val">5</td>
+          <td class="c"><span class="var-up">-54,5%</span></td>
+          <td class="c set-val">R$ 76,82</td>
+          <td class="c oct-val" style="color:#35C07A">R$ 56,97</td>
+          <td class="c"><span class="var-down">-25,8%</span></td>
+          <td class="c"><span class="pill pill-amber">🟡 CPL melhor</span></td>
+        </tr>
+        <tr style="background:rgba(48,127,226,0.04);">
+          <td class="campaign-name" style="color:var(--blue)">Autoconf Pay <span style="font-size:11px;background:rgba(79,148,232,0.15);padding:2px 7px;border-radius:5px;margin-left:6px;">Nova</span></td>
+          <td class="c set-val">—</td>
+          <td class="c oct-val" style="color:var(--blue)">R$ 276</td>
+          <td class="c"><span class="var-new">Nova</span></td>
+          <td class="c set-val">—</td>
+          <td class="c oct-val" style="color:var(--blue)">11</td>
+          <td class="c"><span class="var-new">Nova</span></td>
+          <td class="c set-val">—</td>
+          <td class="c oct-val" style="color:var(--green)">R$ 25,06</td>
+          <td class="c">—</td>
+          <td class="c"><span class="pill pill-green">🟢 Bom início</span></td>
+        </tr>
+      </tbody>
     </table>
   </div>
 
-  <div class="chart-card">
-    <div class="chart-title">Investimento por campanha — mês a mês (mai—ago)</div>
-    <div class="chart-note">Investimento mensal de cada campanha. "Outras" agrupa Webinar, Artes-02, Carrossel e campanhas eventuais não recorrentes.</div>
-    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;" id="filterBtns">
-      <button onclick="setView('inv')" id="btnInv" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(76,148,232,0.5);background:rgba(76,148,232,0.15);color:#4C94E8;cursor:pointer;font-family:Inter;">Investimento</button>
-      <button onclick="setView('leads')" id="btnLeads" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">Leads</button>
-      <button onclick="setView('cpl')" id="btnCpl" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">CPL</button>
-    </div>
-    <svg id="chartMicro" viewBox="0 0 1080 280" style="width:100%;height:auto;"></svg>
-    <div class="legend" id="microLegend"></div>
-  </div>
-
-  <div class="callout red">Lista Clientes: CPL foi de R$33 (jun) → R$121 (jul) → R$231 (ago). R$693 gastos em agosto para 3 leads. Pausa imediata recomendada antes de qualquer novo aporte.</div>
+  <div class="callout green" style="margin-top:16px;">✅ Autoconf Pay estreia com CPL R$ 25,06 — o melhor da conta em outubro, abaixo do CPL médio atual de R$ 31,86. É a candidata natural a receber budget redistributivo das campanhas que pioraram.</div>
+  <div class="callout red" style="margin-top:10px;">🔴 Simulador de Financiamento perdeu eficiência: investimento +38,4%, leads -15,2%, CPL saltou de R$ 12,87 para R$ 21,00 (+63,2%). Era a melhor campanha da conta — sinal de saturação de público ou criativo desgastado. Revisar urgente.</div>
 </section>
 
 <!-- NANO -->
 <section class="section" id="nano">
   <div class="section-head"><span class="section-tag">NANO</span><h2>Simulador de investimento adicional</h2></div>
-  <p class="section-desc">Quantos leads a mais um aporte extra tende a gerar, com base em três referências de CPL.</p>
+  <p class="section-desc">Projeção de leads adicionais com base nos cenários de CPL de outubro. Deslize para ajustar o aporte extra.</p>
 
   <div class="sim-card">
     <div class="sim-top">
       <div>
         <div class="kpi-label" style="margin-bottom:6px;">Aporte adicional mensal</div>
-        <div class="sim-amount" id="simAmountLabel">R$ 5.000<span>além do investimento atual de ~R$ 22 mil</span></div>
+        <div class="sim-amount" id="simAmountLabel">R$ 5.000<span>além do investimento atual</span></div>
       </div>
     </div>
     <input type="range" id="simSlider" min="1000" max="20000" step="500" value="5000">
@@ -341,372 +301,129 @@
     <div class="scenarios">
       <div class="scenario opt">
         <div class="scenario-tag">Otimista</div>
-        <div class="scenario-basis">CPL médio das 3 campanhas mais eficientes: Simulador Financ. (R$13,76), Renave Brasil (R$20,56) e Autoconf Pro (R$22,80) — média R$19,04</div>
-        <div class="scenario-leads" id="scenOptLeads">+263 <small>leads/mês</small></div>
+        <div class="scenario-basis">Autoconf Pay — CPL R$ 25,06 · melhor campanha de outubro</div>
+        <div class="scenario-leads" id="scenOptLeads">+199 <small>leads/mês</small></div>
         <div class="scenario-total" id="scenOptTotal"></div>
       </div>
       <div class="scenario mid">
         <div class="scenario-tag">Realista</div>
-        <div class="scenario-basis">CPL médio da conta em mai—ago (R$22,16) — nova estrutura de campanhas, excluindo fev e mar</div>
-        <div class="scenario-leads" id="scenMidLeads">+226 <small>leads/mês</small></div>
+        <div class="scenario-basis">CPL médio de outubro — R$ 31,86 · média ponderada de todas as campanhas ativas</div>
+        <div class="scenario-leads" id="scenMidLeads">+157 <small>leads/mês</small></div>
         <div class="scenario-total" id="scenMidTotal"></div>
       </div>
       <div class="scenario cons">
         <div class="scenario-tag">Conservador</div>
-        <div class="scenario-basis">CPL do mês mais recente — agosto (R$27,50), refletindo a saturação atual de público</div>
-        <div class="scenario-leads" id="scenConsLeads">+182 <small>leads/mês</small></div>
+        <div class="scenario-basis">Agente de IA — CPL R$ 57,04 · campanha com pior performance em outubro</div>
+        <div class="scenario-leads" id="scenConsLeads">+88 <small>leads/mês</small></div>
         <div class="scenario-total" id="scenConsTotal"></div>
       </div>
     </div>
 
     <div class="alloc">
-      <div class="alloc-title">Sugestão de alocação do aporte extra</div>
-      <div class="alloc-row"><span class="alloc-name">Simulador de Financiamento</span><div class="alloc-track"><div class="alloc-fill" style="width:45%;background:var(--green);"></div></div><span class="alloc-pct">45%</span></div>
-      <div class="alloc-row"><span class="alloc-name">Renave Brasil</span><div class="alloc-track"><div class="alloc-fill" style="width:35%;background:var(--blue-strong);"></div></div><span class="alloc-pct">35%</span></div>
-      <div class="alloc-row"><span class="alloc-name">Autoconf Pro</span><div class="alloc-track"><div class="alloc-fill" style="width:20%;background:var(--gold);"></div></div><span class="alloc-pct">20%</span></div>
-      <div class="callout" style="margin-top:18px;">Projeções baseadas na nova estrutura de campanhas (mai–ago/26). Simulador de Financiamento é a mais consistente (CPL R$15,50 em ago). Renave Brasil recuperou volume em agosto (188 leads). Agente de IA tem CPL alto demais (R$54/lead) para receber aporte adicional agora.</div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- GOOGLE ADS -->
-<section class="section" id="google">
-  <div class="section-head"><span class="section-tag" style="color:#4285F4">GOOGLE ADS</span><h2>Desempenho por mês</h2></div>
-  <p class="section-desc">Leads, investimento e CPL do Google Ads de fevereiro a agosto/2026. Apenas leads de formulário. Detalhamento por campanha disponível assim que os prints forem incluídos.</p>
-
-  <div class="kpi-row">
-    <div class="kpi">
-      <div class="kpi-label">Investido (fev—ago)</div>
-      <div class="kpi-value">R$ 21.716</div>
-      <div class="kpi-sub">7 meses · fev a ago</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Leads gerados (fev—ago)</div>
-      <div class="kpi-value blue">362</div>
-      <div class="kpi-sub">52 leads/mês em média</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">CPL médio (fev—ago)</div>
-      <div class="kpi-value gold">R$ 59,99</div>
-      <div class="kpi-sub">2,6× mais caro que Meta Ads</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Melhor mês</div>
-      <div class="kpi-value" style="color:var(--green)">Set* · R$ 21,19</div>
-      <div class="kpi-sub down">Dia 1–18 · novo mínimo histórico</div>
-    </div>
-  </div>
-
-  <div class="chart-card">
-    <div class="chart-title">Google Ads — Leads e CPL por mês</div>
-    <div class="chart-note">Julho foi o pico de volume (153 leads) com o menor CPL do período (R$24,92) — vale investigar o que mudou nesse mês.</div>
-    <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
-      <button onclick="setGoogleView('leads')" id="gBtnLeads" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(66,133,244,0.5);background:rgba(66,133,244,0.15);color:#4285F4;cursor:pointer;font-family:Inter;">Leads</button>
-      <button onclick="setGoogleView('inv')" id="gBtnInv" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">Investimento</button>
-      <button onclick="setGoogleView('cpl')" id="gBtnCpl" style="font-size:11.5px;padding:5px 12px;border-radius:100px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:#6B7280;cursor:pointer;font-family:Inter;">CPL</button>
-    </div>
-    <svg id="chartGoogle" viewBox="0 0 1080 240" style="width:100%;height:auto;"></svg>
-  </div>
-
-  <div class="table-card" style="margin-top:24px">
-    <table>
-      <thead>
-        <tr>
-          <th>Mês</th>
-          <th class="center">Leads</th>
-          <th class="center">Investimento</th>
-          <th class="center">CPL</th>
-          <th class="center">vs Meta (CPL)</th>
-          <th class="center">Leitura</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>Fevereiro</td><td class="center">20</td><td class="center">R$ 1.746,26</td><td class="center">R$ 87,31</td><td class="center" style="color:var(--red)">+194% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
-        <tr><td>Março</td><td class="center">18</td><td class="center">R$ 1.916,14</td><td class="center">R$ 106,45</td><td class="center" style="color:var(--red)">+210% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
-        <tr><td>Abril</td><td class="center">18</td><td class="center">R$ 1.592,32</td><td class="center">R$ 88,46</td><td class="center" style="color:var(--red)">+336% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
-        <tr><td>Maio</td><td class="center">50</td><td class="center">R$ 3.581,52</td><td class="center">R$ 71,63</td><td class="center" style="color:var(--red)">+249% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
-        <tr><td>Junho</td><td class="center">31</td><td class="center">R$ 4.763,72</td><td class="center" style="color:var(--red)">R$ 153,67</td><td class="center" style="color:var(--red)">+711% vs Meta</td><td class="center"><span class="row-flag critical">Revisar</span></td></tr>
-        <tr><td><strong>Julho</strong></td><td class="center" style="color:var(--green);font-weight:700">153</td><td class="center">R$ 3.813,17</td><td class="center" style="color:var(--green);font-weight:700">R$ 24,92</td><td class="center" style="color:var(--green)">+16% vs Meta</td><td class="center"><span class="row-flag strong">Investigar ↑</span></td></tr>
-        <tr><td>Agosto</td><td class="center">72</td><td class="center">R$ 4.302,75</td><td class="center">R$ 59,76</td><td class="center" style="color:var(--red)">+126% vs Meta</td><td class="center"><span class="row-flag watch">Monitorar</span></td></tr>
-        <tr style="background:rgba(66,133,244,0.05)"><td><strong>Set/26*</strong> <span style="font-size:10px;color:#4285F4">(dia 1–18)</span></td><td class="center" style="color:#4285F4;font-weight:700">—</td><td class="center" style="color:#4285F4;font-weight:700">R$ 2.030</td><td class="center" style="color:#35C07A;font-weight:700">R$ 21,19</td><td class="center" style="color:#35C07A">↓ CPL mínimo histórico</td><td class="center"><span class="row-flag strong">🔥 Melhor CPL</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="callout" style="margin-top:20px">🔍 <strong>Setembro já tem o menor CPL histórico:</strong> R$21,19 em dia 1–18 — abaixo de julho (R$24,92). Investimento de R$2.030 no período. Conversões Google não equivalem a leads formulário — volume real de leads a confirmar.</div>
-  <div class="callout red" style="margin-top:12px">⚠️ <strong>Google vs Meta:</strong> Na média histórica (fev–ago), Google custa R$59,99/lead vs R$23,10 do Meta — 2,6× mais caro. Setembro muda esse quadro: CPL Google de R$21,19 ficou abaixo do Meta. Leads formulário de setembro ainda não confirmados — número de conversões (95,6) inclui outros objetivos do Google.</div>
-</section>
-
-<section class="section" id="eleitoral">
-  <div class="section-head"><span class="section-tag" style="color:#E5533D">ALERTA</span><h2>Impacto do período eleitoral</h2></div>
-  <p class="section-desc">Eleições municipais em outubro/2026 tendem a pressionar o CPL das campanhas de performance.</p>
-
-  <div class="kpi-row">
-    <div class="kpi">
-      <div class="kpi-label">CPL atual (ago)</div>
-      <div class="kpi-value gold">R$ 27,50</div>
-      <div class="kpi-sub">referência pré-eleitoral</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">CPL estimado no pico (+30%)</div>
-      <div class="kpi-value red">R$ 35,75</div>
-      <div class="kpi-sub up">cenário moderado · out/26</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">CPL estimado no pico (+60%)</div>
-      <div class="kpi-value red">R$ 44,00</div>
-      <div class="kpi-sub up">cenário agressivo · out/26</div>
-    </div>
-    <div class="kpi">
-      <div class="kpi-label">Perda estimada de volume</div>
-      <div class="kpi-value red">−180 a −370</div>
-      <div class="kpi-sub up">leads/mês com mesmo budget</div>
-    </div>
-  </div>
-
-  <div class="chart-card" style="margin-top:24px">
-    <div class="chart-title">Como o período eleitoral afeta o Meta Ads</div>
-    <div class="chart-note">O leilão do Meta Ads é competitivo — mais anunciantes (candidatos, partidos, grupos políticos) disputando o mesmo inventário eleva o CPM e, consequentemente, o CPL.</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px">
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="padding:14px 16px;background:rgba(229,83,61,0.08);border:1px solid rgba(229,83,61,0.2);border-radius:10px">
-          <div style="font-size:12px;font-weight:600;color:#E5533D;margin-bottom:6px">⚠️ Por que o CPL sobe</div>
-          <div style="font-size:13px;color:var(--text-dim);line-height:1.6">Candidatos e partidos entram como anunciantes e competem pelo mesmo inventário de vídeo e feed — exatamente os formatos que você usa. Mais demanda no leilão = custo por resultado mais alto para todos.</div>
-        </div>
-        <div style="padding:14px 16px;background:rgba(229,83,61,0.08);border:1px solid rgba(229,83,61,0.2);border-radius:10px">
-          <div style="font-size:12px;font-weight:600;color:#E5533D;margin-bottom:6px">📅 Quando acontece</div>
-          <div style="font-size:13px;color:var(--text-dim);line-height:1.6">O leilão começa a aquecer semanas antes do 1º turno (outubro/26). Historicamente, anunciantes de performance com público adulto e empresarial reportam alta de 20% a 60% no CPL no pico.</div>
-        </div>
+      <div class="alloc-title">Sugestão de alocação do aporte extra — baseada na performance de outubro</div>
+      <div class="alloc-bars">
+        <div class="alloc-row"><span class="alloc-name">Autoconf Pay</span><div class="alloc-track"><div class="alloc-fill" style="width:40%;background:var(--green);"></div></div><span class="alloc-pct">40%</span></div>
+        <div class="alloc-row"><span class="alloc-name">Renave</span><div class="alloc-track"><div class="alloc-fill" style="width:35%;background:var(--blue-strong);"></div></div><span class="alloc-pct">35%</span></div>
+        <div class="alloc-row"><span class="alloc-name">Motos</span><div class="alloc-track"><div class="alloc-fill" style="width:25%;background:var(--gold);"></div></div><span class="alloc-pct">25%</span></div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="padding:14px 16px;background:rgba(53,192,122,0.08);border:1px solid rgba(53,192,122,0.2);border-radius:10px">
-          <div style="font-size:12px;font-weight:600;color:#35C07A;margin-bottom:6px">✅ O que fazer agora</div>
-          <div style="font-size:13px;color:var(--text-dim);line-height:1.6">Escalar <strong style="color:var(--text)">Simulador de Financiamento</strong> e <strong style="color:var(--text)">Renave Brasil</strong> enquanto o leilão ainda está no patamar atual. Antecipar volume em setembro reduz o impacto de outubro.</div>
-        </div>
-        <div style="padding:14px 16px;background:rgba(234,170,0,0.08);border:1px solid rgba(234,170,0,0.25);border-radius:10px">
-          <div style="font-size:12px;font-weight:600;color:#EAAA00;margin-bottom:6px">🎯 O que evitar</div>
-          <div style="font-size:13px;color:var(--text-dim);line-height:1.6">Não aumentar budget em <strong style="color:var(--text)">Agente de IA</strong> (CPL R$54) nem reativar <strong style="color:var(--text)">Lista Clientes</strong> (CPL R$231). O efeito eleitoral agrava campanhas já ineficientes primeiro.</div>
-        </div>
-      </div>
+      <div class="callout" style="margin-top:18px;">Autoconf Pay (CPL R$ 25,06) e Renave (único com crescimento de leads +46%) são as campanhas com melhor sinal em outubro. Motos manteve estabilidade. Agente de IA, Simulador e Pro pioraram — não receberiam aporte extra até revisão de criativo/público.</div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>Fonte: Meta Ads Manager — conta [HORIZZONT] Autoconf</span>
-  <span>Dados de fev, mar, mai, jun, jul e ago/2026 (sem Abril)</span>
+  <span>Fonte: Meta Ads — conta [HORIZZONT] Autoconf · tabela comparativa Set × Out/2026</span>
+  <span>Histórico: Fev–Set completo · Out* = mês vigente (dados parciais)</span>
 </footer>
+
 </div>
 
 <script>
-const months = ['Fev','Mar','Mai','Jun','Jul','Ago'];
-const oldStr  = [true,true,false,false,false,false];
-const invest  = [14428,15222,20304,23372,22227,22332];
-const leads   = [129,102,899,1474,878,731];
-const cpl     = [111.85,149.24,22.59,15.86,25.32,27.50];
+// DATA
+const months = ['Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out*'];
+const oldStructure = [true,true,false,false,false,false,false,false,false];
+const isPartial   = [false,false,false,false,false,false,false,false,true];
+const leads = [489,102,787,989,992,890,739,597,339];
+const cpl   = [111.85,149.24,20.28,20.50,18.95,21.52,26.39,29.18,31.86];
+const invest= [14428,15222,15960,20275,18803,19155,19503,17421,10800];
 
 function fmtBRL(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});}
 function fmtBRLc(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
-// --- CHART LEADS ---
+// CHART LEADS
 (function(){
   const svg=document.getElementById('chartLeads');
-  const W=1080,H=220,padL=40,padB=30,padT=10,chartW=W-padL-20,chartH=H-padT-padB;
-  const maxV=Math.max(...leads)*1.15,bw=chartW/months.length*0.5;
+  const W=1080,H=240,padL=44,padB=32,padT=14;
+  const chartW=W-padL-20,chartH=H-padT-padB;
+  const maxV=Math.max(...leads)*1.15;
+  const bw=chartW/months.length*0.52;
   let html='';
-  for(let i=0;i<=3;i++){const y=padT+chartH-(chartH*i/3);html+=`<line x1="${padL}" y1="${y}" x2="${W-10}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="4" y="${y+4}" font-size="10" fill="#6B7280" font-family="Inter">${Math.round(maxV*i/3)}</text>`;}
-  months.forEach((m,i)=>{const cx=padL+chartW*(i+0.5)/months.length,h=chartH*(leads[i]/maxV),y=padT+chartH-h,color=oldStr[i]?'#3A4150':'#307FE2';html+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="4" fill="${color}"/><text x="${cx}" y="${y-8}" text-anchor="middle" font-size="12" fill="#F2F3F5" font-family="Inter" font-weight="600">${leads[i]}</text><text x="${cx}" y="${H-8}" text-anchor="middle" font-size="11" fill="#9AA3B2" font-family="Inter">${m}</text>`;});
-  svg.innerHTML=html;
-})();
-
-// --- CHART CPL ---
-(function(){
-  const svg=document.getElementById('chartCpl');
-  const W=1080,H=220,padL=44,padB=30,padT=20,chartW=W-padL-20,chartH=H-padT-padB;
-  const maxV=Math.max(...cpl)*1.15;
-  let html='';
-  for(let i=0;i<=3;i++){const y=padT+chartH-(chartH*i/3);html+=`<line x1="${padL}" y1="${y}" x2="${W-10}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/><text x="0" y="${y+4}" font-size="10" fill="#6B7280" font-family="Inter">${Math.round(maxV*i/3)}</text>`;}
-  const pts=months.map((m,i)=>({cx:padL+chartW*(i+0.5)/months.length,cy:padT+chartH-chartH*(cpl[i]/maxV),i}));
-  pts.forEach((p,i)=>{if(i>0){const prev=pts[i-1],dash=i===2?'stroke-dasharray="5,5"':'';html+=`<line x1="${prev.cx}" y1="${prev.cy}" x2="${p.cx}" y2="${p.cy}" stroke="#4C94E8" stroke-width="2" ${dash}/>`;}});
-  pts.forEach((p,i)=>{const color=oldStr[i]?'#6B7280':'#EAAA00';html+=`<circle cx="${p.cx}" cy="${p.cy}" r="4.5" fill="${color}" stroke="#14171d" stroke-width="2"/><text x="${p.cx}" y="${p.cy-12}" text-anchor="middle" font-size="12" fill="#F2F3F5" font-family="Inter" font-weight="600">${fmtBRLc(cpl[i])}</text><text x="${p.cx}" y="${H-8}" text-anchor="middle" font-size="11" fill="#9AA3B2" font-family="Inter">${months[i]}</text>`;});
-  svg.innerHTML=html;
-})();
-
-// --- MICRO TABLE ---
-const campaigns=[
-  {name:'Simulador de Financiamento',
-   data:[{l:400,c:11.35,s:'green'},{l:489,c:10.94,s:'green'},{l:352,c:12.70,s:'green'},{l:293,c:15.50,s:'green'}],
-   inv:14430, flag:'strong',flagLabel:'Escalar'},
-  {name:'Renave Brasil',
-   data:[null,null,{l:90,c:11.78,s:'green'},{l:188,c:24.83,s:'green'}],
-   inv:6431, flag:'strong',flagLabel:'Escalar'},
-  {name:'Autoconf Pro',
-   data:[{l:22,c:35.64,s:'amber'},{l:54,c:13.79,s:'green'},{l:136,c:17.55,s:'green'},{l:81,c:29.86,s:'amber'}],
-   inv:8326, flag:'strong',flagLabel:'Manter'},
-  {name:'Artes — Públicos Segmentados',
-   data:[{l:317,c:21.91,s:'green'},{l:244,c:24.50,s:'green'},{l:166,c:31.37,s:'amber'},{l:54,c:36.66,s:'amber'}],
-   inv:18183, flag:'watch',flagLabel:'Monitorar'},
-  {name:'Agente de IA',
-   data:[{l:108,c:46.20,s:'amber'},{l:123,c:39.21,s:'amber'},{l:92,c:53.84,s:'red'},{l:85,c:54.14,s:'red'}],
-   inv:18564, flag:'watch',flagLabel:'CPL alto'},
-  {name:'Loja de Motos',
-   data:[{l:34,c:36.56,s:'amber'},{l:60,c:20.05,s:'green'},{l:37,c:29.14,s:'amber'},{l:27,c:34.46,s:'amber'}],
-   inv:4026, flag:'watch',flagLabel:'Monitorar'},
-  {name:'Lista Clientes',
-   data:[null,{l:17,c:33.58,s:'amber'},{l:5,c:121.46,s:'red'},{l:3,c:231.22,s:'red'}],
-   inv:1616, flag:'critical',flagLabel:'Pausar agora'},
-];
-
-(function(){
-  const tbody=document.getElementById('microTableBody');
-  let html='';
-  campaigns.forEach(c=>{
-    html+=`<tr><td class="campaign-name">${c.name}</td>`;
-    c.data.forEach(cell=>{
-      if(!cell)html+=`<td class="cell-empty">—</td>`;
-      else html+=`<td><div class="cell-stat"><span class="dot ${cell.s}"></span><span class="cell-leads">${cell.l}</span><span class="cell-cpl">${fmtBRLc(cell.c)}</span></div></td>`;
-    });
-    html+=`<td class="center" style="font-family:'Space Grotesk';font-weight:600;">${fmtBRL(c.inv)}</td>`;
-    html+=`<td class="center"><span class="row-flag ${c.flag}">${c.flagLabel}</span></td></tr>`;
-  });
-  tbody.innerHTML=html;
-})();
-
-// --- CHART MICRO MES A MES ---
-const microMeses = ['Mai','Jun','Jul','Ago'];
-const microData = {
-  inv: {
-    'Simulador Financ.': [4540.78, 5350.23, 4468.75, 4540.85],
-    'Agente de IA':      [4989.38, 4822.31, 4953.00, 4601.79],
-    'Artes Seg.':        [6944.77, 5977.92, 5207.42, 1979.88],
-    'Autoconf Pro':      [784.09,  744.62,  2386.87, 2418.59],
-    'Renave Brasil':     [0,       0,       1060.16, 4667.80],
-    'Loja de Motos':     [1243.18, 1203.24, 1078.28, 930.43],
-    'Lista Clientes':    [0,       570.79,  607.31,  693.66],
-    'Outras':            [1802.27, 4703.20, 2465.70, 2498.73],
-  },
-  leads: {
-    'Simulador Financ.': [400, 489, 352, 293],
-    'Agente de IA':      [108, 123,  92,  85],
-    'Artes Seg.':        [317, 244, 166,  54],
-    'Autoconf Pro':      [22,   54, 136,  81],
-    'Renave Brasil':     [0,     0,  90, 188],
-    'Loja de Motos':     [34,   60,  37,  27],
-    'Lista Clientes':    [0,    17,   5,   3],
-    'Outras':            [18,  487,   0,   2],
-  },
-  cpl: {
-    'Simulador Financ.': [11.35, 10.94, 12.70, 15.50],
-    'Agente de IA':      [46.20, 39.21, 53.84, 54.14],
-    'Artes Seg.':        [21.91, 24.50, 31.37, 36.66],
-    'Autoconf Pro':      [35.64, 13.79, 17.55, 29.86],
-    'Renave Brasil':     [0,     0,     11.78, 24.83],
-    'Loja de Motos':     [36.56, 20.05, 29.14, 34.46],
-    'Lista Clientes':    [0,     33.58, 121.46, 231.22],
-    'Outras':            [null,  null,  null,  null],
-  },
-};
-const microColors = {
-  'Simulador Financ.': '#35C07A',
-  'Agente de IA':      '#E5533D',
-  'Artes Seg.':        '#9AA3B2',
-  'Autoconf Pro':      '#4C94E8',
-  'Renave Brasil':     '#00C2A0',
-  'Loja de Motos':     '#EAAA00',
-  'Lista Clientes':    '#FF6B6B',
-  'Outras':            '#4A5060',
-};
-const microFmt = {
-  inv:   v => v > 0 ? 'R$'+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0}) : '—',
-  leads: v => v > 0 ? v : '—',
-  cpl:   v => v > 0 ? 'R$'+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) : '—',
-};
-
-let currentView = 'inv';
-
-function drawMicroChart(view){
-  const svg = document.getElementById('chartMicro');
-  const W=1080,H=280,padL=12,padR=12,padT=20,padB=60;
-  const chartW=W-padL-padR, chartH=H-padT-padB;
-  const nMeses=4, nCamps=Object.keys(microData[view]).length;
-  const groupW=chartW/nMeses;
-  const barW=Math.min((groupW*0.85)/nCamps, 28);
-  const gap=(groupW - barW*nCamps)/2;
-
-  const campNames = Object.keys(microData[view]);
-  let allVals = [];
-  campNames.forEach(c=>microData[view][c].forEach(v=>{ if(v>0) allVals.push(v); }));
-  const maxV = Math.max(...allVals)*1.18;
-
-  let html='';
-  // Gridlines
   for(let i=0;i<=4;i++){
     const y=padT+chartH-(chartH*i/4);
-    html+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
-    const label = view==='inv' ? 'R$'+Math.round(maxV*i/4).toLocaleString('pt-BR')
-                : view==='leads' ? Math.round(maxV*i/4)
-                : 'R$'+Math.round(maxV*i/4);
-    html+=`<text x="${padL+2}" y="${y-4}" font-size="9" fill="#4d5566" font-family="Inter">${label}</text>`;
+    html+=`<line x1="${padL}" y1="${y}" x2="${W-10}" y2="${y}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
+    html+=`<text x="2" y="${y+4}" font-size="10" fill="#6B7280" font-family="Inter">${Math.round(maxV*i/4)}</text>`;
   }
-
-  // Barras por mês
-  microMeses.forEach((mes,mi)=>{
-    const gx = padL + groupW*mi + gap;
-    campNames.forEach((camp,ci)=>{
-      const val = microData[view][camp][mi];
-      if(!val || val===0) return;
-      const bh = chartH*(val/maxV);
-      const x = gx + barW*ci;
-      const y = padT+chartH-bh;
-      const color = microColors[camp];
-      const labelFull = view==='inv'
-        ? 'R$ '+val.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})
-        : view==='leads' ? val+' leads'
-        : 'CPL R$ '+val.toFixed(2);
-      html+=`<rect x="${x}" y="${y}" width="${barW-2}" height="${bh}" rx="2" fill="${color}55" stroke="${color}" stroke-width="1.5" style="cursor:pointer" onmouseenter="showTip(event,'${camp} · ${mes}<br><b>${labelFull.replace(/'/g,'')}</b>')" onmouseleave="hideTip()"/>`;
-      // Valor acima da barra — só se barra for larga o suficiente
-      if(barW >= 18){
-        const shortVal = view==='inv' ? 'R$'+Math.round(val/1000)+'k' : view==='leads' ? String(val) : 'R$'+Math.round(val);
-        html+=`<text x="${x+(barW-2)/2}" y="${y-5}" text-anchor="middle" font-size="9" fill="${color}" font-family="Inter" font-weight="600" style="pointer-events:none">${shortVal}</text>`;
-      }
-    });
-    // Label mês
-    const cx = padL + groupW*(mi+0.5);
-    html+=`<text x="${cx}" y="${H-padB+20}" text-anchor="middle" font-size="13" fill="#9AA3B2" font-family="Inter" font-weight="600">${mes}</text>`;
-    // Linha separadora
-    if(mi<3) html+=`<line x1="${padL+groupW*(mi+1)}" y1="${padT}" x2="${padL+groupW*(mi+1)}" y2="${padT+chartH}" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="3,3"/>`;
+  months.forEach((m,i)=>{
+    const cx=padL+chartW*(i+0.5)/months.length;
+    const h=chartH*(leads[i]/maxV);
+    const y=padT+chartH-h;
+    let color=oldStructure[i]?'#3A4150':'#307FE2';
+    let opacity=isPartial[i]?'0.45':'1';
+    let dashAttr=isPartial[i]?'stroke-dasharray="4,3" stroke="#307FE2" stroke-width="1"':'';
+    html+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${h}" rx="4" fill="${color}" fill-opacity="${opacity}" ${dashAttr}/>`;
+    html+=`<text x="${cx}" y="${y-8}" text-anchor="middle" font-size="12" fill="#F2F3F5" font-family="Inter" font-weight="600">${leads[i]}</text>`;
+    const ml=isPartial[i]?`<tspan fill="#EAAA00">*</tspan>`:'';
+    html+=`<text x="${cx}" y="${H-8}" text-anchor="middle" font-size="11" fill="${isPartial[i]?'#EAAA00':'#9AA3B2'}" font-family="Inter">${m}</text>`;
   });
-
   svg.innerHTML=html;
+})();
 
-  // Legenda
-  const leg=document.getElementById('microLegend');
-  leg.innerHTML=campNames.map(c=>`<div class="legend-item"><span class="legend-dot" style="background:${microColors[c]}"></span>${c}</div>`).join('');
-
-  // Botões
-  ['inv','leads','cpl'].forEach(v=>{
-    const btn=document.getElementById('btn'+v.charAt(0).toUpperCase()+v.slice(1));
-    if(v===view){
-      btn.style.background='rgba(76,148,232,0.15)';btn.style.color='#4C94E8';btn.style.borderColor='rgba(76,148,232,0.5)';
-    } else {
-      btn.style.background='transparent';btn.style.color='#6B7280';btn.style.borderColor='rgba(255,255,255,0.1)';
+// CHART CPL
+(function(){
+  const svg=document.getElementById('chartCpl');
+  const W=1080,H=240,padL=52,padB=32,padT=20;
+  const chartW=W-padL-20,chartH=H-padT-padB;
+  const maxV=Math.max(...cpl)*1.15;
+  let html='';
+  for(let i=0;i<=3;i++){
+    const y=padT+chartH-(chartH*i/3);
+    html+=`<line x1="${padL}" y1="${y}" x2="${W-10}" y2="${y}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
+    html+=`<text x="0" y="${y+4}" font-size="10" fill="#6B7280" font-family="Inter">R$${Math.round(maxV*i/3)}</text>`;
+  }
+  const pts=months.map((m,i)=>({
+    cx:padL+chartW*(i+0.5)/months.length,
+    cy:padT+chartH-chartH*(cpl[i]/maxV),i
+  }));
+  pts.forEach((p,i)=>{
+    if(i>0){
+      const prev=pts[i-1];
+      const dash=isPartial[p.i]?'stroke-dasharray="5,4"':'';
+      html+=`<line x1="${prev.cx}" y1="${prev.cy}" x2="${p.cx}" y2="${p.cy}" stroke="#4C94E8" stroke-width="2" ${dash}/>`;
     }
   });
-}
-function setView(v){currentView=v;drawMicroChart(v);}
-drawMicroChart('inv');
+  pts.forEach((p,i)=>{
+    const color=oldStructure[i]?'#6B7280':'#EAAA00';
+    const op=isPartial[i]?'0.6':'1';
+    html+=`<circle cx="${p.cx}" cy="${p.cy}" r="5" fill="${color}" fill-opacity="${op}" stroke="#14171d" stroke-width="2"/>`;
+    html+=`<text x="${p.cx}" y="${p.cy-12}" text-anchor="middle" font-size="12" fill="${isPartial[i]?'#C89A20':'#F2F3F5'}" font-family="Inter" font-weight="600">${fmtBRLc(cpl[i])}</text>`;
+    html+=`<text x="${p.cx}" y="${H-8}" text-anchor="middle" font-size="11" fill="${isPartial[i]?'#EAAA00':'#9AA3B2'}" font-family="Inter">${months[i]}</text>`;
+  });
+  svg.innerHTML=html;
+})();
 
-// --- NANO SIMULATOR ---
-const CPL_OPT=19.04, CPL_MID=22.16, CPL_CONS=27.50;
-const CURRENT_LEADS=996;
+// NANO SIMULATOR
+const CPL_OPT  = 25.06;  // Autoconf Pay
+const CPL_MID  = 31.86;  // CPL médio outubro
+const CPL_CONS = 57.04;  // Agente de IA
+const CURRENT_LEADS = 339;
+
 const slider=document.getElementById('simSlider');
-
 function updateSim(){
   const v=parseInt(slider.value,10);
-  document.getElementById('simAmountLabel').innerHTML=fmtBRL(v)+'<span>além do investimento atual de ~R$ 22 mil</span>';
-  const opt=Math.round(v/CPL_OPT),mid=Math.round(v/CPL_MID),cons=Math.round(v/CPL_CONS);
+  document.getElementById('simAmountLabel').innerHTML=fmtBRL(v)+'<span>além do investimento atual</span>';
+  const opt=Math.round(v/CPL_OPT);
+  const mid=Math.round(v/CPL_MID);
+  const cons=Math.round(v/CPL_CONS);
   document.getElementById('scenOptLeads').innerHTML=`+${opt.toLocaleString('pt-BR')} <small>leads/mês</small>`;
   document.getElementById('scenMidLeads').innerHTML=`+${mid.toLocaleString('pt-BR')} <small>leads/mês</small>`;
   document.getElementById('scenConsLeads').innerHTML=`+${cons.toLocaleString('pt-BR')} <small>leads/mês</small>`;
@@ -716,90 +433,6 @@ function updateSim(){
 }
 slider.addEventListener('input',updateSim);
 updateSim();
-
-// --- GOOGLE ADS CHART ---
-const gDados = {
-  meses:  ['Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set*'],
-  leads:  [20,   18,   18,   50,   31,   153,  72,   null],
-  inv:    [1746.26, 1916.14, 1592.32, 3581.52, 4763.72, 3813.17, 4302.75, 2030],
-  cpl:    [87.31, 106.45, 88.46, 71.63, 153.67, 24.92, 59.76, 21.19],
-};
-const gColors = {
-  leads: '#4285F4',
-  inv:   '#EAAA00',
-  cpl:   '#E5533D',
-};
-const gFmts = {
-  leads: v => String(v),
-  inv:   v => 'R$'+Math.round(v/1000)+'k',
-  cpl:   v => 'R$'+v.toFixed(2),
-};
-let gView = 'leads';
-
-function drawGoogleChart(view){
-  const svg = document.getElementById('chartGoogle');
-  const W=1080,H=240,padL=48,padR=20,padT=20,padB=36;
-  const chartW=W-padL-padR, chartH=H-padT-padB;
-  const n=gDados.meses.length;
-  const vals=gDados[view];
-  const maxV=Math.max(...vals)*1.2;
-  const bw=chartW/n*0.5;
-  let html='';
-
-  // Gridlines
-  for(let i=0;i<=4;i++){
-    const y=padT+chartH-(chartH*i/4);
-    html+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>`;
-    const lbl = view==='inv' ? 'R$'+Math.round(maxV*i/4/1000)+'k'
-              : view==='cpl' ? 'R$'+Math.round(maxV*i/4)
-              : Math.round(maxV*i/4);
-    html+=`<text x="${padL-6}" y="${y+4}" text-anchor="end" font-size="10" fill="#4d5566" font-family="Inter">${lbl}</text>`;
-  }
-
-  const color = gColors[view];
-  gDados.meses.forEach((mes,i)=>{
-    const cx = padL + chartW*(i+0.5)/n;
-    const val = vals[i];
-    const bh = chartH*(val/maxV);
-    const y = padT+chartH-bh;
-    const isJul = mes==='Jul';
-    const fill = isJul ? color : color+'55';
-    const stroke = color;
-    html+=`<rect x="${cx-bw/2}" y="${y}" width="${bw}" height="${bh}" rx="3" fill="${fill}" stroke="${stroke}" stroke-width="1.5"/>`;
-    // Label no topo
-    html+=`<text x="${cx}" y="${y-7}" text-anchor="middle" font-size="11" fill="${isJul ? color : '#9AA3B2'}" font-family="Inter" font-weight="${isJul?'700':'500'}">${gFmts[view](val)}</text>`;
-    // Label mês
-    html+=`<text x="${cx}" y="${H-padB+18}" text-anchor="middle" font-size="12" fill="${isJul ? '#F2F3F5' : '#9AA3B2'}" font-family="Inter" font-weight="${isJul?'700':'400'}">${mes}</text>`;
-    if(isJul) html+=`<text x="${cx}" y="${H-padB+30}" text-anchor="middle" font-size="9" fill="${color}" font-family="Inter">★ pico</text>`;
-  });
-
-  svg.innerHTML=html;
-
-  // Botões
-  ['leads','inv','cpl'].forEach(v=>{
-    const id='gBtn'+v.charAt(0).toUpperCase()+v.slice(1);
-    const btn=document.getElementById(id);
-    if(!btn)return;
-    if(v===view){
-      btn.style.background='rgba(66,133,244,0.15)';btn.style.color='#4285F4';btn.style.borderColor='rgba(66,133,244,0.5)';
-    } else {
-      btn.style.background='transparent';btn.style.color='#6B7280';btn.style.borderColor='rgba(255,255,255,0.1)';
-    }
-  });
-}
-function setGoogleView(v){gView=v;drawGoogleChart(v);}
-drawGoogleChart('leads');
-
-
-// Tooltip flutuante
-const tip = document.createElement('div');
-tip.style.cssText='position:fixed;background:#1e2433;border:1px solid rgba(255,255,255,0.12);color:#f0f2f5;font-size:12px;font-family:Inter,sans-serif;padding:8px 12px;border-radius:8px;pointer-events:none;display:none;z-index:999;line-height:1.5;box-shadow:0 4px 20px rgba(0,0,0,0.4)';
-document.body.appendChild(tip);
-function showTip(e,html){tip.innerHTML=html;tip.style.display='block';moveTip(e);}
-function hideTip(){tip.style.display='none';}
-function moveTip(e){tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY-10)+'px';}
-document.addEventListener('mousemove',function(e){if(tip.style.display!='none')moveTip(e);});
-
 </script>
 </body>
 </html>
