@@ -97,6 +97,7 @@
 </style>
 </head>
 <body>
+<body>
 <div class="wrap">
 
 <header>
@@ -105,40 +106,40 @@
     <h1>Painel de Geração de Leads — Meta Ads</h1>
     <div class="subtitle">Leitura em três camadas — visão geral da conta, desempenho por campanha e simulação de investimento adicional.</div>
   </div>
-  <div class="period-pill">Fev — <b>Out/2026</b> · Out* mês vigente · Set como comparativo</div>
+  <div class="period-pill">Fev — <b>Out/2026</b> · Out* = 01 a 25/10 · Set como comparativo</div>
 </header>
 
 <!-- MACRO -->
 <section class="section" id="macro">
   <div class="section-head"><span class="section-tag">MACRO</span><h2>Visão geral da conta</h2></div>
-  <p class="section-desc">Evolução mensal desde a reestruturação de campanhas em abril. Outubro está em andamento — dados parciais do mês vigente.</p>
+  <p class="section-desc">Números da planilha INBOUND GERAL (abas DASHBORD e META ADS). Outubro vai até 25/10, o último dia preenchido.</p>
 
   <div class="kpi-row">
     <div class="kpi">
       <div class="kpi-label">Investimento outubro*</div>
-      <div class="kpi-value">R$ 10.800</div>
-      <div class="kpi-sub">Parcial — mês vigente</div>
+      <div class="kpi-value">R$ 19.073</div>
+      <div class="kpi-sub">R$ 763/dia · proj. ~R$ 23.650 no mês</div>
     </div>
     <div class="kpi">
       <div class="kpi-label">Leads outubro*</div>
-      <div class="kpi-value blue">339</div>
-      <div class="kpi-sub up">↑ +1,2% vs set 335 campanhas</div>
+      <div class="kpi-value blue">657</div>
+      <div class="kpi-sub down">26,3/dia · proj. ~815 (set: 699)</div>
     </div>
     <div class="kpi">
       <div class="kpi-label">CPL outubro*</div>
-      <div class="kpi-value gold">R$ 31,86</div>
-      <div class="kpi-sub up">↑ +9,1% vs set (R$ 29,18)</div>
+      <div class="kpi-value gold">R$ 29,03</div>
+      <div class="kpi-sub up">↑ +3,3% vs set (R$ 28,11)</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Nova campanha</div>
-      <div class="kpi-value green">Autoconf Pay</div>
-      <div class="kpi-sub">11 leads · CPL R$ 25,06 · Bom início</div>
+      <div class="kpi-label">Campanha que mais cresce</div>
+      <div class="kpi-value green">Renave Brasil</div>
+      <div class="kpi-sub">184 leads · ritmo +48% vs set</div>
     </div>
   </div>
 
   <div class="chart-card">
     <div class="chart-title">Leads gerados por mês</div>
-    <div class="chart-note">Fev/Mar: estrutura antiga (Lead Form). A partir de Abr: estrutura atual. Out* = mês vigente, dado parcial — campanhas da tabela Micro.</div>
+    <div class="chart-note">Fev/Mar: estrutura antiga. A partir de Abr: estrutura atual. Out* = 01 a 25/10.</div>
     <svg id="chartLeads" viewBox="0 0 1080 240" style="width:100%;height:auto;"></svg>
     <div class="legend">
       <div class="legend-item"><span class="legend-dot" style="background:#3A4150"></span>Estrutura antiga</div>
@@ -149,7 +150,7 @@
 
   <div class="chart-card">
     <div class="chart-title">CPL médio por mês</div>
-    <div class="chart-note">Tendência de alta desde junho. Outubro mantém trajetória ascendente — Autoconf Pay (R$ 25,06) é a exceção positiva do mês.</div>
+    <div class="chart-note">Investimento ÷ leads Meta Ads. O CPL sobe desde junho (R$ 18,95), mas em outubro o ritmo de alta desacelerou.</div>
     <svg id="chartCpl" viewBox="0 0 1080 240" style="width:100%;height:auto;"></svg>
     <div class="legend">
       <div class="legend-item"><span class="legend-dot" style="background:#6B7280"></span>Estrutura antiga</div>
@@ -158,135 +159,51 @@
     </div>
   </div>
 
-  <div class="callout red">🔴 CPL subindo pelo quinto mês consecutivo (jun → jul → ago → set → out*). Com investimento total do mês em R$ 10.800 parcial, a tendência indica que outubro pode encerrar próximo a R$ 30+ de CPL. A chegada da Autoconf Pay (R$ 25,06) pode ajudar a puxar a média para baixo — candidata a receber mais budget.</div>
+  <div class="callout red">🔴 CPL subindo pelo quinto mês seguido (jun R$ 18,95 → out R$ 29,03). Em outubro, o investimento diário subiu para R$ 763 (set: R$ 655) e os leads acompanharam: o ritmo projeta ~815 leads, 17% acima de setembro.</div>
 </section>
 
 <!-- MICRO -->
 <section class="section" id="micro">
   <div class="section-head"><span class="section-tag">MICRO</span><h2>Desempenho por campanha</h2></div>
-  <p class="section-desc">Outubro como mês principal · Setembro como comparativo · Variações em investimento, leads e CPL.</p>
+  <p class="section-desc">Leads por campanha [HORIZZONT], da aba META ADS. Como outubro tem 25 dias, a comparação com setembro usa o ritmo diário projetado para 31 dias.</p>
 
-  <div class="table-card">
+  <div class="table-card" style="overflow-x:auto">
     <table>
       <thead>
         <tr>
           <th>Campanha</th>
-          <th class="c">Inv. Set</th>
-          <th class="c">Inv. Out</th>
-          <th class="c">Var. Inv.</th>
           <th class="c">Leads Set</th>
-          <th class="c">Leads Out</th>
-          <th class="c">Var. Leads</th>
-          <th class="c">CPL Set</th>
-          <th class="c">CPL Out</th>
-          <th class="c">Var. CPL</th>
+          <th class="c">Leads Out*</th>
+          <th class="c">Leads/dia</th>
+          <th class="c">Proj. Out</th>
+          <th class="c">Var. vs Set</th>
+          <th class="c">% do mês</th>
           <th class="c">Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="campaign-name">Simulador</td>
-          <td class="c set-val">R$ 2.034</td>
-          <td class="c oct-val">R$ 2.814</td>
-          <td class="c"><span class="var-up">+38,4%</span></td>
-          <td class="c set-val">158</td>
-          <td class="c oct-val">134</td>
-          <td class="c"><span class="var-up">-15,2%</span></td>
-          <td class="c set-val">R$ 12,87</td>
-          <td class="c oct-val" style="color:#E5533D">R$ 21,00</td>
-          <td class="c"><span class="var-up">+63,2%</span></td>
-          <td class="c"><span class="pill pill-red">🔴 Piorou</span></td>
-        </tr>
-        <tr>
-          <td class="campaign-name">Renave</td>
-          <td class="c set-val">R$ 2.414</td>
-          <td class="c oct-val">R$ 3.603</td>
-          <td class="c"><span class="var-up">+49,2%</span></td>
-          <td class="c set-val">63</td>
-          <td class="c oct-val">92</td>
-          <td class="c"><span class="var-down">+46,0%</span></td>
-          <td class="c set-val">R$ 38,32</td>
-          <td class="c oct-val">R$ 39,16</td>
-          <td class="c"><span class="var-neutral">+2,2%</span></td>
-          <td class="c"><span class="pill pill-amber">🟡 Atenção</span></td>
-        </tr>
-        <tr>
-          <td class="campaign-name">Pro</td>
-          <td class="c set-val">R$ 1.109</td>
-          <td class="c oct-val">R$ 1.404</td>
-          <td class="c"><span class="var-up">+26,6%</span></td>
-          <td class="c set-val">53</td>
-          <td class="c oct-val">51</td>
-          <td class="c"><span class="var-neutral">-3,8%</span></td>
-          <td class="c set-val">R$ 20,92</td>
-          <td class="c oct-val" style="color:#E5533D">R$ 27,52</td>
-          <td class="c"><span class="var-up">+31,5%</span></td>
-          <td class="c"><span class="pill pill-red">🔴 Piorou</span></td>
-        </tr>
-        <tr>
-          <td class="campaign-name">Agente de IA</td>
-          <td class="c set-val">R$ 2.009</td>
-          <td class="c oct-val">R$ 1.996</td>
-          <td class="c"><span class="var-neutral">-0,6%</span></td>
-          <td class="c set-val">39</td>
-          <td class="c oct-val">35</td>
-          <td class="c"><span class="var-up">-10,3%</span></td>
-          <td class="c set-val">R$ 51,52</td>
-          <td class="c oct-val" style="color:#E5533D">R$ 57,04</td>
-          <td class="c"><span class="var-up">+10,7%</span></td>
-          <td class="c"><span class="pill pill-red">🔴 Piorou</span></td>
-        </tr>
-        <tr>
-          <td class="campaign-name">Motos</td>
-          <td class="c set-val">R$ 432</td>
-          <td class="c oct-val">R$ 423</td>
-          <td class="c"><span class="var-neutral">-2,1%</span></td>
-          <td class="c set-val">11</td>
-          <td class="c oct-val">11</td>
-          <td class="c"><span class="var-neutral">0,0%</span></td>
-          <td class="c set-val">R$ 39,24</td>
-          <td class="c oct-val">R$ 38,41</td>
-          <td class="c"><span class="var-down">-2,1%</span></td>
-          <td class="c"><span class="pill pill-green">🟢 Estável</span></td>
-        </tr>
-        <tr>
-          <td class="campaign-name">Artes</td>
-          <td class="c set-val">R$ 845</td>
-          <td class="c oct-val">R$ 285</td>
-          <td class="c"><span class="var-down">-66,3%</span></td>
-          <td class="c set-val">11</td>
-          <td class="c oct-val">5</td>
-          <td class="c"><span class="var-up">-54,5%</span></td>
-          <td class="c set-val">R$ 76,82</td>
-          <td class="c oct-val" style="color:#35C07A">R$ 56,97</td>
-          <td class="c"><span class="var-down">-25,8%</span></td>
-          <td class="c"><span class="pill pill-amber">🟡 CPL melhor</span></td>
-        </tr>
-        <tr style="background:rgba(48,127,226,0.04);">
-          <td class="campaign-name" style="color:var(--blue)">Autoconf Pay <span style="font-size:11px;background:rgba(79,148,232,0.15);padding:2px 7px;border-radius:5px;margin-left:6px;">Nova</span></td>
-          <td class="c set-val">—</td>
-          <td class="c oct-val" style="color:var(--blue)">R$ 276</td>
-          <td class="c"><span class="var-new">Nova</span></td>
-          <td class="c set-val">—</td>
-          <td class="c oct-val" style="color:var(--blue)">11</td>
-          <td class="c"><span class="var-new">Nova</span></td>
-          <td class="c set-val">—</td>
-          <td class="c oct-val" style="color:var(--green)">R$ 25,06</td>
-          <td class="c">—</td>
-          <td class="c"><span class="pill pill-green">🟢 Bom início</span></td>
-        </tr>
+        <tr><td class="campaign-name">Simulador de Financiamento</td><td class="c set-val">310</td><td class="c oct-val">249</td><td class="c">10,0</td><td class="c">~309</td><td class="c"><span class="var-neutral">-0,3%</span></td><td class="c">37,9%</td><td class="c"><span class="pill pill-amber">🟡 Estável</span></td></tr>
+        <tr><td class="campaign-name">Renave Brasil</td><td class="c set-val">154</td><td class="c oct-val">184</td><td class="c">7,4</td><td class="c">~228</td><td class="c"><span class="var-down">+48,1%</span></td><td class="c">28,0%</td><td class="c"><span class="pill pill-green">🟢 Crescendo</span></td></tr>
+        <tr><td class="campaign-name">Autoconf Pro</td><td class="c set-val">106</td><td class="c oct-val">87</td><td class="c">3,5</td><td class="c">~108</td><td class="c"><span class="var-neutral">+1,9%</span></td><td class="c">13,2%</td><td class="c"><span class="pill pill-amber">🟡 Estável</span></td></tr>
+        <tr><td class="campaign-name">Agente de IA</td><td class="c set-val">82</td><td class="c oct-val">77</td><td class="c">3,1</td><td class="c">~95</td><td class="c"><span class="var-down">+15,9%</span></td><td class="c">11,7%</td><td class="c"><span class="pill pill-green">🟢 Crescendo</span></td></tr>
+        <tr><td class="campaign-name">Autoconf Pay</td><td class="c set-val">0</td><td class="c oct-val">26</td><td class="c">1,0</td><td class="c">~32</td><td class="c"><span class="var-new">Nova</span></td><td class="c">4,0%</td><td class="c"><span class="pill pill-green">🟢 Nova</span></td></tr>
+        <tr><td class="campaign-name">Artes</td><td class="c set-val">19</td><td class="c oct-val">17</td><td class="c">0,7</td><td class="c">~21</td><td class="c"><span class="var-down">+10,5%</span></td><td class="c">2,6%</td><td class="c"><span class="pill pill-green">🟢 Crescendo</span></td></tr>
+        <tr><td class="campaign-name">Loja de Motos</td><td class="c set-val">26</td><td class="c oct-val">17</td><td class="c">0,7</td><td class="c">~21</td><td class="c"><span class="var-up">-19,2%</span></td><td class="c">2,6%</td><td class="c"><span class="pill pill-red">🔴 Caindo</span></td></tr>
+        <tr><td class="campaign-name">Outras (Artes 03, Artes Renave)</td><td class="c set-val">2</td><td class="c oct-val">0</td><td class="c">0,0</td><td class="c">~0</td><td class="c"><span class="var-neutral">pausada</span></td><td class="c">0,0%</td><td class="c"><span class="pill pill-amber">Sem leads</span></td></tr>
+        <tr style="background:var(--panel-2)"><td class="campaign-name"><b>Total Meta Ads</b></td><td class="c set-val">699</td><td class="c oct-val">657</td><td class="c">26,3</td><td class="c">~815</td><td class="c"><span class="var-down">+16,6%</span></td><td class="c">100%</td><td class="c">—</td></tr>
       </tbody>
     </table>
   </div>
 
-  <div class="callout green" style="margin-top:16px;">✅ Autoconf Pay estreia com CPL R$ 25,06 — o melhor da conta em outubro, abaixo do CPL médio atual de R$ 31,86. É a candidata natural a receber budget redistributivo das campanhas que pioraram.</div>
-  <div class="callout red" style="margin-top:10px;">🔴 Simulador de Financiamento perdeu eficiência: investimento +38,4%, leads -15,2%, CPL saltou de R$ 12,87 para R$ 21,00 (+63,2%). Era a melhor campanha da conta — sinal de saturação de público ou criativo desgastado. Revisar urgente.</div>
+  <div class="callout" style="margin-top:16px;">A planilha registra o investimento só no total da conta, por dia. Por isso, o CPL aparece apenas no total, não por campanha.</div>
+  <div class="callout green" style="margin-top:10px;">✅ Renave Brasil é a campanha que mais cresce: 184 leads até 25/10, no ritmo de ~228 no mês (+48% vs setembro). Já responde por 28% dos leads da conta.</div>
+  <div class="callout red" style="margin-top:10px;">🔴 Simulador de Financiamento segue como maior volume (38% dos leads), mas parou de crescer: o ritmo projeta ~309, igual a setembro (310). Loja de Motos caiu 19%.</div>
 </section>
 
 <!-- NANO -->
 <section class="section" id="nano">
   <div class="section-head"><span class="section-tag">NANO</span><h2>Simulador de investimento adicional</h2></div>
-  <p class="section-desc">Projeção de leads adicionais com base nos cenários de CPL de outubro. Deslize para ajustar o aporte extra.</p>
+  <p class="section-desc">Projeção de leads adicionais com base nos CPLs da conta em 2026. Deslize para ajustar o aporte extra.</p>
 
   <div class="sim-card">
     <div class="sim-top">
@@ -301,52 +218,51 @@
     <div class="scenarios">
       <div class="scenario opt">
         <div class="scenario-tag">Otimista</div>
-        <div class="scenario-basis">Autoconf Pay — CPL R$ 25,06 · melhor campanha de outubro</div>
-        <div class="scenario-leads" id="scenOptLeads">+199 <small>leads/mês</small></div>
+        <div class="scenario-basis">CPL de junho — R$ 18,95 · melhor mês do ano</div>
+        <div class="scenario-leads" id="scenOptLeads"></div>
         <div class="scenario-total" id="scenOptTotal"></div>
       </div>
       <div class="scenario mid">
         <div class="scenario-tag">Realista</div>
-        <div class="scenario-basis">CPL médio de outubro — R$ 31,86 · média ponderada de todas as campanhas ativas</div>
-        <div class="scenario-leads" id="scenMidLeads">+157 <small>leads/mês</small></div>
+        <div class="scenario-basis">CPL de outubro — R$ 29,03 · mês vigente</div>
+        <div class="scenario-leads" id="scenMidLeads"></div>
         <div class="scenario-total" id="scenMidTotal"></div>
       </div>
       <div class="scenario cons">
         <div class="scenario-tag">Conservador</div>
-        <div class="scenario-basis">Agente de IA — CPL R$ 57,04 · campanha com pior performance em outubro</div>
-        <div class="scenario-leads" id="scenConsLeads">+88 <small>leads/mês</small></div>
+        <div class="scenario-basis">CPL de março — R$ 34,30 · pior mês do ano</div>
+        <div class="scenario-leads" id="scenConsLeads"></div>
         <div class="scenario-total" id="scenConsTotal"></div>
       </div>
     </div>
 
     <div class="alloc">
-      <div class="alloc-title">Sugestão de alocação do aporte extra — baseada na performance de outubro</div>
+      <div class="alloc-title">Sugestão de alocação do aporte extra — baseada no crescimento de leads em outubro</div>
       <div class="alloc-bars">
-        <div class="alloc-row"><span class="alloc-name">Autoconf Pay</span><div class="alloc-track"><div class="alloc-fill" style="width:40%;background:var(--green);"></div></div><span class="alloc-pct">40%</span></div>
-        <div class="alloc-row"><span class="alloc-name">Renave</span><div class="alloc-track"><div class="alloc-fill" style="width:35%;background:var(--blue-strong);"></div></div><span class="alloc-pct">35%</span></div>
-        <div class="alloc-row"><span class="alloc-name">Motos</span><div class="alloc-track"><div class="alloc-fill" style="width:25%;background:var(--gold);"></div></div><span class="alloc-pct">25%</span></div>
+        <div class="alloc-row"><span class="alloc-name">Renave Brasil</span><div class="alloc-track"><div class="alloc-fill" style="width:45%;background:var(--green);"></div></div><span class="alloc-pct">45%</span></div>
+        <div class="alloc-row"><span class="alloc-name">Agente de IA</span><div class="alloc-track"><div class="alloc-fill" style="width:30%;background:var(--blue-strong);"></div></div><span class="alloc-pct">30%</span></div>
+        <div class="alloc-row"><span class="alloc-name">Autoconf Pay</span><div class="alloc-track"><div class="alloc-fill" style="width:25%;background:var(--gold);"></div></div><span class="alloc-pct">25%</span></div>
       </div>
-      <div class="callout" style="margin-top:18px;">Autoconf Pay (CPL R$ 25,06) e Renave (único com crescimento de leads +46%) são as campanhas com melhor sinal em outubro. Motos manteve estabilidade. Agente de IA, Simulador e Pro pioraram — não receberiam aporte extra até revisão de criativo/público.</div>
+      <div class="callout" style="margin-top:18px;">Renave Brasil (+48%) e Agente de IA (+16%) são as campanhas que mais aceleraram em outubro, e Autoconf Pay é nova. Simulador e Pro ficaram estáveis, e Loja de Motos caiu. Para fechar a alocação por eficiência, falta o investimento por campanha, que não está na planilha.</div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>Fonte: Meta Ads — conta [HORIZZONT] Autoconf · tabela comparativa Set × Out/2026</span>
-  <span>Histórico: Fev–Set completo · Out* = mês vigente (dados parciais)</span>
+  <span>Fonte: planilha INBOUND GERAL (organizado) — abas DASHBORD e META ADS · atualizado em 26/10/2026</span>
+  <span>Histórico: Fev–Set completo · Out* = 01 a 25/10</span>
 </footer>
 
 </div>
 
 <script>
-// DATA
+// DATA — planilha INBOUND GERAL, aba DASHBORD
 const months = ['Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out*'];
 const oldStructure = [true,true,false,false,false,false,false,false,false];
 const isPartial   = [false,false,false,false,false,false,false,false,true];
-const leads = [489,102,787,989,992,890,739,597,339];
-const cpl   = [111.85,149.24,20.28,20.50,18.95,21.52,26.39,29.18,31.86];
-const invest= [14428,15222,15960,20275,18803,19155,19503,17421,10800];
-
+const leads = [489,416,787,989,992,890,739,699,657];
+const cpl   = [29.68,34.30,20.28,20.50,18.95,21.52,26.39,28.11,29.03];
+const invest= [14515,14270,15960,20275,18803,19155,19503,19651,19073];
 function fmtBRL(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:0,maximumFractionDigits:0});}
 function fmtBRLc(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 
@@ -412,11 +328,10 @@ function fmtBRLc(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits
 })();
 
 // NANO SIMULATOR
-const CPL_OPT  = 25.06;  // Autoconf Pay
-const CPL_MID  = 31.86;  // CPL médio outubro
-const CPL_CONS = 57.04;  // Agente de IA
-const CURRENT_LEADS = 339;
-
+const CPL_OPT  = 18.95;  // junho
+const CPL_MID  = 29.03;  // outubro
+const CPL_CONS = 34.30;  // março
+const CURRENT_LEADS = 815; // projeção de outubro
 const slider=document.getElementById('simSlider');
 function updateSim(){
   const v=parseInt(slider.value,10);
