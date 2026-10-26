@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marketing Autoconf — Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0b0e;--surface:#111318;--border:rgba(255,255,255,0.08);--text:#f0f2f5;--text2:#8b93a5;--brand:#307FE2;--yellow:#EAAA00}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column}
+header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
+.logo{font-size:16px;font-weight:800;letter-spacing:-.5px;padding:16px 0}.logo span{color:var(--brand)}
+nav{display:flex;gap:4px;overflow-x:auto;flex:1}
+nav button{background:none;border:none;color:var(--text2);font:inherit;font-size:13px;font-weight:600;padding:18px 14px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+nav button:hover{color:var(--text)}
+nav button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--yellow)}
+.open{color:var(--text2);font-size:12px;text-decoration:none;white-space:nowrap}
+.open:hover{color:var(--text)}
+main{flex:1;position:relative}
+iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg);display:none}
+iframe.on{display:block}
+@media(max-width:640px){header{padding:0 12px;gap:8px}.logo{padding:12px 0 0;width:100%}nav button{padding:12px 10px}.open{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Auto<span>conf</span> · Marketing</div>
+  <nav role="tablist" id="tabs">
+    <button role="tab" data-id="growth" data-src="dashboard_growth_autoconf.html">Growth · Funil Inbound</button>
+    <button role="tab" data-id="vendas" data-src="vendas-inbound-out26.html">Vendas de inbound</button>
+    <button role="tab" data-id="ads" data-src="dashboard_ads_autoconf.html">Meta Ads</button>
+  </nav>
+  <a class="open" id="openlink" href="#" target="_blank" rel="noopener">Abrir em nova aba ↗</a>
+</header>
+<main id="frames"></main>
+<script>
+const tabs=[...document.querySelectorAll('#tabs button')], box=document.getElementById('frames'), frames={};
+function show(id){
+  const t=tabs.find(b=>b.dataset.id===id)||tabs[0];
+  tabs.forEach(b=>b.setAttribute('aria-selected',b===t));
+  if(!frames[t.dataset.id]){const f=document.createElement('iframe');f.src=t.dataset.src+'?v='+Date.now();f.title=t.textContent;box.append(f);frames[t.dataset.id]=f;}
+  Object.entries(frames).forEach(([k,f])=>f.classList.toggle('on',k===t.dataset.id));
+  document.getElementById('openlink').href=t.dataset.src;
+  if(location.hash!=='#'+t.dataset.id) history.replaceState(null,'','#'+t.dataset.id);
+}
+tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.id)));
+addEventListener('hashchange',()=>show(location.hash.slice(1)));
+show(location.hash.slice(1));
+</script>
+</body>
+</html>
