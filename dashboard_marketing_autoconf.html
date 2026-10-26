@@ -4,50 +4,286 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marketing Autoconf — Dashboard</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0b0e;--surface:#111318;--border:rgba(255,255,255,0.08);--text:#f0f2f5;--text2:#8b93a5;--brand:#307FE2;--yellow:#EAAA00}
+:root{--bg:#0a0b0e;--s:#111318;--s2:#18181c;--b:rgba(255,255,255,.08);--t:#f0f2f5;--t2:#8b93a5;--t3:#5b6374;
+--blue:#4d9fff;--green:#00e5a0;--amber:#ffb830;--red:#ff5a5a;--purple:#a78bfa;--brand:#307FE2}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif;display:flex;flex-direction:column}
-header{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;position:sticky;top:0;z-index:10}
+body{background:var(--bg);color:var(--t);font:13px/1.5 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+header{background:var(--s);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:10}
+.hin{max-width:1360px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .logo{font-size:16px;font-weight:800;letter-spacing:-.5px;padding:16px 0}.logo span{color:var(--brand)}
-nav{display:flex;gap:4px;overflow-x:auto;flex:1}
-nav button{background:none;border:none;color:var(--text2);font:inherit;font-size:13px;font-weight:600;padding:18px 14px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
-nav button:hover{color:var(--text)}
-nav button[aria-selected="true"]{color:var(--text);border-bottom-color:var(--yellow)}
-.open{color:var(--text2);font-size:12px;text-decoration:none;white-space:nowrap}
-.open:hover{color:var(--text)}
-main{flex:1;position:relative}
-iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--bg);display:none}
-iframe.on{display:block}
-@media(max-width:640px){header{padding:0 12px;gap:8px}.logo{padding:12px 0 0;width:100%}nav button{padding:12px 10px}.open{display:none}}
+nav{display:flex;gap:2px;flex:1;overflow-x:auto}
+nav button{background:none;border:0;color:var(--t2);font:600 13px Inter,sans-serif;padding:18px 14px;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+nav button[aria-selected=true]{color:var(--t);border-bottom-color:var(--amber)}
+.src{font-size:11px;color:var(--t2);background:var(--s2);border:1px solid var(--b);padding:5px 12px;border-radius:20px;white-space:nowrap}
+main{max-width:1360px;margin:0 auto;padding:24px;display:flex;flex-direction:column;gap:22px}
+section.tab{display:none;flex-direction:column;gap:22px}section.tab.on{display:flex}
+.sl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--t3);display:flex;align-items:center;gap:12px}.sl:after{content:'';flex:1;height:1px;background:var(--b)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:2px;background:var(--b);border-radius:14px;overflow:hidden}
+.k{background:var(--s);padding:20px}
+.kl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--t3);margin-bottom:8px}
+.kv{font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1}
+.ks{font-size:11px;color:var(--t2);margin-top:6px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--s);border:1px solid var(--b);border-radius:14px;padding:20px;min-width:0}
+.ct{font-size:13px;font-weight:600}.cs{font-size:11px;color:var(--t3);margin:2px 0 14px}
+.ch{position:relative;height:240px}
+.bar{margin-bottom:14px}.br{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}
+.bb{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}.bf{height:100%;border-radius:3px}
+.fun{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.fs{background:var(--s2);border-radius:12px;padding:16px;text-align:center}
+.fs .v{font-size:26px;font-weight:800}.fs .l{font-size:11px;color:var(--t2);margin-top:2px}.fs .r{font-size:11px;margin-top:6px;color:var(--t3)}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+th{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--t3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--b);white-space:nowrap}
+td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04)}
+.r{text-align:right;white-space:nowrap}tfoot td{font-weight:700;border-top:1px solid var(--b)}
+.note{font-size:11.5px;color:var(--t2);line-height:1.6;margin-top:12px}
+.ins{border-radius:10px;padding:12px 14px;font-size:12px;border-left:3px solid;margin-top:10px}
+.ig{background:rgba(0,229,160,.08);border-color:var(--green);color:#a7f3d0}.iw{background:rgba(255,184,48,.08);border-color:var(--amber);color:#fde68a}.ir{background:rgba(255,90,90,.08);border-color:var(--red);color:#fca5a5}
+footer{max-width:1360px;margin:0 auto;padding:10px 24px 30px;font-size:11px;color:var(--t3)}
+@media(max-width:900px){.g2,.g3{grid-template-columns:1fr}.fun{grid-template-columns:repeat(2,1fr)}.hin{padding:0 16px}main{padding:16px}.src{display:none}}
 </style>
 </head>
 <body>
-<header>
+<header><div class="hin">
   <div class="logo">Auto<span>conf</span> · Marketing</div>
   <nav role="tablist" id="tabs">
-    <button role="tab" data-id="growth" data-src="dashboard_growth_autoconf.html">Growth · Funil Inbound</button>
-    <button role="tab" data-id="vendas" data-src="vendas-inbound-out26.html">Vendas de inbound</button>
-    <button role="tab" data-id="ads" data-src="dashboard_ads_autoconf.html">Meta Ads</button>
+    <button role="tab" data-id="growth">Growth · Funil Inbound</button>
+    <button role="tab" data-id="vendas">Vendas</button>
+    <button role="tab" data-id="ads">Anúncios</button>
   </nav>
-  <a class="open" id="openlink" href="#" target="_blank" rel="noopener">Abrir em nova aba ↗</a>
-</header>
-<main id="frames"></main>
+  <span class="src">Fonte: painel HubSpot [ATF] MARKETING AUTOCONF · 01 a 26/10/2026</span>
+</div></header>
+
+<main>
+<!-- ================= GROWTH ================= -->
+<section class="tab" id="growth">
+  <div class="sl">Outubro 2026 · 01 a 26/10</div>
+  <div class="kpis">
+    <div class="k"><div class="kl">Leads inbound</div><div class="kv" style="color:var(--blue)">892</div><div class="ks">[ATF] MÊS | Lead Inbound</div></div>
+    <div class="k"><div class="kl">Perdidos MKT</div><div class="kv" style="color:var(--red)">285</div><div class="ks">[ATF] MÊS | PERDIDOS INBOUND</div></div>
+    <div class="k"><div class="kl">MQLs · meta 800</div><div class="kv" style="color:var(--amber)">607</div><div class="ks">892 − 285 · taxa 68,0%</div></div>
+    <div class="k"><div class="kl">Reuniões realizadas · meta 300</div><div class="kv" style="color:var(--purple)">198</div><div class="ks">[ATF] MÊS | REUNIÕES REALIZADAS</div></div>
+    <div class="k"><div class="kl">Vendas inbound</div><div class="kv" style="color:var(--green)">54</div><div class="ks">[ATF] MÊS VENDAS · pipeline ATF - INBOUND</div></div>
+    <div class="k"><div class="kl">Vendas totais · meta 100</div><div class="kv" style="color:var(--green)">89</div><div class="ks">Vendas totais (todos os pipelines)</div></div>
+  </div>
+
+  <div class="g3">
+    <div class="card">
+      <div class="ct">Metas de outubro</div><div class="cs">Valores atuais do painel × metas fixas</div>
+      <div class="bar"><div class="br"><span>MQLs</span><span>607 / 800 · <b style="color:var(--amber)">76%</b></span></div><div class="bb"><div class="bf" style="width:76%;background:var(--amber)"></div></div></div>
+      <div class="bar"><div class="br"><span>Reuniões realizadas</span><span>198 / 300 · <b style="color:var(--purple)">66%</b></span></div><div class="bb"><div class="bf" style="width:66%;background:var(--purple)"></div></div></div>
+      <div class="bar"><div class="br"><span>Vendas totais</span><span>89 / 100 · <b style="color:var(--green)">89%</b></span></div><div class="bb"><div class="bf" style="width:89%;background:var(--green)"></div></div></div>
+    </div>
+    <div class="card">
+      <div class="ct">Conversão do funil inbound</div><div class="cs">Calculada a partir dos widgets do painel</div>
+      <table>
+        <tr><td>Lead → MQL</td><td class="r"><b>68,0%</b></td><td class="r" style="color:var(--t3)">607 ÷ 892</td></tr>
+        <tr><td>MQL → Reunião realizada</td><td class="r"><b>32,6%</b></td><td class="r" style="color:var(--t3)">198 ÷ 607</td></tr>
+        <tr><td>Reunião → Venda inbound</td><td class="r"><b>27,3%</b></td><td class="r" style="color:var(--t3)">54 ÷ 198</td></tr>
+        <tr><td>Lead → Venda inbound</td><td class="r"><b>6,1%</b></td><td class="r" style="color:var(--t3)">54 ÷ 892</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <div class="ct">Receita vendida no mês</div><div class="cs">Vendas totais · esse mês até o momento</div>
+      <table>
+        <tr><td>Negócios ganhos</td><td class="r"><b>89</b></td></tr>
+        <tr><td>MRR</td><td class="r"><b style="color:var(--green)">R$ 77.283,50</b></td></tr>
+        <tr><td>Setup</td><td class="r"><b>R$ 16.727,00</b></td></tr>
+        <tr><td>Receita total</td><td class="r"><b style="color:var(--green)">R$ 94.010,50</b></td></tr>
+        <tr><td>MRR inbound (54 vendas)</td><td class="r"><b>R$ 45.916,00</b></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Funil pré-vendas — leads que entraram no mês</div><div class="cs">Funil Pré Vendas Mês Atual · acompanha a coorte de leads criados em outubro</div>
+    <div class="fun">
+      <div class="fs"><div class="v" style="color:var(--blue)">895</div><div class="l">Novo lead</div></div>
+      <div class="fs"><div class="v" style="color:var(--amber)">221</div><div class="l">Agendado</div><div class="r">24,69% dos leads</div></div>
+      <div class="fs"><div class="v" style="color:var(--purple)">173</div><div class="l">Reunião realizada</div><div class="r">78,28% dos agendados</div></div>
+      <div class="fs"><div class="v">198</div><div class="l">Reuniões realizadas no mês</div><div class="r">inclui leads de meses anteriores</div></div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="card"><div class="ct">Leads por dia — outubro</div><div class="cs">[ATF] Leads | Dia a dia · 26/10 parcial</div><div class="ch"><canvas id="cDia"></canvas></div></div>
+    <div class="card"><div class="ct">Leads inbound por trimestre — 2026</div><div class="cs">[ATF] Q1–Q4 | Lead Inbound · ano: 8,41 mil · Q4 = só outubro até agora</div><div class="ch"><canvas id="cQ"></canvas></div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="ct">Motivos de perda MKT</div><div class="cs">[ATF] MÊS | MOTIVOS DE PERDA · 285 perdidos</div>
+      <div class="ch"><canvas id="cMot"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="ct">Reuniões realizadas por SDR</div><div class="cs">Realizadas · POR DIA PRÉ VENDAS · atividades registradas no mês (162)</div>
+      <div class="ch"><canvas id="cSdr"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Leads em aberto por etapa e SDR</div><div class="cs">LEADS PARADOS POR ETAPA INBOUND · posição atual de todos os leads do pipeline (não só de outubro)</div>
+    <div class="tw"><table>
+      <thead><tr><th>SDR</th><th class="r">1º dia</th><th class="r">2º dia</th><th class="r">3º dia</th><th class="r">4º dia</th><th class="r">5º dia</th><th class="r">Agendado</th><th class="r">Reagend.</th><th class="r">Em aberto</th></tr></thead>
+      <tbody id="tPar"></tbody><tfoot id="fPar"></tfoot>
+    </table></div>
+  </div>
+</section>
+
+<!-- ================= VENDAS ================= -->
+<section class="tab" id="vendas">
+  <div class="sl">Vendas de outubro 2026 · esse mês até o momento</div>
+  <div class="kpis">
+    <div class="k"><div class="kl">Vendas totais</div><div class="kv" style="color:var(--green)">89</div><div class="ks">R$ 77.283,50 MRR</div></div>
+    <div class="k"><div class="kl">Vendas inbound</div><div class="kv" style="color:var(--green)">54</div><div class="ks">R$ 45.916,00 MRR · 61% das vendas</div></div>
+    <div class="k"><div class="kl">Setup total</div><div class="kv">R$ 16.727</div><div class="ks">R$ 9.684 do inbound</div></div>
+    <div class="k"><div class="kl">Ticket médio MRR</div><div class="kv">R$ 868</div><div class="ks">inbound: R$ 850</div></div>
+    <div class="k"><div class="kl">Vendas sem pipeline de origem</div><div class="kv" style="color:var(--red)">19</div><div class="ks">R$ 18.682 MRR sem atribuição</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card">
+      <div class="ct">Vendas por pipeline que gerou o negócio</div><div class="cs">[ATF] MÊS VENDAS</div>
+      <div class="tw"><table>
+        <thead><tr><th>Pipeline de origem</th><th class="r">Negócios</th><th class="r">MRR</th><th class="r">Setup</th><th class="r">Receita</th></tr></thead>
+        <tbody>
+          <tr><td><b>ATF - Inbound</b></td><td class="r"><b>54</b></td><td class="r">R$ 45.916,00</td><td class="r">R$ 9.684,00</td><td class="r">R$ 55.600,00</td></tr>
+          <tr><td style="color:var(--red)">Nenhum valor</td><td class="r">19</td><td class="r">R$ 18.682,00</td><td class="r">R$ 4.244,00</td><td class="r">R$ 22.926,00</td></tr>
+          <tr><td>ATF - Webinar</td><td class="r">8</td><td class="r">R$ 5.493,00</td><td class="r">R$ 950,00</td><td class="r">R$ 6.443,00</td></tr>
+          <tr><td>ATF - Listas</td><td class="r">6</td><td class="r">R$ 5.244,50</td><td class="r">R$ 1.350,00</td><td class="r">R$ 6.594,50</td></tr>
+          <tr><td>ATF - Resgate</td><td class="r">1</td><td class="r">R$ 950,00</td><td class="r">R$ 0,00</td><td class="r">R$ 950,00</td></tr>
+          <tr><td>ATF - Vendas</td><td class="r">1</td><td class="r">R$ 998,00</td><td class="r">R$ 499,00</td><td class="r">R$ 1.497,00</td></tr>
+        </tbody>
+        <tfoot><tr><td>Total</td><td class="r">89</td><td class="r">R$ 77.283,50</td><td class="r">R$ 16.727,00</td><td class="r">R$ 94.010,50</td></tr></tfoot>
+      </table></div>
+      <div class="ins iw"><b>19 vendas sem pipeline de origem.</b> Somam R$ 18.682 de MRR (24% do mês) que não aparecem em nenhum canal. Preencher o campo “[ATF] Pipeline que gerou o negócio” corrige a atribuição.</div>
+    </div>
+    <div class="card">
+      <div class="ct">MRR por pipeline de origem</div><div class="cs">[ATF] MÊS VENDAS</div>
+      <div class="ch" style="height:300px"><canvas id="cPipe"></canvas></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Vendas vindas de anúncios</div><div class="cs">[ATF] ESTE MÊS | REUNIÕES E VENDAS | ANÚNCIOS · 27 vendas com anúncio rastreado · R$ 22.361,50 MRR · R$ 4.876,00 setup (todos os pipelines)</div>
+    <div class="tw"><table>
+      <thead><tr><th>Anúncio</th><th>Campanha</th><th>Público</th><th class="r">Vendas</th><th class="r">MRR</th><th class="r">Setup</th></tr></thead>
+      <tbody id="tVendAd"></tbody>
+    </table></div>
+    <div class="note">Um lead que interagiu com mais de um anúncio aparece em cada um deles, por isso a soma das linhas (33 vendas) passa do total do painel (27).</div>
+  </div>
+</section>
+
+<!-- ================= ANÚNCIOS ================= -->
+<section class="tab" id="ads">
+  <div class="sl">Anúncios Meta · outubro 2026 · 01 a 26/10</div>
+  <div class="kpis">
+    <div class="k"><div class="kl">Leads de campanhas [HORIZZONT]</div><div class="kv" style="color:var(--blue)">585</div><div class="ks">66% dos 892 leads inbound</div></div>
+    <div class="k"><div class="kl">Reuniões de anúncios</div><div class="kv" style="color:var(--purple)">113</div><div class="ks">57% das 198 reuniões</div></div>
+    <div class="k"><div class="kl">Vendas de anúncios</div><div class="kv" style="color:var(--green)">27</div><div class="ks">R$ 22.361,50 MRR</div></div>
+    <div class="k"><div class="kl">Campanha com mais leads</div><div class="kv" style="font-size:22px;color:var(--green)">Simulador</div><div class="ks">215 leads · 46 reuniões · 10 vendas</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="card"><div class="ct">Leads por campanha</div><div class="cs">[ATF] ESTE MÊS | ANÚNCIOS</div><div class="ch" style="height:280px"><canvas id="cCamp"></canvas></div></div>
+    <div class="card"><div class="ct">Leads por fonte</div><div class="cs">[ATF] ESTE MÊS | ANÚNCIOS · detalhamento da fonte original</div><div class="ch" style="height:280px"><canvas id="cFonte"></canvas></div></div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Desempenho por campanha</div><div class="cs">Leads: [ATF] ESTE MÊS | ANÚNCIOS · reuniões, vendas e MRR: [ATF] ESTE MÊS | REUNIÕES E VENDAS | ANÚNCIOS (somando os anúncios de cada campanha)</div>
+    <div class="tw"><table>
+      <thead><tr><th>Campanha</th><th class="r">Leads</th><th class="r">Reuniões</th><th class="r">Lead → Reunião</th><th class="r">Vendas</th><th class="r">Reunião → Venda</th><th class="r">MRR</th></tr></thead>
+      <tbody id="tCamp"></tbody>
+    </table></div>
+    <div class="ins ig"><b>Renave Brasil converte melhor.</b> 24% dos leads viram reunião e 26% das reuniões viram venda (10 vendas, R$ 5.839 de MRR).</div>
+    <div class="ins iw"><b>Simulador lidera em volume.</b> 215 leads, 46 reuniões e 10 vendas, com R$ 8.381 de MRR, o maior entre as campanhas.</div>
+    <div class="ins ir"><b>Agente de IA e Loja de Motos convertem pouco.</b> Agente de IA: 75 leads, 8 reuniões e 1 venda. Loja de Motos: 16 leads, 1 reunião e nenhuma venda.</div>
+    <div class="note">O painel não traz investimento por campanha, então CPL e custo por venda não aparecem aqui. Para o painel mostrar, é preciso adicionar um relatório de anúncios com “Valor gasto”.</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Reuniões e vendas por anúncio</div><div class="cs">[ATF] ESTE MÊS | REUNIÕES E VENDAS | ANÚNCIOS · ordenado por vendas e reuniões</div>
+    <div class="tw"><table>
+      <thead><tr><th>Anúncio</th><th>Campanha</th><th>Público</th><th class="r">Reuniões</th><th class="r">Vendas</th><th class="r">MRR</th></tr></thead>
+      <tbody id="tAds"></tbody>
+    </table></div>
+    <div class="note">Total do painel, contando cada negócio uma vez: 113 reuniões e 27 vendas. A soma das linhas é maior porque um lead pode ter interagido com mais de um anúncio.</div>
+  </div>
+</section>
+</main>
+<footer>Todos os números vêm do painel HubSpot [ATF] MARKETING AUTOCONF, lidos em 26/10/2026. As taxas são divisões simples entre widgets do painel.</footer>
+
 <script>
-const tabs=[...document.querySelectorAll('#tabs button')], box=document.getElementById('frames'), frames={};
-function show(id){
-  const t=tabs.find(b=>b.dataset.id===id)||tabs[0];
-  tabs.forEach(b=>b.setAttribute('aria-selected',b===t));
-  if(!frames[t.dataset.id]){const f=document.createElement('iframe');f.src=t.dataset.src+'?v='+Date.now();f.title=t.textContent;box.append(f);frames[t.dataset.id]=f;}
-  Object.entries(frames).forEach(([k,f])=>f.classList.toggle('on',k===t.dataset.id));
-  document.getElementById('openlink').href=t.dataset.src;
-  if(location.hash!=='#'+t.dataset.id) history.replaceState(null,'','#'+t.dataset.id);
-}
-tabs.forEach(b=>b.addEventListener('click',()=>show(b.dataset.id)));
-addEventListener('hashchange',()=>show(location.hash.slice(1)));
-show(location.hash.slice(1));
+const brl=(v,d=2)=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct=(a,b)=>b?(a/b*100).toFixed(1).replace('.',',')+'%':'—';
+const el=(t,h)=>{const e=document.createElement(t);e.innerHTML=h;return e};
+
+// SDRs - leads parados (abertos)
+const PAR=[['Bruno Ianai',5,8,5,5,78,80,0],['Leonardo Maldaner',8,3,2,2,3,25,12],['Otavio Amaral Neto',8,2,2,1,3,2,0],['Samuel Prevedello',9,1,2,1,24,1,1],['Pâmela Souza',2,7,5,7,0,11,1],['João Gonçalves',6,7,2,1,1,94,1],['Silvio Junior',3,0,3,1,1,0,0],['Lana Caroline',0,0,0,0,0,75,2],['Peterson Botelho',1,0,0,0,0,0,0],['Sem SDR',0,0,0,0,0,25,0],['Outros',0,0,0,0,0,9,1]];
+PAR.forEach(r=>{const tot=r.slice(1).reduce((a,b)=>a+b,0);document.getElementById('tPar').append(el('tr',`<td>${r[0]}</td>${r.slice(1).map(v=>`<td class="r">${v}</td>`).join('')}<td class="r"><b>${tot}</b></td>`))});
+document.getElementById('fPar').append(el('tr','<td>Total</td><td class="r">42</td><td class="r">28</td><td class="r">21</td><td class="r">18</td><td class="r">110</td><td class="r">322</td><td class="r">18</td><td class="r">559</td>'));
+
+// Anúncios (painel): [anúncio, campanha, público, vendas, mrr, setup, reuniões]
+const ADS=[
+['AN94 · Arte Autoconf','Artes','Gerente Concessionária',0,0,0,1],['AN04 · Arte Autoconf','Artes','Loja de Veículos',0,0,0,1],
+['AN14 · Vídeo Agente de IA','Agente de IA','Vendedor de Carros',0,0,0,1],['AN76 · Vídeo Agente de IA','Agente de IA','Vendedor de Carros',1,1497,0,5],
+['AN15 · Vídeo Agente de IA','Agente de IA','Loja de Veículos',0,0,0,1],['AN25 · Arte Agente de IA','Agente de IA','Loja de Veículos',0,0,0,1],
+['AN28 · Vídeo Simulador','Simulador','Gerente Concessionária',0,0,0,2],['AN16 · Vídeo Simulador','Simulador','Loja de Veículos',1,499,0,6],
+['AN28 · Vídeo Simulador','Simulador','Loja de Veículos',6,5483,899,30],['AN16 · Vídeo Simulador','Simulador','Vendedor de Automóveis',3,2399,499,8],
+['AN73 · Vídeo Autoconf Pro','Autoconf Pro','Gerente Concessionária',0,0,0,6],['AN114 · Vídeo Autoconf Pro','Autoconf Pro','Gerente Concessionária',1,499,250,2],
+['AN73 · Vídeo Autoconf Pro','Autoconf Pro','Vendedor de Automóveis',1,1300,0,5],['AN114 · Vídeo Autoconf Pro','Autoconf Pro','Vendedor de Automóveis',0,0,0,1],
+['AN27 · Vídeo Loja de Motos','Loja de Motos','Loja de Motos',0,0,0,1],
+['AN65 · Vídeo RENAVE','Renave Brasil','Gerente Concessionária',2,998,499,3],['AN66 · Vídeo RENAVE','Renave Brasil','Gerente Concessionária',0,0,0,2],
+['AN128 · Vídeo RENAVE','Renave Brasil','Gerente Concessionária',0,0,0,2],['AN66 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',5,3344,1581,14],
+['AN65 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',2,998,499,11],['AN80 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',0,0,0,2],
+['AN128 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',1,499,399,2],['AN129 · Vídeo RENAVE','Renave Brasil','Vendedor de Carros',0,0,0,2],
+['AN121 · Arte Autoconf Pay','Autoconf Pay','Gerente Concessionária',0,0,0,1],['AN121 · Arte Autoconf Pay','Autoconf Pay','Loja de Veículos',0,0,0,1],
+['AN121 · Arte Autoconf Pay','Autoconf Pay','Vendedor de Automóveis',0,0,0,2],
+['AN46 · Vídeo Webinar 23/06','Webinar','Vendedor de Carros',0,0,0,2],
+['AN59 · Vídeo Webinar RENAVE','Webinar Renave (LP)','Gerente Concessionária',0,0,0,1],
+['AN98 · Vídeo Webinar RENAVE','Webinar Renave (LP)','Vendedor de Carros',1,2300,0,1],['AN99 · Arte Webinar RENAVE','Webinar Renave (LP)','Loja de Veículos',1,2300,0,1],
+['AN122 · Arte Webinar RENAVE','Webinar Renave (LP)','Vendedor de Carros',1,499,250,1],['AN123 · Vídeo Webinar RENAVE','Webinar Renave (LP)','Vendedor de Carros',1,499,0,3],
+['AN122 · Arte Webinar RENAVE','Webinar Renave (LP)','Loja de Veículos',1,499,0,3],['AN125 · Vídeo Webinar RENAVE','Webinar Renave (LP)','Loja de Veículos',0,0,0,1],
+['AN122 · Arte Webinar RENAVE','Webinar Renave (LP)','Vendedor de Automóveis',0,0,0,1],['AN124 · Vídeo Webinar RENAVE','Webinar Renave (LP)','Abriu Formulário 90D',0,0,0,1],
+['CE_AD029','Outras (GB/RB captação)','01_IG_F_MIX_LAL1',1,1500,0,1],['CE_AD019','Outras (GB/RB captação)','01_IG_F_MIX_LAL1',0,0,0,2],
+['CE_AD019','Outras (GB/RB captação)','01_IG_Q_MIX_ENVOLVIMENTO',0,0,0,1],['CE_AD028','Outras (GB/RB captação)','01_IG_Q_MIX_ENVOLVIMENTO',2,1348.5,0,0],
+['PRE_VENDAS_PRO_AD015','Outras (GB/RB captação)','00-IG-Q-MIX-ENVOLVIMENTO',1,600,0,0],['ROTA_DLPL_AD012','Outras (GB/RB captação)','00-IG-Q-MIX-ENVOLVIMENTO',0,0,0,1],
+['ROTA_DLPL_AD003','Outras (GB/RB captação)','00-IG-Q-MIX-ENVOLVIMENTO',1,2197,0,0]];
+ADS.slice().sort((a,b)=>b[3]-a[3]||b[6]-a[6]||b[4]-a[4]).forEach(r=>document.getElementById('tAds').append(el('tr',`<td>${r[0]}</td><td style="color:var(--t2)">${r[1]}</td><td style="color:var(--t2)">${r[2]}</td><td class="r">${r[6]}</td><td class="r">${r[3]?'<b style="color:var(--green)">'+r[3]+'</b>':'0'}</td><td class="r">${brl(r[4])}</td>`)));
+ADS.filter(r=>r[3]).sort((a,b)=>b[4]-a[4]).forEach(r=>document.getElementById('tVendAd').append(el('tr',`<td>${r[0]}</td><td style="color:var(--t2)">${r[1]}</td><td style="color:var(--t2)">${r[2]}</td><td class="r"><b>${r[3]}</b></td><td class="r">${brl(r[4])}</td><td class="r">${brl(r[5])}</td>`)));
+
+const LEADS={'Simulador':215,'Renave Brasil':161,'Autoconf Pro':82,'Agente de IA':75,'Autoconf Pay':23,'Loja de Motos':16,'Artes':13};
+const camp={};ADS.forEach(r=>{const c=camp[r[1]]||(camp[r[1]]={v:0,m:0,re:0});c.v+=r[3];c.m+=r[4];c.re+=r[6];});
+Object.keys(camp).sort((a,b)=>(LEADS[b]||0)-(LEADS[a]||0)||camp[b].v-camp[a].v).forEach(k=>{const c=camp[k],l=LEADS[k];document.getElementById('tCamp').append(el('tr',`<td><b>${k}</b></td><td class="r">${l??'—'}</td><td class="r">${c.re}</td><td class="r">${l?pct(c.re,l):'—'}</td><td class="r">${c.v}</td><td class="r">${pct(c.v,c.re)}</td><td class="r">${brl(c.m)}</td>`))});
+
+// Charts
+const gc='rgba(255,255,255,.05)',lc='#5b6374';Chart.defaults.color=lc;Chart.defaults.font.family='Inter';
+const tip={backgroundColor:'#1e2433',titleColor:'#f0f2f5',bodyColor:'#c3c9d4',padding:10,cornerRadius:8};
+const charts={};
+function build(id){if(charts[id])return;const D={
+ growth:()=>{
+  const dias=[36,19,27,32,42,58,28,42,26,20,32,24,44,34,42,69,34,31,45,29,38,34,38,27,27,14];
+  new Chart(cDia,{type:'line',data:{labels:dias.map((_,i)=>String(i+1).padStart(2,'0')+'/10'),datasets:[{data:dias,borderColor:'#4d9fff',backgroundColor:'rgba(77,159,255,.12)',fill:true,tension:.35,pointRadius:2,borderWidth:2}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>' '+c.parsed.y+' leads'}}},scales:{x:{grid:{display:false},ticks:{maxRotation:0,autoSkip:true}},y:{grid:{color:gc},beginAtZero:true}}}});
+  new Chart(cQ,{type:'bar',data:{labels:['Q1','Q2','Q3','Q4 (out)'],datasets:[{data:[1520,2630,3360,892],backgroundColor:['#4d9fff','#4d9fff','#4d9fff','rgba(77,159,255,.45)'],borderRadius:6}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>' '+c.parsed.y.toLocaleString('pt-BR')+' leads'}}},scales:{x:{grid:{display:false}},y:{grid:{color:gc},beginAtZero:true}}}});
+  new Chart(cMot,{type:'doughnut',data:{labels:['Não é do ramo (145)','Fora do ICP (90)','Funcionalidade (45)','Quer comprar veículo (5)'],datasets:[{data:[145,90,45,5],backgroundColor:['#ef4444','#9f7aea','#f59e0b','#06b6d4'],borderWidth:0}]},options:{maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'right',labels:{color:'#8b93a5',boxWidth:10,usePointStyle:true}},tooltip:{...tip,callbacks:{label:c=>' '+c.parsed+' ('+pct(c.parsed,285)+')'}}}}});
+  new Chart(cSdr,{type:'bar',data:{labels:['Bruno Ianai','João Gonçalves','Otavio Amaral','Leonardo Maldaner'],datasets:[{data:[45,42,39,36],backgroundColor:'rgba(167,139,250,.6)',borderColor:'#a78bfa',borderWidth:1,borderRadius:5}]},options:{indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>' '+c.parsed.x+' reuniões'}}},scales:{x:{grid:{color:gc},beginAtZero:true},y:{grid:{display:false},ticks:{color:'#c3c9d4'}}}}});
+ },
+ vendas:()=>{
+  new Chart(cPipe,{type:'bar',data:{labels:['ATF - Inbound','Nenhum valor','ATF - Webinar','ATF - Listas','ATF - Vendas','ATF - Resgate'],datasets:[{data:[45916,18682,5493,5244.5,998,950],backgroundColor:['#00e5a0','#ff5a5a','#4d9fff','#a78bfa','#ffb830','#8b93a5'],borderRadius:5}]},options:{indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>' '+brl(c.parsed.x)}}},scales:{x:{grid:{color:gc},ticks:{callback:v=>'R$ '+(v/1000)+' mil'}},y:{grid:{display:false},ticks:{color:'#c3c9d4'}}}}});
+ },
+ ads:()=>{
+  const k=Object.keys(LEADS);
+  new Chart(cCamp,{type:'bar',data:{labels:k,datasets:[{data:k.map(x=>LEADS[x]),backgroundColor:'rgba(77,159,255,.6)',borderColor:'#4d9fff',borderWidth:1,borderRadius:5}]},options:{indexAxis:'y',maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tip,callbacks:{label:c=>' '+c.parsed.x+' leads'}}},scales:{x:{grid:{color:gc},beginAtZero:true},y:{grid:{display:false},ticks:{color:'#c3c9d4'}}}}});
+  new Chart(cFonte,{type:'doughnut',data:{labels:['Campanhas [HORIZZONT] (585)','Outras campanhas Meta (11)','Treble.ai / WhatsApp (66)','Google, Bing, Yahoo (28)','Outros (59)','Sem fonte (50)'],datasets:[{data:[585,11,66,28,59,50],backgroundColor:['#4d9fff','#307FE2','#00e5a0','#ffb830','#a78bfa','#5b6374'],borderWidth:0}]},options:{maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'right',labels:{color:'#8b93a5',boxWidth:10,usePointStyle:true}},tooltip:tip}}});
+ }};D[id]();charts[id]=1;}
+
+const tabs=[...document.querySelectorAll('#tabs button')];
+function show(id){const t=tabs.find(b=>b.dataset.id===id)||tabs[0];tabs.forEach(b=>b.setAttribute('aria-selected',b===t));document.querySelectorAll('section.tab').forEach(s=>s.classList.toggle('on',s.id===t.dataset.id));build(t.dataset.id);if(location.hash!=='#'+t.dataset.id)history.replaceState(null,'','#'+t.dataset.id);}
+tabs.forEach(b=>b.onclick=()=>show(b.dataset.id));addEventListener('hashchange',()=>show(location.hash.slice(1)));show(location.hash.slice(1));
 </script>
 </body>
 </html>
