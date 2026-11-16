@@ -43,6 +43,8 @@ td{padding:8px 10px;border-bottom:1px solid rgba(255,255,255,.04)}
 .note{font-size:11.5px;color:var(--t2);line-height:1.6;margin-top:12px}
 .ins{border-radius:10px;padding:12px 14px;font-size:12px;border-left:3px solid;margin-top:10px}
 .ig{background:rgba(0,229,160,.08);border-color:var(--green);color:#a7f3d0}.iw{background:rgba(255,184,48,.08);border-color:var(--amber);color:#fde68a}.ir{background:rgba(255,90,90,.08);border-color:var(--red);color:#fca5a5}
+.btn{background:var(--c2,#1a1f2b);border:1px solid var(--b);color:var(--t2);padding:6px 12px;border-radius:8px;font:600 11.5px Inter,sans-serif;cursor:pointer}.btn:hover{color:#fff;border-color:var(--brand,#307FE2)}
+.cr{cursor:pointer}.cr:hover td{background:rgba(255,255,255,.03)}.cv{display:inline-block;width:14px;color:var(--t3)}
 footer{max-width:1360px;margin:0 auto;padding:10px 24px 30px;font-size:11px;color:var(--t3)}
 @media(max-width:900px){.g2,.g3{grid-template-columns:1fr}.fun{grid-template-columns:repeat(2,1fr)}.hin{padding:0 16px}main{padding:16px}.src{display:none}}
 </style>
@@ -54,6 +56,7 @@ footer{max-width:1360px;margin:0 auto;padding:10px 24px 30px;font-size:11px;colo
     <button role="tab" data-id="growth">Growth · Funil Inbound</button>
     <button role="tab" data-id="vendas">Vendas</button>
     <button role="tab" data-id="ads">Anúncios</button>
+    <button role="tab" data-id="campanhas">Campanhas</button>
   </nav>
   <span class="src">Fonte: painel HubSpot [ATF] MARKETING AUTOCONF · 01 a 16/11/2026</span>
 </div></header>
@@ -400,8 +403,46 @@ footer{max-width:1360px;margin:0 auto;padding:10px 24px 30px;font-size:11px;colo
     <div class="note">Referências de IA seguem marginais: 1 lead em novembro, vindo do chatgpt.com.</div>
   </div>
 </section>
+
+<!-- ================= CAMPANHAS ================= -->
+<section class="tab" id="campanhas">
+  <div class="sl">Campanhas, conjuntos e anúncios · Meta · novembro 2026 · 01 a 16/11</div>
+  <div class="kpis">
+    <div class="k"><div class="kl">Anúncios com lead ou resultado</div><div class="kv" style="color:var(--blue)">38</div><div class="ks">28 ainda sem nome</div></div>
+    <div class="k"><div class="kl">Anúncios com venda</div><div class="kv" style="color:var(--green)">10</div><div class="ks">19 vendas · R$ 10.929 MRR</div></div>
+    <div class="k"><div class="kl">Líder em leads</div><div class="kv" style="font-size:22px;color:var(--blue)">AN28</div><div class="ks">Simulador · 146 leads (36%)</div></div>
+    <div class="k"><div class="kl">Líder em MRR</div><div class="kv" style="font-size:22px;color:var(--green)">AN28</div><div class="ks">R$ 4.941 · 45% do MRR de anúncios</div></div>
+    <div class="k"><div class="kl">Segundo em leads</div><div class="kv" style="font-size:22px;color:var(--purple)">…830750</div><div class="ks">Renave · 67 leads · 18 reuniões · 4 vendas</div></div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Leitura dos anúncios</div><div class="cs">Campanha → conjunto (público) → anúncio · leads, reuniões, vendas e MRR de novembro</div>
+    <div class="ins ig"><b>O AN28 carrega o Simulador e o mês.</b> Sozinho tem 36% dos leads rastreados (146 de 402), 37% das vendas (7 de 19) e 45% do MRR de anúncios (R$ 4.941). O Simulador depende de um único criativo.</div>
+    <div class="ins ig"><b>O melhor anúncio de Renave ainda não tem nome.</b> O ID …830750 tem 67 leads, 18 reuniões (27%) e 4 vendas com R$ 2.595 de MRR, no público Gerente Concessionária. É o segundo maior anúncio do mês. Mande o nome dele que eu coloco.</div>
+    <div class="ins ir"><b>Nenhum anúncio de Agente de IA gerou venda.</b> São 6 anúncios e 38 leads, com 1 reunião no mês. O maior anúncio (AN76) tem 14 leads e nenhuma reunião.</div>
+    <div class="ins iw"><b>No Simulador, 93% dos leads vêm de um público.</b> Loja de Veículos tem 159 dos 171 leads. Vendedor de Automóveis tem 12 e Vendedor de Carros nenhum lead no mês.</div>
+    <div class="ins iw"><b>O AN73 rende mais por lead em Gerente Concessionária, mas a base é pequena.</b> São 3 leads, 2 reuniões e 1 venda, contra 51 leads, 3 reuniões e 1 venda em Vendedor de Automóveis. Vale testar mais verba nesse público.</div>
+    <div class="ins iw"><b>Parte das vendas vem de leads de meses anteriores.</b> Artes tem 2 vendas (R$ 798) com 1 reunião no mês, e Renave tem 1 venda sem MRR preenchido (…830760).</div>
+  </div>
+
+  <div class="card">
+    <div class="ct">Campanha → conjunto → anúncio</div><div class="cs">Leads: [ATF] LEAD POR ANÚNCIO | ESTE MÊS · reuniões, vendas, MRR e setup: [ATF] ESTE MÊS | REUNIÕES E VENDAS | ANÚNCIOS · clique na linha para abrir</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px">
+      <button class="btn" onclick="campSet('camp')">Só campanhas</button>
+      <button class="btn" onclick="campSet('grp')">Campanhas e conjuntos</button>
+      <button class="btn" onclick="campSet('all')">Tudo aberto</button>
+    </div>
+    <div class="tw"><table>
+      <thead><tr><th>Campanha · conjunto · anúncio</th><th class="r">Leads</th><th class="r">Reuniões</th><th class="r">Lead → Reunião</th><th class="r">Vendas</th><th class="r">Reunião → Venda</th><th class="r">MRR</th><th class="r">Setup</th></tr></thead>
+      <tbody id="tCampTree"></tbody>
+      <tfoot><tr><td>Total (soma das linhas)</td><td class="r">402</td><td class="r">64</td><td class="r">15.9%</td><td class="r">19</td><td class="r">—</td><td class="r">R$ 10.929,00</td><td class="r">R$ 1.248,00</td></tr></tfoot>
+    </table></div>
+    <div class="note">O painel conta cada negócio uma vez: 59 reuniões e 19 vendas. A soma das reuniões nas linhas é 64 porque um lead pode ter interagido com mais de um anúncio. Há ainda 153 leads sem anúncio identificado no relatório de leads. Lead → Reunião só aparece com 10 leads ou mais, e Reunião → Venda só quando as vendas não passam das reuniões.</div>
+    <div class="note">O HubSpot entrega só o ID do anúncio. Os 10 nomes (AN16, AN28, AN65, AN73, AN76, AN121) foram associados à mão. Os demais aparecem como “Anúncio …” com os 6 últimos dígitos do ID. O conjunto Vendedor de Carros da campanha Agente de IA foi inferido pelo ID.</div>
+  </div>
+</section>
 </main>
-<footer>Os números vêm do painel HubSpot [ATF] MARKETING AUTOCONF, lidos em 16/11/2026. Google Ads, a tabela por fonte, o comparativo com outubro e as séries mensais vêm de consulta ao CRM. Investimento, CPL e ROAS vêm da planilha INBOUND GERAL (organizado). As taxas são divisões simples entre widgets do painel. Funil pré-vendas, leads por dia, Q4, leads por fonte e reuniões por SDR vêm de consulta direta ao CRM com a mesma regra dos widgets.</footer>
+<footer>Os números vêm do painel HubSpot [ATF] MARKETING AUTOCONF (a aba Campanhas usa os relatórios de leads e de reuniões e vendas por anúncio), lidos em 16/11/2026. Google Ads, a tabela por fonte, o comparativo com outubro e as séries mensais vêm de consulta ao CRM. Investimento, CPL e ROAS vêm da planilha INBOUND GERAL (organizado). As taxas são divisões simples entre widgets do painel. Funil pré-vendas, leads por dia, Q4, leads por fonte e reuniões por SDR vêm de consulta direta ao CRM com a mesma regra dos widgets.</footer>
 
 <script>
 const brl=(v,d=2)=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:d,maximumFractionDigits:d});
@@ -494,6 +535,38 @@ function build(id){if(charts[id])return;const D={
    {label:'CPL Meta',data:[18.95,21.52,26.39,28.11,28.76,29.51],borderColor:'#4d9fff',backgroundColor:'#4d9fff',tension:.3,pointRadius:3},
    {label:'CPL Google',data:[153.67,24.92,59.76,82.20,204.29,157.30],borderColor:'#ffb830',backgroundColor:'#ffb830',tension:.3,pointRadius:3}]},
    options:{maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8b93a5',boxWidth:10,usePointStyle:true}},tooltip:{...tip,callbacks:{label:c=>' '+c.dataset.label+' '+brl(c.parsed.y)}}},scales:{x:{grid:{display:false}},y:{grid:{color:gc},beginAtZero:true,ticks:{callback:v=>'R$ '+v}}}}});
+
+ },
+ campanhas:()=>{
+  const NOMES={"120251301126980520": "AN76 · Vídeo Agente de IA", "120245838453960520": "AN16 · Vídeo Simulador", "120246985692840520": "AN28 · Vídeo Simulador", "120245838453940520": "AN16 · Vídeo Simulador", "120251158141380520": "AN73 · Vídeo Autoconf Pro", "120251158093950520": "AN73 · Vídeo Autoconf Pro", "120250887425820520": "AN65 · Vídeo RENAVE", "120250887426010520": "AN65 · Vídeo RENAVE", "120252391189590520": "AN121 · Arte Autoconf Pay", "120252391189630520": "AN121 · Arte Autoconf Pay"};
+  const CAMP=[["Artes", "Gerente Concessionária", "120251555600740520", 2, 0, 1, 399, 0], ["Artes", "Gerente Concessionária", "120245177291400520", 0, 0, 1, 399, 0], ["Artes", "Loja de Veículos", "120251555670750520", 5, 1, 0, 0, 0], ["Agente de IA", "Loja de Veículos", "120245827016500520", 2, 0, 0, 0, 0], ["Agente de IA", "Loja de Veículos", "120252665499220520", 14, 1, 0, 0, 0], ["Agente de IA", "Loja de Veículos", "120252866714740520", 4, 0, 0, 0, 0], ["Agente de IA", "Vendedor de Carros", "120251301126980520", 14, 0, 0, 0, 0], ["Agente de IA", "Vendedor de Carros", "120252665411990520", 2, 0, 0, 0, 0], ["Agente de IA", "Vendedor de Carros", "120252866679370520", 2, 0, 0, 0, 0], ["Simulador", "Loja de Veículos", "120245838453960520", 13, 4, 0, 0, 0], ["Simulador", "Loja de Veículos", "120246985692840520", 146, 16, 7, 4941, 499], ["Simulador", "Vendedor de Carros", "120246985692600520", 0, 1, 0, 0, 0], ["Simulador", "Vendedor de Automóveis", "120245838453940520", 7, 0, 0, 0, 0], ["Simulador", "Vendedor de Automóveis", "120246985483870520", 5, 2, 0, 0, 0], ["Autoconf Pro", "Loja de Veículos", "120251158141390520", 4, 1, 0, 0, 0], ["Autoconf Pro", "Vendedor de Automóveis", "120251158141380520", 51, 3, 1, 599, 0], ["Autoconf Pro", "Gerente Concessionária", "120251158093950520", 3, 2, 1, 499, 0], ["Loja de Motos", "Loja de Motos", "120246985012110520", 8, 1, 0, 0, 0], ["Loja de Motos", "Loja de Motos", "120246055740260520", 0, 1, 0, 0, 0], ["Renave Brasil", "Vendedor de Carros", "120250887426010520", 1, 0, 0, 0, 0], ["Renave Brasil", "Vendedor de Carros", "120252551703520520", 1, 1, 1, 499, 0], ["Renave Brasil", "Gerente Concessionária", "120250887425820520", 22, 6, 0, 0, 0], ["Renave Brasil", "Gerente Concessionária", "120250887425830520", 3, 0, 0, 0, 0], ["Renave Brasil", "Gerente Concessionária", "120252551830750520", 67, 18, 4, 2595, 749], ["Renave Brasil", "Gerente Concessionária", "120252551830760520", 9, 0, 1, 0, 0], ["Autoconf Pay", "Loja de Veículos", "120252391189610520", 4, 1, 0, 0, 0], ["Autoconf Pay", "Vendedor de Automóveis", "120252391189630520", 4, 1, 1, 499, 0], ["Autoconf Pay", "Vendedor de Automóveis", "120252665504240520", 1, 0, 0, 0, 0], ["Autoconf Pay", "Gerente Concessionária", "120252391189590520", 1, 0, 0, 0, 0], ["Autoconf Pay", "Gerente Concessionária", "120252665528160520", 2, 0, 0, 0, 0], ["Campanhas novas (nome não retornado)", "Conjunto 120254939407730745", "120254939416360745", 1, 0, 0, 0, 0], ["Campanhas novas (nome não retornado)", "Conjunto 120254939414900745", "120254939431390745", 3, 0, 0, 0, 0], ["Campanhas novas (nome não retornado)", "Conjunto 120254940322690745", "120254941282230745", 1, 0, 0, 0, 0], ["[16-10-26] Captação principal", "00_IG_FORMS_PERNSONALIZADO - Vendedor", "120254605129310745", 0, 1, 0, 0, 0], ["Outras (campanhas antigas)", "GB_COEF · 01_IG_Q_MIX_ENVOLVIMENTO", "120244110346790745", 0, 1, 0, 0, 0], ["Outras (campanhas antigas)", "MONTRE · RmktVideoView75 [Ad31_Reels]", "120236918442600520", 0, 1, 0, 0, 0], ["Outras (campanhas antigas)", "RB_ROTA · 00-IG-Q-MIX-ENVOLVIMENTO", "120240898046890745", 0, 1, 0, 0, 0], ["Outras (campanhas antigas)", "TA_ROTA · 00-IG-Q-MIX-ENVOLVIMENTO", "120244607288730745", 0, 0, 1, 499, 0]];
+  const tree={};
+  CAMP.forEach(r=>{const c=tree[r[0]]||(tree[r[0]]={g:{},t:[0,0,0,0,0]});const g=c.g[r[1]]||(c.g[r[1]]={a:[],t:[0,0,0,0,0]});g.a.push(r);[3,4,5,6,7].forEach((k,i)=>{c.t[i]+=r[k];g.t[i]+=r[k];});});
+  let mode='grp';const open=new Set();
+  const cell=(t,lv)=>{const l=t[0],re=t[1],v=t[2];const w=lv==='a'?'font-weight:400':'font-weight:600';
+   return `<td class="r" style="${w}">${l}</td><td class="r" style="${w}">${re}</td><td class="r">${l>=10?pct(re,l):'—'}</td><td class="r">${v?'<b style="color:var(--green)">'+v+'</b>':'0'}</td><td class="r">${re&&v&&v<=re?pct(v,re):'—'}</td><td class="r">${t[3]?brl(t[3]):'—'}</td><td class="r">${t[4]?brl(t[4]):'—'}</td>`;};
+  const order=(a,b)=>b.t[0]-a.t[0]||b.t[2]-a.t[2]||b.t[3]-a.t[3];
+  function render(){
+   const tb=document.getElementById('tCampTree');tb.innerHTML='';
+   Object.keys(tree).map(k=>({k,...tree[k]})).sort(order).forEach(c=>{
+    const cOpen=mode==='all'||mode==='grp'||open.has(c.k);
+    tb.append(el('tr',`<td><span class="cv">${cOpen?'▾':'▸'}</span><b>${c.k}</b></td>${cell(c.t,'c')}`));
+    tb.lastChild.className='cr';tb.lastChild.onclick=()=>{if(mode==='camp'){open.has(c.k)?open.delete(c.k):open.add(c.k);}render();};
+    if(mode==='camp'&&!open.has(c.k))return;
+    Object.keys(c.g).map(k=>({k,...c.g[k]})).sort(order).forEach(g=>{
+     const gid=c.k+'|'+g.k;const gOpen=mode==='all'||open.has(gid);
+     tb.append(el('tr',`<td style="padding-left:28px"><span class="cv">${gOpen?'▾':'▸'}</span><span style="color:var(--t2)">${g.k}</span></td>${cell(g.t,'g')}`));
+     tb.lastChild.className='cr';tb.lastChild.onclick=()=>{open.has(gid)?open.delete(gid):open.add(gid);if(mode==='all')mode='grp';render();};
+     if(!gOpen)return;
+     g.a.slice().sort((a,b)=>b[3]-a[3]||b[5]-a[5]||b[6]-a[6]).forEach(a=>{
+      const nm=NOMES[a[2]];const lab=nm?`${nm} <span style="color:var(--t3)">…${a[2].slice(-6)}</span>`:`<span style="color:var(--t2)">Anúncio …${a[2].slice(-6)}</span>`;
+      tb.append(el('tr',`<td style="padding-left:58px">${lab}</td>${cell([a[3],a[4],a[5],a[6],a[7]],'a')}`));
+     });
+    });
+   });
+  }
+  window.campSet=m=>{mode=m;open.clear();if(m==='grp'){/* campanhas e conjuntos */}render();};
+  render();
  }};D[id]();charts[id]=1;}
 
 const tabs=[...document.querySelectorAll('#tabs button')];
